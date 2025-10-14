@@ -10,7 +10,8 @@
       "initiator_idealism_change": 5,
       "target_idealism_change": -10,
       "target_rupture_change": 15
-    }
+    },
+    "keyword": "CONFRONTATION"
   },
   {
     "name": "Discuss Philosophy",
@@ -25,7 +26,8 @@
       "target_idealism_change": 10,
       "target_rupture_change": 0,
       "propagate_ism_chance": 0.1
-    }
+    },
+    "keyword": "COOPERATION"
   },
   {
     "name": "Offer Gift",
