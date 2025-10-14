@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Insult",
+    "type": "aggressive",
+    "conditions": {
+      "initiator_has_any_keyword": ["支配", "对抗", "虚无主义"]
+    },
+    "effects": {
+      "base_affinity_change": -20,
+      "initiator_idealism_change": 5,
+      "target_idealism_change": -10,
+      "target_rupture_change": 15
+    }
+  },
+  {
+    "name": "Discuss Philosophy",
+    "type": "friendly",
+    "conditions": {
+      "initiator_has_any_keyword": ["知识", "理性", "沉思"],
+      "target_has_any_keyword": ["知识", "理性", "开放性"]
+    },
+    "effects": {
+      "base_affinity_change": 15,
+      "initiator_idealism_change": 10,
+      "target_idealism_change": 10,
+      "target_rupture_change": 0
+    }
+  },
+  {
+    "name": "Offer Gift",
+    "type": "friendly",
+    "conditions": {
+      "initiator_has_any_keyword": ["和谐", "功利主义", "集体"]
+    },
+    "effects": {
+      "base_affinity_change": 25,
+      "initiator_idealism_change": 5,
+      "target_idealism_change": 5,
+      "target_rupture_change": 0
+    }
+  }
+]

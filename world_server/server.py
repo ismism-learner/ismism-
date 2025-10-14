@@ -10,7 +10,21 @@ class Server:
     def __init__(self):
         self.world = World()
         self.clients = set()
+        self.interactions = []
+        self._load_interactions()
         self._setup_world()
+
+    def _load_interactions(self):
+        """加载所有可能的互动行为"""
+        interactions_path = "world_server/interactions.json"
+        try:
+            with open(interactions_path, 'r', encoding='utf-8') as f:
+                self.interactions = json.load(f)
+            print(f"成功加载 {len(self.interactions)} 个互动。")
+        except FileNotFoundError:
+            print(f"错误: 互动文件 '{interactions_path}' 未找到。")
+        except json.JSONDecodeError:
+            print(f"错误: 互动文件 '{interactions_path}' 格式无效。")
 
     def _setup_world(self):
         """初始化游戏世界，创建场景并加载所有NPC"""
@@ -79,7 +93,7 @@ class Server:
                 # 每个tick都执行思考逻辑
                 for entity in all_entities:
                     if isinstance(entity, NPC):
-                        entity.think(all_entities)
+                        entity.think(all_entities, self.interactions)
 
             # 3. 准备要发送的状态数据
             world_state = self.get_world_state()
@@ -104,7 +118,8 @@ class Server:
                         "action": entity.current_action,
                         "goal": entity.current_goal,
                         "needs": entity.needs,
-                        "rupture": entity.desire['real']['rupture']
+                        "rupture": entity.desire['real']['rupture'],
+                        "relationships": entity.relationships
                     })
         return json.dumps(state)
 

@@ -29,6 +29,9 @@ class NPC(Entity):
         self.current_action = "Idle" # NPC当前的动作描述
         self.current_goal = "Wander" # NPC当前的目标
 
+        # 关系（动态）
+        self.relationships = {} # Key: other_npc_id, Value: {"affinity": 0}
+
         # Tier 1: 生理需求
         self.needs = {
             'hunger': {
@@ -64,11 +67,10 @@ class NPC(Entity):
             }
         }
 
-    def think(self, all_entities):
-        """NPC的思考/行动逻辑，现在由需求驱动"""
-
+    def think(self, all_entities, interactions):
+        """NPC的思考/行动逻辑，现在由需求和互动驱动"""
         # 1. 检查并处理互动
-        self.check_for_interaction(all_entities)
+        self.evaluate_and_initiate_interaction(all_entities, interactions)
 
         # 2. 评估需求并设定目标
         self.evaluate_needs()
@@ -76,42 +78,138 @@ class NPC(Entity):
         # 3. 根据当前目标执行行动
         self.execute_action()
 
-    def check_for_interaction(self, all_entities):
-        """检查与其他NPC的互动"""
+    def get_affinity(self, other_npc_id):
+        """安全地获取与另一个NPC的亲和度"""
+        return self.relationships.get(other_npc_id, {"affinity": 0})["affinity"]
+
+    def _get_all_ism_keywords(self):
+        """获取NPC所有'ism'的关键词列表"""
+        keywords = set()
+        # 添加主要'ism'的关键词
+        for key in ['field_theory', 'ontology', 'epistemology', 'teleology']:
+            keywords.update(self.ism_data.get(key, {}).get('keywords', []))
+        # 添加次要'ism'的关键词
+        for secondary_ism in self.ism_data.get('secondary_isms', []):
+            for key in ['field_theory', 'ontology', 'epistemology', 'teleology']:
+                keywords.update(secondary_ism.get(key, {}).get('keywords', []))
+        return list(keywords)
+
+    def _check_interaction_conditions(self, interaction, target):
+        """检查发起者和目标是否满足特定互动的条件"""
+        initiator_keywords = self._get_all_ism_keywords()
+        target_keywords = target._get_all_ism_keywords()
+        conditions = interaction.get('conditions', {})
+
+        # 检查发起者的条件
+        if 'initiator_has_any_keyword' in conditions:
+            if not any(k in initiator_keywords for k in conditions['initiator_has_any_keyword']):
+                return False
+
+        # 检查目标的条件
+        if 'target_has_any_keyword' in conditions:
+            if not any(k in target_keywords for k in conditions['target_has_any_keyword']):
+                return False
+
+        if 'target_must_not_have_keyword' in conditions:
+            if any(k in target_keywords for k in conditions['target_must_not_have_keyword']):
+                return False
+
+        return True
+
+    def evaluate_and_initiate_interaction(self, all_entities, interactions):
+        """评估并决定是否以及如何与其他NPC互动"""
+        if random.random() > 0.02: # 降低互动评估的频率以提高性能
+            return
+
         for other in all_entities:
             if other.id == self.id:
                 continue
 
             dist = ((self.position['x'] - other.position['x'])**2 + (self.position['y'] - other.position['y'])**2)**0.5
+            if dist < 80: # 增加互动距离
 
-            if dist < 50: # 互动距离阈值
-                # 随机决定是否发起互动
-                if random.random() < 0.01: # 降低互动频率
-                    # 简化：随机选择一个 "攻击性" 互动
-                    self.initiate_insult(other)
-                    break # 每次只互动一次
+                possible_interactions = []
+                for interaction in interactions:
+                    if self._check_interaction_conditions(interaction, other):
+                        possible_interactions.append(interaction)
 
-    def initiate_insult(self, target):
-        """对目标发起一次侮辱，触发Symbolic和Real Desire"""
-        print(f"'{self.name}' insults '{target.name}'!")
+                if not possible_interactions:
+                    continue
 
-        # 对方会如何反应？这取决于他们的'ism'
-        # 这里我们直接调用一个方法来处理被侮辱的后果
-        target.receive_insult(self)
+                # --- 决策逻辑 ---
+                # 简单的决策：优先考虑亲和度。如果关系好，倾向于友好互动；如果关系差，倾向于攻击性互动。
+                affinity = self.get_affinity(other.id)
 
-    def receive_insult(self, aggressor):
-        """处理被侮辱的后果"""
-        # Symbolic Desire: 我们假设所有NPC目前都讨厌被侮辱
-        self.needs['idealism']['current'] = max(0, self.needs['idealism']['current'] - 10) # 侮辱会打击自尊/理想
+                chosen_interaction = None
+                if affinity < -20: # 关系很差
+                    hostile_options = [i for i in possible_interactions if i.get('type') == 'aggressive']
+                    if hostile_options:
+                        chosen_interaction = random.choice(hostile_options)
+                elif affinity > 20: # 关系很好
+                    friendly_options = [i for i in possible_interactions if i.get('type') == 'friendly']
+                    if friendly_options:
+                        chosen_interaction = random.choice(friendly_options)
+                else: # 关系一般或初识
+                    # 随机选择一个可能的互动
+                    if possible_interactions:
+                        chosen_interaction = random.choice(possible_interactions)
 
-        # Real Desire: 积累创伤，并记录来源
-        self.desire['real']['rupture'] += 25 # 侮辱是创伤性事件
-        self.desire['real']['source_of_trauma'] = aggressor.id
-        print(f"'{self.name}' feels the sting of the insult. Rupture is now {self.desire['real']['rupture']}.")
+                if chosen_interaction:
+                    self.initiate_interaction(chosen_interaction, other)
+                    break # 每次只与一个NPC互动
 
-        # 立即反应：进入一个短暂的 "Fleeing" 状态
-        self.current_goal = "FLEE_FROM_THREAT"
-        self.current_action = "Fleeing"
+    def initiate_interaction(self, interaction, target):
+        """对目标发起一个互动"""
+        print(f"'{self.name}' initiates '{interaction['name']}' with '{target.name}'.")
+
+        # 应用对发起者的效果
+        effects = interaction.get('effects', {})
+        self.needs['idealism']['current'] = max(0, self.needs['idealism']['current'] + effects.get('initiator_idealism_change', 0))
+
+        # 让目标接收互动
+        target.receive_interaction(interaction, self)
+
+    def receive_interaction(self, interaction, aggressor):
+        """处理接收到的互动"""
+        effects = interaction.get('effects', {})
+
+        # 更新关系
+        affinity_change = effects.get('base_affinity_change', 0)
+        current_affinity = self.get_affinity(aggressor.id)
+        new_affinity = current_affinity + affinity_change
+        self.relationships[aggressor.id] = {"affinity": new_affinity}
+
+        # 更新需求
+        self.needs['idealism']['current'] = max(0, self.needs['idealism']['current'] + effects.get('target_idealism_change', 0))
+
+        # 更新创伤
+        self.desire['real']['rupture'] = max(0, self.desire['real']['rupture'] + effects.get('target_rupture_change', 0))
+        if effects.get('target_rupture_change', 0) > 0:
+            self.desire['real']['source_of_trauma'] = aggressor.id
+
+        print(f"'{self.name}' reacts to '{interaction['name']}'. Affinity towards '{aggressor.name}' is now {new_affinity}.")
+
+        # --- 更复杂的反应逻辑 ---
+        receiver_keywords = self._get_all_ism_keywords()
+        interaction_type = interaction.get('type')
+
+        if interaction_type == 'aggressive':
+            # 如果接收者有对抗性，并且关系不好，他们不会逃跑，而是会愤怒
+            if '对抗' in receiver_keywords and new_affinity < 10:
+                self.current_action = "Fuming"
+                # 在未来的迭代中，这里可以触发一个报复性互动
+            else:
+                self.current_goal = "FLEE_FROM_THREAT"
+                self.current_action = "Fleeing"
+
+        elif interaction_type == 'friendly':
+            # 如果接收者是多疑的或虚无的，他们对友好行为的反应会更差
+            if any(k in receiver_keywords for k in ['孤立', '虚无主义']):
+                self.relationships[aggressor.id]["affinity"] = new_affinity - 10 # 减少亲和度增益
+                self.current_action = "Suspicious"
+            else:
+                # 正常反应，什么也不做，继续之前的行为
+                pass
 
 
     def evaluate_needs(self):
@@ -200,6 +298,18 @@ class NPC(Entity):
             # In a real scenario, this would involve complex logic to find and act against the source.
             # For now, the NPC just paces angrily.
             move_x, move_y = random.choice([-speed, speed, -speed, speed, 0]), 0
+
+        # --- Reactionary Actions ---
+        elif self.current_action == "Fuming":
+            # 愤怒地原地踏步
+            move_x, move_y = random.choice([-1, 1, 0]), random.choice([-1, 1, 0])
+            if random.random() < 0.1: # 有几率冷静下来
+                self.current_action = "Idle"
+
+        elif self.current_action == "Suspicious":
+            # 保持静止，表示怀疑
+            if random.random() < 0.2: # 有几率恢复正常
+                self.current_action = "Idle"
 
         elif self.current_goal == "FLEE_FROM_THREAT":
             self.current_action = "Fleeing"
