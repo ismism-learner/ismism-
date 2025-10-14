@@ -30,6 +30,7 @@ from world_server.ecs.systems.banking_system import BankingSystem
 from world_server.ecs.systems.technology_system import TechnologySystem
 from world_server.ecs.systems.hobby_system import HobbySystem
 from world_server.ecs.systems.desire_system import DesireSystem
+from world_server.ecs.systems.collective_action_system import CollectiveActionSystem
 
 
 class Server:
@@ -41,6 +42,7 @@ class Server:
         self.consumer_goods = []
         self.hobby_definitions = []
         self.relationship_types = {}
+        self.collective_actions = []
         self._load_game_definitions()
         self._setup_world()
 
@@ -115,6 +117,18 @@ class Server:
         except json.JSONDecodeError:
             print(f"错误: 关系类型文件 '{relationship_types_path}' 格式无效。")
 
+        # Load collective actions
+        collective_actions_path = "world_server/collective_actions.json"
+        try:
+            with open(collective_actions_path, 'r', encoding='utf-8') as f:
+                self.collective_actions = json.load(f)
+            print(f"成功加载 {len(self.collective_actions)} 个集体行动。")
+        except FileNotFoundError:
+            print(f"信息: 集体行动文件 '{collective_actions_path}' 未找到。将使用空列表。")
+            self.collective_actions = []
+        except json.JSONDecodeError:
+            print(f"错误: 集体行动文件 '{collective_actions_path}' 格式无效。")
+
     def _setup_world(self):
         """初始化游戏世界，加载资源，创建实体并注册系统"""
         self._spawn_all_npcs()
@@ -132,6 +146,7 @@ class Server:
         self.ecs_world.add_system(MovementSystem())
         self.ecs_world.add_system(ActionSystem())
         self.ecs_world.add_system(self.ecs_world.tech_system)
+        self.ecs_world.add_system(CollectiveActionSystem())
 
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
@@ -155,7 +170,8 @@ class Server:
             # Identity
             npc_name = data.get("identity", {}).get("npc_name", "无名氏")
             primary_ism_desc = data.get("identity", {}).get("primary_ism_name", "一个神秘的人")
-            self.ecs_world.add_component(entity_id, IdentityComponent(name=npc_name, description=primary_ism_desc))
+            identity_comp = IdentityComponent(name=npc_name, description=primary_ism_desc)
+            self.ecs_world.add_component(entity_id, identity_comp)
 
             # Position (randomly spawned)
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
@@ -167,19 +183,45 @@ class Server:
             needs_comp = NeedsComponent()
             leisure_script = data.get("behavioral_scripts", {}).get("leisure_activity", "IDLE")
             if leisure_script == "WORK":
-                # Convert legacy string demands into the new complex format
                 needs_comp.demands.append({'type': 'WORK'})
             elif leisure_script != "IDLE":
-                # This could be expanded to handle other legacy scripts if any exist
                 pass
-            # Randomize initial needs slightly for variety
+
+            # --- Enhanced Environmental Effects ---
+            initial_stress = random.randint(0, 30)
+            initial_money = random.randint(20, 100)
+
+            if self.locations:
+                # Select a random location as a "birthplace"
+                birthplace_loc = random.choice(self.locations)
+                birthplace_id = birthplace_loc['id']
+                birthplace_type = birthplace_loc.get('type')
+
+                # Get the component we just added to modify it
+                added_identity_comp = self.ecs_world.get_component(entity_id, IdentityComponent)
+                added_identity_comp.birthplace = birthplace_id
+
+                # Apply modifiers based on the type of the birthplace location
+                if birthplace_type in ['WORKPLACE', 'FOOD_SOURCE']: # Assumed lower-class
+                    initial_stress += 10
+                    initial_money -= 15
+                elif birthplace_type in ['CENTRAL_BANK', 'COMMERCIAL_BANK', 'MARKETPLACE']: # Assumed upper-class/merchant
+                    initial_stress -= 5
+                    initial_money += 30
+                elif birthplace_type == 'SHELTER': # Neutral
+                    pass
+
+            initial_stress = max(0, min(initial_stress, 100))
+            initial_money = max(1, initial_money)
+            # --- End of Environmental Effects ---
+
             needs_comp.needs['hunger']['current'] = random.randint(0, 40)
             needs_comp.needs['energy']['current'] = random.randint(50, 90)
-            needs_comp.needs['stress']['current'] = random.randint(0, 30)
+            needs_comp.needs['stress']['current'] = initial_stress
             self.ecs_world.add_component(entity_id, needs_comp)
 
             # Economy
-            self.ecs_world.add_component(entity_id, EconomyComponent(money=random.randint(20, 100)))
+            self.ecs_world.add_component(entity_id, EconomyComponent(money=initial_money))
 
             # State
             self.ecs_world.add_component(entity_id, StateComponent())
@@ -225,7 +267,8 @@ class Server:
                 locations=self.locations,
                 interactions=self.interactions,
                 relationship_types=self.relationship_types,
-                consumer_goods=self.consumer_goods
+                consumer_goods=self.consumer_goods,
+                collective_actions=self.collective_actions
             )
 
             # 3. Prepare and broadcast the world state

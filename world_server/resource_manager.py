@@ -5,19 +5,23 @@ class ResourceManager:
     管理世界中的资源生产和消耗。
     这是一个静态类，因为我们不需要它的多个实例。
     """
-    production_multiplier = 1.0
-
     @staticmethod
-    def produce(location, world_state):
+    def produce(location, world):
         """
         在指定地点生产资源。
+        现在会从科技系统中获取生产力乘数。
         :param location: 发生生产的地点对象。
-        :param world_state: 当前的世界状态（包含所有地点）。
+        :param world: The ECS world object, to access systems.
         """
         if location.get('produces') and location['state'] == 'active':
+            # Get the dynamic production multiplier from the TechnologySystem
+            tech_multiplier = 1.0
+            if world and hasattr(world, 'tech_system'):
+                tech_multiplier += world.tech_system.get_bonus("automata")
+
             resource_type = location['produces']
             base_rate = location.get('produces_rate', 1)
-            final_rate = base_rate * ResourceManager.production_multiplier
+            final_rate = base_rate * tech_multiplier
 
             # 在地点的库存中增加资源
             if resource_type not in location['inventory']:

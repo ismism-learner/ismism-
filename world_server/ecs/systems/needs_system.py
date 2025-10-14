@@ -31,9 +31,12 @@ class NeedsSystem(System):
 
     def _update_hourly_needs(self):
         """Updates the needs for all entities that change on an hourly basis."""
-        entities_with_needs = self.world.get_entities_with_components(NeedsComponent)
-        for entity_id in entities_with_needs:
+        # Query for all components at once for efficiency
+        entities_to_update = self.world.get_entities_with_components(NeedsComponent, FinancialComponent)
+
+        for entity_id in entities_to_update:
             needs_comp = self.world.get_component(entity_id, NeedsComponent)
+            financial_comp = self.world.get_component(entity_id, FinancialComponent)
 
             # Update hunger
             hunger_change = needs_comp.needs['hunger']['change_per_hour']
@@ -45,8 +48,16 @@ class NeedsSystem(System):
 
             # Update stress
             stress_resistance = needs_comp.alchemy_bonus.get('stress_resistance', 0.0)
-            stress_change = needs_comp.needs['stress']['change_per_hour'] * (1 - stress_resistance)
-            needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + stress_change)
+            base_stress_change = needs_comp.needs['stress']['change_per_hour']
+
+            # --- New: Debt-induced Stress ---
+            debt_stress_increase = 0
+            if financial_comp and financial_comp.loans > 0:
+                # Stress increases by 0.1 per hour for every 100 in debt.
+                debt_stress_increase = (financial_comp.loans / 100) * 0.1
+
+            total_stress_change = (base_stress_change + debt_stress_increase) * (1 - stress_resistance)
+            needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + total_stress_change)
 
             # Update idealism
             idealism_change = needs_comp.needs['idealism']['change_per_hour']

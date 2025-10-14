@@ -3,6 +3,10 @@ from ..system import System
 from ..components.needs import NeedsComponent
 from ..components.hobby_component import HobbyComponent
 from ..components.relationship import RelationshipComponent
+from ..components.financial_component import FinancialComponent
+
+# Define a constant for the debt threshold to trigger aspirations
+DEBT_ASPIRATION_THRESHOLD = 500
 
 class DesireSystem(System):
     """
@@ -15,11 +19,19 @@ class DesireSystem(System):
     def process(self, *args, **kwargs):
         """
         Main loop for the desire system.
-        Currently focuses on breaking down existing aspirations into demands.
+        1. Checks for new desire-triggering conditions (like high debt).
+        2. Breaks down existing aspirations into actionable demands.
         """
-        entities_with_needs = self.world.get_entities_with_components(NeedsComponent)
-        for entity_id in entities_with_needs:
+        entities_to_process = self.world.get_entities_with_components(NeedsComponent, FinancialComponent)
+        for entity_id in entities_to_process:
+            self._check_for_desire_triggers(entity_id)
             self._breakdown_aspirations(entity_id)
+
+    def _check_for_desire_triggers(self, entity_id):
+        """Checks for world-state conditions that can trigger new aspirations."""
+        financial_comp = self.world.get_component(entity_id, FinancialComponent)
+        if financial_comp.loans > DEBT_ASPIRATION_THRESHOLD:
+            self.generate_financial_aspiration(entity_id, {'type': 'HIGH_DEBT', 'amount': financial_comp.loans})
 
     def generate_imaginary_aspiration(self, entity_id, trigger_event: dict):
         """
@@ -58,6 +70,17 @@ class DesireSystem(System):
                         needs_comp.desire['symbolic']['aspirations'].append(new_aspiration)
                         print(f"INFO: {entity_id} now aspires to {new_aspiration['type']} in {hobby_to_compete_in}!")
 
+    def generate_financial_aspiration(self, entity_id, trigger_event: dict):
+        """
+        Generates a new Aspiration based on financial distress.
+        """
+        needs_comp = self.world.get_component(entity_id, NeedsComponent)
+        print(f"DEBUG: Generating financial aspiration for {entity_id} due to trigger: {trigger_event}")
+        new_aspiration = {'type': 'ACHIEVE_FINANCIAL_STABILITY'}
+        if new_aspiration not in needs_comp.desire['symbolic']['aspirations']:
+            needs_comp.desire['symbolic']['aspirations'].append(new_aspiration)
+            print(f"INFO: {entity_id}, burdened by debt, now aspires to achieve financial stability!")
+
 
     def _breakdown_aspirations(self, entity_id):
         """
@@ -77,11 +100,20 @@ class DesireSystem(System):
                 demand = {'type': 'PURSUE_HOBBY', 'hobby_id': aspiration['hobby_id'], 'reason': 'aspiration_earn_money'}
                 if demand not in needs_comp.demands:
                     needs_comp.demands.append(demand)
-                    print(f"INFO: {entity_id} now has a demand to pursue {demand['hobby_id']} to earn money.")
+                    # print(f"INFO: {entity_id} now has a demand to pursue {demand['hobby_id']} to earn money.")
 
             elif aspiration['type'] == 'OUTPERFORM_RIVAL':
                 # To outperform a rival, the NPC must improve their skill.
                 demand = {'type': 'PURSUE_HOBBY', 'hobby_id': aspiration['hobby_id'], 'reason': 'aspiration_outperform_rival'}
                 if demand not in needs_comp.demands:
                     needs_comp.demands.append(demand)
-                    print(f"INFO: {entity_id} now has a demand to pursue {demand['hobby_id']} to beat their rival.")
+                    # print(f"INFO: {entity_id} now has a demand to pursue {demand['hobby_id']} to beat their rival.")
+
+            elif aspiration['type'] == 'ACHIEVE_FINANCIAL_STABILITY':
+                # To achieve stability, the NPC needs to work diligently.
+                # This creates a persistent 'WORK' demand.
+                # This is a simplification; a more complex system could generate more varied demands.
+                demand = {'type': 'WORK'}
+                if demand not in needs_comp.demands:
+                    needs_comp.demands.append(demand)
+                    print(f"INFO: {entity_id} is now driven by a demand to WORK to achieve financial stability.")

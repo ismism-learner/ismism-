@@ -57,8 +57,8 @@ class ActionSystem(System):
                     work_type = target_loc.get('work_type', 'Working')
                     state_comp.action = f"{work_type}"
 
-                    # Produce resources
-                    ResourceManager.produce(target_loc, locations)
+                    # Produce resources, now passing the world object to get tech bonuses
+                    ResourceManager.produce(target_loc, self.world)
 
                     # Gain money and affect needs
                     economy_comp.money += 1
