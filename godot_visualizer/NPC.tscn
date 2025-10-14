@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5wklf7w5woa5"]
+
+[ext_resource type="Script" path="res://NPC.gd" id="1_abcde"]
+[ext_resource type="Texture2D" uid="uid://c6gqjbxk7v3o7" path="res://icon.svg" id="2_fghij"]
+
+[node name="NPC" type="Node2D"]
+script = ExtResource("1_abcde")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_fghij")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = 20.0
+offset_right = 50.0
+offset_bottom = 50.0
+text = "NPC Name
+(Action)"
+horizontal_alignment = 1
