@@ -54,11 +54,20 @@ class RelationshipManager:
                     should_dissolve = True
 
             if should_dissolve:
+                original_status = current_status
                 npc1_identity = world.get_component(npc1_id, IdentityComponent)
                 npc2_identity = world.get_component(npc2_id, IdentityComponent)
-                print(f"**RELATIONSHIP DISSOLVED**: {npc1_identity.name}'s status of '{current_status}' towards {npc2_identity.name} has ended.")
+                print(f"**RELATIONSHIP DISSOLVED**: {npc1_identity.name}'s status of '{original_status}' towards {npc2_identity.name} has ended.")
                 relationship_data['status'] = None
                 current_status = None # Update for the formation check below
+
+                # --- HOOK FOR SYMBOLIC DESIRE ---
+                if hasattr(world, 'desire_system'):
+                    trigger_event = {
+                        'type': f'LOST_{original_status.upper()}', # e.g., LOST_RIVAL
+                        'target_id': npc2_id
+                    }
+                    world.desire_system.generate_symbolic_aspiration(npc1_id, trigger_event)
 
         # 3. Check for relationship formation if no status currently exists
         if not current_status:
@@ -76,6 +85,15 @@ class RelationshipManager:
                         npc1_identity = world.get_component(npc1_id, IdentityComponent)
                         npc2_identity = world.get_component(npc2_id, IdentityComponent)
                         print(f"**RELATIONSHIP FORMED**: {npc1_identity.name} now considers {npc2_identity.name} a '{rel_type}'.")
+
+                        # --- HOOK FOR SYMBOLIC DESIRE ---
+                        if hasattr(world, 'desire_system'):
+                            trigger_event = {
+                                'type': f'GAINED_{rel_type.upper()}', # e.g., GAINED_RIVAL
+                                'target_id': npc2_id
+                            }
+                            world.desire_system.generate_symbolic_aspiration(npc1_id, trigger_event)
+
                         # Stop after forming one relationship
                         break
 

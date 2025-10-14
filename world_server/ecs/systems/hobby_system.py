@@ -31,10 +31,12 @@ class HobbySystem(System):
             # No goods can be produced at this skill level
             return
 
-        produced_good = random.choice(possible_goods)
+        produced_good_template = random.choice(possible_goods)
+        new_good = produced_good_template.copy() # Avoid modifying the template
+        new_good['hobby_origin'] = hobby_id # Track where the item came from for desire system
 
         # Add the new good to the NPC's inventory
-        hobby_comp.inventory.append(produced_good)
+        hobby_comp.inventory.append(new_good)
         print(f"Entity {entity_id} produced {produced_good['name']} through {hobby_id}.")
 
         # Chance to increase skill

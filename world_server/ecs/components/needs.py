@@ -40,12 +40,17 @@ class NeedsComponent(Component):
     })
 
     # Tier 2: Societal/Ideological Demands
-    demands: List[str] = field(default_factory=list)
+    # A list of complex goals, e.g., {'type': 'ACHIEVE_SKILL', 'skill': 'painting', 'target': 50}
+    demands: List[Dict[str, Any]] = field(default_factory=list)
 
     # Tier 3: Lacanian Desire
     desire: Dict[str, Any] = field(default_factory=lambda: {
-        'imaginary': {},
-        'symbolic': {},
+        'imaginary': {
+            'aspirations': [] # e.g., {'type': 'BECOME_MASTER_CRAFTER', 'hobby_id': 'alchemy'}
+        },
+        'symbolic': {
+            'aspirations': [] # e.g., {'type': 'OUTPERFORM_RIVAL', 'rival_id': 'some_npc_id'}
+        },
         'real': {
             'rupture': 0,
             'source_of_trauma': None

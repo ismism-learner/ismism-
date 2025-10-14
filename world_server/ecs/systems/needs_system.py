@@ -123,6 +123,15 @@ class NeedsSystem(System):
 
         # --- New Financial Needs ---
 
+        # 0. Desire to sell goods when low on cash and holding inventory
+        hobby_comp = self.world.get_component(entity_id, HobbyComponent)
+        if economy_comp.money < 50 and hobby_comp and hobby_comp.inventory:
+            market_locations = [loc for loc in locations if loc.get('type') == 'MARKETPLACE']
+            if market_locations:
+                target_loc = random.choice(market_locations)
+                state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "SELL_GOODS"}
+                return
+
         # 1. Desire to deposit excess cash
         if economy_comp.money > 200:
             bank_locations = [loc for loc in locations if loc.get('type') == 'COMMERCIAL_BANK']
@@ -150,13 +159,36 @@ class NeedsSystem(System):
                 # We would also need to add logic in ActionSystem to handle the actual purchase
                 return
 
-        # Tier 2 (Societal/Ideological)
-        if "WORK" in needs_comp.demands:
-            work_locations = [loc for loc in locations if loc.get('type') == 'WORKPLACE']
-            if work_locations:
-                target_loc = work_locations[0] # Simplified
-                state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "WORK"}
-                return
+        # Tier 2 (Societal/Ideological) - Now handles complex demands
+        if needs_comp.demands:
+            # For now, just process the first demand in the list
+            demand = needs_comp.demands[0]
+
+            if demand['type'] == 'WORK':
+                work_locations = [loc for loc in locations if loc.get('type') == 'WORKPLACE']
+                if work_locations:
+                    # This could be improved to find a specific kind of work
+                    target_loc = work_locations[0] # Simplified
+                    state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "WORK"}
+                    # Note: We don't remove the demand here, allowing it to be a continuous driver.
+                    # A more advanced system could have conditions for demand completion.
+                    return
+
+            elif demand['type'] == 'PURSUE_HOBBY':
+                hobby_id = demand.get('hobby_id')
+                # Find a location for this hobby
+                hobby_locations = [
+                    loc for loc in locations if (
+                        (loc.get('type') == 'HOBBY_LOCATION' and loc.get('hobby_type') == hobby_id) or
+                        (loc.get('type') == 'WORKPLACE' and loc.get('work_type') == hobby_id)
+                    )
+                ]
+                if hobby_locations:
+                    target_loc = random.choice(hobby_locations)
+                    state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "PURSUE_HOBBY", "hobby_id": hobby_id}
+                    # This is a one-time action derived from an aspiration, so we remove the demand upon acting on it.
+                    needs_comp.demands.pop(0)
+                    return
 
         # Default to wander
         if state_comp.goal in ["Wander", "Idle"]:

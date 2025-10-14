@@ -115,6 +115,38 @@ class ActionSystem(System):
                         state_comp.action = "Window Shopping"
                     state_comp.goal = "Wander"
 
+                elif purpose == "SELL_GOODS":
+                    state_comp.action = "Selling Goods"
+                    hobby_comp = self.world.get_component(entity_id, HobbyComponent)
+                    economy_comp = self.world.get_component(entity_id, EconomyComponent)
+
+                    if hobby_comp and hobby_comp.inventory:
+                        # Sell the first item in the inventory
+                        item_to_sell = hobby_comp.inventory.pop(0)
+                        sale_price = item_to_sell.get('base_value', 10) # Simplified pricing
+                        economy_comp.money += sale_price
+
+                        # Add item to the marketplace's inventory
+                        if 'inventory' not in target_loc:
+                            target_loc['inventory'] = {}
+                        item_name = item_to_sell['name']
+                        target_loc['inventory'][item_name] = target_loc['inventory'].get(item_name, 0) + 1
+
+                        print(f"INFO: {entity_id} sold {item_name} for {sale_price} gold.")
+
+                        # --- HOOK FOR IMAGINARY DESIRE ---
+                        # If the sale was successful, it might trigger a new desire
+                        if hasattr(self.world, 'desire_system'):
+                            trigger_event = {
+                                'type': 'SOLD_GOODS',
+                                'hobby_id': item_to_sell.get('hobby_origin'),
+                                'value': sale_price
+                            }
+                            self.world.desire_system.generate_imaginary_aspiration(entity_id, trigger_event)
+
+                    # Whether they sold something or not, their goal is complete.
+                    state_comp.goal = "Wander"
+
                 # After completing an action, the goal is often reset
                 # If goal is not reset inside the purpose block, it means it's a continuous action
                 # like working or sleeping.

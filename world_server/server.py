@@ -29,6 +29,7 @@ from world_server.ecs.systems.action_system import ActionSystem
 from world_server.ecs.systems.banking_system import BankingSystem
 from world_server.ecs.systems.technology_system import TechnologySystem
 from world_server.ecs.systems.hobby_system import HobbySystem
+from world_server.ecs.systems.desire_system import DesireSystem
 
 
 class Server:
@@ -121,7 +122,9 @@ class Server:
         # Instantiate and register systems
         self.ecs_world.tech_system = TechnologySystem() # Attach for global access
         self.ecs_world.hobby_system = HobbySystem(self.consumer_goods)
+        self.ecs_world.desire_system = DesireSystem() # Attach for global access
 
+        self.ecs_world.add_system(self.ecs_world.desire_system)
         self.ecs_world.add_system(NeedsSystem())
         self.ecs_world.add_system(self.ecs_world.hobby_system)
         self.ecs_world.add_system(BankingSystem())
@@ -163,8 +166,12 @@ class Server:
             # Needs & Demands
             needs_comp = NeedsComponent()
             leisure_script = data.get("behavioral_scripts", {}).get("leisure_activity", "IDLE")
-            if leisure_script != "IDLE":
-                needs_comp.demands.append(leisure_script)
+            if leisure_script == "WORK":
+                # Convert legacy string demands into the new complex format
+                needs_comp.demands.append({'type': 'WORK'})
+            elif leisure_script != "IDLE":
+                # This could be expanded to handle other legacy scripts if any exist
+                pass
             # Randomize initial needs slightly for variety
             needs_comp.needs['hunger']['current'] = random.randint(0, 40)
             needs_comp.needs['energy']['current'] = random.randint(50, 90)
