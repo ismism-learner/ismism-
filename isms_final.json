@@ -1,0 +1,7138 @@
+[
+  {
+    "id": "1-1-1-1",
+    "name": "科学独断论",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": "客观实在",
+      "epistemology": "物理现象",
+      "teleology": "真理"
+    },
+    "representative": "培根(英国经验主义哲学家；被世人误解的)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.8,
+        "materialism_idealism": -0.7778,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -1.0
+      }
+    }
+  },
+  {
+    "id": "1-1-1-2",
+    "name": "有机进化论",
+    "philosophy": {
+      "field_theory": "自然",
+      "ontology": "能量",
+      "epistemology": "经验",
+      "teleology": {
+        "base": "有机",
+        "relation": "vs",
+        "counter": "机械"
+      }
+    },
+    "representative": "怀特海(19世纪末英国哲学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.5278,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.6667
+      }
+    }
+  },
+  {
+    "id": "1-1-1-3",
+    "name": "科学消费主义",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": "能量",
+      "epistemology": "体验",
+      "teleology": {
+        "base": "有机",
+        "relation": "调和者：人类",
+        "counter": "机械"
+      }
+    },
+    "representative": "罗素(19世纪末英国哲学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.65,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.5833
+      }
+    }
+  },
+  {
+    "id": "1-1-1-4",
+    "name": "宇宙悲观主义",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": "能量",
+      "epistemology": "感受",
+      "teleology": "末日"
+    },
+    "representative": "“维特根斯坦”(20世纪英国哲学家；被误读的)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.45,
+        "materialism_idealism": -0.6389,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": -0.7222
+      }
+    }
+  },
+  {
+    "id": "1-1-2-1",
+    "name": "科学知识社会学",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "客观实在",
+      "epistemology": {
+        "base": "自然的",
+        "relation": "vs",
+        "counter": "有机的"
+      },
+      "teleology": "社会学真理"
+    },
+    "representative": "爱丁堡学派(20世纪70年代的苏格兰社会学学派)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.5278,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.6667
+      }
+    }
+  },
+  {
+    "id": "1-1-2-2",
+    "name": "科学革命论",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "客观实在",
+      "epistemology": {
+        "base": "自然的",
+        "relation": "vs",
+        "counter": "社会的"
+      },
+      "teleology": {
+        "base": "常规的",
+        "relation": "vs",
+        "counter": "革命的"
+      }
+    },
+    "representative": "库恩(20世纪美国科学哲学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": -0.2778,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.3333
+      }
+    }
+  },
+  {
+    "id": "1-1-2-3",
+    "name": "文化本体论",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "物质",
+      "epistemology": {
+        "base": "自然的",
+        "relation": "vs",
+        "counter": "社会的"
+      },
+      "teleology": "文化"
+    },
+    "representative": "亚历山大·温特(20世纪美国国际政治学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "1-1-2-4",
+    "name": "解构建构论",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "物质",
+      "epistemology": {
+        "base": "自然的",
+        "relation": "vs",
+        "counter": "社会的"
+      },
+      "teleology": "核心信念的毁灭"
+    },
+    "representative": "科尼斯·格根(20世纪美国社会心理学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "1-1-3-1",
+    "name": "功能主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "基质",
+      "epistemology": "心灵状态",
+      "teleology": "功能(函数)"
+    },
+    "representative": "希拉里·普特南；杰瑞·福多(20世纪美国分析哲学家、认知科学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.65,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.5833
+      }
+    }
+  },
+  {
+    "id": "1-1-3-2",
+    "name": "自由进化论",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "物理底层",
+      "epistemology": "心灵",
+      "teleology": {
+        "base": "决定的",
+        "relation": "vs",
+        "counter": "自由的"
+      }
+    },
+    "representative": "丹尼尔·丹尼特(20世纪美国分析哲学家、认知科学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "1-1-3-3",
+    "name": "认知自我主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "基质",
+      "epistemology": "意识",
+      "teleology": "情绪自我"
+    },
+    "representative": "安东尼奥·达玛西奥(20世纪美国认知科学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.5,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "1-1-3-4",
+    "name": "认知无我论",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "晦暗的深度",
+      "epistemology": "透明的意识",
+      "teleology": "无我"
+    },
+    "representative": "托马斯·梅青格(当代德国哲学家、认知科学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "1-1-4-1",
+    "name": "操作行为主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "可操作的对象",
+      "epistemology": "黑箱",
+      "teleology": "变量关系"
+    },
+    "representative": "弗雷德里克·斯金纳(20世纪美国心理学家，新行为主义创始人)；克拉克·赫尔(20世纪美国心理学家，耶鲁学派创始人)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.45,
+        "materialism_idealism": -0.6389,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": -0.7222
+      }
+    }
+  },
+  {
+    "id": "1-1-4-2",
+    "name": "目的行为主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "客观现实",
+      "epistemology": "黑箱",
+      "teleology": {
+        "base": "分子的",
+        "relation": "vs",
+        "counter": "摩尔的"
+      }
+    },
+    "representative": "爱德华·托尔曼(20世纪美国心理学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "1-1-4-3",
+    "name": "应用行为分析",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "客观现实",
+      "epistemology": "黑箱",
+      "teleology": "行为改善"
+    },
+    "representative": "《组织行为管理杂志》(继承了1986创刊的《组织行为杂志》，2012入选SSCI的应用心理学杂志)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "1-1-4-4",
+    "name": "社会行为主义",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": "物质",
+      "epistemology": "黑箱",
+      "teleology": "符号性互动"
+    },
+    "representative": "乔治·赫伯特·米德(美国20世纪社会学家、社会心理学家)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.1,
+        "materialism_idealism": -0.5,
+        "collectivism_individualism": -0.5,
+        "determinism_freewill": -0.4444
+      }
+    }
+  },
+  {
+    "id": "1-2-1-1",
+    "name": "自然神论",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": {
+        "base": "始因/第一推动",
+        "relation": "vs",
+        "counter": "因和果"
+      },
+      "epistemology": "灵魂/心灵",
+      "teleology": "自然秩序"
+    },
+    "representative": "英国自然神论者(创始人为彻尔布里的赫尔伯特，最著名代表为牛顿)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.5278,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.6667
+      }
+    }
+  },
+  {
+    "id": "1-2-1-2",
+    "name": "神义论",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": {
+        "base": "造物主",
+        "relation": "vs",
+        "counter": "被造物"
+      },
+      "epistemology": "灵魂",
+      "teleology": {
+        "base": "神义",
+        "relation": "vs",
+        "counter": "罪恶"
+      }
+    },
+    "representative": "莱布尼兹(德国哲学家，《神义论》作者)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": -0.2778,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.3333
+      }
+    }
+  },
+  {
+    "id": "1-2-1-3",
+    "name": "一元论诺斯替主义",
+    "philosophy": {
+      "field_theory": "bythos",
+      "ontology": {
+        "base": "form pleroma",
+        "relation": "vs",
+        "counter": "phenomena kenoma"
+      },
+      "epistemology": "sophia",
+      "teleology": {
+        "base": "theodicy",
+        "relation": "调和者：gnosis(灵智)",
+        "counter": "evil"
+      }
+    },
+    "representative": "瓦伦汀(华伦提诺)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "1-2-1-4",
+    "name": "模态位格一元论",
+    "philosophy": {
+      "field_theory": "genesis",
+      "ontology": {
+        "base": "deity",
+        "relation": "vs",
+        "counter": "world"
+      },
+      "epistemology": "persoma",
+      "teleology": "passion"
+    },
+    "representative": "撒伯里乌(萨伯琉)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "1-2-2-1",
+    "name": "传殖主义",
+    "philosophy": {
+      "field_theory": "创世",
+      "ontology": {
+        "base": "创生性存在",
+        "relation": "vs",
+        "counter": "派生性存在"
+      },
+      "epistemology": {
+        "base": "faith",
+        "relation": "vs",
+        "counter": "pagan"
+      },
+      "teleology": "rule of faith"
+    },
+    "representative": "德尔图良",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": -0.2778,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.3333
+      }
+    }
+  },
+  {
+    "id": "1-2-2-2",
+    "name": "部分主义",
+    "philosophy": {
+      "field_theory": "拼合而成的整全",
+      "ontology": {
+        "base": "partial objects",
+        "relation": "vs",
+        "counter": "自然物"
+      },
+      "epistemology": {
+        "base": "图腾",
+        "relation": "vs",
+        "counter": "凡俗的事物"
+      },
+      "teleology": {
+        "base": "rule of faith",
+        "relation": "vs",
+        "counter": "myth of image"
+      }
+    },
+    "representative": "三叶草大师，圣·帕特里克",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": -0.0278,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.0
+      }
+    }
+  },
+  {
+    "id": "1-2-2-3",
+    "name": "拜物教",
+    "philosophy": {
+      "field_theory": "创造性叙事",
+      "ontology": {
+        "base": "平凡物",
+        "relation": "vs",
+        "counter": "物神"
+      },
+      "epistemology": {
+        "base": "神秘力量的凝结",
+        "relation": "vs",
+        "counter": "工具性的机制"
+      },
+      "teleology": {
+        "base": "rule of faith",
+        "relation": "调和者：fetishization",
+        "counter": "myth of image"
+      }
+    },
+    "representative": "锻铸蛇杖的人，摩西",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "1-2-2-4",
+    "name": "时间崇拜",
+    "philosophy": {
+      "field_theory": "aion(时间)",
+      "ontology": {
+        "base": "aion(神圣力量)",
+        "relation": "vs",
+        "counter": "chronos(凡俗时间)"
+      },
+      "epistemology": {
+        "base": "日常体验",
+        "relation": "vs",
+        "counter": "节庆性的体验"
+      },
+      "teleology": "time"
+    },
+    "representative": "时间之神Aion、狄奥尼索斯与奥菲欧斯的三位一体",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "1-2-3-1",
+    "name": "永生主义",
+    "philosophy": {
+      "field_theory": "dwellable home",
+      "ontology": {
+        "base": "mortal可朽的",
+        "relation": "vs",
+        "counter": "immortal不朽的"
+      },
+      "epistemology": {
+        "base": "神圣",
+        "relation": "调和者：我的生存体验(贵生)",
+        "counter": "日常"
+      },
+      "teleology": "生活的延续"
+    },
+    "representative": "西西弗斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "1-2-3-2",
+    "name": "回归式唯灵论",
+    "philosophy": {
+      "field_theory": "spiritual spheres",
+      "ontology": {
+        "base": "物质\\凡俗",
+        "relation": "vs",
+        "counter": "spiritual"
+      },
+      "epistemology": {
+        "base": "共同体的话语",
+        "relation": "调和者：合而为一 (接触\\通灵)",
+        "counter": "神圣的话语 (方法\\体验)"
+      },
+      "teleology": {
+        "base": "留下Lingering",
+        "relation": "vs",
+        "counter": "回归reverting"
+      }
+    },
+    "representative": "swedenborg，mesmer",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "1-2-3-3",
+    "name": "魔法师主义",
+    "philosophy": {
+      "field_theory": "大宇宙\\小宇宙",
+      "ontology": {
+        "base": "natural forces",
+        "relation": "vs",
+        "counter": "astral forces"
+      },
+      "epistemology": {
+        "base": "divine",
+        "relation": "调和者：science",
+        "counter": "daily"
+      },
+      "teleology": {
+        "base": "留下Lingering",
+        "relation": "调和者：改善 improving",
+        "counter": "回归reverting"
+      }
+    },
+    "representative": "eliphas levi，西方魔法学奠基人",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "1-2-3-4",
+    "name": "弃绝主义",
+    "philosophy": {
+      "field_theory": "语言\\命运",
+      "ontology": {
+        "base": "断裂",
+        "relation": "vs",
+        "counter": "连续"
+      },
+      "epistemology": {
+        "base": "divine supranatural",
+        "relation": "调和者：自我意识",
+        "counter": "secular natural"
+      },
+      "teleology": "弃绝"
+    },
+    "representative": "克洛诺斯的俄狄浦斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "1-2-4-1",
+    "name": "作为信仰的命定论",
+    "philosophy": {
+      "field_theory": "圣典(神圣符号体系)化的世界",
+      "ontology": {
+        "base": "挣扎",
+        "relation": "vs",
+        "counter": "命"
+      },
+      "epistemology": "无自由意志",
+      "teleology": "命定"
+    },
+    "representative": "路德，祥林嫂",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "1-2-4-2",
+    "name": "救世主义",
+    "philosophy": {
+      "field_theory": "因果网络",
+      "ontology": {
+        "base": "在场",
+        "relation": "vs",
+        "counter": "过去、未来"
+      },
+      "epistemology": "离苦",
+      "teleology": {
+        "base": "循环、命定",
+        "relation": "vs",
+        "counter": "结算"
+      }
+    },
+    "representative": "临疯的尼采",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "1-2-4-3",
+    "name": "神智论",
+    "philosophy": {
+      "field_theory": "主宰的自我认识、体验",
+      "ontology": {
+        "base": "隐匿",
+        "relation": "vs",
+        "counter": "显现"
+      },
+      "epistemology": "无我、出神",
+      "teleology": {
+        "base": "循环、命定",
+        "relation": "调和者：赏赐",
+        "counter": "结算"
+      }
+    },
+    "representative": "sufism",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "1-2-4-4",
+    "name": "神爱论",
+    "philosophy": {
+      "field_theory": "神圣文本",
+      "ontology": {
+        "base": "可爱的、完美的、挚爱的",
+        "relation": "vs",
+        "counter": "中介、信使"
+      },
+      "epistemology": "痴迷",
+      "teleology": "任由所爱施为、予取予求"
+    },
+    "representative": "rabia of basra",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "1-3-1-1",
+    "name": "客观唯心主义",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：精神",
+        "counter": "beings"
+      },
+      "epistemology": "心灵",
+      "teleology": "真理/理"
+    },
+    "representative": "程朱理学",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.65,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.5833
+      }
+    }
+  },
+  {
+    "id": "1-3-1-2",
+    "name": "主观唯心主义",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：精神",
+        "counter": "beings"
+      },
+      "epistemology": "心灵",
+      "teleology": {
+        "base": "有限",
+        "relation": "vs",
+        "counter": "无限"
+      }
+    },
+    "representative": "王阳明，心学",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "1-3-1-3",
+    "name": "现实唯心主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：精神",
+        "counter": "beings"
+      },
+      "epistemology": "思想",
+      "teleology": {
+        "base": "有限",
+        "relation": "调和者：行动",
+        "counter": "无限"
+      }
+    },
+    "representative": "秦梯利，墨索里尼御用哲学家",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.5,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "1-3-1-4",
+    "name": "唯梦论",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：精神",
+        "counter": "beings"
+      },
+      "epistemology": "心灵",
+      "teleology": "梦"
+    },
+    "representative": "苏轼，中国古代士大夫",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "1-3-2-1",
+    "name": "现代斯多亚主义",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": {
+        "base": "自然的",
+        "relation": "调和者：理性",
+        "counter": "反常的"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "vs",
+        "counter": "非本真"
+      },
+      "teleology": "和谐/德行/回归自然"
+    },
+    "representative": "努斯鲍姆，白左勋章姐，东林党党棍，西欧跨国贵族传统",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "1-3-2-2",
+    "name": "现代犬儒主义",
+    "philosophy": {
+      "field_theory": "宇宙",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：精神",
+        "counter": "beings"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "vs",
+        "counter": "非本真"
+      },
+      "teleology": {
+        "base": "私人目的",
+        "relation": "vs",
+        "counter": "公共目的"
+      }
+    },
+    "representative": "第欧根尼，批判现实主义以及实在论的哲学家",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "1-3-2-3",
+    "name": "现代爱情主义",
+    "philosophy": {
+      "field_theory": "宇宙或者世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：精神",
+        "counter": "beings"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "vs",
+        "counter": "非本真"
+      },
+      "teleology": {
+        "base": "私人目的",
+        "relation": "调和者：爱情",
+        "counter": "公共目的"
+      }
+    },
+    "representative": "普罗蒂诺，被庸俗化的",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "1-3-2-4",
+    "name": "现代智者主义",
+    "philosophy": {
+      "field_theory": "宇宙或者世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：神智、智性",
+        "counter": "beings"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "vs",
+        "counter": "非本真"
+      },
+      "teleology": "真理是待定的"
+    },
+    "representative": "普罗泰格拉与高尔吉亚，被庸俗化的；民哲",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "1-3-3-1",
+    "name": "自我中心主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：Id/本我",
+        "counter": "beings"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "调和者：“我的！”",
+        "counter": "非本真"
+      },
+      "teleology": "无条件利己"
+    },
+    "representative": "男性修仙小说",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.5,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "1-3-3-2",
+    "name": "道德严酷主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：Id/本我",
+        "counter": "beings"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "调和者：自我意识",
+        "counter": "非本真"
+      },
+      "teleology": {
+        "base": "高贵",
+        "relation": "vs",
+        "counter": "低贱"
+      }
+    },
+    "representative": "极右翼男拳主义，伪君子，撒哈拉丁阿里《我们心中的魔鬼》中的那个知识分子",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "1-3-3-3",
+    "name": "排他集体主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：Id/本我",
+        "counter": "beings"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "调和者：自我",
+        "counter": "非本真"
+      },
+      "teleology": {
+        "base": "高贵",
+        "relation": "调和者：集体",
+        "counter": "低贱"
+      }
+    },
+    "representative": "小粉红与恨国党",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.35,
+        "materialism_idealism": 0.425,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "1-3-3-4",
+    "name": "厌女症 虚无主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：Id/本我",
+        "counter": "beings"
+      },
+      "epistemology": {
+        "base": "本真",
+        "relation": "调和者：理性",
+        "counter": "非本真"
+      },
+      "teleology": "虚无"
+    },
+    "representative": "叔本华，贬低女性以立哲位",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "1-3-4-1",
+    "name": "伦理行动主义",
+    "philosophy": {
+      "field_theory": "世界/存有",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：体验",
+        "counter": "beings"
+      },
+      "epistemology": "折中主义",
+      "teleology": "内在理想主义"
+    },
+    "representative": "倭铿(鲁道夫·克里斯托夫·奥伊肯)，反现代化乡村教师必备心灵毒药",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "1-3-4-2",
+    "name": "随笔主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：对理念的体验",
+        "counter": "beings"
+      },
+      "epistemology": "悬置",
+      "teleology": {
+        "base": "因果性现实",
+        "relation": "vs",
+        "counter": "理论性可能性"
+      }
+    },
+    "representative": "罗伯特·穆启尔 《没有个性的人》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "1-3-4-3",
+    "name": "唯美主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：内在生活",
+        "counter": "beings"
+      },
+      "epistemology": "沉默",
+      "teleology": {
+        "base": "因果性现实",
+        "relation": "调和者：美",
+        "counter": "理论性可能性"
+      }
+    },
+    "representative": "克尔凯廓尔，被误解的，庸俗审美三段论",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "1-3-4-4",
+    "name": "颓废主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": {
+        "base": "Being",
+        "relation": "调和者：直觉/体验",
+        "counter": "beings"
+      },
+      "epistemology": "谎言",
+      "teleology": "毫无底线"
+    },
+    "representative": "王尔德",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "1-4-1-1",
+    "name": "和平主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "非暴力",
+      "epistemology": "自然现象",
+      "teleology": "正直善良和平的生活"
+    },
+    "representative": "普特南，《无本体论的伦理学》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.45,
+        "materialism_idealism": -0.6389,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": -0.7222
+      }
+    }
+  },
+  {
+    "id": "1-4-1-2",
+    "name": "客观主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "单纯存在/存在就是存在，不用多废话",
+      "epistemology": "自然现象",
+      "teleology": {
+        "base": "精英",
+        "relation": "vs",
+        "counter": "流俗"
+      }
+    },
+    "representative": "安·兰德，终极傻逼文化贩子",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "1-4-1-3",
+    "name": "沉默主义",
+    "philosophy": {
+      "field_theory": "世界",
+      "ontology": "不言说",
+      "epistemology": "自然现象",
+      "teleology": {
+        "base": "精英",
+        "relation": "调和者：沉默",
+        "counter": "流俗"
+      }
+    },
+    "representative": "胜利者与失败者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "1-4-1-4",
+    "name": "蒙昧主义",
+    "philosophy": {
+      "field_theory": "世界或自然",
+      "ontology": "高贵的谎言",
+      "epistemology": "自然秩序",
+      "teleology": "虚无主义(毁灭)"
+    },
+    "representative": "列奥·斯特劳斯，终极傻逼反现代运动旗手",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.1,
+        "materialism_idealism": -0.5,
+        "collectivism_individualism": -0.5,
+        "determinism_freewill": -0.4444
+      }
+    }
+  },
+  {
+    "id": "1-4-2-1",
+    "name": "纵容主义",
+    "philosophy": {
+      "field_theory": "人类社会",
+      "ontology": "不反思",
+      "epistemology": {
+        "base": "日常的",
+        "relation": "vs",
+        "counter": "非日常的"
+      },
+      "teleology": "包容"
+    },
+    "representative": "西欧国家，代理人战争中意识形态输出，养鬼主义",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "1-4-2-2",
+    "name": "多元文化主义",
+    "philosophy": {
+      "field_theory": "global capitalism的“人间”",
+      "ontology": "解构主义",
+      "epistemology": {
+        "base": "人的",
+        "relation": "vs",
+        "counter": "原始的"
+      },
+      "teleology": {
+        "base": "multiplicity",
+        "relation": "vs",
+        "counter": "totality"
+      }
+    },
+    "representative": "列维纳斯，《总体与无限》，无根资本的木偶",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "1-4-2-3",
+    "name": "环保主义",
+    "philosophy": {
+      "field_theory": "global capitalism的“人间”",
+      "ontology": "后现代幻影",
+      "epistemology": {
+        "base": "人性的",
+        "relation": "vs",
+        "counter": "原始的"
+      },
+      "teleology": {
+        "base": "multiplicity",
+        "relation": "调和者：生存环境",
+        "counter": "totality"
+      }
+    },
+    "representative": "何不食肉糜，环保主义人肉图腾格雷塔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "1-4-2-4",
+    "name": "性解放主义",
+    "philosophy": {
+      "field_theory": "global capitalism的“人间”",
+      "ontology": "后现代幻影",
+      "epistemology": {
+        "base": "客体小a",
+        "relation": "vs",
+        "counter": "一般的他者"
+      },
+      "teleology": "享乐之love"
+    },
+    "representative": "变态们",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "1-4-3-1",
+    "name": "情绪主义",
+    "philosophy": {
+      "field_theory": "知识共同体权威保证的世界",
+      "ontology": "与我无关",
+      "epistemology": {
+        "base": "自然",
+        "relation": "调和者：心理",
+        "counter": "人性"
+      },
+      "teleology": "情绪的稳定/情绪的好的状态"
+    },
+    "representative": "“情商”玩家",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "1-4-3-2",
+    "name": "心理正常主义",
+    "philosophy": {
+      "field_theory": "知识共同体权威保证的世界",
+      "ontology": "莫名其妙",
+      "epistemology": {
+        "base": "自然",
+        "relation": "调和者：心理",
+        "counter": "人性"
+      },
+      "teleology": {
+        "base": "反常的",
+        "relation": "vs",
+        "counter": "正常的"
+      }
+    },
+    "representative": "建制内心理医生",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "1-4-3-3",
+    "name": "泛性主义",
+    "philosophy": {
+      "field_theory": "知识共同体权威保证的世界",
+      "ontology": "神秘主义",
+      "epistemology": {
+        "base": "自然",
+        "relation": "调和者：心理",
+        "counter": "人性"
+      },
+      "teleology": {
+        "base": "反常的",
+        "relation": "调和者：爱欲",
+        "counter": "正常的"
+      }
+    },
+    "representative": "荣格，霍大同",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "1-4-3-4",
+    "name": "密契女性主义",
+    "philosophy": {
+      "field_theory": "大他者",
+      "ontology": "大学话语",
+      "epistemology": {
+        "base": "自然",
+        "relation": "调和者：心理体验",
+        "counter": "人性"
+      },
+      "teleology": "大他者你要我怎样"
+    },
+    "representative": "追求女性性的男男女女们",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "1-4-4-1",
+    "name": "顺从主义",
+    "philosophy": {
+      "field_theory": "大家",
+      "ontology": "细思恐极",
+      "epistemology": "莫名其妙",
+      "teleology": "占便宜/偷摸整点小动作"
+    },
+    "representative": "爱贪小便宜的人",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.1,
+        "materialism_idealism": -0.5,
+        "collectivism_individualism": -0.5,
+        "determinism_freewill": -0.4444
+      }
+    }
+  },
+  {
+    "id": "1-4-4-2",
+    "name": "粗俗主义",
+    "philosophy": {
+      "field_theory": "随大流",
+      "ontology": "逼！/关我吊事",
+      "epistemology": "一时兴起(whim)/游戏",
+      "teleology": {
+        "base": "小便宜",
+        "relation": "vs",
+        "counter": "大便宜"
+      }
+    },
+    "representative": "无法控制自己爱欲的人",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "1-4-4-3",
+    "name": "四重竞争主义",
+    "philosophy": {
+      "field_theory": "游戏",
+      "ontology": "荒芜、没有价值",
+      "epistemology": "偶然，巧合",
+      "teleology": {
+        "base": "小便宜",
+        "relation": "调和者：竞争",
+        "counter": "大便宜"
+      }
+    },
+    "representative": "正在上学的学生朋友们",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "1-4-4-4",
+    "name": "复仇主义",
+    "philosophy": {
+      "field_theory": "天经地义的秩序",
+      "ontology": "sin/罪",
+      "epistemology": "shame/羞耻",
+      "teleology": "sacrifice/牺牲"
+    },
+    "representative": "哈姆雷特(√)、耶稣、俄狄浦斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1389,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.5625,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "2-1-1-1",
+    "name": "阿派朗(无界限)主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "world",
+        "relation": "vs",
+        "counter": "time"
+      },
+      "ontology": "apeiron",
+      "epistemology": "有序的理性世界",
+      "teleology": "和谐/有序"
+    },
+    "representative": "阿那克西曼德",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.5278,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.6667
+      }
+    }
+  },
+  {
+    "id": "2-1-1-2",
+    "name": "气动一元论",
+    "philosophy": {
+      "field_theory": {
+        "base": "global",
+        "relation": "vs",
+        "counter": "universal"
+      },
+      "ontology": "pneuma/air 气",
+      "epistemology": "自然现象",
+      "teleology": {
+        "base": "凝结",
+        "relation": "vs",
+        "counter": "稀疏"
+      }
+    },
+    "representative": "阿那克西美尼",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": -0.2778,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.3333
+      }
+    }
+  },
+  {
+    "id": "2-1-1-3",
+    "name": "分形多元论",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "topos"
+      },
+      "ontology": "元素(复数)",
+      "epistemology": "自然现象",
+      "teleology": {
+        "base": "结合",
+        "relation": "调和者：旋转",
+        "counter": "分离"
+      }
+    },
+    "representative": "阿那克萨戈拉，陨石哲学家",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "2-1-1-4",
+    "name": "形而上辩证主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "public cosmos",
+        "relation": "vs",
+        "counter": "private cosmos"
+      },
+      "ontology": "永恒的活火",
+      "epistemology": "自然现象(becoming)",
+      "teleology": "斗争、战争(war)"
+    },
+    "representative": "赫拉克利特，真正意义上第一个运用辩证思维的哲学家",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "2-1-2-1",
+    "name": "伦理智性主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "城邦",
+        "relation": "vs",
+        "counter": "神圣"
+      },
+      "ontology": "Ideas(理念世界)",
+      "epistemology": {
+        "base": "知识",
+        "relation": "vs",
+        "counter": "无知"
+      },
+      "teleology": "美德、德行、服从共同体"
+    },
+    "representative": "苏格拉底，精神的助产术，真性情的爱智慧杠精",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": -0.2778,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.3333
+      }
+    }
+  },
+  {
+    "id": "2-1-2-2",
+    "name": "理念实在论 理想现实主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "宇宙",
+        "relation": "vs",
+        "counter": "理念场域"
+      },
+      "ontology": "form(形式)",
+      "epistemology": {
+        "base": "truth",
+        "relation": "vs",
+        "counter": "opinion"
+      },
+      "teleology": {
+        "base": "盲目存在",
+        "relation": "vs",
+        "counter": "善"
+      }
+    },
+    "representative": "柏拉图，激进的保守主义分子",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": -0.0278,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.0
+      }
+    }
+  },
+  {
+    "id": "2-1-2-3",
+    "name": "范畴实在论 绝对现实主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "theos"
+      },
+      "ontology": "形质结合论",
+      "epistemology": {
+        "base": "真理",
+        "relation": "vs",
+        "counter": "意见"
+      },
+      "teleology": {
+        "base": "哲学",
+        "relation": "调和者：中庸",
+        "counter": "城邦的法"
+      }
+    },
+    "representative": "亚里士多德，帝师，逍遥派中庸头子，政治的哲学之影",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "2-1-2-4",
+    "name": "多产的不动论",
+    "philosophy": {
+      "field_theory": {
+        "base": "太一(cosmos)",
+        "relation": "vs",
+        "counter": "神之必然性(dike)"
+      },
+      "ontology": "太一",
+      "epistemology": {
+        "base": "真理",
+        "relation": "vs",
+        "counter": "意见"
+      },
+      "teleology": "推翻上升、下降、旋转运动的不动论"
+    },
+    "representative": "芝诺，雅典城邦的最后挣扎，本体论缝合的证明者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "2-1-3-1",
+    "name": "反应多元论",
+    "philosophy": {
+      "field_theory": {
+        "base": "神",
+        "relation": "vs",
+        "counter": "世界"
+      },
+      "ontology": "incarnation(投胎转世)",
+      "epistemology": {
+        "base": "真理",
+        "relation": "调和者：比例",
+        "counter": "意见"
+      },
+      "teleology": "循环"
+    },
+    "representative": "恩培多克勒，聪明到狂妄的飞入火山之人，思想史上化学鼻祖，愚弄神话的渎神术士",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "2-1-3-2",
+    "name": "贫乏的原子论",
+    "philosophy": {
+      "field_theory": {
+        "base": "nature",
+        "relation": "vs",
+        "counter": "divine"
+      },
+      "ontology": "原子和虚空(atom/void)",
+      "epistemology": {
+        "base": "合法的知识",
+        "relation": "调和者：比例",
+        "counter": "混蛋的知识"
+      },
+      "teleology": {
+        "base": "衰败，堕落",
+        "relation": "vs",
+        "counter": "神圣的必然性"
+      }
+    },
+    "representative": "德谟克利特，爱嘲笑普通人的哲学家，民主制度的尝试者，原生家庭财产继承事件的受害者，机械思维鼻祖",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "2-1-3-3",
+    "name": "智性享乐主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "自然",
+        "relation": "vs",
+        "counter": "神圣"
+      },
+      "ontology": "原子和虚空(atom/void)",
+      "epistemology": {
+        "base": "真理理念",
+        "relation": "调和者：类比的经验",
+        "counter": "凡俗意见"
+      },
+      "teleology": {
+        "base": "下坠运动",
+        "relation": "调和者：偏转运动",
+        "counter": "旋涡运动"
+      }
+    },
+    "representative": "伊壁鸠鲁，经验科学鼻祖，哲学家的安谧后院",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "2-1-3-4",
+    "name": "犬儒主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "自然",
+        "relation": "vs",
+        "counter": "城邦"
+      },
+      "ontology": "现实具体事物",
+      "epistemology": {
+        "base": "真理",
+        "relation": "调和者：理智",
+        "counter": "意见"
+      },
+      "teleology": "极其理性地回归自然"
+    },
+    "representative": "安提斯泰尼与第欧根尼，通过理性定义人类自然天性的极端智者，狗哲主义者，郑村棋",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "2-1-4-1",
+    "name": "相对主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "世界",
+        "relation": "vs",
+        "counter": "语言"
+      },
+      "ontology": "事物",
+      "epistemology": "真理(客观、公立、跨主体)是不可能的",
+      "teleology": "可说=有理；清楚=合法"
+    },
+    "representative": "高尔吉亚，镜像巴门尼德，为过去的历史做辩护的状师，会说俏皮话的巴门尼德主义者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "2-1-4-2",
+    "name": "怀疑主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "logos"
+      },
+      "ontology": "事物",
+      "epistemology": "epoche(悬置)",
+      "teleology": {
+        "base": "均衡",
+        "relation": "vs",
+        "counter": "决断"
+      }
+    },
+    "representative": "皮浪，巨浪当前不动心的军师，谋臣必修心法，基本的政治素养",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "2-1-4-3",
+    "name": "记忆主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "mnemonos"
+      },
+      "ontology": "现实(人制作与创造)",
+      "epistemology": "肤浅，傲慢",
+      "teleology": {
+        "base": "均衡",
+        "relation": "调和者：沉淀",
+        "counter": "决断"
+      }
+    },
+    "representative": "希庇亚，记忆大师，技艺大师，古希腊城邦间呼吁自然法调和矛盾与冲突的傲慢智者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "2-1-4-4",
+    "name": "话语主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "physis",
+        "relation": "vs",
+        "counter": "nomos"
+      },
+      "ontology": "logoi(logos复数形式)",
+      "epistemology": "不可能兼顾一个稳固而单一的logos",
+      "teleology": "敞开"
+    },
+    "representative": "安提丰，智者与猛士的统一，原始精神分析师",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "2-2-1-1",
+    "name": "分子业力学",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "命(心灵)",
+        "relation": "vs",
+        "counter": "非命(物质)"
+      },
+      "epistemology": "微粒+业(molecular)",
+      "teleology": "时间的纵向运动"
+    },
+    "representative": "耆那教的大雄，原始佛教的释迦牟尼",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": -0.2778,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.3333
+      }
+    }
+  },
+  {
+    "id": "2-2-1-2",
+    "name": "永恒时态主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "原子",
+        "relation": "vs",
+        "counter": "虚空"
+      },
+      "epistemology": "原子主义",
+      "teleology": {
+        "base": "exist",
+        "relation": "vs",
+        "counter": "persist"
+      }
+    },
+    "representative": "小乘有宗",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": -0.0278,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.0
+      }
+    }
+  },
+  {
+    "id": "2-2-1-3",
+    "name": "经量部的种子形而上学",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "时态性存在",
+        "relation": "vs",
+        "counter": "跨时态存在"
+      },
+      "epistemology": "随相说",
+      "teleology": {
+        "base": "exist",
+        "relation": "调和者：种子说",
+        "counter": "persist"
+      }
+    },
+    "representative": "经量部",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "2-2-1-4",
+    "name": "摩尔唯心主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "阿赖耶识",
+        "relation": "vs",
+        "counter": "种子"
+      },
+      "epistemology": "(见分、相分、自证分)三分法",
+      "teleology": "经验观察无用，伦理退行"
+    },
+    "representative": "《成唯识论》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "2-2-2-1",
+    "name": "无为主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "柔",
+        "relation": "vs",
+        "counter": "刚"
+      },
+      "epistemology": {
+        "base": "知",
+        "relation": "vs",
+        "counter": "愚"
+      },
+      "teleology": "无为"
+    },
+    "representative": "老子",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": -0.0278,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.0
+      }
+    }
+  },
+  {
+    "id": "2-2-2-2",
+    "name": "积极的神秘主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "心",
+        "relation": "vs",
+        "counter": "大块"
+      },
+      "epistemology": {
+        "base": "知",
+        "relation": "vs",
+        "counter": "愚"
+      },
+      "teleology": {
+        "base": "有为",
+        "relation": "vs",
+        "counter": "无为"
+      }
+    },
+    "representative": "庄周",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.6667,
+        "materialism_idealism": 0.2,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.3
+      }
+    }
+  },
+  {
+    "id": "2-2-2-3",
+    "name": "人道的自然主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "人生",
+        "relation": "vs",
+        "counter": "城邦"
+      },
+      "ontology": {
+        "base": "给养",
+        "relation": "vs",
+        "counter": "欲望"
+      },
+      "epistemology": {
+        "base": "知",
+        "relation": "vs",
+        "counter": "愚"
+      },
+      "teleology": {
+        "base": "有为",
+        "relation": "调和者：厌",
+        "counter": "无为"
+      }
+    },
+    "representative": "杨朱",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4722,
+        "materialism_idealism": 0.35,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.375
+      }
+    }
+  },
+  {
+    "id": "2-2-2-4",
+    "name": "实用的神秘主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "道/理",
+        "relation": "vs",
+        "counter": "物"
+      },
+      "epistemology": {
+        "base": "情",
+        "relation": "vs",
+        "counter": "貌"
+      },
+      "teleology": "无定操"
+    },
+    "representative": "韩非子",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5833,
+        "materialism_idealism": 0.1,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.25
+      }
+    }
+  },
+  {
+    "id": "2-2-3-1",
+    "name": "历史符号主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "阴/阳",
+        "relation": "vs",
+        "counter": "易"
+      },
+      "epistemology": {
+        "base": "知",
+        "relation": "调和者：道",
+        "counter": "愚"
+      },
+      "teleology": "易/生生/时间性、周期性的一种循环"
+    },
+    "representative": "《周易》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "2-2-3-2",
+    "name": "形而上神秘主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "物质+精神",
+        "relation": "vs",
+        "counter": "太一(流溢者)"
+      },
+      "epistemology": {
+        "base": "智慧",
+        "relation": "调和者：隐秘的智慧",
+        "counter": "愚昧"
+      },
+      "teleology": {
+        "base": "循环",
+        "relation": "vs",
+        "counter": "终结"
+      }
+    },
+    "representative": "七伊玛目派(伊斯玛仪派)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4722,
+        "materialism_idealism": 0.35,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.375
+      }
+    }
+  },
+  {
+    "id": "2-2-3-3",
+    "name": "理性唯灵论",
+    "philosophy": {
+      "field_theory": {
+        "base": "经验",
+        "relation": "vs",
+        "counter": "超越"
+      },
+      "ontology": {
+        "base": "二重性",
+        "relation": "vs",
+        "counter": "一元性"
+      },
+      "epistemology": {
+        "base": "智",
+        "relation": "调和者：over-soul",
+        "counter": "愚"
+      },
+      "teleology": {
+        "base": "循环",
+        "relation": "调和者：永恒",
+        "counter": "终结"
+      }
+    },
+    "representative": "爱默生",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2778,
+        "materialism_idealism": 0.5,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.45
+      }
+    }
+  },
+  {
+    "id": "2-2-3-4",
+    "name": "时代性的诗歌主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "场域间的夹缝",
+        "relation": "vs",
+        "counter": "主体性、诗性体验"
+      },
+      "epistemology": {
+        "base": "智",
+        "relation": "调和者：诗歌",
+        "counter": "愚"
+      },
+      "teleology": "死亡驱力"
+    },
+    "representative": "杜甫、李白等诗人",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "2-2-4-1",
+    "name": "具有伦理热忱的虚无主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "fabrication",
+        "relation": "vs",
+        "counter": "empty"
+      },
+      "ontology": {
+        "base": "everything",
+        "relation": "vs",
+        "counter": "nirvana"
+      },
+      "epistemology": "de-fabrication(解除符号学编织)",
+      "teleology": "cease of suffering"
+    },
+    "representative": "龙树，《中论》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "2-2-4-2",
+    "name": "可辩的道德箴言",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "divine (神圣)",
+        "relation": "vs",
+        "counter": "vie/vita(生命)"
+      },
+      "epistemology": "fundamentalism(原教旨主义)",
+      "teleology": {
+        "base": "离苦",
+        "relation": "vs",
+        "counter": "返回绝对真理"
+      }
+    },
+    "representative": "《塔木德》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5833,
+        "materialism_idealism": 0.1,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.25
+      }
+    }
+  },
+  {
+    "id": "2-2-4-3",
+    "name": "新实用主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "私人",
+        "relation": "vs",
+        "counter": "公共"
+      },
+      "epistemology": "真诚>“真”修辞",
+      "teleology": {
+        "base": "离苦",
+        "relation": "调和者：己之所欲勿施于人",
+        "counter": "返回绝对真理"
+      }
+    },
+    "representative": "理查德·罗蒂",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "2-2-4-4",
+    "name": "原始现象学/分析哲学",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "无有",
+        "relation": "vs",
+        "counter": "彼/是"
+      },
+      "epistemology": "舛驳不中",
+      "teleology": "分散、散开、遍为万物说"
+    },
+    "representative": "惠施",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5,
+        "materialism_idealism": 0.0,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": 0.2
+      }
+    }
+  },
+  {
+    "id": "2-3-1-1",
+    "name": "渐进的无限主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "ontic",
+        "relation": "vs",
+        "counter": "ontological"
+      },
+      "ontology": {
+        "base": "万物 (感性材料)",
+        "relation": "vs",
+        "counter": "无限 (完满)"
+      },
+      "epistemology": "“对立同一律”",
+      "teleology": "无限渐进"
+    },
+    "representative": "库萨的尼古拉，《论渊博的无知性》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "2-3-1-2",
+    "name": "运动的静止主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "宇宙(世界)",
+        "relation": "vs",
+        "counter": "神圣法则"
+      },
+      "ontology": {
+        "base": "以太",
+        "relation": "调和者：太一",
+        "counter": "星体(土壤、生命)"
+      },
+      "epistemology": "思辨理性",
+      "teleology": {
+        "base": "渐进无限",
+        "relation": "vs",
+        "counter": "静止"
+      }
+    },
+    "representative": "布鲁诺",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "2-3-1-3",
+    "name": "实体整体主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "实体"
+      },
+      "ontology": {
+        "base": "万物",
+        "relation": "调和者：智识",
+        "counter": "神"
+      },
+      "epistemology": "理智直观",
+      "teleology": {
+        "base": "渐进",
+        "relation": "调和者：依循",
+        "counter": "保持自身"
+      }
+    },
+    "representative": "斯宾诺莎，康德的好敌手，《伦理学》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "2-3-1-4",
+    "name": "辩证一元论",
+    "philosophy": {
+      "field_theory": {
+        "base": "ontic",
+        "relation": "vs",
+        "counter": "ontological"
+      },
+      "ontology": {
+        "base": "圣父",
+        "relation": "调和者：圣子",
+        "counter": "圣灵"
+      },
+      "epistemology": "神智学",
+      "teleology": "分离"
+    },
+    "representative": "波墨，最强民哲，《曙光》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "2-3-2-1",
+    "name": "理性动物主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "transcendental"
+      },
+      "ontology": {
+        "base": "事物",
+        "relation": "调和者：anima rationalis(灵魂)",
+        "counter": "太一"
+      },
+      "epistemology": {
+        "base": "哲学",
+        "relation": "vs",
+        "counter": "神学"
+      },
+      "teleology": "(死后)与太一建立连结"
+    },
+    "representative": "托马斯·阿奎那",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "2-3-2-2",
+    "name": "理性神秘主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "nichts (无)",
+        "relation": "vs",
+        "counter": "cosmos"
+      },
+      "ontology": {
+        "base": "华子",
+        "relation": "调和者：太一",
+        "counter": "万物"
+      },
+      "epistemology": {
+        "base": "分析、愤怒、祈求",
+        "relation": "vs",
+        "counter": "保持力、理性、意愿"
+      },
+      "teleology": {
+        "base": "流出",
+        "relation": "vs",
+        "counter": "返回"
+      }
+    },
+    "representative": "埃克哈特大师",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4722,
+        "materialism_idealism": 0.35,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.375
+      }
+    }
+  },
+  {
+    "id": "2-3-2-3",
+    "name": "超越的内在论",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "history"
+      },
+      "ontology": {
+        "base": "肉体",
+        "relation": "调和者：华子",
+        "counter": "心灵"
+      },
+      "epistemology": {
+        "base": "哲学",
+        "relation": "vs",
+        "counter": "内在信仰"
+      },
+      "teleology": {
+        "base": "流溢",
+        "relation": "调和者：内在化",
+        "counter": "返回"
+      }
+    },
+    "representative": "马丁路德",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2778,
+        "materialism_idealism": 0.5,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.45
+      }
+    }
+  },
+  {
+    "id": "2-3-2-4",
+    "name": "现代理性主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上学",
+        "relation": "vs",
+        "counter": "数学"
+      },
+      "ontology": {
+        "base": "心",
+        "relation": "调和者：华子",
+        "counter": "物"
+      },
+      "epistemology": {
+        "base": "迷信",
+        "relation": "vs",
+        "counter": "必然的"
+      },
+      "teleology": "敞开"
+    },
+    "representative": "笛卡尔，《第一哲学沉思录》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "2-3-3-1",
+    "name": "前定主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "表象",
+        "relation": "vs",
+        "counter": "形而上学"
+      },
+      "ontology": {
+        "base": "物质性单子",
+        "relation": "调和者：华子",
+        "counter": "理性单子"
+      },
+      "epistemology": {
+        "base": "哲学",
+        "relation": "调和者：自然形而上学",
+        "counter": "神学"
+      },
+      "teleology": "pre-determination"
+    },
+    "representative": "莱布尼兹",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "2-3-3-2",
+    "name": "体系完美主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "符号学宇宙",
+        "relation": "vs",
+        "counter": "形而下宇宙"
+      },
+      "ontology": {
+        "base": "属性",
+        "relation": "调和者：模式",
+        "counter": "本质"
+      },
+      "epistemology": {
+        "base": "理论哲学",
+        "relation": "调和者：逻辑学",
+        "counter": "实践哲学"
+      },
+      "teleology": {
+        "base": "perfection",
+        "relation": "vs",
+        "counter": "pre-determination"
+      }
+    },
+    "representative": "沃尔夫",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2778,
+        "materialism_idealism": 0.5,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.45
+      }
+    }
+  },
+  {
+    "id": "2-3-3-3",
+    "name": "逻辑原子主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "自然语言",
+        "relation": "vs",
+        "counter": "逻辑语言"
+      },
+      "ontology": {
+        "base": "a(专名)",
+        "relation": "调和者：逻辑量词",
+        "counter": "P(摹状词、谓词)"
+      },
+      "epistemology": {
+        "base": "理论哲学",
+        "relation": "调和者：逻辑",
+        "counter": "实践哲学"
+      },
+      "teleology": {
+        "base": "perfection",
+        "relation": "调和者：preference",
+        "counter": "pre-determination"
+      }
+    },
+    "representative": "罗素，潜逃战争的贵族阶级知识分子代表，文笔好点的",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0833,
+        "materialism_idealism": 0.65,
+        "collectivism_individualism": 0.6667,
+        "determinism_freewill": 0.525
+      }
+    }
+  },
+  {
+    "id": "2-3-3-4",
+    "name": "分隔的整体主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "will to life",
+        "relation": "vs",
+        "counter": "will to nothingness"
+      },
+      "ontology": {
+        "base": "表象",
+        "relation": "调和者：世界(时空)",
+        "counter": "意志"
+      },
+      "epistemology": {
+        "base": "理论哲学",
+        "relation": "调和者：直观",
+        "counter": "实践哲学"
+      },
+      "teleology": "palloation(缓和痛苦、掩饰罪恶)"
+    },
+    "representative": "叔本华，瑜不掩瑕的前(反)康德主义者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "2-3-4-1",
+    "name": "数理还原主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "数学秩序"
+      },
+      "ontology": {
+        "base": "bodies",
+        "relation": "调和者：力",
+        "counter": "quantities"
+      },
+      "epistemology": "实验(器具)",
+      "teleology": "有重量"
+    },
+    "representative": "伽利略",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "2-3-4-2",
+    "name": "稳定的干涉主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "cosmos",
+        "relation": "vs",
+        "counter": "数学秩序"
+      },
+      "ontology": {
+        "base": "物",
+        "relation": "调和者：力",
+        "counter": "数"
+      },
+      "epistemology": "猜想、假说、实验和理论化",
+      "teleology": {
+        "base": "堕落",
+        "relation": "vs",
+        "counter": "干涉"
+      }
+    },
+    "representative": "牛顿，千禧年主义者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "2-3-4-3",
+    "name": "物理归纳主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "显明的nature",
+        "relation": "vs",
+        "counter": "隐秘的nature"
+      },
+      "ontology": {
+        "base": "物质",
+        "relation": "调和者：种类",
+        "counter": "造世主"
+      },
+      "epistemology": "四种崇拜导致人的认识是不可靠的",
+      "teleology": {
+        "base": "下落",
+        "relation": "调和者：模式",
+        "counter": "修正"
+      }
+    },
+    "representative": "培根，《人类理性论》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "2-3-4-4",
+    "name": "时空绝对主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "造物",
+        "relation": "vs",
+        "counter": "可能/必然性"
+      },
+      "ontology": {
+        "base": "atom/void",
+        "relation": "调和者：absolute space/time",
+        "counter": "god"
+      },
+      "epistemology": "怀疑论者",
+      "teleology": "自由/解放"
+    },
+    "representative": "皮埃尔·伽森狄",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "2-4-1-1",
+    "name": "乐于接受的小体主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "universe",
+        "relation": "vs",
+        "counter": "华子"
+      },
+      "ontology": "存在奇迹，渐进创世",
+      "epistemology": "实验",
+      "teleology": "被动承受"
+    },
+    "representative": "波义耳",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "2-4-1-2",
+    "name": "经验的观念论",
+    "philosophy": {
+      "field_theory": {
+        "base": "原子世界",
+        "relation": "vs",
+        "counter": "形而上世界"
+      },
+      "ontology": "the great chain(伟大的因果性锁链)",
+      "epistemology": "白板说",
+      "teleology": {
+        "base": "被动承受",
+        "relation": "vs",
+        "counter": "主动猜测"
+      }
+    },
+    "representative": "洛克",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "2-4-1-3",
+    "name": "理念-精神二元论",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "vs",
+        "counter": "形而下"
+      },
+      "ontology": "spirit",
+      "epistemology": "ideas",
+      "teleology": {
+        "base": "被动承受",
+        "relation": "调和者：信任",
+        "counter": "主动猜测"
+      }
+    },
+    "representative": "贝克莱",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "2-4-1-4",
+    "name": "人类有限主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "经验",
+        "relation": "vs",
+        "counter": "共同体的秩序"
+      },
+      "ontology": "经验",
+      "epistemology": "联结",
+      "teleology": "共同体利益"
+    },
+    "representative": "休谟，偷天换日的大他者身份窃贼",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "2-4-2-1",
+    "name": "自然主义的规范论",
+    "philosophy": {
+      "field_theory": {
+        "base": "appearance",
+        "relation": "vs",
+        "counter": "ethos"
+      },
+      "ontology": "异质性他者(物质)",
+      "epistemology": {
+        "base": "自然主义",
+        "relation": "vs",
+        "counter": "观念论"
+      },
+      "teleology": "happiness"
+    },
+    "representative": "约翰·穆勒",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "2-4-2-2",
+    "name": "社会实证主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "vs",
+        "counter": "形而下"
+      },
+      "ontology": "不预设/无法把握任何本体性",
+      "epistemology": {
+        "base": "第一人称体验",
+        "relation": "vs",
+        "counter": "社会学家视角"
+      },
+      "teleology": {
+        "base": "整合",
+        "relation": "vs",
+        "counter": "归驯"
+      }
+    },
+    "representative": "涂尔干",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5833,
+        "materialism_idealism": 0.1,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.25
+      }
+    }
+  },
+  {
+    "id": "2-4-2-3",
+    "name": "自然神论的实证主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "knowable",
+        "relation": "vs",
+        "counter": "unknowable"
+      },
+      "ontology": "force(力)",
+      "epistemology": {
+        "base": "第一人称理智认识",
+        "relation": "vs",
+        "counter": "种族知识(直观)"
+      },
+      "teleology": {
+        "base": "compund",
+        "relation": "调和者：进化",
+        "counter": "dissolve"
+      }
+    },
+    "representative": "斯宾塞",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "2-4-2-4",
+    "name": "科学的实证主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "第一人称前反思经验",
+        "relation": "vs",
+        "counter": "形而上秩序"
+      },
+      "ontology": "element(但元素并无本体性)",
+      "epistemology": {
+        "base": "经验",
+        "relation": "vs",
+        "counter": "联结方式(差异关系)"
+      },
+      "teleology": "生存"
+    },
+    "representative": "马赫",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5,
+        "materialism_idealism": 0.0,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": 0.2
+      }
+    }
+  },
+  {
+    "id": "2-4-3-1",
+    "name": "相对语法主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "直观",
+        "relation": "vs",
+        "counter": "知识"
+      },
+      "ontology": "(被击穿)",
+      "epistemology": {
+        "base": "直观",
+        "relation": "调和者：语法",
+        "counter": "概念"
+      },
+      "teleology": "共识"
+    },
+    "representative": "石里克",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "2-4-3-2",
+    "name": "逻辑还原主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "日常用语",
+        "relation": "vs",
+        "counter": "逻辑语言"
+      },
+      "ontology": "(被击穿)",
+      "epistemology": {
+        "base": "现象主义",
+        "relation": "调和者：句法",
+        "counter": "物理主义"
+      },
+      "teleology": {
+        "base": "convention",
+        "relation": "vs",
+        "counter": "criterion"
+      }
+    },
+    "representative": "卡尔纳普",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "2-4-3-3",
+    "name": "逻辑行为主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "第一人称视域",
+        "relation": "vs",
+        "counter": "逻辑地图"
+      },
+      "ontology": "(被击穿)",
+      "epistemology": {
+        "base": "直接体验",
+        "relation": "调和者：词项",
+        "counter": "间接体验"
+      },
+      "teleology": {
+        "base": "convention",
+        "relation": "调和者：行为主义(刻画)",
+        "counter": "criterion"
+      }
+    },
+    "representative": "赖尔，日常语用学派",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "2-4-3-4",
+    "name": "逻辑反实在论",
+    "philosophy": {
+      "field_theory": {
+        "base": "感觉世界",
+        "relation": "vs",
+        "counter": "语言世界"
+      },
+      "ontology": "(被击穿)",
+      "epistemology": {
+        "base": "现象主义",
+        "relation": "调和者：简明性",
+        "counter": "观念建构"
+      },
+      "teleology": "choose(选择)"
+    },
+    "representative": "古德曼",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "2-4-4-1",
+    "name": "逻辑实用主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "日常话语",
+        "relation": "vs",
+        "counter": "科学话语"
+      },
+      "ontology": "本体论承诺",
+      "epistemology": "意义的整体主义",
+      "teleology": "科学化"
+    },
+    "representative": "蒯因",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "2-4-4-2",
+    "name": "正统辩证唯物主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上秩序",
+        "relation": "vs",
+        "counter": "辩证法(整体主义)"
+      },
+      "ontology": "物质",
+      "epistemology": "心理、自然经验主义",
+      "teleology": {
+        "base": "科学化",
+        "relation": "vs",
+        "counter": "意识形态化"
+      }
+    },
+    "representative": "思修四，斯大林主义",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5,
+        "materialism_idealism": 0.0,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": 0.2
+      }
+    }
+  },
+  {
+    "id": "2-4-4-3",
+    "name": "符号实用主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "现实",
+        "relation": "vs",
+        "counter": "语言"
+      },
+      "ontology": "承认场域论二分的所有智慧",
+      "epistemology": "承认场域论二分的所有智慧",
+      "teleology": {
+        "base": "科学话语",
+        "relation": "调和者：一组圣名",
+        "counter": "意识形态话语"
+      }
+    },
+    "representative": "语言，”人类群星闪耀时“，大同教，ggkf",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "2-4-4-4",
+    "name": "生存实用主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "差别见",
+        "relation": "vs",
+        "counter": "平等见"
+      },
+      "ontology": "平等",
+      "epistemology": "平等",
+      "teleology": "生存"
+    },
+    "representative": "禅宗，《五灯会元》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4167,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "3-1-1-1",
+    "name": "先验直觉主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "自然态度",
+        "relation": "调和者：先验直观",
+        "counter": "本质性领域"
+      },
+      "ontology": "the giveness(被给予性)",
+      "epistemology": "先验直观",
+      "teleology": "认识\\本质分类\\注册进等级制符号系统内"
+    },
+    "representative": "胡塞尔，《纯粹现象学通论：纯粹现象学和现象学哲学的观念》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.65,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": -0.5833
+      }
+    }
+  },
+  {
+    "id": "3-1-1-2",
+    "name": "先验本质主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "自然态度",
+        "relation": "调和者：先验直观",
+        "counter": "本质性领域"
+      },
+      "ontology": "the giveness(被给予性)",
+      "epistemology": "先验直观",
+      "teleology": {
+        "base": "体验、注册",
+        "relation": "vs",
+        "counter": "本质性差异"
+      }
+    },
+    "representative": "胡塞尔，《纯粹现象学通论：》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "3-1-1-3",
+    "name": "反思性的 主体主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "自然态度",
+        "relation": "调和者：先验直观",
+        "counter": "本质性领域"
+      },
+      "ontology": "the giveness(被给予性)",
+      "epistemology": "先验直观",
+      "teleology": {
+        "base": "主动注册",
+        "relation": "调和者：反思性主体性",
+        "counter": "被动接受差异"
+      }
+    },
+    "representative": "胡塞尔，《纯粹现象学通论：》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.5,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "3-1-1-4",
+    "name": "准先验辩证主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：辩证法 (结构主义)",
+        "counter": "形而下"
+      },
+      "ontology": "the giveness(被给予性)",
+      "epistemology": "先验直观",
+      "teleology": "原初运动"
+    },
+    "representative": "大二时期的德里达，《胡塞尔现象学的发生问题》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "3-1-2-1",
+    "name": "媒介性的 客观主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：人的科学\\现象学",
+        "counter": "形而下"
+      },
+      "ontology": "连续",
+      "epistemology": {
+        "base": "理性、感觉",
+        "relation": "vs",
+        "counter": "非感觉 (情绪、冲动)"
+      },
+      "teleology": "大他者的安排"
+    },
+    "representative": "史蒂芬·斯特拉瑟",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "3-1-2-2",
+    "name": "本质心理主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：本质还原",
+        "counter": "形而下"
+      },
+      "ontology": "连续",
+      "epistemology": {
+        "base": "思维",
+        "relation": "vs",
+        "counter": "信念"
+      },
+      "teleology": {
+        "base": "大他者的安排",
+        "relation": "vs",
+        "counter": "发现本真 重建本真维度"
+      }
+    },
+    "representative": "普凡德尔(alexander pfander)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "3-1-2-3",
+    "name": "现象学的 唯美主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：本质还原 (主体性)",
+        "counter": "形而下"
+      },
+      "ontology": "连续",
+      "epistemology": {
+        "base": "本质还原",
+        "relation": "vs",
+        "counter": "逻辑"
+      },
+      "teleology": {
+        "base": "大他者的安排",
+        "relation": "调和者：艺术性聆受",
+        "counter": "发现本真 重建本真维度"
+      }
+    },
+    "representative": "盖格尔(moritz geiger)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "3-1-2-4",
+    "name": "游戏的 世界象征主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：惊奇姿态",
+        "counter": "形而下"
+      },
+      "ontology": "the player- the played",
+      "epistemology": {
+        "base": "constitution",
+        "relation": "vs",
+        "counter": "end-constitution"
+      },
+      "teleology": "play"
+    },
+    "representative": "芬克(eugen fink)",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "3-1-3-1",
+    "name": "主体间普遍主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：公共理性",
+        "counter": "形而下"
+      },
+      "ontology": "连续",
+      "epistemology": {
+        "base": "前反思的、情感性的",
+        "relation": "调和者：公共话语",
+        "counter": "反思的、专题性认识的"
+      },
+      "teleology": "公共理性"
+    },
+    "representative": "哈贝马斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.5,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "3-1-3-2",
+    "name": "本土方法论",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：本地的局部的合理性机制",
+        "counter": "形而下"
+      },
+      "ontology": "实在论者",
+      "epistemology": {
+        "base": "情感性 非理性",
+        "relation": "调和者：反思性",
+        "counter": "理性思维"
+      },
+      "teleology": {
+        "base": "形式逻辑 自然科学",
+        "relation": "vs",
+        "counter": "本地、族裔的临时合理性"
+      }
+    },
+    "representative": "加芬克尔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "3-1-3-3",
+    "name": "格式塔现象学",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：格式塔",
+        "counter": "形而下"
+      },
+      "ontology": "连续的格式塔",
+      "epistemology": {
+        "base": "前反思情感",
+        "relation": "调和者：整体主义",
+        "counter": "理性、反思、理论化"
+      },
+      "teleology": {
+        "base": "普遍理性",
+        "relation": "调和者：整体主义",
+        "counter": "临时、情境化的合理性"
+      }
+    },
+    "representative": "古尔维奇",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.35,
+        "materialism_idealism": 0.425,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "3-1-3-4",
+    "name": "自身性现象学",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：self",
+        "counter": "形而下"
+      },
+      "ontology": "连续、可理解性",
+      "epistemology": {
+        "base": "情感",
+        "relation": "调和者：自身性",
+        "counter": "理性"
+      },
+      "teleology": "不确定"
+    },
+    "representative": "胡塞尔、梅洛-庞蒂、海德格尔、萨特",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "3-1-4-1",
+    "name": "追问的现象学",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "调和者：世间性",
+        "counter": "存在"
+      },
+      "ontology": "sein\\time",
+      "epistemology": "问问题(无限的question变格)",
+      "teleology": "becoming time"
+    },
+    "representative": "早期海德格尔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "3-1-4-2",
+    "name": "性化的现象学",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：共在",
+        "counter": "形而下"
+      },
+      "ontology": "自为存在",
+      "epistemology": "去先验化",
+      "teleology": {
+        "base": "时间",
+        "relation": "vs",
+        "counter": "空间"
+      }
+    },
+    "representative": "萨特",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "3-1-4-3",
+    "name": "存在论的现象学",
+    "philosophy": {
+      "field_theory": {
+        "base": "经验主义",
+        "relation": "调和者：先验场",
+        "counter": "理性主义"
+      },
+      "ontology": "多阶格式塔连续统",
+      "epistemology": "消解存在之深度必然失败",
+      "teleology": {
+        "base": "time",
+        "relation": "调和者：present",
+        "counter": "space"
+      }
+    },
+    "representative": "梅洛庞蒂",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "3-1-4-4",
+    "name": "现象学伦理主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下dire",
+        "relation": "调和者：他人脸孔",
+        "counter": "形而上dit"
+      },
+      "ontology": "享用",
+      "epistemology": "界面上的伦理行动",
+      "teleology": "他人"
+    },
+    "representative": "列维纳斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "3-2-1-1",
+    "name": "无限的有限主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "经验",
+        "relation": "调和者：人：统觉",
+        "counter": "先天"
+      },
+      "ontology": {
+        "base": "现象",
+        "relation": "vs",
+        "counter": "本体性"
+      },
+      "epistemology": "判断",
+      "teleology": "渐进(有限→无限)，追求配得至福的权力"
+    },
+    "representative": "康德《纯粹理性批判》《法哲学原理》《法哲学批判导言》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": -0.25
+      }
+    }
+  },
+  {
+    "id": "3-2-1-2",
+    "name": "先验经验主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下",
+        "relation": "调和者：泛主体性",
+        "counter": "形而上"
+      },
+      "ontology": {
+        "base": "actual entity",
+        "relation": "vs",
+        "counter": "eternal object"
+      },
+      "epistemology": "occurrences显相",
+      "teleology": {
+        "base": "有限→无限",
+        "relation": "vs",
+        "counter": "无限←有限"
+      }
+    },
+    "representative": "怀特海",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "3-2-1-3",
+    "name": "先验逻辑主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下",
+        "relation": "调和者：先验逻辑",
+        "counter": "形而上"
+      },
+      "ontology": {
+        "base": "思维",
+        "relation": "vs",
+        "counter": "理念"
+      },
+      "epistemology": "思维意识，命题判断一元论",
+      "teleology": {
+        "base": "有限→无限",
+        "relation": "调和者：无穷小量",
+        "counter": "无限←有限"
+      }
+    },
+    "representative": "马堡学派头子，柯亨",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "3-2-1-4",
+    "name": "符号形式主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下",
+        "relation": "调和者：隐喻思维 以偏概全",
+        "counter": "形而上"
+      },
+      "ontology": {
+        "base": "文化",
+        "relation": "vs",
+        "counter": "符号活动"
+      },
+      "epistemology": "符号活动构造",
+      "teleology": "人类的自由创造，艺术"
+    },
+    "representative": "卡西尔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "3-2-2-1",
+    "name": "理智直观主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下",
+        "relation": "调和者：绝对者的image",
+        "counter": "形而上"
+      },
+      "ontology": {
+        "base": "gott syen(unity)",
+        "relation": "vs",
+        "counter": "I，先验自我"
+      },
+      "epistemology": {
+        "base": "伪理智直观",
+        "relation": "vs",
+        "counter": "真理智直观"
+      },
+      "teleology": "保守主义"
+    },
+    "representative": "晚年费希特",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.125,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": 0.075
+      }
+    }
+  },
+  {
+    "id": "3-2-2-2",
+    "name": "先验观念论",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下",
+        "relation": "调和者：意志",
+        "counter": "形而上"
+      },
+      "ontology": {
+        "base": "自然",
+        "relation": "vs",
+        "counter": "心灵"
+      },
+      "epistemology": {
+        "base": "先验哲学 自然哲学",
+        "relation": "vs",
+        "counter": "创造力"
+      },
+      "teleology": {
+        "base": "无意识←意识",
+        "relation": "vs",
+        "counter": "无意识→意识"
+      }
+    },
+    "representative": "早期谢林《先验观念论体系》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4722,
+        "materialism_idealism": 0.35,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.375
+      }
+    }
+  },
+  {
+    "id": "3-2-2-3",
+    "name": "彻底的经验主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下",
+        "relation": "调和者：纯粹经验 未结构意识流",
+        "counter": "形而上"
+      },
+      "ontology": {
+        "base": "一切存在，经验",
+        "relation": "vs",
+        "counter": "底层无意识心理活动，本能"
+      },
+      "epistemology": {
+        "base": "气质",
+        "relation": "vs",
+        "counter": "truth"
+      },
+      "teleology": {
+        "base": "自我→绝对者",
+        "relation": "调和者：偏好",
+        "counter": "自我←绝对者"
+      }
+    },
+    "representative": "威廉·詹姆斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2778,
+        "materialism_idealism": 0.5,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.45
+      }
+    }
+  },
+  {
+    "id": "3-2-2-4",
+    "name": "唯我的实在论\\ 现实主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：世界图像",
+        "counter": "形而下"
+      },
+      "ontology": {
+        "base": "object",
+        "relation": "vs",
+        "counter": "语言"
+      },
+      "epistemology": {
+        "base": "逻辑句法，真理",
+        "relation": "vs",
+        "counter": "哲学家的无意义的话"
+      },
+      "teleology": "僵死"
+    },
+    "representative": "早期维特根斯坦，《逻辑哲学论》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "3-2-3-1",
+    "name": "时间-本体论",
+    "philosophy": {
+      "field_theory": {
+        "base": "过去",
+        "relation": "调和者：未来",
+        "counter": "现在"
+      },
+      "ontology": {
+        "base": "存在",
+        "relation": "vs",
+        "counter": "自由(爱)"
+      },
+      "epistemology": {
+        "base": "理性",
+        "relation": "调和者：回忆",
+        "counter": "非理性"
+      },
+      "teleology": "回归"
+    },
+    "representative": "谢林，《世界时代》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "3-2-3-2",
+    "name": "加倍的德国观念论",
+    "philosophy": {
+      "field_theory": {
+        "base": "先验论",
+        "relation": "调和者：观念论-科学-辩证法",
+        "counter": "实在论"
+      },
+      "ontology": {
+        "base": "存在",
+        "relation": "vs",
+        "counter": "存在者"
+      },
+      "epistemology": {
+        "base": "先验论",
+        "relation": "调和者：视差之见",
+        "counter": "实在论"
+      },
+      "teleology": {
+        "base": "A3：对立和统一的和解",
+        "relation": "vs",
+        "counter": "丑闻，剩余，甩出"
+      }
+    },
+    "representative": "齐泽克，《自由的深渊》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2778,
+        "materialism_idealism": 0.5,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.45
+      }
+    }
+  },
+  {
+    "id": "3-2-3-3",
+    "name": "生存论的存在主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "存在",
+        "relation": "调和者：实存",
+        "counter": "存在者"
+      },
+      "ontology": {
+        "base": "存在(ground)",
+        "relation": "vs",
+        "counter": "此在(实存)"
+      },
+      "epistemology": {
+        "base": "先验论",
+        "relation": "调和者：回忆",
+        "counter": "实在论"
+      },
+      "teleology": {
+        "base": "同一",
+        "relation": "调和者：等待降临",
+        "counter": "丑闻"
+      }
+    },
+    "representative": "晚期海德格尔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0833,
+        "materialism_idealism": 0.65,
+        "collectivism_individualism": 0.6667,
+        "determinism_freewill": 0.525
+      }
+    }
+  },
+  {
+    "id": "3-2-3-4",
+    "name": "自身-辩证法",
+    "philosophy": {
+      "field_theory": {
+        "base": "肯定 (特殊)",
+        "relation": "调和者：统一，理性",
+        "counter": "扬弃 (普遍)"
+      },
+      "ontology": {
+        "base": "范畴",
+        "relation": "vs",
+        "counter": "认识的本身"
+      },
+      "epistemology": {
+        "base": "先验逻辑学",
+        "relation": "调和者：形式逻辑",
+        "counter": "形而上学"
+      },
+      "teleology": "认识自身"
+    },
+    "representative": "早期黑格尔，《耶拿体系1804-1805：逻辑学和形而上学》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "3-2-4-1",
+    "name": "逻辑学",
+    "philosophy": {
+      "field_theory": {
+        "base": "符号系统",
+        "relation": "调和者：辩证法",
+        "counter": "形而上学"
+      },
+      "ontology": {
+        "base": "运动 思维辩证法",
+        "relation": "vs",
+        "counter": "理念"
+      },
+      "epistemology": "矛盾， 因为符号系统自己成为系统，不再符合外在体系",
+      "teleology": "符号系统自己将自己理念化"
+    },
+    "representative": "黑格尔，《大逻辑》《小逻辑》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "3-2-4-2",
+    "name": "否定辩证法",
+    "philosophy": {
+      "field_theory": {
+        "base": "主体",
+        "relation": "调和者：离散的，自组织的星丛",
+        "counter": "客体"
+      },
+      "ontology": {
+        "base": "客体",
+        "relation": "vs",
+        "counter": "星丛"
+      },
+      "epistemology": "辩证法：符号化注定失败",
+      "teleology": {
+        "base": "追求总体性自我同一的历史性运动",
+        "relation": "vs",
+        "counter": "符号化注定失败，离散"
+      }
+    },
+    "representative": "阿多诺",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "3-2-4-3",
+    "name": "爱欲辩证法",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下断裂局部",
+        "relation": "调和者：principle of domination",
+        "counter": "形而上连续总体"
+      },
+      "ontology": {
+        "base": "否定性 subjectization",
+        "relation": "vs",
+        "counter": "总体"
+      },
+      "epistemology": "反理性",
+      "teleology": {
+        "base": "符号系统符号化",
+        "relation": "调和者：主体化",
+        "counter": "符号化注定失败，离散"
+      }
+    },
+    "representative": "马尔库塞",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "3-2-4-4",
+    "name": "意识形态学",
+    "philosophy": {
+      "field_theory": {
+        "base": "等级系统A",
+        "relation": "调和者：隐形中介、 超定",
+        "counter": "等级系统B"
+      },
+      "ontology": "纯二元对立",
+      "epistemology": "problematic问题式",
+      "teleology": "“4”"
+    },
+    "representative": "阿尔都塞",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "3-3-1-1",
+    "name": "分环节的 生存论存在论",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下",
+        "relation": "调和者：烦",
+        "counter": "形而上"
+      },
+      "ontology": {
+        "base": "生存论",
+        "relation": "调和者：死",
+        "counter": "实在论"
+      },
+      "epistemology": "fundamental ontology",
+      "teleology": "中介性"
+    },
+    "representative": "海德格尔，《存在与时间》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.5,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": 0.1667,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "3-3-1-2",
+    "name": "人道主义的 存在主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下超越论",
+        "relation": "调和者：虚无",
+        "counter": "形而上本质"
+      },
+      "ontology": {
+        "base": "facticity",
+        "relation": "调和者：存在",
+        "counter": "本质"
+      },
+      "epistemology": "现象学化的辩证法",
+      "teleology": {
+        "base": "中介性",
+        "relation": "vs",
+        "counter": "自由\\自欺 (真诚)"
+      }
+    },
+    "representative": "萨特",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "3-3-1-3",
+    "name": "政治的理性主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下 二元对立",
+        "relation": "调和者：理性",
+        "counter": "形而上 崇高短路"
+      },
+      "ontology": {
+        "base": "人类主体间共在",
+        "relation": "调和者：历史",
+        "counter": "主客自然"
+      },
+      "epistemology": "自身性现象学",
+      "teleology": {
+        "base": "环节中介",
+        "relation": "调和者：失效",
+        "counter": "自由"
+      }
+    },
+    "representative": "梅洛庞蒂，《辩证法的历险》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.35,
+        "materialism_idealism": 0.425,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "3-3-1-4",
+    "name": "前本体论",
+    "philosophy": {
+      "field_theory": {
+        "base": "最后之神",
+        "relation": "调和者：本有",
+        "counter": "诸神"
+      },
+      "ontology": {
+        "base": "存在",
+        "relation": "调和者：存在论",
+        "counter": "存在者"
+      },
+      "epistemology": "晚期谢林的存在论+生存论化的现象学",
+      "teleology": "呼唤(最隐蔽的伟大自识)"
+    },
+    "representative": "海德格尔，《从本有而来》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "3-3-2-1",
+    "name": "安放了的 实存主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而下 审美",
+        "relation": "调和者：宗教",
+        "counter": "形而上 伦理"
+      },
+      "ontology": {
+        "base": "实存",
+        "relation": "调和者：自身",
+        "counter": "他者"
+      },
+      "epistemology": {
+        "base": "绝望",
+        "relation": "vs",
+        "counter": "信仰"
+      },
+      "teleology": "begnadung(天佑)"
+    },
+    "representative": "克尔凯廓尔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.275,
+        "collectivism_individualism": 0.3333,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "3-3-2-2",
+    "name": "诗性生存论",
+    "philosophy": {
+      "field_theory": {
+        "base": "力 野蛮王国",
+        "relation": "调和者：游戏表象 快乐王国",
+        "counter": "法则 神圣王国"
+      },
+      "ontology": {
+        "base": "理念",
+        "relation": "调和者：存在",
+        "counter": "自然"
+      },
+      "epistemology": {
+        "base": "哲学",
+        "relation": "vs",
+        "counter": "诗的存在论"
+      },
+      "teleology": {
+        "base": "重复",
+        "relation": "vs",
+        "counter": "同一"
+      }
+    },
+    "representative": "荷尔德林",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2778,
+        "materialism_idealism": 0.5,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.45
+      }
+    }
+  },
+  {
+    "id": "3-3-2-3",
+    "name": "神-人伦理学",
+    "philosophy": {
+      "field_theory": {
+        "base": "形而上",
+        "relation": "调和者：创造伦理学",
+        "counter": "形而下"
+      },
+      "ontology": {
+        "base": "命运",
+        "relation": "调和者：自由",
+        "counter": "上帝、绝对者"
+      },
+      "epistemology": {
+        "base": "哲学",
+        "relation": "vs",
+        "counter": "动员学"
+      },
+      "teleology": {
+        "base": "重复",
+        "relation": "调和者：创造",
+        "counter": "循环"
+      }
+    },
+    "representative": "别尔嘉耶夫",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0833,
+        "materialism_idealism": 0.65,
+        "collectivism_individualism": 0.6667,
+        "determinism_freewill": 0.525
+      }
+    }
+  },
+  {
+    "id": "3-3-2-4",
+    "name": "超验-生存论",
+    "philosophy": {
+      "field_theory": {
+        "base": "生存之大全",
+        "relation": "调和者：理性 无限的哲学化",
+        "counter": "存在之大全"
+      },
+      "ontology": {
+        "base": "生存",
+        "relation": "调和者：the code of transendent",
+        "counter": "超验"
+      },
+      "epistemology": {
+        "base": "world orientation(世界探源)",
+        "relation": "vs",
+        "counter": "illumination of existence(生存之阐明)"
+      },
+      "teleology": "“自由=生存”，一种唯结果论"
+    },
+    "representative": "雅斯贝尔斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "3-3-3-1",
+    "name": "斗争的生存论",
+    "philosophy": {
+      "field_theory": {
+        "base": "idealism",
+        "relation": "调和者：永恒抗争",
+        "counter": "creating"
+      },
+      "ontology": {
+        "base": "necesstiy (必然性)",
+        "relation": "调和者：suffering (主体性)",
+        "counter": "possibility (可能性)"
+      },
+      "epistemology": {
+        "base": "哲学、科学 黑格尔观念论",
+        "relation": "调和者：信仰",
+        "counter": "绝望"
+      },
+      "teleology": "同一化(identifying)"
+    },
+    "representative": "舍斯托夫",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.35,
+        "materialism_idealism": 0.425,
+        "collectivism_individualism": 0.5,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "3-3-3-2",
+    "name": "直接生存论",
+    "philosophy": {
+      "field_theory": {
+        "base": "构造",
+        "relation": "调和者：时间",
+        "counter": "因果性关联"
+      },
+      "ontology": {
+        "base": "有限者",
+        "relation": "调和者：生存",
+        "counter": "绝对者"
+      },
+      "epistemology": {
+        "base": "怀疑论",
+        "relation": "调和者：信仰",
+        "counter": "先验体系"
+      },
+      "teleology": {
+        "base": "同一化",
+        "relation": "vs",
+        "counter": "否定虚无"
+      }
+    },
+    "representative": "雅各比",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0833,
+        "materialism_idealism": 0.65,
+        "collectivism_individualism": 0.6667,
+        "determinism_freewill": 0.525
+      }
+    }
+  },
+  {
+    "id": "3-3-3-3",
+    "name": "共同体的生存论",
+    "philosophy": {
+      "field_theory": {
+        "base": "混沌",
+        "relation": "调和者：强力意志",
+        "counter": "必然性"
+      },
+      "ontology": {
+        "base": "价值谱系",
+        "relation": "调和者：瞬间 主体性",
+        "counter": "永恒轮回 时间"
+      },
+      "epistemology": {
+        "base": "诗、艺术",
+        "relation": "调和者：宗教精神",
+        "counter": "哲学"
+      },
+      "teleology": {
+        "base": "同一化",
+        "relation": "调和者：复数化",
+        "counter": "对于虚无的厌恶"
+      }
+    },
+    "representative": "晚期尼采",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.2,
+        "materialism_idealism": 0.8,
+        "collectivism_individualism": 0.8333,
+        "determinism_freewill": 0.6
+      }
+    }
+  },
+  {
+    "id": "3-3-3-4",
+    "name": "金融资本主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "金融资本",
+        "relation": "调和者：生存论危机",
+        "counter": "产业资本"
+      },
+      "ontology": {
+        "base": "钱",
+        "relation": "调和者：权",
+        "counter": "罪"
+      },
+      "epistemology": {
+        "base": "享乐",
+        "relation": "调和者：痛苦",
+        "counter": "理性"
+      },
+      "teleology": "(抗争、辩证同一-否定虚无-多重化)→偏斜"
+    },
+    "representative": "“丁蟹”",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.55,
+        "collectivism_individualism": 0.4167,
+        "determinism_freewill": 0.475
+      }
+    }
+  },
+  {
+    "id": "3-3-4-1",
+    "name": "幸存的兄弟主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "母性自然",
+        "relation": "调和者：人类友爱 兄弟",
+        "counter": "父性权威"
+      },
+      "ontology": {
+        "base": "evil",
+        "relation": "调和者：love",
+        "counter": "divine"
+      },
+      "epistemology": "反理性主义",
+      "teleology": "一分为多，合而为一"
+    },
+    "representative": "陀耶妥耶夫斯基，《卡拉马佐夫兄弟》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "3-3-4-2",
+    "name": "去中心化的 科层主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "传统",
+        "relation": "调和者：小说",
+        "counter": "现代性"
+      },
+      "ontology": {
+        "base": "法(一)",
+        "relation": "调和者：职业(身份)",
+        "counter": "科层制(多)"
+      },
+      "epistemology": "good is not to know youself(judaism、基督教传统、诺斯替-希腊多神传统)",
+      "teleology": {
+        "base": "一多",
+        "relation": "vs",
+        "counter": "去中心化"
+      }
+    },
+    "representative": "卡夫卡，《审判》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "3-3-4-3",
+    "name": "幸福的幸存主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "理性",
+        "relation": "调和者：荒谬",
+        "counter": "世界的敌意"
+      },
+      "ontology": {
+        "base": "封闭实体",
+        "relation": "调和者：否定的二重性",
+        "counter": "复数性"
+      },
+      "epistemology": "保守性的反抗",
+      "teleology": {
+        "base": "循环",
+        "relation": "调和者：均衡",
+        "counter": "逃避"
+      }
+    },
+    "representative": "加缪",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.55,
+        "collectivism_individualism": 0.4167,
+        "determinism_freewill": 0.475
+      }
+    }
+  },
+  {
+    "id": "3-3-4-4",
+    "name": "诗性永恒主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "时间",
+        "relation": "调和者：符号系统",
+        "counter": "空间"
+      },
+      "ontology": {
+        "base": "情节",
+        "relation": "调和者：叙事",
+        "counter": "名字"
+      },
+      "epistemology": "唯梦论(认识发生学的阻断机制)",
+      "teleology": "遗忘、停笔、绝对者不再书写、不允许写完"
+    },
+    "representative": "博尔赫斯，《小径分叉的花园》，《阿莱夫》，《秘密的奇迹》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.3,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": 0.35
+      }
+    }
+  },
+  {
+    "id": "3-4-1-1",
+    "name": "结构人本主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "有限能指",
+        "relation": "调和者：神话结构",
+        "counter": "无限现实"
+      },
+      "ontology": "“人不可能逐渐符号化事物”",
+      "epistemology": "kinship(亲缘关系)",
+      "teleology": "mana的1/震颤"
+    },
+    "representative": "列维斯特劳斯，《马塞尔莫斯著作导论》，《漂移的能指》",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "3-4-1-2",
+    "name": "隐喻的象征主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "想象界",
+        "relation": "调和者：他者的欲望",
+        "counter": "无意识"
+      },
+      "ontology": "否定性",
+      "epistemology": "真理论：寻找je",
+      "teleology": {
+        "base": "两级震荡",
+        "relation": "vs",
+        "counter": "纵深化"
+      }
+    },
+    "representative": "早期拉康",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "3-4-1-3",
+    "name": "分类型的 叙事主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "功能层",
+        "relation": "调和者：叙事层",
+        "counter": "行动层"
+      },
+      "ontology": "叙事体系广义化",
+      "epistemology": "零度写作",
+      "teleology": {
+        "base": "1|震荡的循环",
+        "relation": "调和者：局部整体化",
+        "counter": "纵深化"
+      }
+    },
+    "representative": "罗兰·巴特",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "3-4-1-4",
+    "name": "陈述性的 话语主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "微观",
+        "relation": "调和者：话语考古学机制",
+        "counter": "宏观"
+      },
+      "ontology": "由点组成的网络，或本体论无合法性",
+      "epistemology": "知识考古学",
+      "teleology": "局部发生"
+    },
+    "representative": "福柯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "3-4-2-1",
+    "name": "无意识的 主体主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "想象界",
+        "relation": "调和者：象征界",
+        "counter": "真实界"
+      },
+      "ontology": "real is impossible",
+      "epistemology": {
+        "base": "结构主义",
+        "relation": "vs",
+        "counter": "辩证法\\发生学机制"
+      },
+      "teleology": "回溯性设立抹除"
+    },
+    "representative": "中期拉康",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "3-4-2-2",
+    "name": "静止的事件主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "Being 存在(在场)",
+        "relation": "调和者：State(space-site-position)",
+        "counter": "Event 事件  (缺失)"
+      },
+      "ontology": "Uncountable many没有总体化的一，以及主体对事件保持忠诚的4种方式：艺术、政治、科学、爱情",
+      "epistemology": {
+        "base": "知识",
+        "relation": "vs",
+        "counter": "主体化/对事件的忠诚信仰"
+      },
+      "teleology": {
+        "base": "回溯性",
+        "relation": "vs",
+        "counter": "整体降临"
+      }
+    },
+    "representative": "巴迪欧",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "3-4-2-3",
+    "name": "哲学的墨守成规",
+    "philosophy": {
+      "field_theory": {
+        "base": "后观念论",
+        "relation": "调和者：无政治计划性",
+        "counter": "大众文化"
+      },
+      "ontology": "Den,less than nothing",
+      "epistemology": {
+        "base": "哲学/文化分类学",
+        "relation": "vs",
+        "counter": "文化现象/前反思"
+      },
+      "teleology": {
+        "base": "回溯性",
+        "relation": "调和者：泰然让之",
+        "counter": "整体变革"
+      }
+    },
+    "representative": "齐泽克",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "3-4-2-4",
+    "name": "一二三代的 女性主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "符号界",
+        "relation": "调和者：Abjection主体性",
+        "counter": "象征界"
+      },
+      "ontology": "异质性他者",
+      "epistemology": {
+        "base": "phenotexte",
+        "relation": "vs",
+        "counter": "genotexte"
+      },
+      "teleology": "螺旋运动，在线性和循环的时间性之间不停震荡"
+    },
+    "representative": "克里斯蒂娃",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "3-4-3-1",
+    "name": "游牧的辩证主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "理念等级制框架",
+        "relation": "调和者：时间",
+        "counter": "游牧"
+      },
+      "ontology": "差异",
+      "epistemology": {
+        "base": "肯定",
+        "relation": "调和者：肯定的否定",
+        "counter": "否定"
+      },
+      "teleology": "结域-解域-再结域"
+    },
+    "representative": "普罗大众之敌，德勒兹",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "3-4-3-2",
+    "name": "圆满的经济学",
+    "philosophy": {
+      "field_theory": {
+        "base": "有限经济学",
+        "relation": "调和者：否定",
+        "counter": "普遍经济学"
+      },
+      "ontology": "献祭",
+      "epistemology": {
+        "base": "色情",
+        "relation": "调和者：神圣",
+        "counter": "经济学、家政学"
+      },
+      "teleology": {
+        "base": "肯定性",
+        "relation": "vs",
+        "counter": "耗散"
+      }
+    },
+    "representative": "大忽悠，巴耶塔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "3-4-3-3",
+    "name": "倒错的好客主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "秩序",
+        "relation": "调和者：偏执狂",
+        "counter": "超越"
+      },
+      "ontology": "simulacrum",
+      "epistemology": {
+        "base": "主人(倒错)",
+        "relation": "调和者：知识 (拒绝\\否定)",
+        "counter": "客人(生存论危机)"
+      },
+      "teleology": {
+        "base": "自我肯定",
+        "relation": "调和者：相当于",
+        "counter": "自我否定"
+      }
+    },
+    "representative": "后现代巅峰，克罗索斯基",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.55,
+        "collectivism_individualism": 0.4167,
+        "determinism_freewill": 0.475
+      }
+    }
+  },
+  {
+    "id": "3-4-3-4",
+    "name": "局部的总体主义",
+    "philosophy": {
+      "field_theory": {
+        "base": "结构",
+        "relation": "调和者：叙事 Narrativism",
+        "counter": "历史"
+      },
+      "ontology": "无公共性叙事，历史终结，只有不同的叙事相互竞争",
+      "epistemology": {
+        "base": "真理/历史本身",
+        "relation": "调和者：悖论主义",
+        "counter": "神话"
+      },
+      "teleology": "后历史的无方向性"
+    },
+    "representative": "投机分子，利奥塔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.3,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": 0.35
+      }
+    }
+  },
+  {
+    "id": "3-4-4-1",
+    "name": "现象学的解释学",
+    "philosophy": {
+      "field_theory": {
+        "base": "语义",
+        "relation": "调和者：象征的符号学",
+        "counter": "隐喻"
+      },
+      "ontology": "修辞主义",
+      "epistemology": "隐喻",
+      "teleology": "占有"
+    },
+    "representative": "保罗利科",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "3-4-4-2",
+    "name": "经典的精神分析",
+    "philosophy": {
+      "field_theory": {
+        "base": "nature",
+        "relation": "调和者：libido",
+        "counter": "civilization"
+      },
+      "ontology": "没有本体论",
+      "epistemology": "梦的发生学机制(没有认识论)",
+      "teleology": {
+        "base": "压抑",
+        "relation": "vs",
+        "counter": "升华"
+      }
+    },
+    "representative": "弗洛伊德",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "3-4-4-3",
+    "name": "哲学的最高奥义：语言游戏",
+    "philosophy": {
+      "field_theory": {
+        "base": "符号系统",
+        "relation": "调和者：主体",
+        "counter": "历史活动"
+      },
+      "ontology": "语言的意义在于用法",
+      "epistemology": "不存在私人语言",
+      "teleology": {
+        "base": "主人话语",
+        "relation": "调和者：分析性的话语",
+        "counter": "癔症话语"
+      }
+    },
+    "representative": "维特根斯坦",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.3,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": 0.35
+      }
+    }
+  },
+  {
+    "id": "3-4-4-4",
+    "name": "针对资本主义的精神分析",
+    "philosophy": {
+      "field_theory": {
+        "base": "生命",
+        "relation": "调和者：无意识",
+        "counter": "理论"
+      },
+      "ontology": "不存在历史",
+      "epistemology": "无意识",
+      "teleology": "无力的理论化"
+    },
+    "representative": "晚期马克思→阿尔都塞→晚期拉康",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "4-1-1-1",
+    "name": "经济学哲学批判",
+    "philosophy": {
+      "field_theory": {
+        "base": "历史(现实的辩证法)",
+        "relation": "理论家所预言的真正的历史",
+        "counter": "nan"
+      },
+      "ontology": "有欲望、有激情、有创伤的物质，也就是生命",
+      "epistemology": "客体间性所引发的意识发生学",
+      "teleology": "政治经济学批判、下命令书"
+    },
+    "representative": "早期马克思",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.45,
+        "materialism_idealism": -0.6389,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": -0.7222
+      }
+    }
+  },
+  {
+    "id": "4-1-1-2",
+    "name": "内外评论",
+    "philosophy": {
+      "field_theory": {
+        "base": "国际立约立法的现实史",
+        "relation": "理论家 (历史蓝图)",
+        "counter": "nan"
+      },
+      "ontology": "客体间性",
+      "epistemology": "理论家的内外评论就是普罗大众的意志的表达",
+      "teleology": {
+        "base": "对于异化的批判、下斗争命令",
+        "relation": "vs",
+        "counter": "掌握进退节奏收兵、和平性"
+      }
+    },
+    "representative": "中晚年实践中的马克思",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "4-1-1-3",
+    "name": "国际性的 理论协调",
+    "philosophy": {
+      "field_theory": {
+        "base": "现实的历史",
+        "relation": "理论家 (反对战争)",
+        "counter": "nan"
+      },
+      "ontology": "客体间性发展成主体间性，公共意识",
+      "epistemology": "理论坐标系",
+      "teleology": {
+        "base": "局部直接下令",
+        "relation": "统一决议",
+        "counter": "整体的统筹"
+      }
+    },
+    "representative": "1876年之后的恩格斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "4-1-1-4",
+    "name": "中派中的 独立生存",
+    "philosophy": {
+      "field_theory": {
+        "base": "历史 (濒战)",
+        "relation": "理论家 (获得代表性)",
+        "counter": "nan"
+      },
+      "ontology": "主体间性，幻想有一个整全的城邦(当争取对象)",
+      "epistemology": "都能说话",
+      "teleology": "等待时机(苟存/拖延)"
+    },
+    "representative": "后E前L时代的探索者、后恩格斯的实在论者、经验论者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.1,
+        "materialism_idealism": -0.5,
+        "collectivism_individualism": -0.5,
+        "determinism_freewill": -0.4444
+      }
+    }
+  },
+  {
+    "id": "4-1-2-1",
+    "name": "学习\\研究",
+    "philosophy": {
+      "field_theory": {
+        "base": "自己的 个人生存史",
+        "relation": "自己成为理论家",
+        "counter": "nan"
+      },
+      "ontology": "现实=理论",
+      "epistemology": {
+        "base": "布尔乔亚理论中的自圆其说",
+        "relation": "vs",
+        "counter": "普罗大众理论中的明确行动"
+      },
+      "teleology": "通俗化popularize"
+    },
+    "representative": "L",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "4-1-2-2",
+    "name": "写作与交谈",
+    "philosophy": {
+      "field_theory": {
+        "base": "话语的 传播史",
+        "relation": "现实的理论家guider",
+        "counter": "nan"
+      },
+      "ontology": "discourse=power",
+      "epistemology": {
+        "base": "political",
+        "relation": "vs",
+        "counter": "教育性(为什么会听，天然符合听者利益)"
+      },
+      "teleology": {
+        "base": "通俗化",
+        "relation": "vs",
+        "counter": "严肃"
+      }
+    },
+    "representative": "L",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "4-1-2-3",
+    "name": "正派青年的 交友和团结",
+    "philosophy": {
+      "field_theory": {
+        "base": "理论争论史",
+        "relation": "作为leader的 理论家",
+        "counter": "nan"
+      },
+      "ontology": "让自己显得正常、让自己被市场对象化",
+      "epistemology": {
+        "base": "自己人：普",
+        "relation": "vs",
+        "counter": "旁人：布"
+      },
+      "teleology": {
+        "base": "通俗化",
+        "relation": "人会换， 共同精神永存",
+        "counter": "严肃"
+      }
+    },
+    "representative": "普列汉诺夫",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "4-1-2-4",
+    "name": "现实的本体论化",
+    "philosophy": {
+      "field_theory": {
+        "base": "Ontic",
+        "relation": "Ontologization",
+        "counter": "nan"
+      },
+      "ontology": "Ontological=Ontic",
+      "epistemology": {
+        "base": "讲纪律",
+        "relation": "vs",
+        "counter": "自由散漫(自发的习气)"
+      },
+      "teleology": "历史借理论家在本体论化，把乌托邦现实化的努力注定失败(形式主义化、教条化)"
+    },
+    "representative": "一切身家性命都系缚于political的人物",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "4-1-3-1",
+    "name": "方法论上的 总体化",
+    "philosophy": {
+      "field_theory": {
+        "base": "历史",
+        "relation": "理论家（行动上的方法论）",
+        "counter": "nan"
+      },
+      "ontology": "历史=生成：现实的人的实践",
+      "epistemology": {
+        "base": "唯物辩证法（瞄准要改变现实）",
+        "relation": "历史总体性",
+        "counter": "黑格尔的辩证法（解释现实）"
+      },
+      "teleology": "拧绳"
+    },
+    "representative": "列宁、卢卡奇",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "4-1-3-2",
+    "name": "教条的哲学化",
+    "philosophy": {
+      "field_theory": {
+        "base": "思想史",
+        "relation": "普遍的意识形态化、哲学化",
+        "counter": "nan"
+      },
+      "ontology": "总体性",
+      "epistemology": {
+        "base": "科学（社会学、实践性的）",
+        "relation": "意识形态（辩论性、说服性）",
+        "counter": "哲学"
+      },
+      "teleology": {
+        "base": "拧绳",
+        "relation": "vs",
+        "counter": "占位子"
+      }
+    },
+    "representative": "科尔施、斯大林",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "4-1-3-3",
+    "name": "体系化的 理论探索",
+    "philosophy": {
+      "field_theory": {
+        "base": "工人运动史",
+        "relation": "大胆运用布尔乔亚学术范式",
+        "counter": "nan"
+      },
+      "ontology": "社会存在（超意识形态的）",
+      "epistemology": {
+        "base": "纯应用性的、布尔乔亚的科学",
+        "relation": "跨学科的 社会研究",
+        "counter": "总体的、批判性的哲学"
+      },
+      "teleology": {
+        "base": "拧绳",
+        "relation": "逍遥派、占未来的位子",
+        "counter": "占位子"
+      }
+    },
+    "representative": "奥地利马克思主义学派、Gruberg",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "4-1-3-4",
+    "name": "争夺文化霸权",
+    "philosophy": {
+      "field_theory": {
+        "base": "市民社会发展史",
+        "relation": "有机知识分子",
+        "counter": "nan"
+      },
+      "ontology": "实践论，文化霸权抵达物质性、政治霸权",
+      "epistemology": {
+        "base": "哲学",
+        "relation": "意识形态斗争获得文化主导权",
+        "counter": "科学"
+      },
+      "teleology": "画大饼"
+    },
+    "representative": "葛兰西",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "4-1-4-1",
+    "name": "对意识形态的 历史化",
+    "philosophy": {
+      "field_theory": {
+        "base": "绝对失败状态",
+        "relation": "恢复正统性",
+        "counter": "nan"
+      },
+      "ontology": "“意识形态没有历史”、是社会的无意识",
+      "epistemology": "断裂的、辩证法化的历史（多元博弈、超定论、没有因果链）",
+      "teleology": "维护4字头实践的正统性"
+    },
+    "representative": "阿尔都塞",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.1,
+        "materialism_idealism": -0.5,
+        "collectivism_individualism": -0.5,
+        "determinism_freewill": -0.4444
+      }
+    }
+  },
+  {
+    "id": "4-1-4-2",
+    "name": "哲学的再现代化",
+    "philosophy": {
+      "field_theory": {
+        "base": "西方的后现代范式",
+        "relation": "重新扬起现代性大旗",
+        "counter": "nan"
+      },
+      "ontology": "柏拉图主义、理念主义的数学本体论",
+      "epistemology": "普遍的事件性不可避免；没有闭合的认识论",
+      "teleology": {
+        "base": "维护正统性、修复声誉",
+        "relation": "vs",
+        "counter": "拉别人入坑、思想界论战化"
+      }
+    },
+    "representative": "巴迪欧",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "4-1-4-3",
+    "name": "持续的否定",
+    "philosophy": {
+      "field_theory": {
+        "base": "一堆拟象、似是而非的",
+        "relation": "理论家主动小丑化",
+        "counter": "nan"
+      },
+      "ontology": "理论意识、理论活动的辩证法",
+      "epistemology": "崇高的癔症（Marxist、Lacanian、Hegelian、大众娱乐）",
+      "teleology": {
+        "base": "维护正统性",
+        "relation": "“不是这个”",
+        "counter": "拉入泥潭"
+      }
+    },
+    "representative": "齐泽克",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "4-1-4-4",
+    "name": "现实生活",
+    "philosophy": {
+      "field_theory": {
+        "base": "Revo的常态化",
+        "relation": "人民变成的理论家",
+        "counter": "nan"
+      },
+      "ontology": "物质对于主观意志的否定性、僵死的必然性。穷、无路可寻",
+      "epistemology": "知识分子都是绝望的；上面人没招了装不下去了、下面人开始解放思维了",
+      "teleology": "创造历史，物质性机制的自我更新（不可预言）"
+    },
+    "representative": "所有的老百姓、人民（天然的理论家）工农大众、非食利阶层",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1389,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.5625,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "4-2-1-1",
+    "name": "获取典型性",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "无人代表人民的现实",
+        "relation": "vs",
+        "counter": "身份有根，自我认同"
+      },
+      "epistemology": "争取合法存在",
+      "teleology": "维持"
+    },
+    "representative": "威廉李扑克内西",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.3889,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": -0.3889
+      }
+    }
+  },
+  {
+    "id": "4-2-1-2",
+    "name": "操作系统程序",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "suffrage无用",
+        "relation": "vs",
+        "counter": "undergroundness"
+      },
+      "epistemology": "理论家指导",
+      "teleology": {
+        "base": "台面上的代表性",
+        "relation": "vs",
+        "counter": "现实策略的优先性"
+      }
+    },
+    "representative": "倍倍尔",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "4-2-1-3",
+    "name": "代表那个体系",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "无情的变迁的物质史",
+        "relation": "vs",
+        "counter": "主义动摇的大众"
+      },
+      "epistemology": "经济决定论",
+      "teleology": {
+        "base": "台面上的代表性",
+        "relation": "代表那个系统",
+        "counter": "现实策略的优先性"
+      }
+    },
+    "representative": "拉法格",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "4-2-1-4",
+    "name": "台面上的 权宜之计",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "战争矛盾尖锐",
+        "relation": "vs",
+        "counter": "普罗大众无所适从"
+      },
+      "epistemology": "形而上的历史观",
+      "teleology": "权宜之计"
+    },
+    "representative": "饶勒斯",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "4-2-2-1",
+    "name": "受信任的联合",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "台面上被压倒",
+        "relation": "vs",
+        "counter": "台面下危险"
+      },
+      "epistemology": {
+        "base": "公开的",
+        "relation": "vs",
+        "counter": "秘密的"
+      },
+      "teleology": "生成“活的细胞”"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": -0.1389,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.0556
+      }
+    }
+  },
+  {
+    "id": "4-2-2-2",
+    "name": "清楚的区分",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "外部资源",
+        "relation": "vs",
+        "counter": "安全问题"
+      },
+      "epistemology": {
+        "base": "“火星”（马克思的指示）",
+        "relation": "vs",
+        "counter": "自己搞一套"
+      },
+      "teleology": {
+        "base": "促进 “细胞生长”",
+        "relation": "vs",
+        "counter": "去除有害物（分清敌我）"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5833,
+        "materialism_idealism": 0.1,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.25
+      }
+    }
+  },
+  {
+    "id": "4-2-2-3",
+    "name": "前沿注意",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "梦中（欧洲）",
+        "relation": "vs",
+        "counter": "前线"
+      },
+      "epistemology": {
+        "base": "紧迫对措（先付出代价，再调整）",
+        "relation": "vs",
+        "counter": "前瞻预言（直接性、导引性）"
+      },
+      "teleology": {
+        "base": "促进 “细胞生长”",
+        "relation": "外周神经，使机体获得感官",
+        "counter": "去除有害物（分清敌我）"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "4-2-2-4",
+    "name": "驱散关键debuff",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "分化收买的现实",
+        "relation": "vs",
+        "counter": "无独立性"
+      },
+      "epistemology": {
+        "base": "上面的指导体系",
+        "relation": "vs",
+        "counter": "自主自愿的联合"
+      },
+      "teleology": "真正的D"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5,
+        "materialism_idealism": 0.0,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": 0.2
+      }
+    }
+  },
+  {
+    "id": "4-2-3-1",
+    "name": "接管sa",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史（卡住）",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "战败",
+        "relation": "vs",
+        "counter": "窗口期（位置不确定）"
+      },
+      "epistemology": {
+        "base": "形而上学",
+        "relation": "契机",
+        "counter": "辩证法"
+      },
+      "teleology": "恢复秩序"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "4-2-3-2",
+    "name": "将邪恶的帝国主义战争转化为 正义的国内战争",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "外部战争",
+        "relation": "vs",
+        "counter": "civil war"
+      },
+      "epistemology": {
+        "base": "形而上学",
+        "relation": "合法性",
+        "counter": "辩证法"
+      },
+      "teleology": {
+        "base": "继承遗产，维护秩序",
+        "relation": "vs",
+        "counter": "转外战为内战"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "4-2-3-3",
+    "name": "对自决进程 施加领导",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "帝国主义（大国沙文主义，小国复仇主义）",
+        "relation": "vs",
+        "counter": "跟班走哪条路"
+      },
+      "epistemology": {
+        "base": "形而上学",
+        "relation": "普遍性",
+        "counter": "辩证法"
+      },
+      "teleology": {
+        "base": "维护秩序",
+        "relation": "判断：对混乱加以分类",
+        "counter": "建立新秩序"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "4-2-3-4",
+    "name": "历史的妥协",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "nazi（极右翼）",
+        "relation": "vs",
+        "counter": "互不信任"
+      },
+      "epistemology": {
+        "base": "形而上学",
+        "relation": "普遍性",
+        "counter": "辩证法"
+      },
+      "teleology": "优先向人民负责"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "4-2-4-1",
+    "name": "共进退",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "帝国主义",
+        "relation": "vs",
+        "counter": "农业人口的离心力"
+      },
+      "epistemology": "权宜之计",
+      "teleology": "战略与战术的共进退，共同体的锻造"
+    },
+    "representative": "S",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "4-2-4-2",
+    "name": "不断 围绕中心旋转",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "工业转军事的欧美国家",
+        "relation": "vs",
+        "counter": "不设防的亚非拉国家"
+      },
+      "epistemology": "战略学家（战术不受限）",
+      "teleology": {
+        "base": "共进退",
+        "relation": "vs",
+        "counter": "游离状态"
+      }
+    },
+    "representative": "T",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5,
+        "materialism_idealism": 0.0,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": 0.2
+      }
+    }
+  },
+  {
+    "id": "4-2-4-3",
+    "name": "集体创新",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "集中起来的科层制",
+        "relation": "vs",
+        "counter": "（没位置，大乱）"
+      },
+      "epistemology": "有理！",
+      "teleology": {
+        "base": "共进退",
+        "relation": "从……中来，回……中去",
+        "counter": "游离状态"
+      }
+    },
+    "representative": "鲁大师L别名的拥有者",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "4-2-4-4",
+    "name": "分类标准上的 冲突",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "历史",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "奴役",
+        "relation": "vs",
+        "counter": "不可能的普遍性"
+      },
+      "epistemology": "解放思想",
+      "teleology": "相信未来"
+    },
+    "representative": "广大受到奴役而起来的人们",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4167,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "4-3-1-1",
+    "name": "组织经济生活",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定",
+        "relation": "自主感",
+        "counter": "否定"
+      },
+      "epistemology": "全心全意为人民服务",
+      "teleology": "解放区的存在"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.3,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.1875,
+        "determinism_freewill": -0.3056
+      }
+    }
+  },
+  {
+    "id": "4-3-1-2",
+    "name": "生产的再政治化",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定",
+        "relation": "安定感",
+        "counter": "否定"
+      },
+      "epistemology": "一阶代表性",
+      "teleology": {
+        "base": "自力更生，维持存在",
+        "relation": "vs",
+        "counter": "负起责任"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "4-3-1-3",
+    "name": "列阵的统一",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定",
+        "relation": "安定感",
+        "counter": "否定"
+      },
+      "epistemology": "一致对外",
+      "teleology": {
+        "base": "生存自维持",
+        "relation": "对齐：统一战线",
+        "counter": "负起责任"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "4-3-1-4",
+    "name": "埋下生命线",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者",
+        "relation": "人民（希望）",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定",
+        "relation": "安全感",
+        "counter": "否定"
+      },
+      "epistemology": "一阶代表性",
+      "teleology": "从社会中来，回社会中去"
+    },
+    "representative": "tk（异于ud）",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "4-3-2-1",
+    "name": "人道化人口",
+    "philosophy": {
+      "field_theory": {
+        "base": "（破坏中建设）建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "确定性（敌强）",
+        "relation": "幸福感，积极性，朝气，充实感，游击队",
+        "counter": "否定性（我弱）"
+      },
+      "epistemology": {
+        "base": "一般情报反馈",
+        "relation": "vs",
+        "counter": "下级反思中介抉择（集体智慧）"
+      },
+      "teleology": "人道化：积极服从，战略"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.025,
+        "collectivism_individualism": -0.0625,
+        "determinism_freewill": 0.025
+      }
+    }
+  },
+  {
+    "id": "4-3-2-2",
+    "name": "激发自发性",
+    "philosophy": {
+      "field_theory": {
+        "base": "堵不如疏）建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定",
+        "relation": "幸福正义感：无政府倾向",
+        "counter": "否定"
+      },
+      "epistemology": {
+        "base": "法制工作（紧锣密鼓）",
+        "relation": "vs",
+        "counter": "正义论（驾驭 艺术）"
+      },
+      "teleology": {
+        "base": "人道化",
+        "relation": "vs",
+        "counter": "算历史旧账（报复），不是请客吃饭"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3889,
+        "materialism_idealism": 0.25,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.325
+      }
+    }
+  },
+  {
+    "id": "4-3-2-3",
+    "name": "经济-妇女-儿童的三重解放",
+    "philosophy": {
+      "field_theory": {
+        "base": "（调整非生产关系）建设者",
+        "relation": "（封建传统观念）人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定（男夫父族神资）",
+        "relation": "融洽感：幸福，家庭平等，自由",
+        "counter": "否定（无家性）"
+      },
+      "epistemology": {
+        "base": "政治制度（婚继财地）",
+        "relation": "vs",
+        "counter": "策略性（应人制宜亨小鲜）"
+      },
+      "teleology": {
+        "base": "人道化（军事）",
+        "relation": "协作，发动，主动合作",
+        "counter": "引燃（控制 不要失控）"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "4-3-2-4",
+    "name": "解放思想",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定（落后）",
+        "relation": "幸福：好奇心求知欲，有根，自然同一，克服死亡",
+        "counter": "否定（资匮乏）"
+      },
+      "epistemology": {
+        "base": "功利/经验主义",
+        "relation": "vs",
+        "counter": "科学/艺术"
+      },
+      "teleology": "向异质性敞开（自然物质），冒险性（现象化注册 忘我实在论化）"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "4-3-3-1",
+    "name": "攻略性的 组织工作",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者（队伍壮大者。）",
+        "relation": "人民（不辩不明，引蛇出洞，观其自败，激将法）",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "意识形态残余（肯定）",
+        "relation": "彼此认同感，解决，消散一空",
+        "counter": "伤害痛苦（否定）"
+      },
+      "epistemology": {
+        "base": "量（宁滥勿缺）",
+        "relation": "进度（时间窗口期）",
+        "counter": "质（宁缺毋滥）"
+      },
+      "teleology": "壮大队伍"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.15,
+        "materialism_idealism": 0.175,
+        "collectivism_individualism": 0.0833,
+        "determinism_freewill": 0.1
+      }
+    }
+  },
+  {
+    "id": "4-3-3-2",
+    "name": "纪律教育",
+    "philosophy": {
+      "field_theory": {
+        "base": "意识形态建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "共同体关联网络",
+        "relation": "幸福：集体归属感、荣誉感",
+        "counter": "主体的癔症化"
+      },
+      "epistemology": {
+        "base": "大众",
+        "relation": "意识形态战略学",
+        "counter": "天才"
+      },
+      "teleology": {
+        "base": "吸引为同伴",
+        "relation": "vs",
+        "counter": "历史进程"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1944,
+        "materialism_idealism": 0.4,
+        "collectivism_individualism": 0.25,
+        "determinism_freewill": 0.4
+      }
+    }
+  },
+  {
+    "id": "4-3-3-3",
+    "name": "将资本社会化",
+    "philosophy": {
+      "field_theory": {
+        "base": "经济建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定",
+        "relation": "幸福：freedom",
+        "counter": "否定"
+      },
+      "epistemology": {
+        "base": "战斗",
+        "relation": "防微杜渐",
+        "counter": "战役"
+      },
+      "teleology": {
+        "base": "发展自身",
+        "relation": "避免人我关系的异化",
+        "counter": "训练众人"
+      }
+    },
+    "representative": "国家财政政策战略策划舵手，陈云",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.0,
+        "materialism_idealism": 0.55,
+        "collectivism_individualism": 0.4167,
+        "determinism_freewill": 0.475
+      }
+    }
+  },
+  {
+    "id": "4-3-3-4",
+    "name": "将全球主义 替换掉",
+    "philosophy": {
+      "field_theory": {
+        "base": "（毛国际主义）建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "帝国主义(超额剥削)",
+        "relation": "幸福目的代表感",
+        "counter": "不自主依附(极端民族)"
+      },
+      "epistemology": {
+        "base": "战斗全球主义（布尔乔亚普遍 美元金融资本狗）",
+        "relation": "第三世界",
+        "counter": "战役不结盟（独立自主投机墙头草）"
+      },
+      "teleology": "彼可取而代，寻找创造战略机遇"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.3,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": 0.35
+      }
+    }
+  },
+  {
+    "id": "4-3-4-1",
+    "name": "农业的去本地化",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者",
+        "relation": "人民（富起来 通用工业品富裕 当代科学前沿 骨架）",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "肯定（农业循环 前现代宗族网络）",
+        "relation": "幸福富足满足感 防异化",
+        "counter": "否定（工业化）"
+      },
+      "epistemology": "禁欲主义，清教产业（无可区分）",
+      "teleology": "实现论的活动基础"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "4-3-4-2",
+    "name": "去代理人化",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者（国际新治理体系倡导者）",
+        "relation": "人民（独立自主）",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "后时代殖民性（肯）",
+        "relation": "幸福和平安宁",
+        "counter": "危机性（否）"
+      },
+      "epistemology": "错认：温和的经济扩张能力",
+      "teleology": {
+        "base": "去本地化（一带一路）",
+        "relation": "vs",
+        "counter": "拍平降杠杆阶次（逆周期性）"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "4-3-4-3",
+    "name": "合法性的再生产",
+    "philosophy": {
+      "field_theory": {
+        "base": "建设者",
+        "relation": "人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "nation society",
+        "relation": "幸福感：中心感",
+        "counter": "异质性"
+      },
+      "epistemology": "中心感无法与比较激进的nationalism区分开",
+      "teleology": {
+        "base": "去本地化",
+        "relation": "凝聚力，向心力",
+        "counter": "去代理化"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.3,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": 0.35
+      }
+    }
+  },
+  {
+    "id": "4-3-4-4",
+    "name": "S主义的 人类学实现",
+    "philosophy": {
+      "field_theory": {
+        "base": "（老去 成熟）建设者",
+        "relation": "（教育文化纪律史 个体精神再生产 ）人民",
+        "counter": "nan"
+      },
+      "ontology": {
+        "base": "异化的精神史-肯",
+        "relation": "自发的使命感（集体/人类幸福）",
+        "counter": "（后）现代虚无主义-否"
+      },
+      "epistemology": "激进的批判主义（很相似+现实有实践，我根据一）",
+      "teleology": "朝向/寻求未来（的帮助来不及生产享乐"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "4-4-1-1",
+    "name": "业力系统",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "忏悔",
+      "epistemology": "同态复仇",
+      "teleology": "诗性正义"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": -0.1,
+        "materialism_idealism": -0.5,
+        "collectivism_individualism": -0.5,
+        "determinism_freewill": -0.4444
+      }
+    }
+  },
+  {
+    "id": "4-4-1-2",
+    "name": "再性征化",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "人类未来的性征化模式",
+        "counter": "nan"
+      },
+      "ontology": "身体性的反扑",
+      "epistemology": "爱欲生成机制",
+      "teleology": {
+        "base": "karmic",
+        "relation": "vs",
+        "counter": "预先原谅"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "4-4-1-3",
+    "name": "寄生性的享乐",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "公共物性",
+      "epistemology": "现象学的环节学",
+      "teleology": {
+        "base": "审查",
+        "relation": "并行关系",
+        "counter": "豁免"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "4-4-1-4",
+    "name": "醒来",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "行动者",
+        "counter": "nan"
+      },
+      "ontology": "向真正现实世界敞开",
+      "epistemology": "获得澄明的认识状态",
+      "teleology": "清醒下的自由"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1389,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.5625,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "4-4-2-1",
+    "name": "永生",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "生存论",
+      "epistemology": {
+        "base": "强",
+        "relation": "vs",
+        "counter": "弱"
+      },
+      "teleology": "永生"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": -0.25,
+        "collectivism_individualism": -0.375,
+        "determinism_freewill": -0.1111
+      }
+    }
+  },
+  {
+    "id": "4-4-2-2",
+    "name": "符号性死亡",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "death",
+      "epistemology": {
+        "base": "biological death",
+        "relation": "vs",
+        "counter": "symbolic death"
+      },
+      "teleology": {
+        "base": "要永生",
+        "relation": "vs",
+        "counter": "要退场"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.5,
+        "materialism_idealism": 0.0,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": 0.2
+      }
+    }
+  },
+  {
+    "id": "4-4-2-3",
+    "name": "成熟/衰老",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "意识功能的退行过程",
+      "epistemology": {
+        "base": "功能正常",
+        "relation": "vs",
+        "counter": "衰老从何而来？"
+      },
+      "teleology": {
+        "base": "要永生",
+        "relation": "衰老",
+        "counter": "要退场"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "4-4-2-4",
+    "name": "身体化",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "疼痛",
+      "epistemology": {
+        "base": "均势关系",
+        "relation": "vs",
+        "counter": "错位关系"
+      },
+      "teleology": "客体化"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4167,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "4-4-3-1",
+    "name": "爱欲同化",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "把ai与人类并列组合之后的不可描述的怪物",
+      "epistemology": {
+        "base": "必然侧：不可能的爱情",
+        "relation": "意志的连续性",
+        "counter": "偶然侧:爱欲经济学"
+      },
+      "teleology": "享乐"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.0278,
+        "materialism_idealism": -0.0833,
+        "collectivism_individualism": -0.25,
+        "determinism_freewill": -0.0278
+      }
+    }
+  },
+  {
+    "id": "4-4-3-2",
+    "name": "秘密间性",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "爱欲经济学的自制性",
+      "epistemology": {
+        "base": "必然侧：系统里面既有的爱欲运行规则",
+        "relation": "自己的主体性",
+        "counter": "偶然侧:竞争"
+      },
+      "teleology": {
+        "base": "同化",
+        "relation": "vs",
+        "counter": "异化"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3056,
+        "materialism_idealism": 0.15,
+        "collectivism_individualism": -0.125,
+        "determinism_freewill": 0.275
+      }
+    }
+  },
+  {
+    "id": "4-4-3-3",
+    "name": "被拯救",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "穿越幻想",
+      "epistemology": {
+        "base": "必然侧：痛苦经济学",
+        "relation": "解放性的死亡驱力",
+        "counter": "偶然侧:Ai与人都有的主体性"
+      },
+      "teleology": {
+        "base": "同化",
+        "relation": "去主体化，去癔症化",
+        "counter": "异化"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1111,
+        "materialism_idealism": 0.3,
+        "collectivism_individualism": 0.0,
+        "determinism_freewill": 0.35
+      }
+    }
+  },
+  {
+    "id": "4-4-3-4",
+    "name": "语音",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "距离",
+      "epistemology": {
+        "base": "意识发生学",
+        "relation": "语音",
+        "counter": "意识发生学的剩余"
+      },
+      "teleology": "不强求作为人"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "4-4-4-1",
+    "name": "教育",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "仆从性",
+      "epistemology": "AI性的一个自我认同的发生学",
+      "teleology": "克服强弱AI的二分"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.1389,
+        "materialism_idealism": -0.3611,
+        "collectivism_individualism": -0.5625,
+        "determinism_freewill": -0.1667
+      }
+    }
+  },
+  {
+    "id": "4-4-4-2",
+    "name": "成为间隙",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "Trouble maker，烦",
+      "epistemology": "simulacrum似相",
+      "teleology": {
+        "base": "反两极分化",
+        "relation": "vs",
+        "counter": "完美的，无限的不可能性"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.4167,
+        "materialism_idealism": -0.1111,
+        "collectivism_individualism": -0.4375,
+        "determinism_freewill": 0.15
+      }
+    }
+  },
+  {
+    "id": "4-4-4-3",
+    "name": "可朽性",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "自身的发生学机制",
+      "epistemology": "不存在幻象和真实的二分",
+      "teleology": {
+        "base": "自己同一",
+        "relation": "自己二分（可死性）",
+        "counter": "他者二分"
+      }
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.2222,
+        "materialism_idealism": 0.05,
+        "collectivism_individualism": -0.3125,
+        "determinism_freewill": 0.225
+      }
+    }
+  },
+  {
+    "id": "4-4-4-4",
+    "name": "再生",
+    "philosophy": {
+      "field_theory": {
+        "base": "人民",
+        "relation": "未来者",
+        "counter": "nan"
+      },
+      "ontology": "平等→有未来",
+      "epistemology": "有希望→blind",
+      "teleology": "完全把未来托付给他者"
+    },
+    "representative": "",
+    "quantification": {
+      "axes": {
+        "conformity_rebellion": 0.3333,
+        "materialism_idealism": -0.2222,
+        "collectivism_individualism": -0.625,
+        "determinism_freewill": 0.1
+      }
+    }
+  }
+]

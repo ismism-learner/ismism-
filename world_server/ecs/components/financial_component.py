@@ -7,6 +7,6 @@ class FinancialComponent:
     Stores an entity's financial information.
     """
     bank_balance: float = 0.0
-    loans: List[Dict[str, Any]] = field(default_factory=list)
+    loans: float = 0.0 # Total loan amount
     credit_score: float = 500.0  # Starting credit score
     is_in_default: bool = False

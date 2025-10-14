@@ -32,11 +32,15 @@ class NeedsSystem(System):
     def _update_hourly_needs(self):
         """Updates the needs for all entities that change on an hourly basis."""
         # Query for all components at once for efficiency
-        entities_to_update = self.world.get_entities_with_components(NeedsComponent, FinancialComponent)
+        # We now need IsmComponent to access the quantification data
+        from world_server.ecs.components.ism import IsmComponent
+        entities_to_update = self.world.get_entities_with_components(NeedsComponent, FinancialComponent, IsmComponent, StateComponent)
 
         for entity_id in entities_to_update:
             needs_comp = self.world.get_component(entity_id, NeedsComponent)
             financial_comp = self.world.get_component(entity_id, FinancialComponent)
+            ism_comp = self.world.get_component(entity_id, IsmComponent)
+            state_comp = self.world.get_component(entity_id, StateComponent)
 
             # Update hunger
             hunger_change = needs_comp.needs['hunger']['change_per_hour']
@@ -56,7 +60,17 @@ class NeedsSystem(System):
                 # Stress increases by 0.1 per hour for every 100 in debt.
                 debt_stress_increase = (financial_comp.loans / 100) * 0.1
 
-            total_stress_change = (base_stress_change + debt_stress_increase) * (1 - stress_resistance)
+            # --- New: Ism-based Stress Modification ---
+            ism_stress_modifier = 1.0 # Default modifier
+            # Check if the NPC is currently idle/unemployed
+            if not needs_comp.demands and state_comp.goal in ["Wander", "Idle"]:
+                conformity_score = ism_comp.quantification.get('axes', {}).get('conformity_rebellion', 0.0)
+                if conformity_score <= -0.5: # High conformity
+                    ism_stress_modifier = 0.5 # More content with doing nothing, half stress gain
+                elif conformity_score >= 0.5: # High rebellion
+                    ism_stress_modifier = 2.0 # More anxious when idle, double stress gain
+
+            total_stress_change = (base_stress_change + debt_stress_increase) * ism_stress_modifier * (1 - stress_resistance)
             needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + total_stress_change)
 
             # Update idealism

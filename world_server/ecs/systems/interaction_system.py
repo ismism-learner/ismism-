@@ -41,13 +41,19 @@ class InteractionSystem(System):
     def _get_all_ism_keywords(self, entity_id):
         ism_comp = self.world.get_component(entity_id, IsmComponent)
         keywords = set()
-        ism_data = ism_comp.data
-        for key in ['field_theory', 'ontology', 'epistemology', 'teleology']:
-            keywords.update(ism_data.get(key, {}).get('keywords', []))
-        for secondary_ism in ism_data.get('secondary_isms', []):
-            for key in ['field_theory', 'ontology', 'epistemology', 'teleology']:
-                keywords.update(secondary_ism.get(key, {}).get('keywords', []))
-        return list(keywords)
+        philosophy_data = ism_comp.data
+
+        if not philosophy_data:
+            return []
+
+        for key, value in philosophy_data.items():
+            if isinstance(value, str):
+                keywords.add(value)
+            elif isinstance(value, dict):
+                # Handles complex structures like {'base': 'A', 'relation': 'vs', 'counter': 'B'}
+                keywords.update(str(v) for v in value.values() if v)
+
+        return [kw for kw in keywords if kw] # Return a list of non-empty keywords
 
     def _check_interaction_conditions(self, interaction, initiator_id, target_id):
         initiator_keywords = self._get_all_ism_keywords(initiator_id)

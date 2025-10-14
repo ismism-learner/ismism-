@@ -43,11 +43,24 @@ class Server:
         self.hobby_definitions = []
         self.relationship_types = {}
         self.collective_actions = []
+        self.all_isms_data = [] # To store the new quantified ism data
         self._load_game_definitions()
         self._setup_world()
 
     def _load_game_definitions(self):
         """Loads all static data files like locations, interactions, goods, etc."""
+        # Load the new quantified ism data
+        isms_path = "isms_final.json"
+        try:
+            with open(isms_path, 'r', encoding='utf-8') as f:
+                self.all_isms_data = json.load(f)
+            print(f"成功加载并量化 {len(self.all_isms_data)} 个主义。")
+        except FileNotFoundError:
+            print(f"错误: 主义数据文件 '{isms_path}' 未找到。请确保已运行 excel_parser.py。")
+            self.all_isms_data = []
+        except json.JSONDecodeError:
+            print(f"错误: 主义数据文件 '{isms_path}' 格式无效。")
+
         # Load locations
         locations_path = "world_server/locations.json"
         try:
@@ -151,41 +164,36 @@ class Server:
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
     def _spawn_all_npcs(self):
-        """加载所有NPC数据，并将其作为实体和组件添加到ECS世界中"""
-        npc_dir = "generated_npcs_final/"
-        if not os.path.exists(npc_dir):
-            print(f"错误: NPC目录 '{npc_dir}' 不存在。")
+        """Creates NPCs based on the loaded ism data, adding them as entities to the ECS world."""
+        if not self.all_isms_data:
+            print("错误: 没有可用的主义数据来生成NPC。")
             return
 
-        npc_files = [f for f in os.listdir(npc_dir) if f.endswith('.json')]
-
-        for filename in npc_files:
-            filepath = os.path.join(npc_dir, filename)
-            with open(filepath, 'r', encoding='utf-8') as f:
-                data = json.load(f)
+        num_npcs_to_spawn = 50
+        for i in range(num_npcs_to_spawn):
+            # --- Select a random ism for the new NPC ---
+            ism_data = random.choice(self.all_isms_data)
 
             # --- Create Entity and Components ---
             entity_id = self.ecs_world.create_entity()
 
             # Identity
-            npc_name = data.get("identity", {}).get("npc_name", "无名氏")
-            primary_ism_desc = data.get("identity", {}).get("primary_ism_name", "一个神秘的人")
-            identity_comp = IdentityComponent(name=npc_name, description=primary_ism_desc)
+            npc_name = ism_data.get("name", "无名氏")
+            identity_comp = IdentityComponent(name=npc_name, description=ism_data.get('id'))
             self.ecs_world.add_component(entity_id, identity_comp)
 
             # Position (randomly spawned)
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
-            # Ism
-            self.ecs_world.add_component(entity_id, IsmComponent(data=data))
+            # IsmComponent now stores the full, quantified data
+            ism_comp = IsmComponent(
+                data=ism_data.get('philosophy', {}),
+                quantification=ism_data.get('quantification', {})
+            )
+            self.ecs_world.add_component(entity_id, ism_comp)
 
             # Needs & Demands
             needs_comp = NeedsComponent()
-            leisure_script = data.get("behavioral_scripts", {}).get("leisure_activity", "IDLE")
-            if leisure_script == "WORK":
-                needs_comp.demands.append({'type': 'WORK'})
-            elif leisure_script != "IDLE":
-                pass
 
             # --- Enhanced Environmental Effects ---
             initial_stress = random.randint(0, 30)
@@ -234,8 +242,18 @@ class Server:
 
             # Hobbies
             hobby_comp = HobbyComponent()
-            # Simple logic: assign interests based on ism keywords
-            ism_keywords = " ".join(data.get("philosophy", {}).values())
+            # Logic to recursively get all string values from the philosophy structure
+            philosophy_values = []
+            def extract_values(d):
+                for v in d.values():
+                    if isinstance(v, str):
+                        philosophy_values.append(v)
+                    elif isinstance(v, dict):
+                        extract_values(v)
+
+            extract_values(ism_data.get("philosophy", {}))
+            ism_keywords = " ".join(philosophy_values)
+
             if "科学" in ism_keywords or "技术" in ism_keywords:
                 hobby_comp.interests["AUTOMATA"] = random.uniform(60, 90)
                 hobby_comp.interests["ALCHEMY"] = random.uniform(50, 80)
@@ -249,7 +267,7 @@ class Server:
             self.ecs_world.add_component(entity_id, hobby_comp)
 
 
-        print(f"成功加载了 {len(npc_files)} 个实体。")
+        print(f"成功生成了 {num_npcs_to_spawn} 个实体。")
 
     async def _game_loop(self):
         """
