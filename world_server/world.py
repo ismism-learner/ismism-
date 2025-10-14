@@ -8,6 +8,8 @@ class World:
         print("游戏世界已创建。")
         self.scenes = {} # 存储所有场景
         self.current_scene = None # 当前玩家所在的场景
+        self.time = 0 # 世界时间，以tick为单位
+        self.ticks_per_hour = 120 # 假设每120个tick（60秒）等于游戏内一小时
 
     def add_scene(self, scene):
         """添加一个新场景"""

@@ -40,20 +40,48 @@ class Server:
             npc = NPC(name=npc_name, description=primary_ism)
             npc.ism_data = data
 
+            # 从 'ism' 数据中提取行为脚本作为初始 'Demand'
+            leisure_script = data.get("behavioral_scripts", {}).get("leisure_activity", "IDLE")
+            if leisure_script != "IDLE":
+                npc.demands.append(leisure_script)
+
             self.world.current_scene.add_entity(npc)
 
         print(f"成功加载了 {len(npc_files)} 个NPC。")
 
     async def _game_loop(self):
         """游戏主循环，定期更新并广播状态"""
+        last_hour = 0
         while True:
-            # 1. 更新所有NPC的状态
-            if self.world.current_scene:
-                for entity in self.world.current_scene.entities:
-                    if isinstance(entity, NPC):
-                        entity.think()
+            # 1. 更新世界时间
+            self.world.time += 1
+            current_hour = self.world.time // self.world.ticks_per_hour
 
-            # 2. 准备要发送的状态数据
+            # 2. 更新所有NPC的状态
+            if self.world.current_scene:
+                all_entities = self.world.current_scene.entities
+
+                # 如果游戏内小时发生变化，则更新所有NPC的需求
+                if current_hour > last_hour:
+                    for entity in all_entities:
+                        if isinstance(entity, NPC):
+                            # 更新饥饿
+                            hunger_change = entity.needs['hunger']['change_per_hour']
+                            entity.needs['hunger']['current'] = min(entity.needs['hunger']['max'], entity.needs['hunger']['current'] + hunger_change)
+                            # 更新精力
+                            energy_change = entity.needs['energy']['change_per_hour']
+                            entity.needs['energy']['current'] = max(0, entity.needs['energy']['current'] + energy_change)
+                            # 更新理想主义 (缓慢衰减)
+                            idealism_change = entity.needs['idealism']['change_per_hour']
+                            entity.needs['idealism']['current'] = max(0, entity.needs['idealism']['current'] + idealism_change)
+                    last_hour = current_hour
+
+                # 每个tick都执行思考逻辑
+                for entity in all_entities:
+                    if isinstance(entity, NPC):
+                        entity.think(all_entities)
+
+            # 3. 准备要发送的状态数据
             world_state = self.get_world_state()
 
             # 3. 将状态广播给所有连接的客户端
@@ -73,7 +101,10 @@ class Server:
                         "id": entity.id,
                         "name": entity.name,
                         "position": entity.position,
-                        "action": entity.current_action
+                        "action": entity.current_action,
+                        "goal": entity.current_goal,
+                        "needs": entity.needs,
+                        "rupture": entity.desire['real']['rupture']
                     })
         return json.dumps(state)
 
