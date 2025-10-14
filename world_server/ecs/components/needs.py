@@ -45,3 +45,8 @@ class NeedsComponent(Component):
             'source_of_trauma': None
         }
     })
+
+    # Bonuses from technology or other global effects
+    alchemy_bonus: Dict[str, float] = field(default_factory=lambda: {
+        'stress_resistance': 0.0 # e.g., 0.1 means 10% less stress gain
+    })

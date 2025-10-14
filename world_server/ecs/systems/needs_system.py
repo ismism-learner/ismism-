@@ -3,7 +3,9 @@ from world_server.ecs.system import System
 from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.economy import EconomyComponent
+from world_server.ecs.components.financial_component import FinancialComponent
 from world_server.resource_manager import ResourceManager
+import random
 
 class NeedsSystem(System):
     """
@@ -40,7 +42,8 @@ class NeedsSystem(System):
             needs_comp.needs['energy']['current'] = max(0, needs_comp.needs['energy']['current'] + energy_change)
 
             # Update stress
-            stress_change = needs_comp.needs['stress']['change_per_hour']
+            stress_resistance = needs_comp.alchemy_bonus.get('stress_resistance', 0.0)
+            stress_change = needs_comp.needs['stress']['change_per_hour'] * (1 - stress_resistance)
             needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + stress_change)
 
             # Update idealism
@@ -52,6 +55,7 @@ class NeedsSystem(System):
         needs_comp = self.world.get_component(entity_id, NeedsComponent)
         state_comp = self.world.get_component(entity_id, StateComponent)
         economy_comp = self.world.get_component(entity_id, EconomyComponent)
+        financial_comp = self.world.get_component(entity_id, FinancialComponent)
 
         # Do not re-evaluate if already on a critical mission
         if isinstance(state_comp.goal, dict) or state_comp.goal in ["FLEE_FROM_THREAT", "REPLACE_SOURCE_OF_TRAUMA"]:
@@ -85,6 +89,35 @@ class NeedsSystem(System):
             if affordable_locations:
                 target_loc = affordable_locations[0] # Simplified
                 state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "SEEK_ENTERTAINMENT"}
+                return
+
+        # --- New Financial Needs ---
+
+        # 1. Desire to deposit excess cash
+        if economy_comp.money > 200:
+            bank_locations = [loc for loc in locations if loc.get('type') == 'COMMERCIAL_BANK']
+            if bank_locations:
+                target_loc = random.choice(bank_locations)
+                state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "DEPOSIT_MONEY"}
+                return
+
+        # 2. Desire to get a loan for opportunities
+        # (Simplified: "WORK" demand implies a desire to invest/expand)
+        if economy_comp.money < 50 and financial_comp.credit_score > 500 and "WORK" in needs_comp.demands:
+            bank_locations = [loc for loc in locations if loc.get('type') == 'COMMERCIAL_BANK']
+            if bank_locations:
+                target_loc = random.choice(bank_locations)
+                state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "GET_LOAN"}
+                return
+
+        # 3. Desire for luxury goods when wealthy
+        if financial_comp.bank_balance > 1000:
+             # Find luxury shops
+            luxury_shops = [loc for loc in locations if loc.get('produces') in ['LUXURY_GOOD', 'ARTWORK']]
+            if luxury_shops:
+                target_loc = random.choice(luxury_shops)
+                state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "BUY_LUXURY_GOOD"}
+                # We would also need to add logic in ActionSystem to handle the actual purchase
                 return
 
         # Tier 2 (Societal/Ideological)

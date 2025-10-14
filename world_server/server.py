@@ -18,12 +18,15 @@ from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.economy import EconomyComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.relationship import RelationshipComponent
+from world_server.ecs.components.financial_component import FinancialComponent
 
 # --- System Imports ---
 from world_server.ecs.systems.needs_system import NeedsSystem
 from world_server.ecs.systems.interaction_system import InteractionSystem
 from world_server.ecs.systems.movement_system import MovementSystem
 from world_server.ecs.systems.action_system import ActionSystem
+from world_server.ecs.systems.banking_system import BankingSystem
+from world_server.ecs.systems.technology_system import TechnologySystem
 
 
 class Server:
@@ -81,11 +84,15 @@ class Server:
         self._load_locations()
         self._spawn_all_npcs()
 
-        # Register systems in the desired order of execution
+        # Instantiate and register systems
+        self.ecs_world.tech_system = TechnologySystem() # Attach for global access
+
         self.ecs_world.add_system(NeedsSystem())
+        self.ecs_world.add_system(BankingSystem())
         self.ecs_world.add_system(InteractionSystem())
         self.ecs_world.add_system(MovementSystem())
         self.ecs_world.add_system(ActionSystem())
+        self.ecs_world.add_system(self.ecs_world.tech_system)
 
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
@@ -136,6 +143,9 @@ class Server:
 
             # Relationships
             self.ecs_world.add_component(entity_id, RelationshipComponent())
+
+            # Financial
+            self.ecs_world.add_component(entity_id, FinancialComponent())
 
 
         print(f"成功加载了 {len(npc_files)} 个实体。")

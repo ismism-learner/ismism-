@@ -54,11 +54,23 @@ class ActionSystem(System):
 
                 elif purpose == "WORK":
                     economy_comp = self.world.get_component(entity_id, EconomyComponent)
-                    state_comp.action = f"{target_loc.get('work_type', 'Working')}"
+                    work_type = target_loc.get('work_type', 'Working')
+                    state_comp.action = f"{work_type}"
+
+                    # Produce resources
                     ResourceManager.produce(target_loc, locations)
+
+                    # Gain money and affect needs
+                    economy_comp.money += 1
                     needs_comp.needs['energy']['current'] = max(0, needs_comp.needs['energy']['current'] - 0.2)
                     needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + 0.3)
-                    economy_comp.money += 1
+
+                    # --- Contribute to Technology ---
+                    if work_type == "ALCHEMY":
+                        self.world.tech_system.add_tech_points(self.world, "alchemy", 1)
+                    elif work_type == "AUTOMATA":
+                        self.world.tech_system.add_tech_points(self.world, "automata", 1)
+
                     if random.random() < 0.03:
                         state_comp.goal = "Wander"
 
@@ -69,6 +81,20 @@ class ActionSystem(System):
                     economy_comp.money -= cost
                     needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 50)
                     # Ideological influence can be handled here as well
+                    state_comp.goal = "Wander"
+
+                elif purpose == "BUY_LUXURY_GOOD":
+                    economy_comp = self.world.get_component(entity_id, EconomyComponent)
+                    # For simplicity, let's assume a fixed cost for luxury goods
+                    cost = 150
+                    state_comp.action = f"Buying {target_loc.get('produces')}"
+                    if economy_comp.money >= cost:
+                        economy_comp.money -= cost
+                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 20) # Satisfaction
+                    else:
+                        # If they can't afford it, maybe try to withdraw from bank first?
+                        # For now, just reset. This could be a future improvement.
+                        state_comp.action = "Window Shopping"
                     state_comp.goal = "Wander"
 
                 # After completing an action, the goal is often reset

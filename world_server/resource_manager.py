@@ -5,6 +5,7 @@ class ResourceManager:
     管理世界中的资源生产和消耗。
     这是一个静态类，因为我们不需要它的多个实例。
     """
+    production_multiplier = 1.0
 
     @staticmethod
     def produce(location, world_state):
@@ -15,12 +16,13 @@ class ResourceManager:
         """
         if location.get('produces') and location['state'] == 'active':
             resource_type = location['produces']
-            rate = location.get('produces_rate', 1)
+            base_rate = location.get('produces_rate', 1)
+            final_rate = base_rate * ResourceManager.production_multiplier
 
             # 在地点的库存中增加资源
             if resource_type not in location['inventory']:
                 location['inventory'][resource_type] = 0
-            location['inventory'][resource_type] += rate
+            location['inventory'][resource_type] += final_rate
 
             # print(f"Location '{location['name']}' produced {rate} {resource_type}. New total: {location['inventory'][resource_type]}")
         return True
