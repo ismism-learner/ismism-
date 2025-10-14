@@ -8,7 +8,8 @@ class MovementSystem(System):
     """
     Handles the movement of entities based on their current goal.
     """
-    def process(self, locations, *args, **kwargs):
+    def process(self, *args, **kwargs):
+        locations = kwargs.get('locations', [])
         speed = 2
         entities_to_move = self.world.get_entities_with_components(PositionComponent, StateComponent)
 

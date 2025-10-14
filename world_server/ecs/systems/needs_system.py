@@ -16,7 +16,8 @@ class NeedsSystem(System):
         super().__init__()
         self.last_hour = 0
 
-    def process(self, locations, interactions):
+    def process(self, *args, **kwargs):
+        locations = kwargs.get('locations', [])
         # Part 1: Update needs based on time
         current_hour = self.world.time // self.world.ticks_per_hour
         if current_hour > self.last_hour:

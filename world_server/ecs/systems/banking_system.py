@@ -15,7 +15,9 @@ class BankingSystem(System):
     - Handles loan approval, repayment, and default.
     - Simulates central bank actions.
     """
-    def process(self, world: World, locations: list):
+    def process(self, *args, **kwargs):
+        world = self.world
+        locations = kwargs.get('locations', [])
         # --- 1. Macro-economic actions (Central Bank) ---
         # Periodically, the central bank injects capital into commercial banks.
         if world.time % 100 == 0:  # Every 100 ticks

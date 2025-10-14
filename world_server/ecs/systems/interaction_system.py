@@ -12,7 +12,9 @@ class InteractionSystem(System):
     """
     Manages social interactions between entities.
     """
-    def process(self, interactions, *args, **kwargs):
+    def process(self, *args, **kwargs):
+        interactions = kwargs.get('interactions', [])
+        relationship_types = kwargs.get('relationship_types', {})
         # This check is expensive, so we don't run it every single tick.
         if random.random() > 0.05:
             return
@@ -33,7 +35,7 @@ class InteractionSystem(System):
 
                 dist = ((pos_comp.x - other_pos_comp.x)**2 + (pos_comp.y - other_pos_comp.y)**2)**0.5
                 if dist < 80: # Interaction distance
-                    self._evaluate_and_initiate_interaction(entity_id, other_id, interactions)
+                    self._evaluate_and_initiate_interaction(entity_id, other_id, interactions, relationship_types)
                     break # Interact with only one entity per tick to simplify logic
 
     def _get_all_ism_keywords(self, entity_id):
@@ -60,7 +62,7 @@ class InteractionSystem(System):
             return False
         return True
 
-    def _evaluate_and_initiate_interaction(self, initiator_id, target_id, interactions):
+    def _evaluate_and_initiate_interaction(self, initiator_id, target_id, interactions, relationship_types):
         possible_interactions = [
             inter for inter in interactions if self._check_interaction_conditions(inter, initiator_id, target_id)
         ]
@@ -69,17 +71,39 @@ class InteractionSystem(System):
 
         # Decision logic
         relationship_comp = self.world.get_component(initiator_id, RelationshipComponent)
-        affinity = relationship_comp.relations.get(target_id, {}).get("affinity", 0)
+        relation_data = relationship_comp.relations.get(target_id, {})
+        affinity = relation_data.get("affinity", 0)
+        status = relation_data.get("status")
+
+        # --- New logic for behavior mods ---
+        behavior_mods = relationship_types.get(status, {}).get("behavior_mods", {})
+        forbidden = behavior_mods.get("forbidden_interactions", [])
+        prioritized = behavior_mods.get("prioritized_interactions", [])
+
+        # Filter out forbidden interactions
+        possible_interactions = [inter for inter in possible_interactions if inter['name'] not in forbidden]
+
+        if not possible_interactions:
+            return
+
+        # Weight the prioritized interactions
+        weights = [5 if inter['name'] in prioritized else 1 for inter in possible_interactions]
 
         chosen_interaction = None
-        if affinity < -20:
-            hostile_options = [i for i in possible_interactions if i.get('type') == 'aggressive']
-            if hostile_options: chosen_interaction = random.choice(hostile_options)
-        elif affinity > 20:
-            friendly_options = [i for i in possible_interactions if i.get('type') == 'friendly']
-            if friendly_options: chosen_interaction = random.choice(friendly_options)
-        else:
-            chosen_interaction = random.choice(possible_interactions)
+        # Fallback to old affinity-based logic if no status exists
+        if not status:
+            if affinity < -20:
+                hostile_options = [i for i in possible_interactions if i.get('type') == 'aggressive']
+                if hostile_options:
+                    chosen_interaction = random.choice(hostile_options)
+            elif affinity > 20:
+                friendly_options = [i for i in possible_interactions if i.get('type') == 'friendly']
+                if friendly_options:
+                    chosen_interaction = random.choice(friendly_options)
+
+        # If no choice was made by affinity, or if a status exists, use the weighted choice
+        if not chosen_interaction:
+            chosen_interaction = random.choices(possible_interactions, weights=weights, k=1)[0]
 
         if chosen_interaction:
             self._apply_interaction(chosen_interaction, initiator_id, target_id)
@@ -122,5 +146,26 @@ class InteractionSystem(System):
         if interaction.get('type') == 'aggressive':
             target_state.goal = "FLEE_FROM_THREAT"
             target_state.action = "Fleeing"
+
+        # --- New 'Ism' Propagation Logic ---
+        propagate_chance = effects.get('propagate_ism_chance', 0)
+        if random.random() < propagate_chance:
+            initiator_ism_comp = self.world.get_component(initiator_id, IsmComponent)
+            target_ism_comp = self.world.get_component(target_id, IsmComponent)
+
+            # Can only propagate secondary isms to avoid overwriting primary identity
+            if initiator_ism_comp.data.get('secondary_isms'):
+                ism_to_propagate = random.choice(initiator_ism_comp.data['secondary_isms'])
+
+                # Ensure the target doesn't already have this ism
+                target_primary_ism = target_ism_comp.data.get('primary_ism_code')
+                target_secondary_codes = [ism.get('ism_code') for ism in target_ism_comp.data.get('secondary_isms', [])]
+
+                if ism_to_propagate['ism_code'] != target_primary_ism and ism_to_propagate['ism_code'] not in target_secondary_codes:
+                    if 'secondary_isms' not in target_ism_comp.data:
+                        target_ism_comp.data['secondary_isms'] = []
+                    target_ism_comp.data['secondary_isms'].append(ism_to_propagate)
+                    print(f"**IDEOLOGY SPREAD**: '{initiator_identity.name}' propagated '{ism_to_propagate['name']}' to '{target_identity.name}'!")
+
 
         print(f"'{target_identity.name}' reacts. Affinity towards '{initiator_identity.name}' is now {new_target_affinity}.")

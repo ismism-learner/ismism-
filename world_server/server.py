@@ -39,6 +39,7 @@ class Server:
         self.locations = []
         self.consumer_goods = []
         self.hobby_definitions = []
+        self.relationship_types = {}
         self._load_game_definitions()
         self._setup_world()
 
@@ -101,6 +102,17 @@ class Server:
             print(f"错误: 爱好文件 '{hobbies_path}' 未找到。")
         except json.JSONDecodeError:
             print(f"错误: 爱好文件 '{hobbies_path}' 格式无效。")
+
+        # Load relationship types
+        relationship_types_path = "world_server/relationship_types.json"
+        try:
+            with open(relationship_types_path, 'r', encoding='utf-8') as f:
+                self.relationship_types = json.load(f)
+            print(f"成功加载 {len(self.relationship_types)} 个关系类型。")
+        except FileNotFoundError:
+            print(f"错误: 关系类型文件 '{relationship_types_path}' 未找到。")
+        except json.JSONDecodeError:
+            print(f"错误: 关系类型文件 '{relationship_types_path}' 格式无效。")
 
     def _setup_world(self):
         """初始化游戏世界，加载资源，创建实体并注册系统"""
@@ -202,7 +214,12 @@ class Server:
             # 2. Process all systems
             # This single call replaces all the old complex logic.
             # It iterates through NeedsSystem, InteractionSystem, MovementSystem, etc.
-            self.ecs_world.process(locations=self.locations, interactions=self.interactions)
+            self.ecs_world.process(
+                locations=self.locations,
+                interactions=self.interactions,
+                relationship_types=self.relationship_types,
+                consumer_goods=self.consumer_goods
+            )
 
             # 3. Prepare and broadcast the world state
             world_state = self.get_world_state()

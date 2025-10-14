@@ -54,7 +54,7 @@ class TechnologySystem(System):
                 needs.alchemy_bonus['stress_resistance'] = bonus
             print(f"[TechSystem] Alchemy Lvl {alchemy_level}: All entities now have {bonus:.2f}% stress resistance.")
 
-    def process(self, world: World, locations: list):
+    def process(self, *args, **kwargs):
         # The main processing loop for this system might not be needed if it's event-driven.
         # For now, we'll leave it passive. Points will be added from other systems (like ActionSystem).
         pass
