@@ -4,6 +4,7 @@
 """
 import uuid
 import random
+from resource_manager import ResourceManager
 
 class Entity:
     """所有实体的基类"""
@@ -187,6 +188,23 @@ class NPC(Entity):
         if effects.get('target_rupture_change', 0) > 0:
             self.desire['real']['source_of_trauma'] = aggressor.id
 
+        # --- 新增：思想传播逻辑 ---
+        propagate_chance = effects.get('propagate_ism_chance', 0)
+        if random.random() < propagate_chance:
+            # 从发起者的次要'ism'中选择一个来传播
+            aggressor_secondary_isms = aggressor.ism_data.get('secondary_isms', [])
+            if aggressor_secondary_isms:
+                ism_to_propagate = random.choice(aggressor_secondary_isms)
+                # 确保接收者还没有这个'ism'
+                receiver_secondary_isms = self.ism_data.get('secondary_isms', [])
+                receiver_ism_names = [ism.get('name') for ism in receiver_secondary_isms]
+
+                if ism_to_propagate.get('name') not in receiver_ism_names:
+                    receiver_secondary_isms.append(ism_to_propagate)
+                    self.ism_data['secondary_isms'] = receiver_secondary_isms
+                    print(f"** Ideological Spread: '{aggressor.name}' spreads '{ism_to_propagate.get('name')}' to '{self.name}'! **")
+
+
         print(f"'{self.name}' reacts to '{interaction['name']}'. Affinity towards '{aggressor.name}' is now {new_affinity}.")
 
         # --- 更复杂的反应逻辑 ---
@@ -230,10 +248,10 @@ class NPC(Entity):
 
         # 检查饥饿
         if self.needs['hunger']['current'] > self.needs['hunger']['priority_threshold']:
-            food_locations = [loc for loc in locations if loc.get('type') == 'FOOD_SOURCE']
-            if food_locations:
-                closest_loc = min(food_locations, key=lambda loc: ((self.position['x'] - loc['position']['x'])**2 + (self.position['y'] - loc['position']['y'])**2)**0.5)
-                self.current_goal = {"type": "GO_TO_LOCATION", "target_location": closest_loc, "purpose": "SATISFY_HUNGER"}
+            # 使用ResourceManager查找有食物的地点
+            best_food_location = ResourceManager.get_richest_location("GRAIN", locations)
+            if best_food_location:
+                self.current_goal = {"type": "GO_TO_LOCATION", "target_location": best_food_location, "purpose": "SATISFY_HUNGER"}
                 return
 
         # 检查精力
@@ -283,19 +301,32 @@ class NPC(Entity):
             if dist_to_target < target_loc["radius"]:
                 if purpose == "SATISFY_HUNGER":
                     self.current_action = "Eating"
-                    self.needs['hunger']['current'] = max(0, self.needs['hunger']['current'] - 2) # 在地点吃饭恢复速度更快
-                    if self.needs['hunger']['current'] <= 0:
-                        self.current_goal = "Wander" # 需求满足，重置目标
+                    # 尝试消耗资源，如果成功则恢复饥饿
+                    if ResourceManager.consume(target_loc, "GRAIN", 5, locations):
+                        self.needs['hunger']['current'] = max(0, self.needs['hunger']['current'] - 25) # 吃一顿饱的
+                        if self.needs['hunger']['current'] <= 0:
+                            self.current_goal = "Wander" # 需求满足，重置目标
+                    else:
+                        # 如果没有食物了，NPC会感到困惑并重新评估
+                        self.current_action = "Confused (No Food)"
+                        self.current_goal = "Wander"
+
                 elif purpose == "REST":
                     self.current_action = "Sleeping"
                     self.needs['energy']['current'] = min(self.needs['energy']['max'], self.needs['energy']['current'] + 2.5) # 在地点休息恢复速度更快
                     if self.needs['energy']['current'] >= self.needs['energy']['max']:
                         self.current_goal = "Wander" # 需求满足，重置目标
+
                 elif purpose == "WORK":
                     work_type = target_loc.get("work_type", "Working")
                     self.current_action = f"{work_type}"
+
+                    # 工作会生产资源
+                    ResourceManager.produce(target_loc, locations)
+
                     self.needs['energy']['current'] = max(0, self.needs['energy']['current'] - 0.2) # 工作消耗精力
                     self.needs['idealism']['current'] = min(self.needs['idealism']['max'], self.needs['idealism']['current'] + 0.05) # 工作带来成就感
+
                     # 工作一段时间后就离开
                     if random.random() < 0.03:
                         self.current_goal = "Wander"

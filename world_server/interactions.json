@@ -23,7 +23,8 @@
       "base_affinity_change": 15,
       "initiator_idealism_change": 10,
       "target_idealism_change": 10,
-      "target_rupture_change": 0
+      "target_rupture_change": 0,
+      "propagate_ism_chance": 0.1
     }
   },
   {

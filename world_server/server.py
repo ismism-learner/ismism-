@@ -15,12 +15,33 @@ class Server:
         self._setup_world()
 
     def _load_locations(self):
-        """加载所有可能的地点"""
+        """加载所有可能的地点，并为其初始化状态和库存"""
         locations_path = "world_server/locations.json"
         try:
             with open(locations_path, 'r', encoding='utf-8') as f:
-                self.world.current_scene.locations = json.load(f)
-            print(f"成功加载 {len(self.world.current_scene.locations)} 个地点。")
+                locations_data = json.load(f)
+
+            for i, loc in enumerate(locations_data):
+                # 为所有地点添加唯一ID、状态和库存
+                loc['id'] = f"loc_{i}"
+                loc['state'] = "active"
+                loc['inventory'] = {}
+
+                # 根据地点类型初始化特定属性
+                if loc['type'] == 'FOOD_SOURCE':
+                    loc['inventory']['GRAIN'] = 100 # 初始食物库存
+                elif loc['type'] == 'WORKPLACE':
+                    # 定义这个工作地点能生产什么
+                    if loc.get('work_type') == 'FARMING':
+                        loc['produces'] = "GRAIN"
+                        loc['produces_rate'] = 5
+                    elif loc.get('work_type') == 'MINING':
+                        loc['produces'] = "ORE"
+                        loc['produces_rate'] = 3
+
+            self.world.current_scene.locations = locations_data
+            print(f"成功加载并初始化 {len(self.world.current_scene.locations)} 个地点。")
+
         except FileNotFoundError:
             print(f"错误: 地点文件 '{locations_path}' 未找到。")
         except json.JSONDecodeError:
