@@ -7,78 +7,118 @@ from quantization_engine import QuantizationEngine
 # Ensure stdout can handle UTF-8 for printing
 sys.stdout.reconfigure(encoding='utf-8')
 
-def parse_philosophy_field(entry, field_name):
+def parse_philosophy_chunk(base_val, mediator_val, counter_val):
     """
-    Intelligently parses a philosophy field, handling simple strings,
-    'vs' structures, and complex mediator structures.
+    Parses a chunk of 3 values corresponding to a philosophy pillar.
     """
-    base_value = str(entry.get(field_name, "")).strip()
-    relation = str(entry.get(f"{field_name}.1", "")).strip()
-    counter = str(entry.get(f"{field_name}.2", "")).strip()
+    base = str(base_val).strip()
+    mediator = str(mediator_val).strip()
+    counter = str(counter_val).strip()
 
-    # If there's no relation or counter, it's a simple field.
-    if not relation and not counter:
-        return base_value
+    # If mediator and counter are both empty, it's a simple value.
+    if not mediator and not counter:
+        return base
 
-    # Handle "A vs B" structure (e.g., '对立于')
-    if relation.lower() in ['vs', '对立于']:
-        return {
-            "base": base_value,
-            "relation": "vs",
-            "counter": counter
-        }
+    # Otherwise, it's a complex structure.
+    # Clean the mediator text by removing "调和者：" as requested.
+    cleaned_relation = mediator.replace("调和者：", "").strip()
 
-    # Handle "A [mediator] B" structure
-    else:
-        return {
-            "base": base_value,
-            "relation": relation, # The relation itself is the mediator text
-            "counter": counter
-        }
+    return {
+        "base": base,
+        "relation": cleaned_relation,
+        "counter": counter
+    }
 
-def clean_ism_data(raw_data):
+def clean_sheet_data(df, is_special_sheet=False):
     """
-    Cleans the raw data from the Excel file and structures it based on the new, complex rules.
+    Cleans the raw data from a single Excel sheet (as a DataFrame), structuring it based on positional columns.
+    Handles the special '4-x-x-x' case if is_special_sheet is True.
     """
     cleaned_data = []
-    for entry in raw_data:
-        name_field = str(entry.get('主义名称', '')).strip()
+    NAME_COL = 0
+    pillar_names = ['field_theory', 'ontology', 'epistemology', 'teleology']
+
+    for index, row in df.iterrows():
+        name_field = str(row.iloc[NAME_COL]).strip()
         if not name_field or ' ' not in name_field:
             continue
 
-        parts = name_field.split(' ', 1)
-        ism_id = parts[0]
-        ism_name = parts[1]
+        try:
+            ism_id, ism_name = name_field.split(' ', 1)
+        except ValueError:
+            continue
 
-        philosophy = {
-            'field_theory': parse_philosophy_field(entry, '场域论'),
-            'ontology': parse_philosophy_field(entry, '本体论'),
-            'epistemology': parse_philosophy_field(entry, '认识论'),
-            'teleology': parse_philosophy_field(entry, '目的论')
-        }
+        philosophy = {}
+        current_col = 1  # Start from the first philosophy column
+
+        # The logic depends on whether this is the special sheet AND the ID starts with '4-'
+        is_special_ism = is_special_sheet and ism_id.startswith('4-')
+
+        # Define required columns for safety check
+        required_cols = 14 if is_special_ism else 13
+
+        if len(row) < required_cols:
+            continue # Skip rows that don't have enough data
+
+        if is_special_ism:
+            # Field Theory has 4 components
+            ft_base = str(row.iloc[current_col]).strip()
+            ft_relation = str(row.iloc[current_col + 1]).strip().replace("调和者：", "")
+            ft_counter = str(row.iloc[current_col + 2]).strip()
+            ft_action_unit = str(row.iloc[current_col + 3]).strip()
+            philosophy['field_theory'] = {
+                "base": ft_base, "relation": ft_relation, "counter": ft_counter, "action_unit": ft_action_unit
+            }
+            current_col += 4
+            # Process remaining 3 pillars
+            for pillar_name in pillar_names[1:]:
+                base_val, med_val, count_val = row.iloc[current_col], row.iloc[current_col + 1], row.iloc[current_col + 2]
+                philosophy[pillar_name] = parse_philosophy_chunk(base_val, med_val, count_val)
+                current_col += 3
+        else:
+            # All pillars have 3 components
+            for pillar_name in pillar_names:
+                base_val, med_val, count_val = row.iloc[current_col], row.iloc[current_col + 1], row.iloc[current_col + 2]
+                philosophy[pillar_name] = parse_philosophy_chunk(base_val, med_val, count_val)
+                current_col += 3
+
+        representative = str(row.iloc[current_col]).strip() if len(row) > current_col else ''
 
         cleaned_data.append({
-            'id': ism_id,
-            'name': ism_name,
-            'philosophy': philosophy,
-            'representative': str(entry.get('代表人物', ''))
+            'id': ism_id, 'name': ism_name, 'philosophy': philosophy, 'representative': representative
         })
     return cleaned_data
 
+
 def main():
     """
-    Reads all sheets from the new Excel file, cleans the data according to complex rules,
+    Reads all sheets from the Excel file, cleans data sheet by sheet according to its structure,
     quantizes it, and saves the final structured data to 'isms_final.json'.
     """
-    excel_path = '主义主义/59号-哲学意识形态填空.xlsx' # Reverting to the available file
+    excel_path = '主义主义/59号-哲学意识形态填空.xlsx'
     output_path = 'isms_final.json'
 
     try:
-        all_sheets = pd.read_excel(excel_path, sheet_name=None, na_filter=False, dtype=str)
-        df = pd.concat(all_sheets.values(), ignore_index=True)
-        raw_data = df.to_dict(orient="records")
+        all_sheets_dfs = pd.read_excel(excel_path, sheet_name=None, na_filter=False, dtype=str)
 
-        all_isms_data = clean_ism_data(raw_data)
+        all_isms_data = []
+        sheet_names = list(all_sheets_dfs.keys())
+
+        # Process first sheet (standard structure)
+        if len(sheet_names) > 0:
+            first_sheet_df = all_sheets_dfs[sheet_names[0]]
+            all_isms_data.extend(clean_sheet_data(first_sheet_df, is_special_sheet=False))
+
+        # Process second sheet (special structure for '4-x-x-x')
+        if len(sheet_names) > 1:
+            second_sheet_df = all_sheets_dfs[sheet_names[1]]
+            all_isms_data.extend(clean_sheet_data(second_sheet_df, is_special_sheet=True))
+
+        # Process any remaining sheets as standard
+        if len(sheet_names) > 2:
+            for sheet_name in sheet_names[2:]:
+                other_sheet_df = all_sheets_dfs[sheet_name]
+                all_isms_data.extend(clean_sheet_data(other_sheet_df, is_special_sheet=False))
 
         engine = QuantizationEngine()
 
