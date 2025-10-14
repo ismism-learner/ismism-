@@ -1,0 +1,91 @@
+{
+  "identity": {
+    "primary_ism_code": "1-1-4-1",
+    "primary_ism_name": "-1-1-4-1 操作行为主义",
+    "equipped_isms": [
+      {
+        "code": "1-1-4-1",
+        "name": "-1-1-4-1 操作行为主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1-2-2-3",
+        "name": "-1-2-2-3 拜物教",
+        "weight": 0.62
+      },
+      {
+        "code": "1-3-2-3",
+        "name": "1-3-2-3 现代爱情主义",
+        "weight": 0.51
+      }
+    ],
+    "npc_name": "MaterialistMerchant_10",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": 0.0,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": -21.299999999999997,
+    "fatalism_vs_agency": -31.950000000000003
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -21.299999999999997,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 30.0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 31.950000000000003,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "他者",
+      "偶像",
+      "冲突",
+      "刺激",
+      "反应",
+      "大他者",
+      "奇迹",
+      "安歇",
+      "实践",
+      "循环",
+      "恩典",
+      "本真",
+      "欲望",
+      "爱情",
+      "物",
+      "理论",
+      "能量",
+      "行为",
+      "观察",
+      "规律"
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "identity": {
+    "primary_ism_code": "1-1-4-1",
+    "primary_ism_name": "1-1-4-1 操作行为主义",
+    "equipped_isms": [
+      {
+        "code": "1-1-4-1",
+        "name": "1-1-4-1 操作行为主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1-2-4-2",
+        "name": "1-2-4-2 救世主主义",
+        "weight": 0.53
+      },
+      {
+        "code": "2-3-3-4",
+        "name": "2-3-3-4 分割的整体主义",
+        "weight": 0.45
+      }
+    ],
+    "npc_name": "MaterialistMerchant_25",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": 0.0,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": -19.8,
+    "fatalism_vs_agency": -29.7
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -19.8,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 30.0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 29.7,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "世界",
+      "他者",
+      "冲突",
+      "分割",
+      "刺激",
+      "单子",
+      "反偶像",
+      "反应",
+      "大他者",
+      "奇迹",
+      "安歇",
+      "实践",
+      "对抗",
+      "循环",
+      "恩典",
+      "救赎",
+      "时间",
+      "模式",
+      "欲望",
+      "理论",
+      "能量",
+      "行为",
+      "观察",
+      "规律"
+    ]
+  }
+}

@@ -1,0 +1,174 @@
+[
+  {
+    "rule_name": "目的论-循环",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "teleology", "keyword": "循环"}]},
+    "actions": [
+      {"param": "core_motivations.fatalism_vs_agency", "operation": "add", "value": -15},
+      {"param": "core_motivations.tradition_vs_progress", "operation": "add", "value": -10},
+      {"param": "behavioral_scripts.leisure_activity", "operation": "set", "value": "PURSUE_ROUTINE_HOBBY"}
+    ]
+  },
+  {
+    "rule_name": "目的论-冲突",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "teleology", "keyword": "冲突"}]},
+    "actions": [
+      {"param": "core_motivations.order_vs_chaos", "operation": "add", "value": -15},
+      {"param": "social_profile.conflict_stance", "operation": "set", "value": "INSTIGATOR"},
+      {"param": "quest_preferences.COMBAT", "operation": "add_weight", "value": 15},
+      {"param": "behavioral_scripts.conflict_resolution", "operation": "set", "value": "ESCALATE_TO_VIOLENCE"}
+    ]
+  },
+  {
+    "rule_name": "目的论-安歇",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "teleology", "keyword": "安歇"}]},
+    "actions": [
+      {"param": "core_motivations.order_vs_chaos", "operation": "add", "value": 15},
+      {"param": "social_profile.conflict_stance", "operation": "set", "value": "MEDIATOR"},
+      {"param": "behavior_patterns.risk_taking", "operation": "add", "value": -10},
+      {"param": "behavioral_scripts.conflict_resolution", "operation": "set", "value": "SEEK_PEACEFUL_RESOLUTION"}
+    ]
+  },
+  {
+    "rule_name": "目的论-混沌",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "teleology", "keyword": "混沌"}]},
+    "actions": [
+        {"param": "core_motivations.order_vs_chaos", "operation": "add", "value": -25},
+        {"param": "core_motivations.tradition_vs_progress", "operation": "add", "value": 15},
+        {"param": "behavioral_scripts.leisure_activity", "operation": "set", "value": "WANDER_AIMLESSLY"}
+    ]
+  },
+  {
+    "rule_name": "场域-科学",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "field_theory", "keyword": "科学"}]},
+    "actions": [
+        {"param": "worldview.mysticism_vs_rationalism", "operation": "add", "value": -30},
+        {"param": "quest_preferences.RESEARCH", "operation": "add_weight", "value": 20},
+        {"param": "behavioral_scripts.leisure_activity", "operation": "set", "value": "CONDUCT_EXPERIMENTS"}
+    ]
+  },
+  {
+    "rule_name": "场域-历史",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "field_theory", "keyword": "历史"}]},
+    "actions": [
+        {"param": "core_motivations.tradition_vs_progress", "operation": "add", "value": -15},
+        {"param": "quest_preferences.EXPLORATION", "operation": "add_weight", "value": 15},
+        {"param": "behavioral_scripts.leisure_activity", "operation": "set", "value": "VISIT_RUINS_OR_MUSEUMS"}
+    ]
+  },
+  {
+    "rule_name": "场域-机器",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "field_theory", "keyword": "机器"}]},
+    "actions": [
+        {"param": "behavior_patterns.pragmatism_vs_idealism", "operation": "add", "value": 20},
+        {"param": "social_profile.sociability", "operation": "add", "value": -20},
+        {"param": "behavioral_scripts.hunger_satisfaction", "operation": "set", "value": "CONSUME_NUTRITION_PASTE"}
+    ]
+  },
+  {
+    "rule_name": "场域-神",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "field_theory", "keyword": "神"}]},
+    "actions": [
+        {"param": "worldview.mysticism_vs_rationalism", "operation": "add", "value": 40},
+        {"param": "worldview.divinity_perception", "operation": "set", "value": "BENEVOLENT"},
+        {"param": "quest_preferences.PILGRIMAGE", "operation": "add_weight", "value": 25},
+        {"param": "behavioral_scripts.leisure_activity", "operation": "set", "value": "PRAY_OR_MEDITATE"}
+    ]
+  },
+  {
+    "rule_name": "场域-意志",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "field_theory", "keyword": "意志"}]},
+    "actions": [
+        {"param": "core_motivations.fatalism_vs_agency", "operation": "add", "value": 30},
+        {"param": "behavioral_scripts.social_interaction", "operation": "set", "value": "ASSERT_DOMINANCE"}
+    ]
+  },
+  {
+    "rule_name": "场域-庸俗",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "field_theory", "keyword": "庸俗"}]},
+    "actions": [
+        {"param": "behavior_patterns.materialism", "operation": "add", "value": 20},
+        {"param": "social_profile.hierarchy_acceptance", "operation": "add", "value": -15},
+        {"param": "behavioral_scripts.leisure_activity", "operation": "set", "value": "GAMBLE_IN_TAVERN"}
+    ]
+  },
+  {
+    "rule_name": "本体-欲望",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "ontology", "keyword": "欲望"}]},
+    "actions": [
+        {"param": "behavior_patterns.materialism", "operation": "add", "value": 30},
+        {"param": "behavioral_scripts.leisure_activity", "operation": "set", "value": "SEEK_HEDONISTIC_PLEASURE"}
+    ]
+  },
+  {
+    "rule_name": "本体-虚无",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "ontology", "keyword": "虚无"}]},
+    "actions": [
+        {"param": "core_motivations.altruism_vs_egoism", "operation": "add", "value": -25},
+        {"param": "social_profile.faction_loyalty", "operation": "add", "value": -30},
+        {"param": "behavioral_scripts.social_interaction", "operation": "set", "value": "BE_SARCASTIC_AND_DISMISSIVE"}
+    ]
+  },
+  {
+    "rule_name": "本体-语言",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "ontology", "keyword": "语言"}]},
+    "actions": [
+        {"param": "quest_preferences.DEBATE", "operation": "add_weight", "value": 20},
+        {"param": "social_profile.sociability", "operation": "add", "value": 15},
+        {"param": "behavioral_scripts.conflict_resolution", "operation": "set", "value": "WIN_BY_ARGUMENT"}
+    ]
+  },
+  {
+      "rule_name": "本体-善",
+      "conditions": {"logic": "AND", "clauses": [{"scope": "ontology", "keyword": "善"}]},
+      "actions": [
+          {"param": "core_motivations.altruism_vs_egoism", "operation": "add", "value": 40},
+          {"param": "behavioral_scripts.social_interaction", "operation": "set", "value": "OFFER_HELP_TO_STRANGERS"}
+      ]
+  },
+  {
+      "rule_name": "认识-实践",
+      "conditions": {"logic": "AND", "clauses": [{"scope": "epistemology", "keyword": "实践"}]},
+      "actions": [
+          {"param": "behavior_patterns.pragmatism_vs_idealism", "operation": "add", "value": 20}
+      ]
+  },
+  {
+      "rule_name": "认识-理论",
+      "conditions": {"logic": "AND", "clauses": [{"scope": "epistemology", "keyword": "理论"}]},
+      "actions": [
+          {"param": "behavior_patterns.pragmatism_vs_idealism", "operation": "add", "value": -20}
+      ]
+  },
+  {
+    "rule_name": "复合-犬儒的实践",
+    "conditions": {"logic": "AND", "clauses": [
+        {"scope": "name", "keyword": "犬儒"},
+        {"scope": "epistemology", "keyword": "实践"}
+    ]},
+    "actions": [
+        {"param": "behavior_patterns.pragmatism_vs_idealism", "operation": "add", "value": 30},
+        {"param": "social_profile.trust_level", "operation": "add", "value": -40},
+        {"param": "behavioral_scripts.hunger_satisfaction", "operation": "set", "value": "SCAVENGE_OR_STEAL_FOOD"}
+    ]
+  },
+  {
+    "rule_name": "复合-科学的安歇",
+    "conditions": {"logic": "AND", "clauses": [
+      {"scope": "field_theory", "keyword": "科学"},
+      {"scope": "teleology", "keyword": "安歇"}
+    ]},
+    "actions": [
+        {"param": "worldview.mysticism_vs_rationalism", "operation": "add", "value": -20},
+        {"param": "behavioral_scripts.conflict_resolution", "operation": "set", "value": "DEESCALATE_WITH_LOGIC"}
+    ]
+  },
+  {
+    "rule_name": "特殊-4字头能动性",
+    "conditions": {"logic": "AND", "clauses": [{"scope": "code", "keyword": "4-"}]},
+    "actions": [
+        {"param": "core_motivations.fatalism_vs_agency", "operation": "add", "value": 40},
+        {"param": "behavior_patterns.proactivity", "operation": "add", "value": 30},
+        {"param": "behavioral_scripts.social_interaction", "operation": "set", "value": "RECRUIT_FOR_CAUSE"}
+    ]
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "identity": {
+    "primary_ism_code": "3-3-1-2",
+    "primary_ism_name": "-3-3-1-2 人道主义的存在主义",
+    "equipped_isms": [
+      {
+        "code": "3-3-1-2",
+        "name": "-3-3-1-2 人道主义的存在主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1",
+        "name": "2-1-2-2 理念实在论",
+        "weight": 0.52
+      },
+      {
+        "code": "2-1-2-1",
+        "name": "-2-1-2-1 伦理智性主义",
+        "weight": 0.54
+      }
+    ],
+    "npc_name": "PhilosopherKing_37",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -10.0,
+    "altruism_vs_egoism": 21.6,
+    "tradition_vs_progress": 4.4,
+    "fatalism_vs_agency": -15.900000000000002
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -20.6,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0,
+    "materialism": 0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "OFFER_HELP_TO_STRANGERS",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 15.900000000000002,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "个体",
+      "中介",
+      "人道",
+      "他者",
+      "冲突",
+      "善",
+      "大他者",
+      "存在",
+      "安歇",
+      "对抗",
+      "循环",
+      "政治",
+      "整体",
+      "时间",
+      "本质",
+      "混沌",
+      "环节",
+      "理念",
+      "部分"
+    ]
+  }
+}

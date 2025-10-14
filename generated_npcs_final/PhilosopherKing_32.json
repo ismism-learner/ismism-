@@ -1,0 +1,90 @@
+{
+  "identity": {
+    "primary_ism_code": "3-3-3-2",
+    "primary_ism_name": "3-3-3-2 直接生存论",
+    "equipped_isms": [
+      {
+        "code": "3-3-3-2",
+        "name": "3-3-3-2 直接生存论",
+        "weight": 1.0
+      },
+      {
+        "code": "2-1-2-1",
+        "name": "2-1-2-1 伦理智性主义",
+        "weight": 0.44
+      },
+      {
+        "code": "1",
+        "name": "2-1-2-2 理念实在论",
+        "weight": 0.53
+      }
+    ],
+    "npc_name": "PhilosopherKing_32",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -10.000000000000004,
+    "altruism_vs_egoism": 17.6,
+    "tradition_vs_progress": 5.299999999999999,
+    "fatalism_vs_agency": -14.55
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -19.700000000000003,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0,
+    "materialism": 0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "OFFER_HELP_TO_STRANGERS",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 14.55,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "个体",
+      "中介",
+      "他者",
+      "共同体",
+      "冲突",
+      "同一",
+      "善",
+      "大他者",
+      "安歇",
+      "对抗",
+      "循环",
+      "整体",
+      "斗争",
+      "时间",
+      "本质",
+      "混沌",
+      "理念",
+      "直接",
+      "部分"
+    ]
+  }
+}

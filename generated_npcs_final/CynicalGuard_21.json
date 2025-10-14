@@ -1,0 +1,98 @@
+{
+  "identity": {
+    "primary_ism_code": "1-3-2-2",
+    "primary_ism_name": "2-1-3-4 犬儒主义",
+    "equipped_isms": [
+      {
+        "code": "1-3-2-2",
+        "name": "2-1-3-4 犬儒主义",
+        "weight": 1.0
+      },
+      {
+        "code": "4-3-2-4",
+        "name": "4-3-2-4 解放思想",
+        "weight": 0.77
+      },
+      {
+        "code": "4-1-1-3",
+        "name": "-4-1-1-3 国际性的理论协调",
+        "weight": 0.41
+      }
+    ],
+    "npc_name": "CynicalGuard_21",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -29.5,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": 7.7,
+    "fatalism_vs_agency": 32.2
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -21.799999999999997,
+    "proactivity": 35.4,
+    "pragmatism_vs_idealism": 0,
+    "materialism": 0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "WANDER_AIMLESSLY",
+    "social_interaction": "RECRUIT_FOR_CAUSE",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 32.7,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "三重解放",
+      "个体",
+      "人道化",
+      "他者",
+      "冲突",
+      "历史化",
+      "历史行动者",
+      "否定",
+      "安歇",
+      "对抗",
+      "循环",
+      "数",
+      "整体",
+      "时间",
+      "模式",
+      "混沌",
+      "犬儒",
+      "现代化",
+      "现实生活",
+      "现实行动者",
+      "理论家",
+      "自发性",
+      "行动单元",
+      "解放",
+      "解放思想",
+      "资本主义",
+      "部分"
+    ]
+  }
+}

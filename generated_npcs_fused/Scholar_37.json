@@ -1,0 +1,95 @@
+{
+  "identity": {
+    "primary_ism_code": "3-1-1-3",
+    "primary_ism_name": "-3-1-1-3 反思性的主体主义",
+    "equipped_isms": [
+      {
+        "code": "3-1-1-3",
+        "name": "-3-1-1-3 反思性的主体主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1-3-2-1",
+        "name": "-1-3-2-1 现代斯多亚主义",
+        "weight": 0.42
+      },
+      {
+        "code": "1-4-4-4",
+        "name": "1-4-4-4 复仇主义",
+        "weight": 0.31
+      }
+    ],
+    "npc_name": "Scholar_37",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -10.0,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": 7.700000000000001,
+    "fatalism_vs_agency": -10.95
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": -4.65
+  },
+  "behavior_patterns": {
+    "risk_taking": -17.3,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 6.2
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "GAMBLE_IN_TAVERN",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 10.95,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "中介",
+      "主体",
+      "他者",
+      "先验",
+      "冲突",
+      "刺激",
+      "反应",
+      "反思",
+      "坚忍",
+      "复仇",
+      "大他者",
+      "奇迹",
+      "安歇",
+      "实践",
+      "庸俗",
+      "循环",
+      "恩典",
+      "本真",
+      "本质",
+      "混沌",
+      "理论",
+      "能量",
+      "观察",
+      "规律"
+    ]
+  }
+}

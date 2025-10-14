@@ -1,0 +1,95 @@
+{
+  "identity": {
+    "primary_ism_code": "3-2-3-1",
+    "primary_ism_name": "-3-2-3-1 时间-本体论",
+    "equipped_isms": [
+      {
+        "code": "3-2-3-1",
+        "name": "-3-2-3-1 时间-本体论",
+        "weight": 1.0
+      },
+      {
+        "code": "1-1-4-1",
+        "name": "-1-1-4-1 操作行为主义",
+        "weight": 0.79
+      },
+      {
+        "code": "1-2-3-3",
+        "name": "1-2-3-3 魔法师主义",
+        "weight": 0.76
+      }
+    ],
+    "npc_name": "Scholar_19",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -9.999999999999998,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": -0.5,
+    "fatalism_vs_agency": -23.25
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -25.5,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 23.700000000000003
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 23.25,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "中介",
+      "他者",
+      "冲突",
+      "刺激",
+      "加倍",
+      "反应",
+      "大他者",
+      "奇迹",
+      "安歇",
+      "实践",
+      "循环",
+      "恩典",
+      "时间",
+      "欲望",
+      "混沌",
+      "灵",
+      "理论",
+      "生存",
+      "能量",
+      "自由",
+      "行为",
+      "观察",
+      "规律",
+      "魔法"
+    ]
+  }
+}

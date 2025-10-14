@@ -1,0 +1,93 @@
+{
+  "identity": {
+    "primary_ism_code": "2-1-1",
+    "primary_ism_name": "3-2-4-1 逻辑学",
+    "equipped_isms": [
+      {
+        "code": "2-1-1",
+        "name": "3-2-4-1 逻辑学",
+        "weight": 1.0
+      },
+      {
+        "code": "1-1-4-2",
+        "name": "1-1-4-2 目的行为主义",
+        "weight": 0.74
+      },
+      {
+        "code": "1-4-1-1",
+        "name": "1-4-1-1 和平主义",
+        "weight": 0.49
+      }
+    ],
+    "npc_name": "Scholar_33",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -10.000000000000002,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": 2.6999999999999993,
+    "fatalism_vs_agency": -18.45
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -22.299999999999997,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 18.45,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "中介",
+      "他者",
+      "冲突",
+      "刺激",
+      "反应",
+      "否定",
+      "和平",
+      "奇迹",
+      "安歇",
+      "实践",
+      "循环",
+      "混沌",
+      "爱欲",
+      "理论",
+      "目的",
+      "能量",
+      "自然",
+      "行为",
+      "观察",
+      "规律",
+      "辩证法",
+      "逻辑"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "identity": {
+    "primary_ism_code": "1-2-2-1",
+    "primary_ism_name": "-1-2-2-1 传殖主义",
+    "equipped_isms": [
+      {
+        "code": "1-2-2-1",
+        "name": "-1-2-2-1 传殖主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1-3-1-2",
+        "name": "-1-3-1-2 “主观唯心主义”",
+        "weight": 0.8
+      },
+      {
+        "code": "1-4-4-4",
+        "name": "-1-4-4-4 复仇主义",
+        "weight": 0.43
+      }
+    ],
+    "npc_name": "MaterialistMerchant_39",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": 0.0,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": -22.3,
+    "fatalism_vs_agency": -33.45
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": -6.45
+  },
+  "behavior_patterns": {
+    "risk_taking": -22.3,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 38.6
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "GAMBLE_IN_TAVERN",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 33.45,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "主观",
+      "他者",
+      "伪心",
+      "偶像",
+      "冲突",
+      "刺激",
+      "反应",
+      "复仇",
+      "大他者",
+      "奇迹",
+      "安歇",
+      "实践",
+      "庸俗",
+      "循环",
+      "恩典",
+      "欲望",
+      "理论",
+      "能量",
+      "观察",
+      "规律"
+    ]
+  }
+}

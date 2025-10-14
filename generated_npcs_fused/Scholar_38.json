@@ -1,0 +1,95 @@
+{
+  "identity": {
+    "primary_ism_code": "2-2-3-3",
+    "primary_ism_name": "2-2-3-3 理性唯灵论",
+    "equipped_isms": [
+      {
+        "code": "2-2-3-3",
+        "name": "2-2-3-3 理性唯灵论",
+        "weight": 1.0
+      },
+      {
+        "code": "1-4-4-3",
+        "name": "1-4-4-3 四重竞争主义",
+        "weight": 0.42
+      },
+      {
+        "code": "1-1-1-1",
+        "name": "1-1-1-1 科学独断论",
+        "weight": 0.45
+      }
+    ],
+    "npc_name": "Scholar_38",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": 0.0,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": -18.7,
+    "fatalism_vs_agency": -28.05
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": -22.5,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": -6.3
+  },
+  "behavior_patterns": {
+    "risk_taking": -18.7,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 8.4
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "CONDUCT_EXPERIMENTS",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "DEESCALATE_WITH_LOGIC"
+  },
+  "quest_preferences": {
+    "RESEARCH": 9.0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 28.05,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "个体",
+      "他者",
+      "偶然",
+      "冲突",
+      "刺激",
+      "反应",
+      "奇迹",
+      "安歇",
+      "实践",
+      "对抗",
+      "庸俗",
+      "循环",
+      "必然",
+      "时间",
+      "模式",
+      "物质",
+      "理性",
+      "理论",
+      "科学",
+      "竞争",
+      "能量",
+      "观察",
+      "规律",
+      "超验"
+    ]
+  }
+}

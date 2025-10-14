@@ -1,0 +1,5 @@
+# Ignore python cache files
+__pycache__/
+
+# Ignore generated NPC data files
+generated_npcs/
