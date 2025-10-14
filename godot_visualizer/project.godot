@@ -1,0 +1,26 @@
+; Godot Engine Project Configuration File.
+;
+; Please describe the project in the "description" field.
+; A custom "description" will be used as the description of the exported
+; project. All other fields are optional and can be removed.
+
+config_version=5
+
+[application]
+
+config/name="NPC Visualizer"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600
+window/size/window_width_override=800
+window/size/window_height_override=600
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
