@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "primary_ism_code": "1-3-2-2",
+    "primary_ism_name": "-1-3-2-2 现代犬儒主义",
+    "equipped_isms": [
+      {
+        "code": "1-3-2-2",
+        "name": "-1-3-2-2 现代犬儒主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1",
+        "name": "-2-4-3-4 逻辑反实在论",
+        "weight": 0.44
+      },
+      {
+        "code": "1-1-4-2",
+        "name": "-1-1-4-2 目的行为主义",
+        "weight": 0.45
+      }
+    ],
+    "npc_name": "CynicalGuard_28",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": 0.0,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": -18.9,
+    "fatalism_vs_agency": -28.35
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 10.0,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -18.9,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 30.0,
+    "materialism": 0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "SCAVENGE_OR_STEAL_FOOD",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 28.35,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "世界",
+      "他者",
+      "偶然",
+      "冲突",
+      "刺激",
+      "反实在",
+      "反应",
+      "大他者",
+      "奇迹",
+      "安歇",
+      "实践",
+      "对抗",
+      "循环",
+      "必然",
+      "恩典",
+      "时间",
+      "本真",
+      "模式",
+      "犬儒",
+      "理论",
+      "目的",
+      "能量",
+      "行为",
+      "观察",
+      "规律",
+      "逻辑实证"
+    ]
+  }
+}

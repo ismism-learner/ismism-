@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "primary_ism_code": "1-4-4-1",
+    "primary_ism_name": "-1-4-4-1 顺从主义",
+    "equipped_isms": [
+      {
+        "code": "1-4-4-1",
+        "name": "-1-4-4-1 顺从主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1-3-1-4",
+        "name": "1-3-1-4 唯梦论",
+        "weight": 0.62
+      },
+      {
+        "code": "1-2-1-1",
+        "name": "2-4-2-3 自然神论的实证主义",
+        "weight": 0.37
+      }
+    ],
+    "npc_name": "Guard_4",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": 0.0,
+    "altruism_vs_egoism": 0,
+    "tradition_vs_progress": -19.9,
+    "fatalism_vs_agency": -29.85
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": -15.0
+  },
+  "behavior_patterns": {
+    "risk_taking": -19.9,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0.0,
+    "materialism": 20.0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "DEFAULT_GREET",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 29.85,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "世界",
+      "中介",
+      "他者",
+      "伪心",
+      "偶然",
+      "冲突",
+      "刺激",
+      "反应",
+      "大他者",
+      "奇迹",
+      "安歇",
+      "实证",
+      "实践",
+      "对抗",
+      "庸俗",
+      "循环",
+      "必然",
+      "恩典",
+      "时间",
+      "梦",
+      "理论",
+      "能量",
+      "自然",
+      "观察",
+      "规律",
+      "顺从"
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "identity": {
+    "primary_ism_code": "3-3-2-1",
+    "primary_ism_name": "3-3-2-1 安放了的实存主义",
+    "equipped_isms": [
+      {
+        "code": "3-3-2-1",
+        "name": "3-3-2-1 安放了的实存主义",
+        "weight": 1.0
+      },
+      {
+        "code": "1",
+        "name": "-2-1-2-2 理念实在论",
+        "weight": 0.49
+      },
+      {
+        "code": "2-1-2-1",
+        "name": "-2-1-2-1 伦理智性主义",
+        "weight": 0.59
+      }
+    ],
+    "npc_name": "PhilosopherKing_40",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -10.000000000000002,
+    "altruism_vs_egoism": 23.599999999999998,
+    "tradition_vs_progress": 4.2,
+    "fatalism_vs_agency": -16.2
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -20.8,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0,
+    "materialism": 0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "OFFER_HELP_TO_STRANGERS",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 16.2,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "个体",
+      "中介",
+      "他者",
+      "冲突",
+      "善",
+      "大他者",
+      "安放",
+      "安歇",
+      "对抗",
+      "循环",
+      "整体",
+      "时间",
+      "本质",
+      "混沌",
+      "理念",
+      "生存",
+      "神人",
+      "诗性",
+      "部分"
+    ]
+  }
+}

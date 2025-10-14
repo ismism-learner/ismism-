@@ -1,0 +1,90 @@
+{
+  "identity": {
+    "primary_ism_code": "3-4-4-3",
+    "primary_ism_name": "-3-4-4-3 语言游戏",
+    "equipped_isms": [
+      {
+        "code": "3-4-4-3",
+        "name": "-3-4-4-3 语言游戏",
+        "weight": 1.0
+      },
+      {
+        "code": "2-1-2-1",
+        "name": "-2-1-2-1 伦理智性主义",
+        "weight": 0.61
+      },
+      {
+        "code": "1",
+        "name": "-2-1-2-2 理念实在论",
+        "weight": 0.66
+      }
+    ],
+    "npc_name": "PhilosopherKing_20",
+    "description_prompt": ""
+  },
+  "core_motivations": {
+    "order_vs_chaos": -9.999999999999998,
+    "altruism_vs_egoism": 24.4,
+    "tradition_vs_progress": 2.3,
+    "fatalism_vs_agency": -19.05
+  },
+  "worldview": {
+    "mysticism_vs_rationalism": 0,
+    "divinity_perception": "INDIFFERENT"
+  },
+  "social_profile": {
+    "sociability": 0,
+    "trust_level": 50,
+    "faction_loyalty": 0,
+    "conflict_stance": "MEDIATOR",
+    "hierarchy_acceptance": 0
+  },
+  "behavior_patterns": {
+    "risk_taking": -22.700000000000003,
+    "proactivity": 0,
+    "pragmatism_vs_idealism": 0,
+    "materialism": 0
+  },
+  "behavioral_scripts": {
+    "hunger_satisfaction": "DEFAULT_EAT",
+    "leisure_activity": "PURSUE_ROUTINE_HOBBY",
+    "social_interaction": "OFFER_HELP_TO_STRANGERS",
+    "conflict_resolution": "SEEK_PEACEFUL_RESOLUTION"
+  },
+  "quest_preferences": {
+    "RESEARCH": 0,
+    "DIPLOMACY": 0,
+    "EXPLORATION": 0,
+    "COMBAT": 19.05,
+    "COLLECTION": 0,
+    "PILGRIMAGE": 0,
+    "ESPIONAGE": 0,
+    "CONQUEST": 0,
+    "ALCHEMY": 0,
+    "RITUAL": 0,
+    "DEBATE": 0
+  },
+  "dialogue_cues": {
+    "keywords": [
+      "个体",
+      "中介",
+      "他者",
+      "冲突",
+      "善",
+      "大他者",
+      "安歇",
+      "对抗",
+      "循环",
+      "整体",
+      "时间",
+      "本质",
+      "混沌",
+      "现象学",
+      "理念",
+      "精神分析",
+      "解释学",
+      "语言游戏",
+      "部分"
+    ]
+  }
+}
