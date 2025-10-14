@@ -4,6 +4,7 @@ from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.economy import EconomyComponent
 from world_server.ecs.components.financial_component import FinancialComponent
+from world_server.ecs.components.hobby_component import HobbyComponent
 from world_server.resource_manager import ResourceManager
 import random
 
@@ -50,6 +51,12 @@ class NeedsSystem(System):
             idealism_change = needs_comp.needs['idealism']['change_per_hour']
             needs_comp.needs['idealism']['current'] = max(0, needs_comp.needs['idealism']['current'] + idealism_change)
 
+            # Update fulfillment
+            if 'fulfillment' in needs_comp.needs:
+                fulfillment_change = needs_comp.needs['fulfillment']['change_per_hour']
+                needs_comp.needs['fulfillment']['current'] = min(needs_comp.needs['fulfillment']['max'], needs_comp.needs['fulfillment']['current'] + fulfillment_change)
+
+
     def _evaluate_entity_needs(self, entity_id, locations):
         """Evaluates an individual entity's needs and sets a goal if necessary."""
         needs_comp = self.world.get_component(entity_id, NeedsComponent)
@@ -90,6 +97,28 @@ class NeedsSystem(System):
                 target_loc = affordable_locations[0] # Simplified
                 state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "SEEK_ENTERTAINMENT"}
                 return
+
+        # Fulfillment/Hobbies
+        if 'fulfillment' in needs_comp.needs and needs_comp.needs['fulfillment']['current'] > needs_comp.needs['fulfillment']['priority_threshold']:
+            hobby_comp = self.world.get_component(entity_id, HobbyComponent)
+            if hobby_comp and hobby_comp.interests:
+                # Find a hobby the NPC is interested in
+                # For now, just pick the one with the highest interest
+                top_hobby = max(hobby_comp.interests, key=hobby_comp.interests.get)
+
+                # Find a location for this hobby
+                # This is a simplified search logic
+                hobby_locations = [
+                    loc for loc in locations if (
+                        (loc.get('type') == 'HOBBY_LOCATION' and loc.get('hobby_type') == top_hobby) or
+                        (loc.get('type') == 'WORKPLACE' and loc.get('work_type') == top_hobby)
+                    )
+                ]
+
+                if hobby_locations:
+                    target_loc = random.choice(hobby_locations)
+                    state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "PURSUE_HOBBY", "hobby_id": top_hobby}
+                    return
 
         # --- New Financial Needs ---
 

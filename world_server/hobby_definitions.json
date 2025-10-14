@@ -1,0 +1,32 @@
+[
+  {
+    "hobby_id": "PAINTING",
+    "name": "绘画",
+    "location_types": ["WORKPLACE", "HOBBY_LOCATION"],
+    "work_type_match": "PAINTING"
+  },
+  {
+    "hobby_id": "CRAFTING",
+    "name": "手工",
+    "location_types": ["WORKPLACE", "HOBBY_LOCATION"],
+    "work_type_match": "CRAFTING"
+  },
+  {
+    "hobby_id": "ALCHEMY",
+    "name": "炼金",
+    "location_types": ["WORKPLACE", "HOBBY_LOCATION"],
+    "work_type_match": "ALCHEMY"
+  },
+  {
+    "hobby_id": "AUTOMATA",
+    "name": "机关术",
+    "location_types": ["WORKPLACE", "HOBBY_LOCATION"],
+    "work_type_match": "AUTOMATA"
+  },
+  {
+    "hobby_id": "EXERCISE",
+    "name": "运动",
+    "location_types": ["HOBBY_LOCATION"],
+    "hobby_location_type": "PARK"
+  }
+]

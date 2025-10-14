@@ -30,6 +30,12 @@ class NeedsComponent(Component):
             'max': 100,
             'change_per_hour': -0.1,
             'priority_threshold': 40
+            },
+            'fulfillment': {
+                'current': 0,
+                'max': 100,
+                'change_per_hour': 2,
+                'priority_threshold': 60
         }
     })
 

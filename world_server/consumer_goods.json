@@ -1,0 +1,58 @@
+[
+  {
+    "good_id": "AMATEUR_PAINTING",
+    "name": "业余画作",
+    "type": "ARTWORK",
+    "tier": 1,
+    "hobby": "PAINTING"
+  },
+  {
+    "good_id": "MASTERPIECE_PAINTING",
+    "name": "杰作画作",
+    "type": "ARTWORK",
+    "tier": 8,
+    "hobby": "PAINTING"
+  },
+  {
+    "good_id": "SIMPLE_POTTERY",
+    "name": "简单的陶器",
+    "type": "CRAFT",
+    "tier": 2,
+    "hobby": "CRAFTING"
+  },
+  {
+    "good_id": "ORNATE_VASE",
+    "name": "华丽的花瓶",
+    "type": "CRAFT",
+    "tier": 7,
+    "hobby": "CRAFTING"
+  },
+  {
+    "good_id": "WEAK_HEALING_POTION",
+    "name": "微弱的治疗药水",
+    "type": "POTION",
+    "tier": 3,
+    "hobby": "ALCHEMY"
+  },
+  {
+    "good_id": "POTION_OF_ETERNAL_YOUTH",
+    "name": "永生药水",
+    "type": "POTION",
+    "tier": 10,
+    "hobby": "ALCHEMY"
+  },
+  {
+    "good_id": "CLOCKWORK_TOY",
+    "name": "发条玩具",
+    "type": "GADGET",
+    "tier": 4,
+    "hobby": "AUTOMATA"
+  },
+  {
+    "good_id": "AUTONOMOUS_SCARECROW",
+    "name": "自走稻草人",
+    "type": "GADGET",
+    "tier": 9,
+    "hobby": "AUTOMATA"
+  }
+]

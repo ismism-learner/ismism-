@@ -83,14 +83,32 @@ class ActionSystem(System):
                     # Ideological influence can be handled here as well
                     state_comp.goal = "Wander"
 
-                elif purpose == "BUY_LUXURY_GOOD":
+                elif purpose == "PURSUE_HOBBY":
+                    hobby_id = state_comp.goal.get("hobby_id")
+                    if hobby_id and self.world.hobby_system:
+                        state_comp.action = f"Pursuing hobby: {hobby_id}"
+                        self.world.hobby_system.perform_hobby(entity_id, hobby_id)
+
+                        # Reduce fulfillment need
+                        if 'fulfillment' in needs_comp.needs:
+                            needs_comp.needs['fulfillment']['current'] = max(0, needs_comp.needs['fulfillment']['current'] - 50)
+
+                        # Hobby also reduces some stress
+                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 10)
+
+                    # For now, pursuing a hobby is a one-time action, then they wander off
+                    state_comp.goal = "Wander"
+
+                elif purpose == "BUY_LUXURY_GOOD" or purpose == "BUY_GOOD":
                     economy_comp = self.world.get_component(entity_id, EconomyComponent)
                     # For simplicity, let's assume a fixed cost for luxury goods
                     cost = 150
-                    state_comp.action = f"Buying {target_loc.get('produces')}"
+                    state_comp.action = f"Buying {target_loc.get('produces', 'goods')}"
                     if economy_comp.money >= cost:
                         economy_comp.money -= cost
                         needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 20) # Satisfaction
+                        if 'fulfillment' in needs_comp.needs:
+                             needs_comp.needs['fulfillment']['current'] = max(0, needs_comp.needs['fulfillment']['current'] - 30)
                     else:
                         # If they can't afford it, maybe try to withdraw from bank first?
                         # For now, just reset. This could be a future improvement.
