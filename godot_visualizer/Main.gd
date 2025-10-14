@@ -10,7 +10,7 @@ func _ready():
 	print("主场景已就绪，尝试连接到服务器...")
 	connect_to_server()
 
-func _process(delta):
+func _process(_delta):
 	if ws_client.get_ready_state() == WebSocketPeer.STATE_OPEN:
 		ws_client.poll()
 
