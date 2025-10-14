@@ -5,13 +5,14 @@ from world_server.ecs.components.position import PositionComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.economy import EconomyComponent
+from world_server.ecs.components.hobby_component import HobbyComponent
 from world_server.resource_manager import ResourceManager
 
 class ActionSystem(System):
     """
     Executes actions for entities when they reach their goal destination.
     """
-    def process(self, locations, *args, **kwargs):
+    def process(self, locations, consumer_goods, *args, **kwargs):
         entities_with_goals = self.world.get_entities_with_components(PositionComponent, StateComponent, NeedsComponent)
 
         for entity_id in entities_with_goals:
@@ -99,20 +100,34 @@ class ActionSystem(System):
                     # For now, pursuing a hobby is a one-time action, then they wander off
                     state_comp.goal = "Wander"
 
+                elif purpose == "SELL_GOODS":
+                    state_comp.action = f"Selling goods at {target_loc['name']}"
+                    sold = ResourceManager.sell_good_to_market(self.world, entity_id, target_loc, consumer_goods)
+                    if sold:
+                        # Maybe a small satisfaction boost
+                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 5)
+                    else:
+                        # Failed to sell (e.g., empty inventory), so just wander
+                        state_comp.action = "Confused (Nothing to sell)"
+                    # After selling one item, the NPC will wander off.
+                    # This prevents them from getting stuck in a sell loop.
+                    state_comp.goal = "Wander"
+
+
                 elif purpose == "BUY_LUXURY_GOOD" or purpose == "BUY_GOOD":
-                    economy_comp = self.world.get_component(entity_id, EconomyComponent)
-                    # For simplicity, let's assume a fixed cost for luxury goods
-                    cost = 150
-                    state_comp.action = f"Buying {target_loc.get('produces', 'goods')}"
-                    if economy_comp.money >= cost:
-                        economy_comp.money -= cost
-                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 20) # Satisfaction
+                    state_comp.action = f"Shopping at {target_loc['name']}"
+                    bought = ResourceManager.buy_good_from_market(self.world, entity_id, target_loc, consumer_goods)
+
+                    if bought:
+                        state_comp.action = "Purchased a luxury good"
+                        # Satisfaction from buying something nice
+                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 20)
                         if 'fulfillment' in needs_comp.needs:
                              needs_comp.needs['fulfillment']['current'] = max(0, needs_comp.needs['fulfillment']['current'] - 30)
                     else:
-                        # If they can't afford it, maybe try to withdraw from bank first?
-                        # For now, just reset. This could be a future improvement.
+                        # Failed to buy (e.g., can't afford, market empty)
                         state_comp.action = "Window Shopping"
+
                     state_comp.goal = "Wander"
 
                 # After completing an action, the goal is often reset

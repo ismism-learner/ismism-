@@ -112,5 +112,12 @@
     "hobby_type": "PARK",
     "position": { "x": 450, "y": 450 },
     "radius": 50
+  },
+  {
+    "name": "中央市场",
+    "type": "MARKETPLACE",
+    "position": { "x": 300, "y": 300 },
+    "radius": 40,
+    "inventory": {}
   }
 ]

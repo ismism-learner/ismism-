@@ -7,9 +7,12 @@ class HobbySystem(System):
     """
     Manages the logic for NPCs performing hobbies and producing goods.
     """
-    def __init__(self, world, consumer_goods_def):
-        super().__init__(world)
+    def __init__(self, consumer_goods_def):
+        super().__init__()
         self.consumer_goods_def = consumer_goods_def
+
+    def process(self, *args, **kwargs):
+        pass
 
     def perform_hobby(self, entity_id, hobby_id):
         """

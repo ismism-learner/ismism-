@@ -108,7 +108,7 @@ class Server:
 
         # Instantiate and register systems
         self.ecs_world.tech_system = TechnologySystem() # Attach for global access
-        self.ecs_world.hobby_system = HobbySystem(self.ecs_world, self.consumer_goods)
+        self.ecs_world.hobby_system = HobbySystem(self.consumer_goods)
 
         self.ecs_world.add_system(NeedsSystem())
         self.ecs_world.add_system(self.ecs_world.hobby_system)

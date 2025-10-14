@@ -2,9 +2,11 @@ from ..world import World
 from ..components.state import StateComponent
 from ..components.position import PositionComponent
 from ..components.needs import NeedsComponent
-from ...world_server.resource_manager import ResourceManager
+from world_server.resource_manager import ResourceManager
+from ..system import System
 
-class TechnologySystem:
+
+class TechnologySystem(System):
     """
     Manages the global technology level of the world.
     - Tracks technology points for different fields (e.g., Alchemy, Automata).

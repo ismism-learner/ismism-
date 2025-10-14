@@ -5,8 +5,10 @@ from ..components.state import StateComponent
 from ..components.position import PositionComponent
 from ..components.economy import EconomyComponent
 from ..components.financial_component import FinancialComponent
+from ..system import System
 
-class BankingSystem:
+
+class BankingSystem(System):
     """
     Handles all banking and financial activities for NPCs.
     - Manages loans, deposits, and withdrawals.
