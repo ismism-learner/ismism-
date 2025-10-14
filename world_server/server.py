@@ -14,6 +14,18 @@ class Server:
         self._load_interactions()
         self._setup_world()
 
+    def _load_locations(self):
+        """加载所有可能的地点"""
+        locations_path = "world_server/locations.json"
+        try:
+            with open(locations_path, 'r', encoding='utf-8') as f:
+                self.world.current_scene.locations = json.load(f)
+            print(f"成功加载 {len(self.world.current_scene.locations)} 个地点。")
+        except FileNotFoundError:
+            print(f"错误: 地点文件 '{locations_path}' 未找到。")
+        except json.JSONDecodeError:
+            print(f"错误: 地点文件 '{locations_path}' 格式无效。")
+
     def _load_interactions(self):
         """加载所有可能的互动行为"""
         interactions_path = "world_server/interactions.json"
@@ -31,12 +43,13 @@ class Server:
         starting_scene = Scene("MainWorld", "The main world space for all NPCs.")
         self.world.add_scene(starting_scene)
         self.world.set_current_scene("MainWorld")
+        self._load_locations() # 加载地点
         self._spawn_all_npcs()
         print("世界服务器初始化完成，所有NPC已加载。")
 
     def _spawn_all_npcs(self):
         """加载所有NPC数据并将其添加到世界中"""
-        npc_dir = "../generated_npcs_final/"
+        npc_dir = "generated_npcs_final/"
         if not os.path.exists(npc_dir):
             print(f"错误: NPC目录 '{npc_dir}' 不存在。")
             return
@@ -93,7 +106,7 @@ class Server:
                 # 每个tick都执行思考逻辑
                 for entity in all_entities:
                     if isinstance(entity, NPC):
-                        entity.think(all_entities, self.interactions)
+                        entity.think(all_entities, self.interactions, self.world.current_scene.locations)
 
             # 3. 准备要发送的状态数据
             world_state = self.get_world_state()

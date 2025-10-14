@@ -67,16 +67,16 @@ class NPC(Entity):
             }
         }
 
-    def think(self, all_entities, interactions):
+    def think(self, all_entities, interactions, locations):
         """NPC的思考/行动逻辑，现在由需求和互动驱动"""
         # 1. 检查并处理互动
         self.evaluate_and_initiate_interaction(all_entities, interactions)
 
         # 2. 评估需求并设定目标
-        self.evaluate_needs()
+        self.evaluate_needs(locations)
 
         # 3. 根据当前目标执行行动
-        self.execute_action()
+        self.execute_action(locations)
 
     def get_affinity(self, other_npc_id):
         """安全地获取与另一个NPC的亲和度"""
@@ -212,51 +212,115 @@ class NPC(Entity):
                 pass
 
 
-    def evaluate_needs(self):
+    def evaluate_needs(self, locations):
         """评估自身需求，设定最优先的目标"""
-        # Tier 3 (Real) 需求优先于一切
-        if self.desire['real']['rupture'] > 50 and self.desire['real']['source_of_trauma']: # 创伤阈值
+        # 0. 如果当前目标是前往某地，则暂时不重新评估，除非需求更紧急
+        if isinstance(self.current_goal, dict) and self.current_goal.get("type") == "GO_TO_LOCATION":
+            # (在未来，这里可以添加逻辑，例如，如果突然受到攻击，可以中断寻路)
+            return
+
+        # 1. Tier 3 (Real) 需求优先于一切
+        if self.desire['real']['rupture'] > 50 and self.desire['real']['source_of_trauma']:
             self.current_goal = "REPLACE_SOURCE_OF_TRAUMA"
             return
 
-        # Tier 1 需求优先
-        if self.current_goal == "FLEE_FROM_THREAT": # 如果正在逃跑，暂时不考虑其他需求
-            return
-        if self.needs['energy']['current'] < self.needs['energy']['priority_threshold']:
-            self.current_goal = "REST"
-            return
-        if self.needs['hunger']['current'] > self.needs['hunger']['priority_threshold']:
-            self.current_goal = "SATISFY_HUNGER"
+        # 2. Tier 1 (Physiological) 需求优先
+        if self.current_goal == "FLEE_FROM_THREAT":
             return
 
-        # Tier 2 需求
+        # 检查饥饿
+        if self.needs['hunger']['current'] > self.needs['hunger']['priority_threshold']:
+            food_locations = [loc for loc in locations if loc.get('type') == 'FOOD_SOURCE']
+            if food_locations:
+                closest_loc = min(food_locations, key=lambda loc: ((self.position['x'] - loc['position']['x'])**2 + (self.position['y'] - loc['position']['y'])**2)**0.5)
+                self.current_goal = {"type": "GO_TO_LOCATION", "target_location": closest_loc, "purpose": "SATISFY_HUNGER"}
+                return
+
+        # 检查精力
+        if self.needs['energy']['current'] < self.needs['energy']['priority_threshold']:
+            shelter_locations = [loc for loc in locations if loc.get('type') == 'SHELTER']
+            if shelter_locations:
+                closest_loc = min(shelter_locations, key=lambda loc: ((self.position['x'] - loc['position']['x'])**2 + (self.position['y'] - loc['position']['y'])**2)**0.5)
+                self.current_goal = {"type": "GO_TO_LOCATION", "target_location": closest_loc, "purpose": "REST"}
+                return
+
+        # 3. Tier 2 (Societal/Ideological) 需求
+        # 检查工作需求 (作为一种特殊的demand)
+        if "WORK" in self.demands:
+             work_locations = [loc for loc in locations if loc.get('type') == 'WORKPLACE']
+             if work_locations:
+                # 为了简单起见，我们让他们随机选一个工作地点，而不是最近的
+                target_loc = random.choice(work_locations)
+                self.current_goal = {"type": "GO_TO_LOCATION", "target_location": target_loc, "purpose": "WORK"}
+                return
+
         if self.needs['idealism']['current'] < self.needs['idealism']['priority_threshold']:
             self.current_goal = "PONDER_PHILOSOPHICAL_QUESTIONS"
             return
 
-        # 如果没有紧急需求，并且当前没有长期目标，则从demands中选一个
-        if self.current_goal in ["Wander", "REST", "SATISFY_HUNGER", "FLEE_FROM_THREAT"]:
-            if self.demands:
-                self.current_goal = random.choice(self.demands)
-            else:
+        # 4. 如果没有紧急需求，并且当前目标是可中断的，则从demands中选一个或游荡
+        if isinstance(self.current_goal, str) and self.current_goal in ["Wander", "Idle"]:
+             # 过滤掉WORK，因为它已经被特殊处理了
+             other_demands = [d for d in self.demands if d != "WORK"]
+             if other_demands:
+                self.current_goal = random.choice(other_demands)
+             else:
                 self.current_goal = "Wander"
 
-    def execute_action(self):
+    def execute_action(self, locations):
         """根据当前目标(goal)决定具体行动(action)和移动"""
         move_x, move_y = 0, 0
         speed = 2
 
-        # --- Tier 1 Actions ---
-        if self.current_goal == "SATISFY_HUNGER":
-            self.current_action = "Seeking Food"
+        # --- 新增：基于地点的行动逻辑 ---
+        if isinstance(self.current_goal, dict) and self.current_goal.get("type") == "GO_TO_LOCATION":
+            target_loc = self.current_goal["target_location"]
+            purpose = self.current_goal["purpose"]
+            target_pos = target_loc["position"]
+            dist_to_target = ((self.position['x'] - target_pos['x'])**2 + (self.position['y'] - target_pos['y'])**2)**0.5
+
+            # 如果已经到达地点
+            if dist_to_target < target_loc["radius"]:
+                if purpose == "SATISFY_HUNGER":
+                    self.current_action = "Eating"
+                    self.needs['hunger']['current'] = max(0, self.needs['hunger']['current'] - 2) # 在地点吃饭恢复速度更快
+                    if self.needs['hunger']['current'] <= 0:
+                        self.current_goal = "Wander" # 需求满足，重置目标
+                elif purpose == "REST":
+                    self.current_action = "Sleeping"
+                    self.needs['energy']['current'] = min(self.needs['energy']['max'], self.needs['energy']['current'] + 2.5) # 在地点休息恢复速度更快
+                    if self.needs['energy']['current'] >= self.needs['energy']['max']:
+                        self.current_goal = "Wander" # 需求满足，重置目标
+                elif purpose == "WORK":
+                    work_type = target_loc.get("work_type", "Working")
+                    self.current_action = f"{work_type}"
+                    self.needs['energy']['current'] = max(0, self.needs['energy']['current'] - 0.2) # 工作消耗精力
+                    self.needs['idealism']['current'] = min(self.needs['idealism']['max'], self.needs['idealism']['current'] + 0.05) # 工作带来成就感
+                    # 工作一段时间后就离开
+                    if random.random() < 0.03:
+                        self.current_goal = "Wander"
+
+            # 如果还没到，就往那边走
+            else:
+                self.current_action = f"Going to {target_loc['name']}"
+                # 计算移动方向
+                dx = target_pos['x'] - self.position['x']
+                dy = target_pos['y'] - self.position['y']
+                if dist_to_target > 0:
+                    move_x = (dx / dist_to_target) * speed
+                    move_y = (dy / dist_to_target) * speed
+
+        # --- 旧的抽象行动逻辑 (保留用于其他类型的目标) ---
+        elif self.current_goal == "SATISFY_HUNGER": # 作为找不到地点时的后备方案
+            self.current_action = "Foraging for food" # 改为更明确的动作
             move_x, move_y = random.choice([-speed, speed]), random.choice([-speed, speed])
-            self.needs['hunger']['current'] -= 0.1
+            self.needs['hunger']['current'] -= 0.05 # 野外觅食效率低
             if self.needs['hunger']['current'] <= 0:
                 self.current_goal = "Wander"
 
-        elif self.current_goal == "REST":
-            self.current_action = "Resting"
-            self.needs['energy']['current'] += 0.2
+        elif self.current_goal == "REST": # 作为找不到地点时的后备方案
+            self.current_action = "Resting wherever possible"
+            self.needs['energy']['current'] += 0.1 # 随地休息效率低
             if self.needs['energy']['current'] >= self.needs['energy']['max']:
                 self.current_goal = "Wander"
 

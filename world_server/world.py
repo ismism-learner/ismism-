@@ -29,6 +29,7 @@ class Scene:
         self.name = name
         self.description = description
         self.entities = [] # 存放该场景中的所有实体 (NPC, 物品等)
+        self.locations = [] # 存放该场景中的所有特殊地点 (POIs)
 
     def add_entity(self, entity):
         """向场景中添加一个实体"""

@@ -1,0 +1,40 @@
+[
+  {
+    "name": "镇中心酒馆",
+    "type": "FOOD_SOURCE",
+    "position": { "x": 150, "y": 450 },
+    "radius": 30
+  },
+  {
+    "name": "河边旅店",
+    "type": "SHELTER",
+    "position": { "x": 250, "y": 100 },
+    "radius": 25
+  },
+  {
+    "name": "城南农场",
+    "type": "WORKPLACE",
+    "work_type": "FARMING",
+    "position": { "x": 400, "y": 550 },
+    "radius": 40
+  },
+  {
+    "name": "矿洞入口",
+    "type": "WORKPLACE",
+    "work_type": "MINING",
+    "position": { "x": 700, "y": 300 },
+    "radius": 25
+  },
+  {
+    "name": "伐木工棚屋",
+    "type": "SHELTER",
+    "position": { "x": 650, "y": 80 },
+    "radius": 20
+  },
+  {
+    "name": "市场摊位",
+    "type": "FOOD_SOURCE",
+    "position": { "x": 200, "y": 300 },
+    "radius": 20
+  }
+]
