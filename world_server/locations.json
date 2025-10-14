@@ -52,5 +52,65 @@
     "radius": 20,
     "cost": 5,
     "ideological_influence": { "idealism": -5, "rupture": 1 }
+  },
+  {
+    "name": "中央银行",
+    "type": "CENTRAL_BANK",
+    "position": { "x": 400, "y": 300 },
+    "radius": 30,
+    "cash_reserves": 1000000
+  },
+  {
+    "name": "第一商业银行",
+    "type": "COMMERCIAL_BANK",
+    "position": { "x": 300, "y": 350 },
+    "radius": 25,
+    "cash_reserves": 50000
+  },
+  {
+    "name": "第二商业银行",
+    "type": "COMMERCIAL_BANK",
+    "position": { "x": 500, "y": 350 },
+    "radius": 25,
+    "cash_reserves": 50000
+  },
+  {
+    "name": "工匠作坊",
+    "type": "WORKPLACE",
+    "work_type": "CRAFTING",
+    "produces": "LUXURY_GOOD",
+    "position": { "x": 100, "y": 200 },
+    "radius": 20
+  },
+  {
+    "name": "艺术画廊",
+    "type": "WORKPLACE",
+    "work_type": "PAINTING",
+    "produces": "ARTWORK",
+    "position": { "x": 500, "y": 200 },
+    "radius": 20
+  },
+  {
+    "name": "炼金术士实验室",
+    "type": "WORKPLACE",
+    "work_type": "ALCHEMY",
+    "produces": "ALCHEMY_KNOWLEDGE",
+    "position": { "x": 700, "y": 150 },
+    "radius": 25
+  },
+  {
+    "name": "机关术工坊",
+    "type": "WORKPLACE",
+    "work_type": "AUTOMATA",
+    "produces": "AUTOMATA_BLUEPRINT",
+    "position": { "x": 700, "y": 500 },
+    "radius": 25
+  },
+  {
+    "name": "城市公园",
+    "type": "HOBBY_LOCATION",
+    "hobby_type": "PARK",
+    "position": { "x": 450, "y": 450 },
+    "radius": 50
   }
 ]

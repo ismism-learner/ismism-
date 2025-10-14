@@ -1,0 +1,23 @@
+[
+  {
+    "action_id": "PROTEST_MARCH",
+    "description": "A public demonstration to express dissatisfaction with a specific issue.",
+    "trigger_conditions": ["high_collective_grievance", "low_public_order"],
+    "required_ism_keywords": ["rebellion", "confrontation", "rupture"],
+    "effects": ["decreases_public_order", "increases_ideological_pressure"]
+  },
+  {
+    "action_id": "COLLECTIVE_PRODUCTION",
+    "description": "Members of a group work together on a large-scale project.",
+    "trigger_conditions": ["has_practice_unit", "low_resources"],
+    "required_ism_keywords": ["cooperation", "production", "collective"],
+    "effects": ["generates_resources", "increases_group_cohesion"]
+  },
+  {
+    "action_id": "PHILOSOPHY_SALON",
+    "description": "A gathering to discuss and propagate the group's core ideology.",
+    "trigger_conditions": ["high_ideological_fervor"],
+    "required_ism_keywords": ["philosophy", "discussion", "education"],
+    "effects": ["spreads_ism", "increases_relationship_affinity"]
+  }
+]

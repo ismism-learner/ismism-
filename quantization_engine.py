@@ -1,135 +1,69 @@
 import json
-import copy
 
-def get_default_npc_parameters():
+class QuantizationEngine:
     """
-    Returns a deep copy of the default NPC parameter structure.
+    Calculates the philosophical axes scores for a given ism ID based on a set of rules.
     """
-    return {
-        "identity": {
-            "primary_ism_code": "",
-            "primary_ism_name": "",
-            "equipped_isms": [], # List of {"code": "x", "name": "y", "weight": z}
-            "npc_name": "",
-            "description_prompt": ""
-        },
-        "core_motivations": { "order_vs_chaos": 0, "altruism_vs_egoism": 0, "tradition_vs_progress": 0, "fatalism_vs_agency": 0 },
-        "worldview": { "mysticism_vs_rationalism": 0, "divinity_perception": "INDIFFERENT" },
-        "social_profile": { "sociability": 0, "trust_level": 50, "faction_loyalty": 0, "conflict_stance": "OBSERVER", "hierarchy_acceptance": 0 },
-        "behavior_patterns": { "risk_taking": 0, "proactivity": 0, "pragmatism_vs_idealism": 0, "materialism": 0 },
-        "behavioral_scripts": {
-            "hunger_satisfaction": "DEFAULT_EAT",
-            "leisure_activity": "DEFAULT_WANDER",
-            "social_interaction": "DEFAULT_GREET",
-            "conflict_resolution": "DEFAULT_FLEE"
-        },
-        "quest_preferences": { "RESEARCH": 0, "DIPLOMACY": 0, "EXPLORATION": 0, "COMBAT": 0, "COLLECTION": 0, "PILGRIMAGE": 0, "ESPIONAGE": 0, "CONQUEST": 0, "ALCHEMY": 0, "RITUAL": 0, "DEBATE": 0 },
-        "dialogue_cues": { "keywords": [] }
-    }
+    def __init__(self, rules_path='rules.json'):
+        """
+        Initializes the engine by loading the rules from the specified path.
+        """
+        with open(rules_path, 'r', encoding='utf-8') as f:
+            self.rules = json.load(f)
+        self.axes = self.rules.get('axes', {})
 
-def load_rules(filepath="rules.json"):
-    """
-    Loads the quantization rules from a JSON file.
-    """
-    with open(filepath, 'r', encoding='utf-8') as f:
-        return json.load(f)
+    def _normalize(self, value, axis_values):
+        """
+        Normalizes a calculated score to be within the [-1.0, 1.0] range.
+        The normalization is based on the theoretical min/max possible score for that axis.
+        """
+        min_val = sum(v for v in axis_values if v < 0) * 4
+        max_val = sum(v for v in axis_values if v > 0) * 4
 
-def apply_rules_fusion(weighted_isms, rules):
-    """
-    Applies a set of rules to a weighted list of isms to generate a single,
-    fused set of NPC parameters.
+        if value == 0:
+            return 0.0
+        if value > 0:
+            return round(value / max_val, 4) if max_val != 0 else 0.0
+        else: # value < 0
+            return round(value / abs(min_val), 4) if min_val != 0 else 0.0
 
-    Args:
-        weighted_isms (list): A list of dictionaries, where each dict is
-                              {"ism": ism_data, "weight": float}.
-        rules (list): A list of rule objects loaded from rules.json.
 
-    Returns:
-        dict: The fully calculated and fused NPC parameter space.
-    """
-    final_npc_params = get_default_npc_parameters()
+    def calculate_scores(self, ism_id):
+        """
+        Calculates the scores for a given ism_id across all defined philosophical axes.
 
-    # --- Populate Identity ---
-    if weighted_isms:
-        primary_ism = weighted_isms[0]["ism"]
-        final_npc_params["identity"]["primary_ism_code"] = primary_ism.get("code", "N/A")
-        final_npc_params["identity"]["primary_ism_name"] = primary_ism.get("name", "N/A")
-        final_npc_params["identity"]["equipped_isms"] = [
-            {"code": item["ism"].get("code"), "name": item["ism"].get("name"), "weight": item.get("weight")}
-            for item in weighted_isms
-        ]
+        Args:
+            ism_id (str): The ID of the ism, e.g., "4-1-2-2".
 
-    all_keywords = set()
+        Returns:
+            dict: A dictionary containing the calculated score for each axis.
+        """
+        scores = {}
+        # Split the ID string "4-1-2-2" into a list of its numeric parts ['4', '1', '2', '2']
+        parts = ism_id.split('-')
 
-    # --- Fusion Logic ---
-    for item in weighted_isms:
-        ism_data = item["ism"]
-        weight = item["weight"]
+        for axis_name, axis_data in self.axes.items():
+            axis_values = {k: v for k, v in axis_data['values'].items()}
 
-        # Collect all keywords for dialogue cues
-        for scope in ["field_theory", "ontology", "epistemology", "teleology"]:
-            all_keywords.update(ism_data.get(scope, []))
+            # Sum the contribution of each part of the ID
+            total_score = sum(axis_values.get(part, 0) for part in parts)
 
-        # Apply rules for this specific ism
-        for rule in rules:
-            conditions_met = True
-            for clause in rule["conditions"]["clauses"]:
-                scope = clause["scope"]
-                keyword = clause["keyword"]
+            # Normalize the score to fit within the standard [-1.0, 1.0] range
+            normalized_score = self._normalize(total_score, axis_values.values())
+            scores[axis_name] = normalized_score
 
-                if scope in ["field_theory", "ontology", "epistemology", "teleology"]:
-                    if keyword not in ism_data.get(scope, []): conditions_met = False; break
-                elif scope == "code" and not ism_data.get("code", "").startswith(keyword): conditions_met = False; break
-                elif scope == "name" and keyword not in ism_data.get("name", ""): conditions_met = False; break
+        return scores
 
-            if conditions_met:
-                for action in rule["actions"]:
-                    param_path = action["param"].split('.')
-                    op = action["operation"]
-                    target = final_npc_params
-                    for key in param_path[:-1]: target = target[key]
-                    final_key = param_path[-1]
-
-                    if op == "add" or op == "add_weight":
-                        # Apply weight only to numerical additions
-                        weighted_value = action["value"] * weight
-                        target[final_key] += weighted_value
-                    elif op == "set":
-                        # For "set", the last one applied wins, weight is ignored.
-                        # This is a design choice for definitive actions.
-                        target[final_key] = action["value"]
-
-    final_npc_params["dialogue_cues"]["keywords"] = sorted(list(all_keywords))
-    return final_npc_params
-
+# --- Example Usage ---
 if __name__ == '__main__':
-    # ================== Example Usage for Fusion Engine ==================
-    print("--- Testing the new Fusion Engine ---")
+    engine = QuantizationEngine()
 
-    # 1. Mock "ism" data that would be loaded by the parser
-    # A noble scholar who is also a cynic and a bit of a slob
-    ethical_intellectualism = {"code": "2-1-2-1", "name": "伦理智性主义", "field_theory": ["本质"], "ontology": ["善"], "epistemology": ["理论"], "teleology": ["安歇"]}
-    cynicism = {"code": "2-1-3-4", "name": "犬儒主义", "field_theory": ["数"], "ontology": ["犬儒"], "epistemology": ["实践"], "teleology": ["安歇"]}
-    vulgarism = {"code": "1-4-4-2", "name": "粗俗主义", "field_theory": ["庸俗"], "ontology": ["粗俗"], "epistemology": ["实践"], "teleology": ["冲突"]}
+    # --- Test Cases ---
+    test_isms = ["1-1-1-1", "2-2-2-2", "3-3-3-3", "4-4-4-4", "4-1-2-2"]
 
-    # 2. Define the NPC's "equipped" isms with weights
-    npc_composition = [
-        {"ism": ethical_intellectualism, "weight": 1.0}, # Primary
-        {"ism": cynicism, "weight": 0.6},
-        {"ism": vulgarism, "weight": 0.4}
-    ]
-
-    # 3. Load the rules
-    try:
-        loaded_rules = load_rules()
-        print(f"Successfully loaded {len(loaded_rules)} rules.")
-    except FileNotFoundError:
-        print("Error: rules.json not found.")
-        exit()
-
-    # 4. Apply the rules to generate the fused NPC
-    fused_npc = apply_rules_fusion(npc_composition, loaded_rules)
-
-    # 5. Print the result
-    print("\n--- Generated Fused NPC Parameters ---")
-    print(json.dumps(fused_npc, indent=2, ensure_ascii=False))
+    for ism in test_isms:
+        calculated_scores = engine.calculate_scores(ism)
+        print(f"--- Scores for Ism ID: {ism} ---")
+        for axis, score in calculated_scores.items():
+            print(f"  - {axis}: {score}")
+        print("\\n")

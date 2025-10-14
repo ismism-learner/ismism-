@@ -54,11 +54,23 @@ class ActionSystem(System):
 
                 elif purpose == "WORK":
                     economy_comp = self.world.get_component(entity_id, EconomyComponent)
-                    state_comp.action = f"{target_loc.get('work_type', 'Working')}"
-                    ResourceManager.produce(target_loc, locations)
+                    work_type = target_loc.get('work_type', 'Working')
+                    state_comp.action = f"{work_type}"
+
+                    # Produce resources, now passing the world object to get tech bonuses
+                    ResourceManager.produce(target_loc, self.world)
+
+                    # Gain money and affect needs
+                    economy_comp.money += 1
                     needs_comp.needs['energy']['current'] = max(0, needs_comp.needs['energy']['current'] - 0.2)
                     needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + 0.3)
-                    economy_comp.money += 1
+
+                    # --- Contribute to Technology ---
+                    if work_type == "ALCHEMY":
+                        self.world.tech_system.add_tech_points(self.world, "alchemy", 1)
+                    elif work_type == "AUTOMATA":
+                        self.world.tech_system.add_tech_points(self.world, "automata", 1)
+
                     if random.random() < 0.03:
                         state_comp.goal = "Wander"
 
@@ -69,6 +81,70 @@ class ActionSystem(System):
                     economy_comp.money -= cost
                     needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 50)
                     # Ideological influence can be handled here as well
+                    state_comp.goal = "Wander"
+
+                elif purpose == "PURSUE_HOBBY":
+                    hobby_id = state_comp.goal.get("hobby_id")
+                    if hobby_id and self.world.hobby_system:
+                        state_comp.action = f"Pursuing hobby: {hobby_id}"
+                        self.world.hobby_system.perform_hobby(entity_id, hobby_id)
+
+                        # Reduce fulfillment need
+                        if 'fulfillment' in needs_comp.needs:
+                            needs_comp.needs['fulfillment']['current'] = max(0, needs_comp.needs['fulfillment']['current'] - 50)
+
+                        # Hobby also reduces some stress
+                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 10)
+
+                    # For now, pursuing a hobby is a one-time action, then they wander off
+                    state_comp.goal = "Wander"
+
+                elif purpose == "BUY_LUXURY_GOOD" or purpose == "BUY_GOOD":
+                    economy_comp = self.world.get_component(entity_id, EconomyComponent)
+                    # For simplicity, let's assume a fixed cost for luxury goods
+                    cost = 150
+                    state_comp.action = f"Buying {target_loc.get('produces', 'goods')}"
+                    if economy_comp.money >= cost:
+                        economy_comp.money -= cost
+                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 20) # Satisfaction
+                        if 'fulfillment' in needs_comp.needs:
+                             needs_comp.needs['fulfillment']['current'] = max(0, needs_comp.needs['fulfillment']['current'] - 30)
+                    else:
+                        # If they can't afford it, maybe try to withdraw from bank first?
+                        # For now, just reset. This could be a future improvement.
+                        state_comp.action = "Window Shopping"
+                    state_comp.goal = "Wander"
+
+                elif purpose == "SELL_GOODS":
+                    state_comp.action = "Selling Goods"
+                    hobby_comp = self.world.get_component(entity_id, HobbyComponent)
+                    economy_comp = self.world.get_component(entity_id, EconomyComponent)
+
+                    if hobby_comp and hobby_comp.inventory:
+                        # Sell the first item in the inventory
+                        item_to_sell = hobby_comp.inventory.pop(0)
+                        sale_price = item_to_sell.get('base_value', 10) # Simplified pricing
+                        economy_comp.money += sale_price
+
+                        # Add item to the marketplace's inventory
+                        if 'inventory' not in target_loc:
+                            target_loc['inventory'] = {}
+                        item_name = item_to_sell['name']
+                        target_loc['inventory'][item_name] = target_loc['inventory'].get(item_name, 0) + 1
+
+                        print(f"INFO: {entity_id} sold {item_name} for {sale_price} gold.")
+
+                        # --- HOOK FOR IMAGINARY DESIRE ---
+                        # If the sale was successful, it might trigger a new desire
+                        if hasattr(self.world, 'desire_system'):
+                            trigger_event = {
+                                'type': 'SOLD_GOODS',
+                                'hobby_id': item_to_sell.get('hobby_origin'),
+                                'value': sale_price
+                            }
+                            self.world.desire_system.generate_imaginary_aspiration(entity_id, trigger_event)
+
+                    # Whether they sold something or not, their goal is complete.
                     state_comp.goal = "Wander"
 
                 # After completing an action, the goal is often reset

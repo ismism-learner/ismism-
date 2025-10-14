@@ -18,12 +18,19 @@ from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.economy import EconomyComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.relationship import RelationshipComponent
+from world_server.ecs.components.financial_component import FinancialComponent
+from world_server.ecs.components.hobby_component import HobbyComponent
 
 # --- System Imports ---
 from world_server.ecs.systems.needs_system import NeedsSystem
 from world_server.ecs.systems.interaction_system import InteractionSystem
 from world_server.ecs.systems.movement_system import MovementSystem
 from world_server.ecs.systems.action_system import ActionSystem
+from world_server.ecs.systems.banking_system import BankingSystem
+from world_server.ecs.systems.technology_system import TechnologySystem
+from world_server.ecs.systems.hobby_system import HobbySystem
+from world_server.ecs.systems.desire_system import DesireSystem
+from world_server.ecs.systems.collective_action_system import CollectiveActionSystem
 
 
 class Server:
@@ -32,16 +39,33 @@ class Server:
         self.clients = set()
         self.interactions = []
         self.locations = []
-        self._load_interactions()
+        self.consumer_goods = []
+        self.hobby_definitions = []
+        self.relationship_types = {}
+        self.collective_actions = []
+        self.all_isms_data = [] # To store the new quantified ism data
+        self._load_game_definitions()
         self._setup_world()
 
-    def _load_locations(self):
-        """加载所有可能的地点，并为其初始化状态和库存"""
+    def _load_game_definitions(self):
+        """Loads all static data files like locations, interactions, goods, etc."""
+        # Load the new quantified ism data
+        isms_path = "isms_final.json"
+        try:
+            with open(isms_path, 'r', encoding='utf-8') as f:
+                self.all_isms_data = json.load(f)
+            print(f"成功加载并量化 {len(self.all_isms_data)} 个主义。")
+        except FileNotFoundError:
+            print(f"错误: 主义数据文件 '{isms_path}' 未找到。请确保已运行 excel_parser.py。")
+            self.all_isms_data = []
+        except json.JSONDecodeError:
+            print(f"错误: 主义数据文件 '{isms_path}' 格式无效。")
+
+        # Load locations
         locations_path = "world_server/locations.json"
         try:
             with open(locations_path, 'r', encoding='utf-8') as f:
                 locations_data = json.load(f)
-
             for i, loc in enumerate(locations_data):
                 loc['id'] = f"loc_{i}"
                 loc['state'] = "active"
@@ -55,17 +79,14 @@ class Server:
                     elif loc.get('work_type') == 'MINING':
                         loc['produces'] = "ORE"
                         loc['produces_rate'] = 3
-
             self.locations = locations_data
             print(f"成功加载并初始化 {len(self.locations)} 个地点。")
-
         except FileNotFoundError:
             print(f"错误: 地点文件 '{locations_path}' 未找到。")
         except json.JSONDecodeError:
             print(f"错误: 地点文件 '{locations_path}' 格式无效。")
 
-    def _load_interactions(self):
-        """加载所有可能的互动行为"""
+        # Load interactions
         interactions_path = "world_server/interactions.json"
         try:
             with open(interactions_path, 'r', encoding='utf-8') as f:
@@ -76,60 +97,139 @@ class Server:
         except json.JSONDecodeError:
             print(f"错误: 互动文件 '{interactions_path}' 格式无效。")
 
+        # Load consumer goods
+        goods_path = "world_server/consumer_goods.json"
+        try:
+            with open(goods_path, 'r', encoding='utf-8') as f:
+                self.consumer_goods = json.load(f)
+            print(f"成功加载 {len(self.consumer_goods)} 个消费品。")
+        except FileNotFoundError:
+            print(f"错误: 消费品文件 '{goods_path}' 未找到。")
+        except json.JSONDecodeError:
+            print(f"错误: 消费品文件 '{goods_path}' 格式无效。")
+
+        # Load hobby definitions
+        hobbies_path = "world_server/hobby_definitions.json"
+        try:
+            with open(hobbies_path, 'r', encoding='utf-8') as f:
+                self.hobby_definitions = json.load(f)
+            print(f"成功加载 {len(self.hobby_definitions)} 个爱好定义。")
+        except FileNotFoundError:
+            print(f"错误: 爱好文件 '{hobbies_path}' 未找到。")
+        except json.JSONDecodeError:
+            print(f"错误: 爱好文件 '{hobbies_path}' 格式无效。")
+
+        # Load relationship types
+        relationship_types_path = "world_server/relationship_types.json"
+        try:
+            with open(relationship_types_path, 'r', encoding='utf-8') as f:
+                self.relationship_types = json.load(f)
+            print(f"成功加载 {len(self.relationship_types)} 个关系类型。")
+        except FileNotFoundError:
+            print(f"错误: 关系类型文件 '{relationship_types_path}' 未找到。")
+        except json.JSONDecodeError:
+            print(f"错误: 关系类型文件 '{relationship_types_path}' 格式无效。")
+
+        # Load collective actions
+        collective_actions_path = "world_server/collective_actions.json"
+        try:
+            with open(collective_actions_path, 'r', encoding='utf-8') as f:
+                self.collective_actions = json.load(f)
+            print(f"成功加载 {len(self.collective_actions)} 个集体行动。")
+        except FileNotFoundError:
+            print(f"信息: 集体行动文件 '{collective_actions_path}' 未找到。将使用空列表。")
+            self.collective_actions = []
+        except json.JSONDecodeError:
+            print(f"错误: 集体行动文件 '{collective_actions_path}' 格式无效。")
+
     def _setup_world(self):
         """初始化游戏世界，加载资源，创建实体并注册系统"""
-        self._load_locations()
         self._spawn_all_npcs()
 
-        # Register systems in the desired order of execution
+        # Instantiate and register systems
+        self.ecs_world.tech_system = TechnologySystem() # Attach for global access
+        self.ecs_world.hobby_system = HobbySystem(self.consumer_goods)
+        self.ecs_world.desire_system = DesireSystem() # Attach for global access
+
+        self.ecs_world.add_system(self.ecs_world.desire_system)
         self.ecs_world.add_system(NeedsSystem())
+        self.ecs_world.add_system(self.ecs_world.hobby_system)
+        self.ecs_world.add_system(BankingSystem())
         self.ecs_world.add_system(InteractionSystem())
         self.ecs_world.add_system(MovementSystem())
         self.ecs_world.add_system(ActionSystem())
+        self.ecs_world.add_system(self.ecs_world.tech_system)
+        self.ecs_world.add_system(CollectiveActionSystem())
 
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
     def _spawn_all_npcs(self):
-        """加载所有NPC数据，并将其作为实体和组件添加到ECS世界中"""
-        npc_dir = "generated_npcs_final/"
-        if not os.path.exists(npc_dir):
-            print(f"错误: NPC目录 '{npc_dir}' 不存在。")
+        """Creates NPCs based on the loaded ism data, adding them as entities to the ECS world."""
+        if not self.all_isms_data:
+            print("错误: 没有可用的主义数据来生成NPC。")
             return
 
-        npc_files = [f for f in os.listdir(npc_dir) if f.endswith('.json')]
-
-        for filename in npc_files:
-            filepath = os.path.join(npc_dir, filename)
-            with open(filepath, 'r', encoding='utf-8') as f:
-                data = json.load(f)
+        num_npcs_to_spawn = 50
+        for i in range(num_npcs_to_spawn):
+            # --- Select a random ism for the new NPC ---
+            ism_data = random.choice(self.all_isms_data)
 
             # --- Create Entity and Components ---
             entity_id = self.ecs_world.create_entity()
 
             # Identity
-            npc_name = data.get("identity", {}).get("npc_name", "无名氏")
-            primary_ism_desc = data.get("identity", {}).get("primary_ism_name", "一个神秘的人")
-            self.ecs_world.add_component(entity_id, IdentityComponent(name=npc_name, description=primary_ism_desc))
+            npc_name = ism_data.get("name", "无名氏")
+            identity_comp = IdentityComponent(name=npc_name, description=ism_data.get('id'))
+            self.ecs_world.add_component(entity_id, identity_comp)
 
             # Position (randomly spawned)
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
-            # Ism
-            self.ecs_world.add_component(entity_id, IsmComponent(data=data))
+            # IsmComponent now stores the full, quantified data
+            ism_comp = IsmComponent(
+                data=ism_data.get('philosophy', {}),
+                quantification=ism_data.get('quantification', {})
+            )
+            self.ecs_world.add_component(entity_id, ism_comp)
 
             # Needs & Demands
             needs_comp = NeedsComponent()
-            leisure_script = data.get("behavioral_scripts", {}).get("leisure_activity", "IDLE")
-            if leisure_script != "IDLE":
-                needs_comp.demands.append(leisure_script)
-            # Randomize initial needs slightly for variety
+
+            # --- Enhanced Environmental Effects ---
+            initial_stress = random.randint(0, 30)
+            initial_money = random.randint(20, 100)
+
+            if self.locations:
+                # Select a random location as a "birthplace"
+                birthplace_loc = random.choice(self.locations)
+                birthplace_id = birthplace_loc['id']
+                birthplace_type = birthplace_loc.get('type')
+
+                # Get the component we just added to modify it
+                added_identity_comp = self.ecs_world.get_component(entity_id, IdentityComponent)
+                added_identity_comp.birthplace = birthplace_id
+
+                # Apply modifiers based on the type of the birthplace location
+                if birthplace_type in ['WORKPLACE', 'FOOD_SOURCE']: # Assumed lower-class
+                    initial_stress += 10
+                    initial_money -= 15
+                elif birthplace_type in ['CENTRAL_BANK', 'COMMERCIAL_BANK', 'MARKETPLACE']: # Assumed upper-class/merchant
+                    initial_stress -= 5
+                    initial_money += 30
+                elif birthplace_type == 'SHELTER': # Neutral
+                    pass
+
+            initial_stress = max(0, min(initial_stress, 100))
+            initial_money = max(1, initial_money)
+            # --- End of Environmental Effects ---
+
             needs_comp.needs['hunger']['current'] = random.randint(0, 40)
             needs_comp.needs['energy']['current'] = random.randint(50, 90)
-            needs_comp.needs['stress']['current'] = random.randint(0, 30)
+            needs_comp.needs['stress']['current'] = initial_stress
             self.ecs_world.add_component(entity_id, needs_comp)
 
             # Economy
-            self.ecs_world.add_component(entity_id, EconomyComponent(money=random.randint(20, 100)))
+            self.ecs_world.add_component(entity_id, EconomyComponent(money=initial_money))
 
             # State
             self.ecs_world.add_component(entity_id, StateComponent())
@@ -137,8 +237,37 @@ class Server:
             # Relationships
             self.ecs_world.add_component(entity_id, RelationshipComponent())
 
+            # Financial
+            self.ecs_world.add_component(entity_id, FinancialComponent())
 
-        print(f"成功加载了 {len(npc_files)} 个实体。")
+            # Hobbies
+            hobby_comp = HobbyComponent()
+            # Logic to recursively get all string values from the philosophy structure
+            philosophy_values = []
+            def extract_values(d):
+                for v in d.values():
+                    if isinstance(v, str):
+                        philosophy_values.append(v)
+                    elif isinstance(v, dict):
+                        extract_values(v)
+
+            extract_values(ism_data.get("philosophy", {}))
+            ism_keywords = " ".join(philosophy_values)
+
+            if "科学" in ism_keywords or "技术" in ism_keywords:
+                hobby_comp.interests["AUTOMATA"] = random.uniform(60, 90)
+                hobby_comp.interests["ALCHEMY"] = random.uniform(50, 80)
+                hobby_comp.skills[random.choice(["AUTOMATA", "ALCHEMY"])] = random.randint(1, 3)
+            if "艺术" in ism_keywords or "美学" in ism_keywords:
+                hobby_comp.interests["PAINTING"] = random.uniform(60, 90)
+                hobby_comp.interests["CRAFTING"] = random.uniform(40, 70)
+                hobby_comp.skills["PAINTING"] = random.randint(1, 3)
+            # Give a baseline interest in exercise
+            hobby_comp.interests["EXERCISE"] = random.uniform(10, 40)
+            self.ecs_world.add_component(entity_id, hobby_comp)
+
+
+        print(f"成功生成了 {num_npcs_to_spawn} 个实体。")
 
     async def _game_loop(self):
         """
@@ -152,7 +281,13 @@ class Server:
             # 2. Process all systems
             # This single call replaces all the old complex logic.
             # It iterates through NeedsSystem, InteractionSystem, MovementSystem, etc.
-            self.ecs_world.process(locations=self.locations, interactions=self.interactions)
+            self.ecs_world.process(
+                locations=self.locations,
+                interactions=self.interactions,
+                relationship_types=self.relationship_types,
+                consumer_goods=self.consumer_goods,
+                collective_actions=self.collective_actions
+            )
 
             # 3. Prepare and broadcast the world state
             world_state = self.get_world_state()
