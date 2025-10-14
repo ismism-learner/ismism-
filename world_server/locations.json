@@ -36,5 +36,21 @@
     "type": "FOOD_SOURCE",
     "position": { "x": 200, "y": 300 },
     "radius": 20
+  },
+  {
+    "name": "大剧院",
+    "type": "ENTERTAINMENT",
+    "position": { "x": 350, "y": 200 },
+    "radius": 35,
+    "cost": 15,
+    "ideological_influence": { "idealism": 5 }
+  },
+  {
+    "name": "阴暗的酒馆",
+    "type": "ENTERTAINMENT",
+    "position": { "x": 600, "y": 450 },
+    "radius": 20,
+    "cost": 5,
+    "ideological_influence": { "idealism": -5, "rupture": 1 }
   }
 ]

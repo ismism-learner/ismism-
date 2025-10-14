@@ -1,0 +1,8 @@
+游戏世界已创建。
+成功加载 3 个互动。
+场景已切换到: MainWorld
+成功加载并初始化 8 个地点。
+成功加载了 50 个NPC。
+世界服务器初始化完成，所有NPC已加载。
+WebSocket服务器正在启动，监听地址 ws://localhost:8765
+NPC MaterialistMerchant_17 a new desire: MASTER_CRAFT

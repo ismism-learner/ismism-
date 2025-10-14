@@ -29,6 +29,7 @@ class NPC(Entity):
         self.ism_data = {}
         self.current_action = "Idle" # NPC当前的动作描述
         self.current_goal = "Wander" # NPC当前的目标
+        self.money = random.randint(20, 100) # NPC的个人资金
 
         # 关系（动态）
         self.relationships = {} # Key: other_npc_id, Value: {"affinity": 0}
@@ -46,6 +47,12 @@ class NPC(Entity):
                 'max': 100,
                 'change_per_hour': -5,
                 'priority_threshold': 30
+            },
+            'stress': {
+                'current': random.randint(0, 30),
+                'max': 100,
+                'change_per_hour': 1, # 压力会随着时间慢慢积累
+                'priority_threshold': 50 # 压力过大时寻求娱乐
             },
             'idealism': {
                 'current': 50,
@@ -262,6 +269,17 @@ class NPC(Entity):
                 self.current_goal = {"type": "GO_TO_LOCATION", "target_location": closest_loc, "purpose": "REST"}
                 return
 
+        # 检查压力
+        if self.needs['stress']['current'] > self.needs['stress']['priority_threshold']:
+            entertainment_locations = [loc for loc in locations if loc.get('type') == 'ENTERTAINMENT']
+            # 筛选出NPC能负担得起的娱乐场所
+            affordable_locations = [loc for loc in entertainment_locations if self.money >= loc.get('cost', 0)]
+            if affordable_locations:
+                # 简单起见，随机选择一个
+                target_loc = random.choice(affordable_locations)
+                self.current_goal = {"type": "GO_TO_LOCATION", "target_location": target_loc, "purpose": "SEEK_ENTERTAINMENT"}
+                return
+
         # 3. Tier 2 (Societal/Ideological) 需求
         # 检查工作需求 (作为一种特殊的demand)
         if "WORK" in self.demands:
@@ -324,12 +342,32 @@ class NPC(Entity):
                     # 工作会生产资源
                     ResourceManager.produce(target_loc, locations)
 
-                    self.needs['energy']['current'] = max(0, self.needs['energy']['current'] - 0.2) # 工作消耗精力
-                    self.needs['idealism']['current'] = min(self.needs['idealism']['max'], self.needs['idealism']['current'] + 0.05) # 工作带来成就感
+                    # 工作会消耗精力和增加压力，但会赚钱
+                    self.needs['energy']['current'] = max(0, self.needs['energy']['current'] - 0.2)
+                    self.needs['stress']['current'] = min(self.needs['stress']['max'], self.needs['stress']['current'] + 0.3)
+                    self.money += 1 # 每次工作行动赚取1单位金钱
 
                     # 工作一段时间后就离开
                     if random.random() < 0.03:
                         self.current_goal = "Wander"
+
+                elif purpose == "SEEK_ENTERTAINMENT":
+                    self.current_action = f"Enjoying at {target_loc['name']}"
+                    cost = target_loc.get('cost', 0)
+
+                    # 扣除金钱并降低压力
+                    self.money -= cost
+                    self.needs['stress']['current'] = max(0, self.needs['stress']['current'] - 50) # 娱乐大大降低压力
+
+                    # 应用意识形态影响
+                    influence = target_loc.get('ideological_influence', {})
+                    if 'idealism' in influence:
+                        self.needs['idealism']['current'] = min(self.needs['idealism']['max'], max(0, self.needs['idealism']['current'] + influence['idealism']))
+                    if 'rupture' in influence:
+                        self.desire['real']['rupture'] = min(100, max(0, self.desire['real']['rupture'] + influence['rupture']))
+
+                    # 娱乐后离开
+                    self.current_goal = "Wander"
 
             # 如果还没到，就往那边走
             else:
