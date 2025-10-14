@@ -1,8 +1,32 @@
-游戏世界已创建。
-成功加载 3 个互动。
-场景已切换到: MainWorld
+成功加载 4 个互动。
 成功加载并初始化 8 个地点。
-成功加载了 50 个NPC。
-世界服务器初始化完成，所有NPC已加载。
+成功加载了 50 个实体。
+ECS世界服务器初始化完成，所有实体和系统已加载。
 WebSocket服务器正在启动，监听地址 ws://localhost:8765
-NPC MaterialistMerchant_17 a new desire: MASTER_CRAFT
+'CynicalGuard_44' initiates 'Small Talk' with 'MaterialistMerchant_15'.
+Traceback (most recent call last):
+  File "/app/world_server/server.py", line 222, in <module>
+    asyncio.run(server.start("localhost", 8765))
+  File "/home/jules/.pyenv/versions/3.12.11/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.11/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jules/.pyenv/versions/3.12.11/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/app/world_server/server.py", line 217, in start
+    await self._game_loop()
+  File "/app/world_server/server.py", line 155, in _game_loop
+    self.ecs_world.process(locations=self.locations, interactions=self.interactions)
+  File "/app/world_server/ecs/world.py", line 61, in process
+    system.process(*args, **kwargs)
+  File "/app/world_server/ecs/systems/interaction_system.py", line 36, in process
+    self._evaluate_and_initiate_interaction(entity_id, other_id, interactions)
+  File "/app/world_server/ecs/systems/interaction_system.py", line 85, in _evaluate_and_initiate_interaction
+    self._apply_interaction(chosen_interaction, initiator_id, target_id)
+  File "/app/world_server/ecs/systems/interaction_system.py", line 126, in _apply_interaction
+    print(f"'{target_identity.name}' reacts. Affinity towards '{initiator_identity.name}' is now {new_affinity}.")
+                                                                                                  ^^^^^^^^^^^^
+NameError: name 'new_affinity' is not defined

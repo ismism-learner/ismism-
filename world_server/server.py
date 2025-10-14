@@ -2,15 +2,36 @@
 import asyncio
 import json
 import os
+import random
 import websockets
-from world import World, Scene
-from entities import NPC
+import sys
+
+# Make sure the project root is in sys.path, so we can use absolute imports.
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# --- New ECS Imports ---
+from world_server.ecs.world import World as EcsWorld
+from world_server.ecs.components.identity import IdentityComponent
+from world_server.ecs.components.position import PositionComponent
+from world_server.ecs.components.ism import IsmComponent
+from world_server.ecs.components.needs import NeedsComponent
+from world_server.ecs.components.economy import EconomyComponent
+from world_server.ecs.components.state import StateComponent
+from world_server.ecs.components.relationship import RelationshipComponent
+
+# --- System Imports ---
+from world_server.ecs.systems.needs_system import NeedsSystem
+from world_server.ecs.systems.interaction_system import InteractionSystem
+from world_server.ecs.systems.movement_system import MovementSystem
+from world_server.ecs.systems.action_system import ActionSystem
+
 
 class Server:
     def __init__(self):
-        self.world = World()
+        self.ecs_world = EcsWorld()
         self.clients = set()
         self.interactions = []
+        self.locations = []
         self._load_interactions()
         self._setup_world()
 
@@ -22,16 +43,12 @@ class Server:
                 locations_data = json.load(f)
 
             for i, loc in enumerate(locations_data):
-                # 为所有地点添加唯一ID、状态和库存
                 loc['id'] = f"loc_{i}"
                 loc['state'] = "active"
                 loc['inventory'] = {}
-
-                # 根据地点类型初始化特定属性
                 if loc['type'] == 'FOOD_SOURCE':
-                    loc['inventory']['GRAIN'] = 100 # 初始食物库存
+                    loc['inventory']['GRAIN'] = 100
                 elif loc['type'] == 'WORKPLACE':
-                    # 定义这个工作地点能生产什么
                     if loc.get('work_type') == 'FARMING':
                         loc['produces'] = "GRAIN"
                         loc['produces_rate'] = 5
@@ -39,8 +56,8 @@ class Server:
                         loc['produces'] = "ORE"
                         loc['produces_rate'] = 3
 
-            self.world.current_scene.locations = locations_data
-            print(f"成功加载并初始化 {len(self.world.current_scene.locations)} 个地点。")
+            self.locations = locations_data
+            print(f"成功加载并初始化 {len(self.locations)} 个地点。")
 
         except FileNotFoundError:
             print(f"错误: 地点文件 '{locations_path}' 未找到。")
@@ -60,16 +77,20 @@ class Server:
             print(f"错误: 互动文件 '{interactions_path}' 格式无效。")
 
     def _setup_world(self):
-        """初始化游戏世界，创建场景并加载所有NPC"""
-        starting_scene = Scene("MainWorld", "The main world space for all NPCs.")
-        self.world.add_scene(starting_scene)
-        self.world.set_current_scene("MainWorld")
-        self._load_locations() # 加载地点
+        """初始化游戏世界，加载资源，创建实体并注册系统"""
+        self._load_locations()
         self._spawn_all_npcs()
-        print("世界服务器初始化完成，所有NPC已加载。")
+
+        # Register systems in the desired order of execution
+        self.ecs_world.add_system(NeedsSystem())
+        self.ecs_world.add_system(InteractionSystem())
+        self.ecs_world.add_system(MovementSystem())
+        self.ecs_world.add_system(ActionSystem())
+
+        print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
     def _spawn_all_npcs(self):
-        """加载所有NPC数据并将其添加到世界中"""
+        """加载所有NPC数据，并将其作为实体和组件添加到ECS世界中"""
         npc_dir = "generated_npcs_final/"
         if not os.path.exists(npc_dir):
             print(f"错误: NPC目录 '{npc_dir}' 不存在。")
@@ -82,80 +103,102 @@ class Server:
             with open(filepath, 'r', encoding='utf-8') as f:
                 data = json.load(f)
 
+            # --- Create Entity and Components ---
+            entity_id = self.ecs_world.create_entity()
+
+            # Identity
             npc_name = data.get("identity", {}).get("npc_name", "无名氏")
-            primary_ism = data.get("identity", {}).get("primary_ism_name", "一个神秘的人")
+            primary_ism_desc = data.get("identity", {}).get("primary_ism_name", "一个神秘的人")
+            self.ecs_world.add_component(entity_id, IdentityComponent(name=npc_name, description=primary_ism_desc))
 
-            npc = NPC(name=npc_name, description=primary_ism)
-            npc.ism_data = data
+            # Position (randomly spawned)
+            self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
-            # 从 'ism' 数据中提取行为脚本作为初始 'Demand'
+            # Ism
+            self.ecs_world.add_component(entity_id, IsmComponent(data=data))
+
+            # Needs & Demands
+            needs_comp = NeedsComponent()
             leisure_script = data.get("behavioral_scripts", {}).get("leisure_activity", "IDLE")
             if leisure_script != "IDLE":
-                npc.demands.append(leisure_script)
+                needs_comp.demands.append(leisure_script)
+            # Randomize initial needs slightly for variety
+            needs_comp.needs['hunger']['current'] = random.randint(0, 40)
+            needs_comp.needs['energy']['current'] = random.randint(50, 90)
+            needs_comp.needs['stress']['current'] = random.randint(0, 30)
+            self.ecs_world.add_component(entity_id, needs_comp)
 
-            self.world.current_scene.add_entity(npc)
+            # Economy
+            self.ecs_world.add_component(entity_id, EconomyComponent(money=random.randint(20, 100)))
 
-        print(f"成功加载了 {len(npc_files)} 个NPC。")
+            # State
+            self.ecs_world.add_component(entity_id, StateComponent())
+
+            # Relationships
+            self.ecs_world.add_component(entity_id, RelationshipComponent())
+
+
+        print(f"成功加载了 {len(npc_files)} 个实体。")
 
     async def _game_loop(self):
-        """游戏主循环，定期更新并广播状态"""
-        last_hour = 0
+        """
+        The main game loop.
+        Updates the world state by processing all systems and broadcasts it to clients.
+        """
         while True:
-            # 1. 更新世界时间
-            self.world.time += 1
-            current_hour = self.world.time // self.world.ticks_per_hour
+            # 1. Update world time
+            self.ecs_world.time += 1
 
-            # 2. 更新所有NPC的状态
-            if self.world.current_scene:
-                all_entities = self.world.current_scene.entities
+            # 2. Process all systems
+            # This single call replaces all the old complex logic.
+            # It iterates through NeedsSystem, InteractionSystem, MovementSystem, etc.
+            self.ecs_world.process(locations=self.locations, interactions=self.interactions)
 
-                # 如果游戏内小时发生变化，则更新所有NPC的需求
-                if current_hour > last_hour:
-                    for entity in all_entities:
-                        if isinstance(entity, NPC):
-                            # 更新饥饿
-                            hunger_change = entity.needs['hunger']['change_per_hour']
-                            entity.needs['hunger']['current'] = min(entity.needs['hunger']['max'], entity.needs['hunger']['current'] + hunger_change)
-                            # 更新精力
-                            energy_change = entity.needs['energy']['change_per_hour']
-                            entity.needs['energy']['current'] = max(0, entity.needs['energy']['current'] + energy_change)
-                            # 更新理想主义 (缓慢衰减)
-                            idealism_change = entity.needs['idealism']['change_per_hour']
-                            entity.needs['idealism']['current'] = max(0, entity.needs['idealism']['current'] + idealism_change)
-                    last_hour = current_hour
-
-                # 每个tick都执行思考逻辑
-                for entity in all_entities:
-                    if isinstance(entity, NPC):
-                        entity.think(all_entities, self.interactions, self.world.current_scene.locations)
-
-            # 3. 准备要发送的状态数据
+            # 3. Prepare and broadcast the world state
             world_state = self.get_world_state()
-
-            # 3. 将状态广播给所有连接的客户端
             if self.clients:
                 await asyncio.wait([client.send(world_state) for client in self.clients])
 
-            # 4. 等待下一个心跳
-            await asyncio.sleep(0.5) # 每秒更新2次
+            # 4. Wait for the next tick
+            await asyncio.sleep(0.5) # Update ~2 times per second
 
     def get_world_state(self):
-        """获取当前世界所有NPC的状态，并打包成JSON"""
-        state = []
-        if self.world.current_scene:
-            for entity in self.world.current_scene.entities:
-                if isinstance(entity, NPC):
-                    state.append({
-                        "id": entity.id,
-                        "name": entity.name,
-                        "position": entity.position,
-                        "action": entity.current_action,
-                        "goal": entity.current_goal,
-                        "needs": entity.needs,
-                        "rupture": entity.desire['real']['rupture'],
-                        "relationships": entity.relationships
-                    })
-        return json.dumps(state)
+        """
+        Gathers the state of all relevant entities from the ECS world
+        and packages it into the JSON format expected by the Godot client.
+        """
+        state_list = []
+
+        # Define the components needed for visualization
+        required_components = [
+            IdentityComponent, PositionComponent, StateComponent, NeedsComponent, RelationshipComponent
+        ]
+
+        # Iterate through all entities that have the required components
+        for entity_id in self.ecs_world.get_entities_with_components(*required_components):
+            # Retrieve all necessary components for this entity
+            identity = self.ecs_world.get_component(entity_id, IdentityComponent)
+            position = self.ecs_world.get_component(entity_id, PositionComponent)
+            state = self.ecs_world.get_component(entity_id, StateComponent)
+            needs = self.ecs_world.get_component(entity_id, NeedsComponent)
+            relationships = self.ecs_world.get_component(entity_id, RelationshipComponent)
+
+            # Convert relationship keys from UUID to string for JSON serialization
+            serializable_relationships = {str(k): v for k, v in relationships.relations.items()}
+
+            entity_state = {
+                "id": str(entity_id),
+                "name": identity.name,
+                "position": {"x": position.x, "y": position.y},
+                "action": state.action,
+                "goal": str(state.goal), # Convert complex goal objects to string for simple display
+                "needs": needs.needs,
+                "rupture": needs.desire['real']['rupture'],
+                "relationships": serializable_relationships
+            }
+            state_list.append(entity_state)
+
+        return json.dumps(state_list)
 
     async def register(self, websocket):
         """注册新的客户端连接"""
@@ -175,4 +218,7 @@ class Server:
 
 if __name__ == "__main__":
     server = Server()
-    asyncio.run(server.start("localhost", 8765))
+    try:
+        asyncio.run(server.start("localhost", 8765))
+    except KeyboardInterrupt:
+        print("服务器已手动关闭。")
