@@ -7,18 +7,16 @@ namespace Ecs.Components
     /// </summary>
     public class NeedsComponent : Component
     {
-        public float Stress { get; set; } // 0-100
+        public float Energy { get; set; } // 0-100
         public float Hunger { get; set; } // 0-100
-        public float Fulfillment { get; set; } // 0-100, for hobbies/purpose
 
         // A list of complex goals, e.g., { "type": "PURSUE_HOBBY", "hobby_id": "painting" }
         public Array<Dictionary> Demands { get; set; }
 
-        public NeedsComponent(float stress, float hunger, float fulfillment = 50f)
+        public NeedsComponent(float energy, float hunger)
         {
-            Stress = stress;
+            Energy = energy;
             Hunger = hunger;
-            Fulfillment = fulfillment;
             Demands = new Array<Dictionary>();
         }
     }
