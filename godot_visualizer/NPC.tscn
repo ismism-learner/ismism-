@@ -18,3 +18,12 @@ offset_bottom = 50.0
 text = "NPC Name
 (Action)"
 horizontal_alignment = 1
+
+[node name="ClickableArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 0
