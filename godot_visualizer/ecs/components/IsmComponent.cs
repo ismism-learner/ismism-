@@ -1,11 +1,12 @@
 using Godot.Collections;
+using System.Linq;
 
 namespace Ecs.Components
 {
     /// <summary>
     /// Represents the NPC's mind, containing their ideologies and decision matrix.
     /// </summary>
-    public class IsmComponent : Component
+    public partial class IsmComponent : Component
     {
         // Dictionary of ideology IDs to their current strength (0-100)
         public Dictionary<string, float> ActiveIdeologies { get; private set; }
@@ -46,6 +47,18 @@ namespace Ecs.Components
             {
                 ActiveIdeologies.Remove(ismId);
             }
+        }
+
+        public string GetDominantIsm()
+        {
+            if (ActiveIdeologies == null || ActiveIdeologies.Count == 0)
+            {
+                return null;
+            }
+
+            // Find the key-value pair with the maximum value
+            var dominantEntry = ActiveIdeologies.Aggregate((l, r) => l.Value > r.Value ? l : r);
+            return dominantEntry.Key;
         }
     }
 }

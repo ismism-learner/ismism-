@@ -10,6 +10,7 @@ namespace Ecs.Components
         public float Stress { get; set; } // 0-100
         public float Hunger { get; set; } // 0-100
         public float Fulfillment { get; set; } // 0-100, for hobbies/purpose
+        public float PreviousStress { get; set; } = 0;
 
         // A list of complex goals, e.g., { "type": "PURSUE_HOBBY", "hobby_id": "painting" }
         public Array<Dictionary> Demands { get; set; }

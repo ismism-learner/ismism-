@@ -1,19 +1,55 @@
-using Godot.Collections;
+using System.Collections.Generic;
 
 namespace Ecs.Components
 {
-    /// <summary>
-    /// Stores all relationships this entity has with other entities.
-    /// </summary>
-    public class RelationshipComponent : Component
+    public enum RelationshipType
     {
-        // Maps other entity IDs to a dictionary containing affinity and status.
-        // e.g., { 1234: { "affinity": 50.0, "status": "Comrade" } }
-        public Dictionary<long, Dictionary> Relations { get; set; }
+        Friend,
+        Lover,
+        Mentor,
+        Student,
+        Parent,
+        Child,
+        Follower
+    }
 
-        public RelationshipComponent()
+    public class Relationship
+    {
+        public int TargetNpcId { get; set; }
+        public RelationshipType Type { get; set; }
+        public float Strength { get; set; } // e.g., 0-100
+
+        public Relationship(int targetNpcId, RelationshipType type, float initialStrength)
         {
-            Relations = new Dictionary<long, Dictionary>();
+            TargetNpcId = targetNpcId;
+            Type = type;
+            Strength = initialStrength;
+        }
+    }
+
+    public partial class RelationshipComponent : Component
+    {
+        public Dictionary<int, Relationship> Relationships { get; private set; } = new Dictionary<int, Relationship>();
+
+        public void AddOrUpdateRelationship(int targetNpcId, RelationshipType type, float strengthChange)
+        {
+            if (Relationships.TryGetValue(targetNpcId, out var existingRelationship))
+            {
+                existingRelationship.Strength += strengthChange;
+                // Clamp strength between 0 and 100
+                if (existingRelationship.Strength > 100) existingRelationship.Strength = 100;
+                if (existingRelationship.Strength < 0) existingRelationship.Strength = 0;
+            }
+            else
+            {
+                Relationships.Add(targetNpcId, new Relationship(targetNpcId, type, strengthChange));
+            }
+        }
+
+        public Relationship GetRelationshipWith(int targetNpcId)
+        {
+            Relationships.TryGetValue(targetNpcId, out var relationship);
+            return relationship;
         }
     }
 }

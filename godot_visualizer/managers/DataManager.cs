@@ -14,6 +14,7 @@ namespace Managers
         public Dictionary Isms { get; private set; }
         public Array<Dictionary> ConsumerGoods { get; private set; }
         public Array<Dictionary> RelationshipTypes { get; private set; }
+        public Dictionary Compatibility { get; private set; }
 
         public override void _Ready()
         {
@@ -28,6 +29,7 @@ namespace Managers
             Interactions = LoadJsonFile("res://world_server/interactions.json");
             ConsumerGoods = LoadJsonFile("res://world_server/consumer_goods.json");
             RelationshipTypes = LoadJsonFile("res://world_server/relationship_types.json");
+            Compatibility = LoadSingleJsonFile("res://world_server/compatibility.json");
             Isms = LoadSingleJsonFile("res://world_server/isms_final.json");
         }
 

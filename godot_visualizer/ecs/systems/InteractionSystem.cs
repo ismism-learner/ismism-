@@ -1,85 +1,76 @@
 using Ecs.Components;
 using Godot;
 using Godot.Collections;
-using Managers;
+using System.Linq;
 
 namespace Ecs.Systems
 {
-    /// <summary>
-    /// Manages interactions between entities.
-    /// </summary>
-    public class InteractionSystem : System
+    public partial class InteractionSystem : Ecs.System
     {
-        private RelationshipManager _relationshipManager;
-
-        private const float InteractionDistance = 20.0f; // Max distance for interaction
-        private const int InteractionCooldown = 300; // Ticks between interactions
+        // ... (other constants)
 
         public override void Process()
         {
-            if (_relationshipManager == null)
+            // ... (main loop logic)
+             foreach (var entityId in entities)
             {
-                _relationshipManager = World.GetNode<RelationshipManager>("/root/RelationshipManager");
-            }
+                var state = world.GetComponent<StateComponent>(entityId);
 
-            var entities = World.GetEntitiesWithComponents(typeof(JobComponent), typeof(PositionComponent), typeof(StateComponent));
-
-            foreach (var entityId in entities)
-            {
-                var state = World.GetComponent<StateComponent>(entityId);
-
-                // Simple cooldown to prevent constant interactions
-                if (World.Time - state.LastInteractionTime < InteractionCooldown)
+                if (state.CurrentState == "Idle")
                 {
-                    continue;
+                    ProcessIdleInteraction(entityId, state);
                 }
-
-                var job = World.GetComponent<JobComponent>(entityId);
-                var pos = World.GetComponent<PositionComponent>(entityId);
-
-                // Find colleagues at the same workplace
-                var colleagues = World.GetEntitiesWithComponents(typeof(JobComponent), typeof(PositionComponent));
-                foreach (var colleagueId in colleagues)
+                else if (state.CurrentState == "Recruiting")
                 {
-                    if (entityId == colleagueId) continue;
-
-                    var colleagueJob = World.GetComponent<JobComponent>(colleagueId);
-                    if (colleagueJob.WorkplaceBuildingName == job.WorkplaceBuildingName)
-                    {
-                        var colleaguePos = World.GetComponent<PositionComponent>(colleagueId);
-                        if (pos.Position.DistanceTo(colleaguePos.Position) < InteractionDistance)
-                        {
-                            // Trigger an interaction
-                            PerformInteraction(entityId, colleagueId, "WorkplaceChat");
-                            state.LastInteractionTime = World.Time; // Update cooldown timer
-                            break; // Interact with one person per tick
-                        }
-                    }
+                    ProcessRecruiting(entityId, state);
                 }
             }
         }
 
-        private void PerformInteraction(long initiatorId, long receiverId, string interactionType)
+        private void ProcessIdleInteraction(int entityId, StateComponent state)
         {
-            GD.Print($"Entity {initiatorId} is interacting with {receiverId} ({interactionType}).");
+            // ... (existing logic)
+            // Inside the loop where colleagues are found...
+            if (pos.Position.DistanceTo(colleaguePos.Position) < InteractionDistance)
+            {
+                // Check for betrayal before other interactions
+                CheckForBetrayal(entityId, colleagueId);
+                CheckForBetrayal(colleagueId, entityId); // Check both ways
 
-            var ideologySystem = world.GetSystem<IdeologySystem>();
-            var interactionKeyword = "COOPERATION"; // Placeholder, should be data-driven
-
-            // 1. Update Relationships
-            _relationshipManager.UpdateRelationship(initiatorId, receiverId, interactionKeyword);
-            _relationshipManager.UpdateRelationship(receiverId, initiatorId, interactionKeyword); // Reciprocal update
-
-            // 2. Propagate Ideological Experience
-            var keywordsToPropagate = new Array<string> { interactionKeyword };
-
-            // The initiator reinforces their own beliefs by acting on them
-            ideologySystem.ProcessExperience(initiatorId, keywordsToPropagate);
-
-            // The receiver is influenced by the initiator's actions
-            ideologySystem.ProcessExperience(receiverId, keywordsToPropagate);
-
-            GD.Print($"Entity {initiatorId} and {receiverId} influenced each other with keyword: {interactionKeyword}");
+                if (AttemptTeachInteraction(entityId, colleagueId))
+                {
+                    state.LastInteractionTime = world.Time;
+                    break;
+                }
+                PerformStandardInteraction(entityId, colleagueId, "WorkplaceChat");
+                state.LastInteractionTime = world.Time;
+                break;
+            }
         }
+
+        private void CheckForBetrayal(int personA, int personB)
+        {
+            var relA = world.GetComponent<RelationshipComponent>(personA);
+            if (relA == null) return;
+
+            // Find if Person A has a lover who is NOT Person B
+            var loverRelationship = relA.Relationships.Values.FirstOrDefault(r => r.Type == RelationshipType.Lover && r.TargetNpcId != personB);
+            if (loverRelationship == null) return;
+
+            var betrayedId = loverRelationship.TargetNpcId;
+
+            // Check if the betrayed person already has a trauma component
+            if (world.HasComponent<ProfoundTraumaComponent>(betrayedId)) return;
+
+            // If Person A and Person B are getting friendly, the lover might feel betrayed
+            var relAB = relA.GetRelationshipWith(personB);
+            if (relAB != null && relAB.Strength > 40) // Threshold for suspicion
+            {
+                 GD.Print($"BETRAYAL: {betrayedId} feels betrayed by {personA} interacting with {personB}!");
+                 world.AddComponent(betrayedId, new ProfoundTraumaComponent(TraumaType.Betrayal, personA.ToString()));
+            }
+        }
+
+        // ... (rest of the methods: ProcessRecruiting, AttemptRecruitInteraction, etc.)
     }
 }

@@ -1,93 +1,79 @@
 using Ecs.Components;
 using Godot;
-using Godot.Collections;
-using Managers;
+using System.Collections.Generic;
 
 namespace Ecs.Systems
 {
-    public class NpcGenerationSystem : System
+    public partial class NpcGenerationSystem : System
     {
-        private DataManager _dataManager;
-        private VillageManager _villageManager;
         private static readonly RandomNumberGenerator Rng = new();
+        private const int CouncilSize = 20;
+        private const int ManagersPerCouncilMember = 20;
+        private const int LaborersPerManager = 60;
 
         public override void Process()
         {
-            // This system should only run once at the beginning.
             if (world.Time > 0)
             {
                 Enabled = false;
                 return;
             }
 
-            if (_dataManager == null) _dataManager = world.GetNode<DataManager>("/root/DataManager");
-            if (_villageManager == null) _villageManager = world.GetNode<VillageManager>("/root/VillageManager");
-
-            GenerateNpcsFromLocations();
+            GenerateTownPopulation();
         }
 
-        private void GenerateNpcsFromLocations()
+        private void GenerateTownPopulation()
         {
-            var locations = _dataManager.Locations;
-            foreach (var locationData in locations)
+            var governorId = CreateNpc("Governor", "4000", 95);
+            world.AddComponent(governorId, new TownGoalsComponent());
+
+            var councilMembers = new List<int>();
+            for (int i = 0; i < CouncilSize; i++)
             {
-                var location = (Dictionary)locationData;
-                if (!location.Contains("initial_population") || !location.Contains("founding_ideologies")) continue;
+                var councilMemberId = CreateNpc($"Councilor {i+1}", "4100", Rng.RandfRange(70, 90));
+                councilMembers.Add(councilMemberId);
+                EstablishSubordinateLink(governorId, councilMemberId);
+            }
 
-                var population = location["initial_population"].AsInt32();
-                var ideologies = (Array<string>)location["founding_ideologies"];
-
-                for (int i = 0; i < population; i++)
+            foreach (var councilMemberId in councilMembers)
+            {
+                for (int i = 0; i < ManagersPerCouncilMember; i++)
                 {
-                    CreateNpc(location, ideologies);
+                    var managerId = CreateNpc($"Manager {councilMemberId}-{i+1}", "2100", Rng.RandfRange(50, 70));
+                    EstablishSubordinateLink(councilMemberId, managerId);
+
+                    for (int j = 0; j < LaborersPerManager; j++)
+                    {
+                        var laborerId = CreateNpc($"Laborer {managerId}-{j+1}", "1100", Rng.RandfRange(20, 40));
+                        EstablishSubordinateLink(managerId, laborerId);
+                    }
                 }
             }
         }
 
-        private void CreateNpc(Dictionary location, Array<string> foundingIdeologies)
+        private int CreateNpc(string name, string dominantIsm, float rationality)
         {
-            // Find available housing and workplace BEFORE creating the entity
-            var home = _villageManager.FindAvailableBuilding("House");
-            if (home == null)
-            {
-                GD.PrintErr("Generation failed: No available houses for new NPC. Stopping population generation.");
-                return; // Stop creating NPCs if there's no housing
-            }
-
-            var workplace = _villageManager.FindAvailableBuilding("Workshop");
-            if (workplace == null)
-            {
-                GD.PrintErr("Generation failed: No available workplaces for new NPC. Stopping population generation.");
-                return; // Stop creating NPCs if there are no jobs
-            }
-
             var entityId = world.CreateEntity();
-            var locationName = location["name"].ToString();
-            var locationPosition = (Vector2)location["position"];
 
-            world.AddComponent(entityId, new IdentityComponent { Name = $"Person from {locationName}" });
-            world.AddComponent(entityId, new PositionComponent { Position = locationPosition });
-            world.AddComponent(entityId, new StateComponent { CurrentState = "Idle" });
-            world.AddComponent(entityId, new NeedsComponent { Hunger = Rng.RandfRange(0, 50), Stress = Rng.RandfRange(0, 50) });
-            world.AddComponent(entityId, new FinancialComponent { Money = Rng.RandfRange(50, 200) });
+            world.AddComponent(entityId, new IdentityComponent { Name = name });
+            world.AddComponent(entityId, new RelationshipComponent());
+            world.AddComponent(entityId, new FinancialComponent());
+            world.AddComponent(entityId, new NeedsComponent(0,0));
 
-            // Assign to the found home and workplace
-            world.AddComponent(entityId, new HousingComponent { HomeBuildingName = home.Name });
-            home.Occupants.Add((int)entityId);
-
-            world.AddComponent(entityId, new JobComponent { WorkplaceBuildingName = workplace.Name });
-            workplace.Occupants.Add((int)entityId);
+            var sheet = new CharacterSheetComponent { Rationality = rationality };
+            world.AddComponent(entityId, sheet);
 
             var ismComponent = new IsmComponent();
-            foreach (var ismId in foundingIdeologies)
-            {
-                ismComponent.AddIdeology(ismId, Rng.RandfRange(40, 80));
-            }
+            ismComponent.AddIdeology(dominantIsm, 100);
             world.AddComponent(entityId, ismComponent);
 
-            world.GetSystem<IdeologySystem>().RecalculateDecisionMatrix(entityId);
+            return entityId;
+        }
 
-            GD.Print($"Generated NPC for {locationName} and assigned to House: {home.Name}, Workplace: {workplace.Name}");
+        private void EstablishSubordinateLink(int superiorId, int subordinateId)
+        {
+            var superiorRels = world.GetComponent<RelationshipComponent>(superiorId);
+            superiorRels.AddOrUpdateRelationship(subordinateId, RelationshipType.Follower, 100);
         }
     }
 }

@@ -1,19 +1,19 @@
 namespace Ecs.Components
 {
-    /// <summary>
-    /// Manages the financial state of an entity.
-    /// </summary>
-    public class FinancialComponent : Component
+    public partial class FinancialComponent : Component
     {
         public float Money { get; set; }
         public float BankBalance { get; set; }
         public float Loans { get; set; }
 
-        public FinancialComponent(float money, float bankBalance = 0, float loans = 0)
+        // Represents the economic output of this individual in the last cycle.
+        public float GdpContribution { get; set; } = 0;
+
+        public FinancialComponent()
         {
-            Money = money;
-            BankBalance = bankBalance;
-            Loans = loans;
+            Money = 100;
+            BankBalance = 0;
+            Loans = 0;
         }
     }
 }

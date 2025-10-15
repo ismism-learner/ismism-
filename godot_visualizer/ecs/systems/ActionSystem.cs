@@ -2,125 +2,111 @@ using System.Linq;
 using Ecs.Components;
 using Godot;
 using Godot.Collections;
-using Managers;
+using System.Collections.Generic;
 
 namespace Ecs.Systems
 {
-    /// <summary>
-    /// Translates entity demands into concrete actions using a utility-based decision model.
-    /// </summary>
-    public class ActionSystem : System
+    public class ActionSystem : Ecs.System
     {
-        private ResourceManager _resourceManager;
-
         public override void Process()
         {
-            if (_resourceManager == null)
-            {
-                _resourceManager = world.GetNode<ResourceManager>("/root/ResourceManager");
-            }
-
-            var entities = world.GetEntitiesWithComponents(typeof(NeedsComponent), typeof(StateComponent), typeof(PositionComponent), typeof(IsmComponent));
+            var entities = world.GetEntitiesWithComponents(
+                typeof(NeedsComponent), typeof(StateComponent), typeof(CharacterSheetComponent), typeof(JobComponent)
+            );
 
             foreach (var entityId in entities)
             {
                 var state = world.GetComponent<StateComponent>(entityId);
-                if (state.CurrentState != "Idle") continue;
 
-                var needs = world.GetComponent<NeedsComponent>(entityId);
-                if (needs.Demands.Count == 0) continue;
-
-                var bestAction = DecideNextAction(entityId);
-                if (bestAction == null) continue;
-
-                var demandType = bestAction["type"].ToString();
-                GD.Print($"Entity {entityId} decided to act on demand: {demandType}");
-
-                ExecuteAction(entityId, demandType);
-
-                // Remove the fulfilled demand
-                needs.Demands.Remove(bestAction);
-            }
-        }
-
-        private Dictionary DecideNextAction(long entityId)
-        {
-            var needs = world.GetComponent<NeedsComponent>(entityId);
-            var isms = world.GetComponent<IsmComponent>(entityId);
-
-            Dictionary bestDemand = null;
-            float maxScore = -1f;
-
-            foreach (var demand in needs.Demands)
-            {
-                float score = CalculateUtilityScore(demand, needs, isms);
-                if (score > maxScore)
+                if (state.CurrentState == "EnforcingQuota")
                 {
-                    maxScore = score;
-                    bestDemand = demand;
+                    ProcessQuotaEnforcement(entityId, state);
+                }
+                else if (state.CurrentState == "Idle")
+                {
+                    ProcessIdle(entityId, state);
+                }
+                else if (state.CurrentState == "Working")
+                {
+                    ProcessWork(entityId, state);
                 }
             }
-            return bestDemand;
         }
 
-        private float CalculateUtilityScore(Dictionary demand, NeedsComponent needs, IsmComponent isms)
+        private void ProcessIdle(int entityId, StateComponent state)
+        {
+            var needs = world.GetComponent<NeedsComponent>(entityId);
+            if (needs.Demands.Count == 0) return;
+
+            var bestAction = DecideNextAction(entityId, needs);
+            if (bestAction == null) return;
+
+            needs.Demands.Remove(bestAction);
+            ExecuteAction(entityId, bestAction);
+        }
+
+        private void ProcessQuotaEnforcement(int managerId, StateComponent state)
+        {
+            var directive = (Dictionary)state.ActionData["directive"];
+            float targetGdp = directive["gdp_target"].AsSingle();
+
+            var relationships = world.GetComponent<RelationshipComponent>(managerId);
+            var subordinates = relationships.Relationships.Values.Where(r => r.Type == RelationshipType.Follower).Select(r => r.TargetNpcId).ToList();
+
+            float currentGdp = subordinates.Sum(id => world.GetComponent<FinancialComponent>(id).GdpContribution);
+
+            if (currentGdp < targetGdp)
+            {
+                var managementSystem = world.GetSystem<ManagementSystem>();
+                managementSystem.TryToExploit(managerId, subordinates);
+            }
+            else
+            {
+                state.CurrentState = "Idle";
+            }
+        }
+
+        private void ProcessWork(int laborerId, StateComponent state)
+        {
+            var financial = world.GetComponent<FinancialComponent>(laborerId);
+            financial.GdpContribution += 0.1f;
+            financial.Money += 0.01f;
+        }
+
+        private Dictionary DecideNextAction(int entityId, NeedsComponent needs)
+        {
+            var sheet = world.GetComponent<CharacterSheetComponent>(entityId);
+            return needs.Demands
+                .Select(demand => new { Demand = demand, Score = CalculateUtilityScore(demand, sheet) })
+                .OrderByDescending(x => x.Score)
+                .FirstOrDefault()?.Demand;
+        }
+
+        private float CalculateUtilityScore(Dictionary demand, CharacterSheetComponent sheet)
         {
             var type = demand["type"].ToString();
             switch (type)
             {
-                case "EAT_FOOD":
-                    return needs.Hunger; // Score is directly proportional to hunger level
-                case "SEEK_ENTERTAINMENT":
-                    return needs.Stress; // Score is proportional to stress level
-                case "WORK":
-                case "CREATE_ART":
-                    // Ideological urges are weighted by the strength of the corresponding ideology
-                    return isms.ActiveIdeologies.Values.Max(); // Simplified: use the strongest ideology's strength
-                default:
-                    return 0f;
+                case "MEET_QUOTA": return 1000;
+                case "WORK": return 100;
+                default: return 0;
             }
         }
 
-        private void ExecuteAction(long entityId, string demandType)
+        private void ExecuteAction(int entityId, Dictionary demand)
         {
             var state = world.GetComponent<StateComponent>(entityId);
-            var ideologySystem = world.GetSystem<IdeologySystem>();
+            var type = demand["type"].ToString();
 
-            if (demandType == "EAT_FOOD")
+            if (type == "MEET_QUOTA")
             {
-                var foodLocationId = _resourceManager.FindMostResourceRichLocation("FOOD");
-                if (string.IsNullOrEmpty(foodLocationId)) return;
-
-                var locationData = _resourceManager.GetLocation(foodLocationId);
-                state.ActionData["target_position"] = (Vector2)locationData["position"];
-                state.ActionData["on_arrival_action"] = "ConsumeFood";
-                state.CurrentState = "Moving";
-
-                ideologySystem.ProcessExperience(entityId, new Array<string> { "CONSUMPTION", "SURVIVAL" });
+                state.CurrentState = "EnforcingQuota";
+                state.ActionData["directive"] = demand;
             }
-            else if (demandType == "WORK")
+            else if (type == "WORK")
             {
-                var job = world.GetComponent<JobComponent>(entityId);
-                if (job == null || string.IsNullOrEmpty(job.WorkplaceBuildingName)) return;
-
-                var workplace = _resourceManager.GetLocation(job.WorkplaceBuildingName);
-                state.ActionData["target_position"] = (Vector2)workplace["position"];
-                state.ActionData["on_arrival_action"] = "DoWork";
-                state.CurrentState = "Moving";
-
-                ideologySystem.ProcessExperience(entityId, new Array<string> { "WORK", "LABOR", "DUTY" });
-            }
-            else if (demandType == "CREATE_ART")
-            {
-                var housing = world.GetComponent<HousingComponent>(entityId);
-                if (housing == null || string.IsNullOrEmpty(housing.HomeBuildingName)) return;
-
-                var home = _resourceManager.GetLocation(housing.HomeBuildingName);
-                state.ActionData["target_position"] = (Vector2)home["position"];
-                state.ActionData["on_arrival_action"] = "DoArt";
-                state.CurrentState = "Moving";
-
-                ideologySystem.ProcessExperience(entityId, new Array<string> { "ART", "AESTHETICS", "CREATION" });
+                // Simplified: Immediately start working. No movement.
+                state.CurrentState = "Working";
             }
         }
     }
