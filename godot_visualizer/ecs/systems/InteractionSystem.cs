@@ -12,32 +12,49 @@ namespace Ecs.Systems
     {
         private RelationshipManager _relationshipManager;
 
+        private const float InteractionDistance = 20.0f; // Max distance for interaction
+        private const int InteractionCooldown = 300; // Ticks between interactions
+
         public override void Process()
         {
-            // In a full implementation, this system would be triggered by specific
-            // "Interact" actions set in the StateComponent.
-            // For this migration, we'll create a placeholder that demonstrates the core logic.
-
             if (_relationshipManager == null)
             {
-                // Get the singleton instance
-                _relationshipManager = world.GetNode<RelationshipManager>("/root/RelationshipManager");
+                _relationshipManager = World.GetNode<RelationshipManager>("/root/RelationshipManager");
             }
 
-            // Example Trigger: Find entities wanting to interact
-            var entities = world.GetEntitiesWithComponents(typeof(StateComponent));
+            var entities = World.GetEntitiesWithComponents(typeof(JobComponent), typeof(PositionComponent), typeof(StateComponent));
+
             foreach (var entityId in entities)
             {
-                var state = world.GetComponent<StateComponent>(entityId);
-                if (state.CurrentState == "RequestInteraction")
+                var state = World.GetComponent<StateComponent>(entityId);
+
+                // Simple cooldown to prevent constant interactions
+                if (World.Time - state.LastInteractionTime < InteractionCooldown)
                 {
-                    var targetId = (long)state.ActionData["target_id"];
-                    var interactionType = state.ActionData["interaction_type"].ToString(); // e.g., "DiscussPhilosophy"
+                    continue;
+                }
 
-                    PerformInteraction(entityId, targetId, interactionType);
+                var job = World.GetComponent<JobComponent>(entityId);
+                var pos = World.GetComponent<PositionComponent>(entityId);
 
-                    // Reset state after interaction
-                    state.CurrentState = "Idle";
+                // Find colleagues at the same workplace
+                var colleagues = World.GetEntitiesWithComponents(typeof(JobComponent), typeof(PositionComponent));
+                foreach (var colleagueId in colleagues)
+                {
+                    if (entityId == colleagueId) continue;
+
+                    var colleagueJob = World.GetComponent<JobComponent>(colleagueId);
+                    if (colleagueJob.WorkplaceBuildingName == job.WorkplaceBuildingName)
+                    {
+                        var colleaguePos = World.GetComponent<PositionComponent>(colleagueId);
+                        if (pos.Position.DistanceTo(colleaguePos.Position) < InteractionDistance)
+                        {
+                            // Trigger an interaction
+                            PerformInteraction(entityId, colleagueId, "WorkplaceChat");
+                            state.LastInteractionTime = World.Time; // Update cooldown timer
+                            break; // Interact with one person per tick
+                        }
+                    }
                 }
             }
         }

@@ -3,39 +3,32 @@ using Godot;
 
 namespace Ecs.Systems
 {
-    /// <summary>
-    /// Handles the movement of entities.
-    /// </summary>
-    public class MovementSystem : System
+    public partial class MovementSystem : Ecs.System
     {
+        private const float MoveSpeed = 1.0f;
+        private const float ProximityThreshold = 1.5f;
+
         public override void Process()
         {
-            var entities = world.GetEntitiesWithComponents(typeof(PositionComponent), typeof(StateComponent));
+            var entities = World.GetEntitiesWithComponents(typeof(PositionComponent), typeof(MoveToComponent));
 
             foreach (var entityId in entities)
             {
-                var state = world.GetComponent<StateComponent>(entityId);
+                var pos = World.GetComponent<PositionComponent>(entityId);
+                var moveTo = World.GetComponent<MoveToComponent>(entityId);
 
-                if (state.CurrentState == "Moving")
+                var direction = (moveTo.TargetPosition - pos.Position).Normalized();
+                var newPosition = pos.Position + direction * MoveSpeed;
+
+                if (pos.Position.DistanceTo(moveTo.TargetPosition) < ProximityThreshold)
                 {
-                    var pos = world.GetComponent<PositionComponent>(entityId);
-                    var targetPosition = (Vector2)state.ActionData["target_position"];
-
-                    var direction = (targetPosition - pos.Position).Normalized();
-                    var newPosition = pos.Position + direction * 1.0f; // Move 1 unit per tick
-
-                    // Check if we've reached the destination
-                    if (pos.Position.DistanceTo(targetPosition) < 1.5f)
-                    {
-                        pos.Position = targetPosition;
-                        state.CurrentState = "Idle";
-                        state.ActionData.Clear();
-                        GD.Print($"Entity {entityId} reached destination.");
-                    }
-                    else
-                    {
-                        pos.Position = newPosition;
-                    }
+                    pos.Position = moveTo.TargetPosition;
+                    World.RemoveComponent<MoveToComponent>(entityId);
+                    // GD.Print($"Entity {entityId} reached destination.");
+                }
+                else
+                {
+                    pos.Position = newPosition;
                 }
             }
         }

@@ -73,6 +73,17 @@ namespace Ecs
         }
 
         /// <summary>
+        /// Removes a component from an entity.
+        /// </summary>
+        public void RemoveComponent<T>(long entityId) where T : Component
+        {
+            if (HasComponent<T>(entityId))
+            {
+                _entities[entityId].Remove(typeof(T));
+            }
+        }
+
+        /// <summary>
         /// Returns a list of all entities that have all the specified component types.
         /// </summary>
         public IEnumerable<long> GetEntitiesWithComponents(params Type[] componentTypes)
@@ -129,6 +140,12 @@ namespace Ecs
             var npcDataArray = (Array<Dictionary>)json.Data;
             GD.Print($"Found {npcDataArray.Count} NPCs in database.");
 
+            var villageManager = GetNode<VillageManager>("/root/VillageManager");
+            var houses = villageManager.GetBuildingsByType("House");
+            var workplaces = villageManager.GetBuildingsByType("Workshop");
+            int houseIndex = 0;
+            int workplaceIndex = 0;
+
             foreach (var npcData in npcDataArray)
             {
                 var entityId = CreateEntity();
@@ -171,6 +188,21 @@ namespace Ecs
 
                 // Hobby
                 AddComponent(entityId, new HobbyComponent());
+
+                // Housing and Job
+                if (houses.Count > 0)
+                {
+                    var house = houses[houseIndex++ % houses.Count];
+                    AddComponent(entityId, new HousingComponent(house.Name));
+                    house.Occupants.Add((int)entityId);
+                }
+
+                if (workplaces.Count > 0)
+                {
+                    var workplace = workplaces[workplaceIndex++ % workplaces.Count];
+                    AddComponent(entityId, new JobComponent(workplace.Name));
+                    workplace.Occupants.Add((int)entityId);
+                }
             }
             GD.Print("Finished loading NPCs.");
         }

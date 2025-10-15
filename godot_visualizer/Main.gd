@@ -13,6 +13,7 @@ const NeedsSystem = preload("res://ecs/systems/NeedsSystem.cs")
 const InteractionSystem = preload("res://ecs/systems/InteractionSystem.cs")
 const ActionSystem = preload("res://ecs/systems/ActionSystem.cs")
 const IdeologySystem = preload("res://ecs/systems/IdeologySystem.cs")
+const ScheduleSystem = preload("res://ecs/systems/ScheduleSystem.cs")
 # Add other systems as needed...
 
 func _ready():
@@ -31,10 +32,29 @@ func _ready():
 	World.AddSystem(InteractionSystem.new())
 	World.AddSystem(ActionSystem.new())
 	World.AddSystem(IdeologySystem.new())
+	World.AddSystem(ScheduleSystem.new())
 
 	# The World's _PhysicsProcess will now run the simulation automatically.
 	# The NPC database is also loaded automatically by World._Ready().
 	print("C# ECS Initialized and running.")
+
+	draw_village()
+
+func draw_village():
+	var buildings = VillageManager.Buildings
+	for building in buildings:
+		var rect = ColorRect.new()
+		rect.size = Vector2(80, 50)
+		rect.color = Color.DARK_GOLDENROD if building.BuildingType == "Workshop" else Color.BURLYWOOD
+		rect.position = building.Position - rect.size / 2
+		add_child(rect)
+
+		var label = Label.new()
+		label.text = building.Name
+		label.position = rect.position + Vector2(5, 5)
+		label.add_theme_color_override("font_color", Color.BLACK)
+		label.add_theme_font_size_override("font_size", 10)
+		add_child(label)
 
 func _process(_delta):
 	# This function now syncs the Godot nodes with the ECS state.
