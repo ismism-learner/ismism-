@@ -36,22 +36,49 @@ namespace Ecs.Systems
 
                     if (demandType == "EAT_FOOD")
                     {
-                        var foodLocationId = _resourceManager.FindMostResourceRichLocation("FOOD");
-                        if (!string.IsNullOrEmpty(foodLocationId))
+                        // For simplicity, we assume the tavern is the only food source.
+                        // A more complex system would search for the best/closest food source.
+                        var foodLocationId = "tavern_1";
+                        var locationData = _resourceManager.GetLocation(foodLocationId);
+                        if (locationData != null)
                         {
-                            var locationData = _resourceManager.GetLocation(foodLocationId);
                             var targetPosition = (Vector2)locationData["position"];
 
                             state.CurrentState = "Moving";
                             state.ActionData["target_position"] = targetPosition;
                             state.ActionData["on_arrival_action"] = "ConsumeFood";
-
-                            GD.Print($"Entity {entityId} is moving to {foodLocationId} to eat.");
+                            GD.Print($"Entity {entityId} is moving to {locationData["name"]} to eat.");
                         }
                     }
-                    else if (demandType == "SEEK_ENTERTAINMENT")
+                    else if (demandType == "WORK")
                     {
-                        // Logic to find an entertainment location would go here
+                        var sheet = world.GetComponent<CharacterSheetComponent>(entityId);
+                        var workLocationId = sheet.WorkplaceLocationId;
+                        var locationData = _resourceManager.GetLocation(workLocationId);
+                        if (locationData != null)
+                        {
+                            var targetPosition = (Vector2)locationData["position"];
+
+                            state.CurrentState = "Moving";
+                            state.ActionData["target_position"] = targetPosition;
+                            state.ActionData["on_arrival_action"] = "Work";
+                            GD.Print($"Entity {entityId} is moving to their workplace: {locationData["name"]}.");
+                        }
+                    }
+                    else if (demandType == "SLEEP")
+                    {
+                        var sheet = world.GetComponent<CharacterSheetComponent>(entityId);
+                        var homeLocationId = sheet.HomeLocationId;
+                        var locationData = _resourceManager.GetLocation(homeLocationId);
+                        if (locationData != null)
+                        {
+                            var targetPosition = (Vector2)locationData["position"];
+
+                            state.CurrentState = "Moving";
+                            state.ActionData["target_position"] = targetPosition;
+                            state.ActionData["on_arrival_action"] = "Sleep";
+                            GD.Print($"Entity {entityId} is moving home to {locationData["name"]} to sleep.");
+                        }
                     }
 
                     // Remove the processed demand

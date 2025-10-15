@@ -10,28 +10,36 @@ namespace Ecs.Systems
     {
         public override void Process()
         {
-            var entities = world.GetEntitiesWithComponents(typeof(NeedsComponent), typeof(FinancialComponent));
+            var entities = world.GetEntitiesWithComponents(
+                typeof(NeedsComponent),
+                typeof(CharacterSheetComponent)
+            );
 
             foreach (var entityId in entities)
             {
                 var needs = world.GetComponent<NeedsComponent>(entityId);
-                var financial = world.GetComponent<FinancialComponent>(entityId);
+                var sheet = world.GetComponent<CharacterSheetComponent>(entityId);
 
                 // Basic needs decay over time
                 needs.Hunger = Mathf.Min(needs.Hunger + 0.1f, 100);
-                needs.Stress = Mathf.Min(needs.Stress + 0.05f, 100);
+                needs.Energy = Mathf.Max(needs.Energy - 0.05f, 0);
 
-                // Stress increases with debt
-                if (financial.Loans > 0)
+                // Check for work hours
+                var currentHour = (world.Time / World.TicksPerHour) % 24;
+                if (currentHour >= sheet.WorkHoursStart && currentHour < sheet.WorkHoursEnd)
                 {
-                    needs.Stress = Mathf.Min(needs.Stress + (financial.Loans / 1000.0f), 100);
+                    if (!HasDemand(needs, "type", "WORK"))
+                    {
+                        needs.Demands.Add(new Godot.Collections.Dictionary { { "type", "WORK" } });
+                        GD.Print($"Entity {entityId} needs to work (it's work time).");
+                    }
                 }
 
                 // Generate demands based on needs thresholds
-                if (needs.Stress > 80 && !HasDemand(needs, "type", "SEEK_ENTERTAINMENT"))
+                if (needs.Energy < 20 && !HasDemand(needs, "type", "SLEEP"))
                 {
-                    needs.Demands.Add(new Godot.Collections.Dictionary { { "type", "SEEK_ENTERTAINMENT" } });
-                    GD.Print($"Entity {entityId} is stressed and wants to find entertainment.");
+                    needs.Demands.Add(new Godot.Collections.Dictionary { { "type", "SLEEP" } });
+                    GD.Print($"Entity {entityId} is tired and wants to sleep.");
                 }
 
                 if (needs.Hunger > 70 && !HasDemand(needs, "type", "EAT_FOOD"))

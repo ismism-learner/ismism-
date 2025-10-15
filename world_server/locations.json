@@ -1,26 +1,20 @@
 [
   {
-    "id": "home_1",
+    "id": "dormitory_1",
     "type": "RESIDENCE",
-    "name": "Humble Abode",
-    "position": [ 100, 150 ],
-    "inventory": {}
+    "name": "第一村宿舍",
+    "position": [ 100, 100 ]
   },
   {
-    "id": "work_1",
+    "id": "tavern_1",
+    "type": "FOOD_SOURCE",
+    "name": "第一村酒馆",
+    "position": [ 150, 100 ]
+  },
+  {
+    "id": "assembly_line_1",
     "type": "WORKPLACE",
-    "name": "The Mine",
-    "position": [ 500, 200 ],
-    "produces": "IRON_ORE",
-    "inventory": {}
-  },
-  {
-    "id": "entertainment_1",
-    "type": "ENTERTAINMENT",
-    "name": "The Salty Spitoon",
-    "position": [ 300, 400 ],
-    "cost": 10,
-    "ideological_influence": { "idealism": 5 },
-    "inventory": {}
+    "name": "第一村流水线",
+    "position": [ 125, 150 ]
   }
 ]
