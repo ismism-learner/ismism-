@@ -44,21 +44,34 @@ class InteractionSystem(System):
                     break # Interact with only one entity per tick to simplify logic
 
     def _get_all_ism_keywords(self, entity_id):
+        """
+        Extracts all unique, non-empty string keywords from an entity's active ideologies.
+        This involves recursively searching through the philosophy data structures.
+        """
         ism_comp = self.world.get_component(entity_id, IsmComponent)
         keywords = set()
-        philosophy_data = ism_comp.data
 
-        if not philosophy_data:
+        if not ism_comp or not ism_comp.active_ideologies:
             return []
 
-        for key, value in philosophy_data.items():
-            if isinstance(value, str):
-                keywords.add(value)
-            elif isinstance(value, dict):
-                # Handles complex structures like {'base': 'A', 'relation': 'vs', 'counter': 'B'}
-                keywords.update(str(v) for v in value.values() if v)
+        # This recursive function will dig through dictionaries to find all string values.
+        def extract_keywords_recursive(data):
+            if isinstance(data, str):
+                if data: # Ensure the string is not empty
+                    keywords.add(data)
+            elif isinstance(data, dict):
+                for value in data.values():
+                    extract_keywords_recursive(value)
+            elif isinstance(data, list):
+                 for item in data:
+                    extract_keywords_recursive(item)
 
-        return [kw for kw in keywords if kw] # Return a list of non-empty keywords
+        for ideology in ism_comp.active_ideologies:
+            # The actual philosophical data is stored under the 'data' key of each ideology object.
+            philosophy_data = ideology.get('data', {})
+            extract_keywords_recursive(philosophy_data)
+
+        return list(keywords)
 
     def _check_interaction_conditions(self, interaction, initiator_id, target_id):
         initiator_keywords = self._get_all_ism_keywords(initiator_id)

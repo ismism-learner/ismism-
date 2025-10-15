@@ -63,26 +63,39 @@ class Server:
 
     def _load_game_definitions(self):
         """Loads all static data files like locations, interactions, goods, etc."""
+        # --- Path Correction ---
+        # Get the absolute path to the directory containing this script.
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        # Get the project root by going one level up.
+        project_root = os.path.abspath(os.path.join(script_dir, '..'))
+
+        # Helper function to load JSON files safely.
+        def load_json_file(file_path, error_message, default_value=None):
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except FileNotFoundError:
+                print(f"错误: {error_message} '{file_path}' 未找到。")
+                return default_value
+            except json.JSONDecodeError:
+                print(f"错误: {error_message} '{file_path}' 格式无效。")
+                return default_value
+
         # Load the new quantified ism data
-        isms_path = "isms_final.json"
-        try:
-            with open(isms_path, 'r', encoding='utf-8') as f:
-                self.all_isms_data = json.load(f)
-            # Create a lookup dictionary for isms by their ID
+        isms_path = os.path.join(project_root, "isms_final.json")
+        self.all_isms_data = load_json_file(isms_path, "主义数据文件", [])
+        if self.all_isms_data:
             self.isms_by_id = {ism['id']: ism for ism in self.all_isms_data if 'id' in ism}
             print(f"成功加载并量化 {len(self.all_isms_data)} 个主义。")
             print(f"为 {len(self.isms_by_id)} 个主义创建了ID查找表。")
-        except FileNotFoundError:
-            print(f"错误: 主义数据文件 '{isms_path}' 未找到。请确保已运行 excel_parser.py。")
-            self.all_isms_data = []
-        except json.JSONDecodeError:
-            print(f"错误: 主义数据文件 '{isms_path}' 格式无效。")
+        else:
+             print(f"错误: 主义数据文件 '{isms_path}' 未找到。请确保已运行 excel_parser.py。")
+
 
         # Load locations
-        locations_path = "world_server/locations.json"
-        try:
-            with open(locations_path, 'r', encoding='utf-8') as f:
-                locations_data = json.load(f)
+        locations_path = os.path.join(script_dir, "locations.json")
+        locations_data = load_json_file(locations_path, "地点文件", [])
+        if locations_data:
             for i, loc in enumerate(locations_data):
                 loc['id'] = f"loc_{i}"
                 loc['state'] = "active"
@@ -98,79 +111,45 @@ class Server:
                         loc['produces_rate'] = 3
             self.locations = locations_data
             print(f"成功加载并初始化 {len(self.locations)} 个地点。")
-        except FileNotFoundError:
-            print(f"错误: 地点文件 '{locations_path}' 未找到。")
-        except json.JSONDecodeError:
-            print(f"错误: 地点文件 '{locations_path}' 格式无效。")
 
         # Load interactions
-        interactions_path = "world_server/interactions.json"
-        try:
-            with open(interactions_path, 'r', encoding='utf-8') as f:
-                self.interactions = json.load(f)
+        interactions_path = os.path.join(script_dir, "interactions.json")
+        self.interactions = load_json_file(interactions_path, "互动文件", [])
+        if self.interactions:
             print(f"成功加载 {len(self.interactions)} 个互动。")
-        except FileNotFoundError:
-            print(f"错误: 互动文件 '{interactions_path}' 未找到。")
-        except json.JSONDecodeError:
-            print(f"错误: 互动文件 '{interactions_path}' 格式无效。")
 
         # Load consumer goods
-        goods_path = "world_server/consumer_goods.json"
-        try:
-            with open(goods_path, 'r', encoding='utf-8') as f:
-                self.consumer_goods = json.load(f)
+        goods_path = os.path.join(script_dir, "consumer_goods.json")
+        self.consumer_goods = load_json_file(goods_path, "消费品文件", [])
+        if self.consumer_goods:
             print(f"成功加载 {len(self.consumer_goods)} 个消费品。")
-        except FileNotFoundError:
-            print(f"错误: 消费品文件 '{goods_path}' 未找到。")
-        except json.JSONDecodeError:
-            print(f"错误: 消费品文件 '{goods_path}' 格式无效。")
 
         # Load hobby definitions
-        hobbies_path = "world_server/hobby_definitions.json"
-        try:
-            with open(hobbies_path, 'r', encoding='utf-8') as f:
-                self.hobby_definitions = json.load(f)
+        hobbies_path = os.path.join(script_dir, "hobby_definitions.json")
+        self.hobby_definitions = load_json_file(hobbies_path, "爱好文件", [])
+        if self.hobby_definitions:
             print(f"成功加载 {len(self.hobby_definitions)} 个爱好定义。")
-        except FileNotFoundError:
-            print(f"错误: 爱好文件 '{hobbies_path}' 未找到。")
-        except json.JSONDecodeError:
-            print(f"错误: 爱好文件 '{hobbies_path}' 格式无效。")
 
         # Load relationship types
-        relationship_types_path = "world_server/relationship_types.json"
-        try:
-            with open(relationship_types_path, 'r', encoding='utf-8') as f:
-                self.relationship_types = json.load(f)
+        relationship_types_path = os.path.join(script_dir, "relationship_types.json")
+        self.relationship_types = load_json_file(relationship_types_path, "关系类型文件", {})
+        if self.relationship_types:
             print(f"成功加载 {len(self.relationship_types)} 个关系类型。")
-        except FileNotFoundError:
-            print(f"错误: 关系类型文件 '{relationship_types_path}' 未找到。")
-        except json.JSONDecodeError:
-            print(f"错误: 关系类型文件 '{relationship_types_path}' 格式无效。")
 
-        # Load collective actions
-        collective_actions_path = "world_server/collective_actions.json"
-        try:
-            with open(collective_actions_path, 'r', encoding='utf-8') as f:
-                self.collective_actions = json.load(f)
-            print(f"成功加载 {len(self.collective_actions)} 个集体行动。")
-        except FileNotFoundError:
+        # Load collective actions (optional)
+        collective_actions_path = os.path.join(script_dir, "collective_actions.json")
+        self.collective_actions = load_json_file(collective_actions_path, "集体行动文件", [])
+        if self.collective_actions:
+             print(f"成功加载 {len(self.collective_actions)} 个集体行动。")
+        else:
             print(f"信息: 集体行动文件 '{collective_actions_path}' 未找到。将使用空列表。")
-            self.collective_actions = []
-        except json.JSONDecodeError:
-            print(f"错误: 集体行动文件 '{collective_actions_path}' 格式无效。")
+
 
         # Load regions
-        regions_path = "world_server/regions.json"
-        try:
-            with open(regions_path, 'r', encoding='utf-8') as f:
-                self.regions = json.load(f)
+        regions_path = os.path.join(script_dir, "regions.json")
+        self.regions = load_json_file(regions_path, "区域文件", {})
+        if self.regions:
             print(f"成功加载 {len(self.regions)} 个区域。")
-        except FileNotFoundError:
-            print(f"错误: 区域文件 '{regions_path}' 未找到。")
-            self.regions = {}
-        except json.JSONDecodeError:
-            print(f"错误: 区域文件 '{regions_path}' 格式无效。")
-            self.regions = {}
 
     def _setup_world(self):
         """初始化游戏世界，加载资源，创建实体并注册系统"""
@@ -255,8 +234,10 @@ class Server:
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
             # IsmComponent setup with the new multi-ideology structure
-            ism_comp = IsmComponent(active_ideologies=initial_ideologies)
+            ism_comp = IsmComponent()
             self.ecs_world.add_component(entity_id, ism_comp)
+            # Set ideologies via the property setter to trigger matrix calculation
+            ism_comp.active_ideologies = initial_ideologies
 
             # Needs & Demands
             needs_comp = NeedsComponent()
