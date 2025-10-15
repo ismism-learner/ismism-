@@ -31,6 +31,7 @@ from world_server.ecs.systems.technology_system import TechnologySystem
 from world_server.ecs.systems.hobby_system import HobbySystem
 from world_server.ecs.systems.desire_system import DesireSystem
 from world_server.ecs.systems.collective_action_system import CollectiveActionSystem
+from world_server.ecs.systems.evolution_system import EvolutionSystem
 
 
 class Server:
@@ -151,6 +152,7 @@ class Server:
         self.ecs_world.hobby_system = HobbySystem(self.consumer_goods)
         self.ecs_world.desire_system = DesireSystem() # Attach for global access
 
+        self.ecs_world.add_system(EvolutionSystem())
         self.ecs_world.add_system(self.ecs_world.desire_system)
         self.ecs_world.add_system(NeedsSystem())
         self.ecs_world.add_system(self.ecs_world.hobby_system)
@@ -185,10 +187,23 @@ class Server:
             # Position (randomly spawned)
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
-            # IsmComponent now stores the full, quantified data
+            # --- IsmComponent setup with IXP ---
+            # The gene_code comes from the 'id' field of the ism data
+            gene_code = ism_data.get('id', '1-1-1-1')
+
+            # Create a baseline IXP matrix
+            initial_ixp = [[0.0] * 4 for _ in range(4)]
+            gene_parts = [int(g) for g in gene_code.split('-')]
+
+            for i, stage in enumerate(gene_parts):
+                if 1 <= stage <= 4:
+                    # Set the initial IXP for the starting stage of each pillar
+                    initial_ixp[i][stage - 1] = 100.0 # Baseline value
+
             ism_comp = IsmComponent(
                 data=ism_data.get('philosophy', {}),
-                quantification=ism_data.get('quantification', {})
+                gene_code=gene_code,
+                ixp=initial_ixp
             )
             self.ecs_world.add_component(entity_id, ism_comp)
 

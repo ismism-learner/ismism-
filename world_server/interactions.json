@@ -9,7 +9,36 @@
       "base_affinity_change": -20,
       "initiator_idealism_change": 5,
       "target_idealism_change": -10,
-      "target_rupture_change": 15
+      "target_rupture_change": 15,
+      "ixp_gain": {
+        "initiator": {
+          "teleology": { "contradiction": 25 }
+        },
+        "target": {
+          "teleology": { "collapse": 40 }
+        }
+      }
+    },
+    "keyword": "CONFRONTATION"
+  },
+  {
+    "name": "Argue",
+    "type": "aggressive",
+    "conditions": {
+      "initiator_has_any_keyword": ["对抗", "理性", "个人主义"]
+    },
+    "effects": {
+      "base_affinity_change": -10,
+      "initiator_idealism_change": 2,
+      "target_idealism_change": -2,
+      "ixp_gain": {
+        "initiator": {
+          "epistemology": { "contradiction": 50 }
+        },
+        "target": {
+          "epistemology": { "contradiction": 20 }
+        }
+      }
     },
     "keyword": "CONFRONTATION"
   },
@@ -24,8 +53,15 @@
       "base_affinity_change": 15,
       "initiator_idealism_change": 10,
       "target_idealism_change": 10,
-      "target_rupture_change": 0,
-      "propagate_ism_chance": 0.1
+      "propagate_ism_chance": 0.1,
+      "ixp_gain": {
+        "initiator": {
+          "epistemology": { "synthesis": 30 }
+        },
+        "target": {
+          "epistemology": { "synthesis": 30 }
+        }
+      }
     },
     "keyword": "COOPERATION"
   },
@@ -39,7 +75,11 @@
       "base_affinity_change": 25,
       "initiator_idealism_change": 5,
       "target_idealism_change": 5,
-      "target_rupture_change": 0
+      "ixp_gain": {
+        "initiator": {
+          "ontology": { "synthesis": 10 }
+        }
+      }
     }
   }
 ]

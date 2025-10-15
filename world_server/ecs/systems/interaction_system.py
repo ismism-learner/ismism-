@@ -8,6 +8,11 @@ from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.identity import IdentityComponent
 
+# Map pillar names to their index in the IXP matrix, matching EvolutionSystem
+PILLAR_MAP = {"field": 0, "ontology": 1, "epistemology": 2, "teleology": 3}
+# Map stage names to their index in the IXP matrix
+STAGE_MAP = {"identity": 0, "contradiction": 1, "synthesis": 2, "collapse": 3}
+
 class InteractionSystem(System):
     """
     Manages social interactions between entities.
@@ -114,6 +119,28 @@ class InteractionSystem(System):
         if chosen_interaction:
             self._apply_interaction(chosen_interaction, initiator_id, target_id)
 
+    def _apply_ixp_gain(self, entity_id, ixp_gain_data):
+        """Applies IXP gain to a specific entity."""
+        if not ixp_gain_data:
+            return
+
+        ism_comp = self.world.get_component(entity_id, IsmComponent)
+        if not ism_comp:
+            return
+
+        for pillar_name, stages in ixp_gain_data.items():
+            pillar_index = PILLAR_MAP.get(pillar_name.lower())
+            if pillar_index is None:
+                continue
+
+            for stage_name, value in stages.items():
+                stage_index = STAGE_MAP.get(stage_name.lower())
+                if stage_index is None:
+                    continue
+
+                ism_comp.ixp[pillar_index][stage_index] += value
+                # print(f"Entity {entity_id} gained {value} IXP in {pillar_name}/{stage_name}") # DEBUG
+
     def _apply_interaction(self, interaction, initiator_id, target_id):
         initiator_identity = self.world.get_component(initiator_id, IdentityComponent)
         target_identity = self.world.get_component(target_id, IdentityComponent)
@@ -152,6 +179,12 @@ class InteractionSystem(System):
         if interaction.get('type') == 'aggressive':
             target_state.goal = "FLEE_FROM_THREAT"
             target_state.action = "Fleeing"
+
+        # --- New IXP Gain Logic ---
+        ixp_gain = effects.get('ixp_gain', {})
+        if ixp_gain:
+            self._apply_ixp_gain(initiator_id, ixp_gain.get('initiator'))
+            self._apply_ixp_gain(target_id, ixp_gain.get('target'))
 
         # --- New 'Ism' Propagation Logic ---
         propagate_chance = effects.get('propagate_ism_chance', 0)
