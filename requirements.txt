@@ -2,3 +2,4 @@ websockets
 pandas
 openpyxl
 numpy
+pytest
