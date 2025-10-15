@@ -5,6 +5,7 @@ from world_server.ecs.components.position import PositionComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.economy import EconomyComponent
+from world_server.ecs.components.ism import IsmComponent
 from world_server.resource_manager import ResourceManager
 
 class ActionSystem(System):
@@ -13,12 +14,16 @@ class ActionSystem(System):
     """
     def process(self, locations, *args, **kwargs):
         entities_with_goals = self.world.get_entities_with_components(PositionComponent, StateComponent, NeedsComponent)
+        ideology_system = self.world.ideology_system if hasattr(self.world, 'ideology_system') else None
 
         for entity_id in entities_with_goals:
+            # Check if the entity has an ideology component to reinforce
+            if not self.world.has_component(entity_id, IsmComponent):
+                continue
+
             pos_comp = self.world.get_component(entity_id, PositionComponent)
             state_comp = self.world.get_component(entity_id, StateComponent)
 
-            # Check if the entity has a location-based goal
             if not (isinstance(state_comp.goal, dict) and state_comp.goal.get("type") == "GO_TO_LOCATION"):
                 continue
 
@@ -26,20 +31,21 @@ class ActionSystem(System):
             target_loc = next((loc for loc in locations if loc['id'] == target_loc_id), None)
 
             if not target_loc:
-                state_comp.goal = "Wander" # Target location doesn't exist, reset goal
+                state_comp.goal = "Wander"
                 continue
 
             dist_to_target = ((pos_comp.x - target_loc['position']['x'])**2 + (pos_comp.y - target_loc['position']['y'])**2)**0.5
 
-            # If the entity has arrived at the location
             if dist_to_target <= target_loc.get("radius", 10):
                 purpose = state_comp.goal.get("purpose")
                 needs_comp = self.world.get_component(entity_id, NeedsComponent)
+                action_keywords = []
 
                 if purpose == "SATISFY_HUNGER":
                     state_comp.action = "Eating"
                     if ResourceManager.consume(target_loc, "GRAIN", 5, locations):
                         needs_comp.needs['hunger']['current'] = max(0, needs_comp.needs['hunger']['current'] - 25)
+                        action_keywords = ["SURVIVAL", "CONSUMPTION", "SUSTENANCE"]
                         if needs_comp.needs['hunger']['current'] <= 0:
                             state_comp.goal = "Wander"
                     else:
@@ -49,6 +55,7 @@ class ActionSystem(System):
                 elif purpose == "REST":
                     state_comp.action = "Sleeping"
                     needs_comp.needs['energy']['current'] = min(needs_comp.needs['energy']['max'], needs_comp.needs['energy']['current'] + 2.5)
+                    action_keywords = ["RECOVERY", "REST", "PEACE"]
                     if needs_comp.needs['energy']['current'] >= needs_comp.needs['energy']['max']:
                         state_comp.goal = "Wander"
 
@@ -56,20 +63,19 @@ class ActionSystem(System):
                     economy_comp = self.world.get_component(entity_id, EconomyComponent)
                     work_type = target_loc.get('work_type', 'Working')
                     state_comp.action = f"{work_type}"
-
-                    # Produce resources, now passing the world object to get tech bonuses
                     ResourceManager.produce(target_loc, self.world)
-
-                    # Gain money and affect needs
                     economy_comp.money += 1
                     needs_comp.needs['energy']['current'] = max(0, needs_comp.needs['energy']['current'] - 0.2)
                     needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + 0.3)
 
-                    # --- Contribute to Technology ---
+                    action_keywords = ["PRODUCTION", "DUTY", "LABOR", "ECONOMY", work_type.upper()]
+
                     if work_type == "ALCHEMY":
                         self.world.tech_system.add_tech_points(self.world, "alchemy", 1)
+                        action_keywords.extend(["KNOWLEDGE", "TRANSFORMATION"])
                     elif work_type == "AUTOMATA":
                         self.world.tech_system.add_tech_points(self.world, "automata", 1)
+                        action_keywords.extend(["INVENTION", "MECHANISM"])
 
                     if random.random() < 0.03:
                         state_comp.goal = "Wander"
@@ -80,7 +86,7 @@ class ActionSystem(System):
                     state_comp.action = f"Enjoying at {target_loc['name']}"
                     economy_comp.money -= cost
                     needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 50)
-                    # Ideological influence can be handled here as well
+                    action_keywords = ["LEISURE", "CULTURE", "CONSUMPTION", "ART"]
                     state_comp.goal = "Wander"
 
                 elif purpose == "PURSUE_HOBBY":
@@ -88,31 +94,25 @@ class ActionSystem(System):
                     if hobby_id and self.world.hobby_system:
                         state_comp.action = f"Pursuing hobby: {hobby_id}"
                         self.world.hobby_system.perform_hobby(entity_id, hobby_id)
-
-                        # Reduce fulfillment need
                         if 'fulfillment' in needs_comp.needs:
                             needs_comp.needs['fulfillment']['current'] = max(0, needs_comp.needs['fulfillment']['current'] - 50)
-
-                        # Hobby also reduces some stress
                         needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 10)
-
-                    # For now, pursuing a hobby is a one-time action, then they wander off
+                        action_keywords = ["CREATIVITY", "FULFILLMENT", "LEISURE", hobby_id.upper()]
                     state_comp.goal = "Wander"
 
                 elif purpose == "BUY_LUXURY_GOOD" or purpose == "BUY_GOOD":
                     economy_comp = self.world.get_component(entity_id, EconomyComponent)
-                    # For simplicity, let's assume a fixed cost for luxury goods
                     cost = 150
                     state_comp.action = f"Buying {target_loc.get('produces', 'goods')}"
                     if economy_comp.money >= cost:
                         economy_comp.money -= cost
-                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 20) # Satisfaction
+                        needs_comp.needs['stress']['current'] = max(0, needs_comp.needs['stress']['current'] - 20)
                         if 'fulfillment' in needs_comp.needs:
                              needs_comp.needs['fulfillment']['current'] = max(0, needs_comp.needs['fulfillment']['current'] - 30)
+                        action_keywords = ["COMMERCE", "LUXURY", "CONSUMPTION", "WEALTH"]
                     else:
-                        # If they can't afford it, maybe try to withdraw from bank first?
-                        # For now, just reset. This could be a future improvement.
                         state_comp.action = "Window Shopping"
+                        action_keywords = ["DESIRE", "FRUSTRATION", "POVERTY"]
                     state_comp.goal = "Wander"
 
                 elif purpose == "SELL_GOODS":
@@ -121,32 +121,23 @@ class ActionSystem(System):
                     economy_comp = self.world.get_component(entity_id, EconomyComponent)
 
                     if hobby_comp and hobby_comp.inventory:
-                        # Sell the first item in the inventory
                         item_to_sell = hobby_comp.inventory.pop(0)
-                        sale_price = item_to_sell.get('base_value', 10) # Simplified pricing
+                        sale_price = item_to_sell.get('base_value', 10)
                         economy_comp.money += sale_price
-
-                        # Add item to the marketplace's inventory
                         if 'inventory' not in target_loc:
                             target_loc['inventory'] = {}
                         item_name = item_to_sell['name']
                         target_loc['inventory'][item_name] = target_loc['inventory'].get(item_name, 0) + 1
-
                         print(f"INFO: {entity_id} sold {item_name} for {sale_price} gold.")
 
-                        # --- HOOK FOR IMAGINARY DESIRE ---
-                        # If the sale was successful, it might trigger a new desire
+                        action_keywords = ["COMMERCE", "PROFIT", "PRODUCTION", "AMBITION"]
+
                         if hasattr(self.world, 'desire_system'):
-                            trigger_event = {
-                                'type': 'SOLD_GOODS',
-                                'hobby_id': item_to_sell.get('hobby_origin'),
-                                'value': sale_price
-                            }
+                            trigger_event = {'type': 'SOLD_GOODS', 'hobby_id': item_to_sell.get('hobby_origin'), 'value': sale_price}
                             self.world.desire_system.generate_imaginary_aspiration(entity_id, trigger_event)
 
-                    # Whether they sold something or not, their goal is complete.
                     state_comp.goal = "Wander"
 
-                # After completing an action, the goal is often reset
-                # If goal is not reset inside the purpose block, it means it's a continuous action
-                # like working or sleeping.
+                # --- IDEOLOGY REINFORCEMENT HOOK ---
+                if action_keywords and ideology_system:
+                    ideology_system.reinforce(entity_id, action_keywords)

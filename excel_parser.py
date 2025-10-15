@@ -122,13 +122,14 @@ def main():
 
         engine = QuantizationEngine()
 
-        print("Quantizing ism data...")
+        print("Quantizing ism data using dialectical matrix...")
         for ism_data in all_isms_data:
             ism_id = ism_data['id']
-            # Only quantize for full 4-digit IDs as per logic
+            # The dialectical matrix is defined for 4-part gene codes.
             if len(ism_id.split('-')) == 4:
-                scores = engine.calculate_scores(ism_id)
-                ism_data['quantification'] = {'axes': scores}
+                matrix = engine.calculate_dialectical_matrix(ism_id)
+                if matrix:
+                    ism_data['quantification'] = {'matrix': matrix}
 
         with open(output_path, 'w', encoding='utf-8') as jsonfile:
             json.dump(all_isms_data, jsonfile, ensure_ascii=False, indent=2)

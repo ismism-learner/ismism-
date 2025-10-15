@@ -20,8 +20,14 @@ from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.relationship import RelationshipComponent
 from world_server.ecs.components.financial_component import FinancialComponent
 from world_server.ecs.components.hobby_component import HobbyComponent
+from world_server.ecs.components.sensory_log_component import SensoryLogComponent
+from world_server.ecs.components.social_ledger_component import SocialLedgerComponent
+from world_server.ecs.components.cognitive_map_component import CognitiveMapComponent
+from world_server.ecs.components.praxis_ledger_component import PraxisLedgerComponent
+
 
 # --- System Imports ---
+from world_server.ecs.systems.motivation_system import MotivationSystem
 from world_server.ecs.systems.needs_system import NeedsSystem
 from world_server.ecs.systems.interaction_system import InteractionSystem
 from world_server.ecs.systems.movement_system import MovementSystem
@@ -31,6 +37,12 @@ from world_server.ecs.systems.technology_system import TechnologySystem
 from world_server.ecs.systems.hobby_system import HobbySystem
 from world_server.ecs.systems.desire_system import DesireSystem
 from world_server.ecs.systems.collective_action_system import CollectiveActionSystem
+from world_server.ecs.systems.evolution_system import EvolutionSystem
+from world_server.ecs.systems.ideology_system import IdeologySystem
+
+# --- Generator Imports ---
+from world_server.generators.biography_generator import generate_biography
+from world_server.generators.mind_generator import generate_npc_mind
 
 
 class Server:
@@ -44,6 +56,8 @@ class Server:
         self.relationship_types = {}
         self.collective_actions = []
         self.all_isms_data = [] # To store the new quantified ism data
+        self.isms_by_id = {} # For quick lookup
+        self.regions = {}
         self._load_game_definitions()
         self._setup_world()
 
@@ -54,7 +68,10 @@ class Server:
         try:
             with open(isms_path, 'r', encoding='utf-8') as f:
                 self.all_isms_data = json.load(f)
+            # Create a lookup dictionary for isms by their ID
+            self.isms_by_id = {ism['id']: ism for ism in self.all_isms_data if 'id' in ism}
             print(f"成功加载并量化 {len(self.all_isms_data)} 个主义。")
+            print(f"为 {len(self.isms_by_id)} 个主义创建了ID查找表。")
         except FileNotFoundError:
             print(f"错误: 主义数据文件 '{isms_path}' 未找到。请确保已运行 excel_parser.py。")
             self.all_isms_data = []
@@ -142,6 +159,19 @@ class Server:
         except json.JSONDecodeError:
             print(f"错误: 集体行动文件 '{collective_actions_path}' 格式无效。")
 
+        # Load regions
+        regions_path = "world_server/regions.json"
+        try:
+            with open(regions_path, 'r', encoding='utf-8') as f:
+                self.regions = json.load(f)
+            print(f"成功加载 {len(self.regions)} 个区域。")
+        except FileNotFoundError:
+            print(f"错误: 区域文件 '{regions_path}' 未找到。")
+            self.regions = {}
+        except json.JSONDecodeError:
+            print(f"错误: 区域文件 '{regions_path}' 格式无效。")
+            self.regions = {}
+
     def _setup_world(self):
         """初始化游戏世界，加载资源，创建实体并注册系统"""
         self._spawn_all_npcs()
@@ -151,6 +181,8 @@ class Server:
         self.ecs_world.hobby_system = HobbySystem(self.consumer_goods)
         self.ecs_world.desire_system = DesireSystem() # Attach for global access
 
+        # Add the new MotivationSystem first to set high-level goals
+        self.ecs_world.add_system(MotivationSystem())
         self.ecs_world.add_system(self.ecs_world.desire_system)
         self.ecs_world.add_system(NeedsSystem())
         self.ecs_world.add_system(self.ecs_world.hobby_system)
@@ -160,36 +192,70 @@ class Server:
         self.ecs_world.add_system(ActionSystem())
         self.ecs_world.add_system(self.ecs_world.tech_system)
         self.ecs_world.add_system(CollectiveActionSystem())
+        # Attach for global access before adding to processing list
+        self.ecs_world.ideology_system = IdeologySystem()
+
+        # Process evolution and ideology decay after actions have been taken
+        self.ecs_world.add_system(EvolutionSystem())
+        self.ecs_world.add_system(self.ecs_world.ideology_system)
 
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
     def _spawn_all_npcs(self):
-        """Creates NPCs based on the loaded ism data, adding them as entities to the ECS world."""
-        if not self.all_isms_data:
+        """Creates NPCs based on biography and regional culture, adding them as entities to the ECS world."""
+        if not self.isms_by_id:
             print("错误: 没有可用的主义数据来生成NPC。")
+            return
+        if not self.locations or not self.regions:
+            print("错误: 地点或区域数据不完整，无法按环境生成NPC。")
             return
 
         num_npcs_to_spawn = 50
+        spawned_count = 0
         for i in range(num_npcs_to_spawn):
-            # --- Select a random ism for the new NPC ---
-            ism_data = random.choice(self.all_isms_data)
+            # 1. Select birthplace and region
+            birthplace_loc = random.choice(self.locations)
+            birthplace_id = birthplace_loc['id']
+            region_id = birthplace_loc.get('region_id')
 
-            # --- Create Entity and Components ---
+            if not region_id or region_id not in self.regions:
+                print(f"警告: 地点 {birthplace_id} ({birthplace_loc.get('name')}) 没有有效的区域ID。跳过此NPC生成。")
+                continue
+
+            region_data = self.regions[region_id]
+
+            # 2. Generate Biography
+            biography = generate_biography(region_id, region_data)
+
+            # 3. Generate Mind (Ideologies)
+            initial_ideologies = generate_npc_mind(region_data, biography, self.isms_by_id)
+
+            if not initial_ideologies:
+                print(f"警告: 无法为区域 {region_id} 的NPC生成意识形态。可能是Meme Pool为空。跳过。")
+                continue
+
+            # --- END: New Generation Logic ---
+
+            # Create Entity and Components
             entity_id = self.ecs_world.create_entity()
 
             # Identity
+            primary_ism_id = initial_ideologies[0]['code']
+            ism_data = self.isms_by_id.get(primary_ism_id, {})
             npc_name = ism_data.get("name", "无名氏")
-            identity_comp = IdentityComponent(name=npc_name, description=ism_data.get('id'))
+
+            # Store the generated biography within the IdentityComponent
+            identity_comp = IdentityComponent(name=npc_name,
+                                              description=f"A {biography['social_class']} with {biography['education']} education.",
+                                              birthplace=birthplace_id,
+                                              biography=biography)
             self.ecs_world.add_component(entity_id, identity_comp)
 
             # Position (randomly spawned)
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
-            # IsmComponent now stores the full, quantified data
-            ism_comp = IsmComponent(
-                data=ism_data.get('philosophy', {}),
-                quantification=ism_data.get('quantification', {})
-            )
+            # IsmComponent setup with the new multi-ideology structure
+            ism_comp = IsmComponent(active_ideologies=initial_ideologies)
             self.ecs_world.add_component(entity_id, ism_comp)
 
             # Needs & Demands
@@ -198,61 +264,44 @@ class Server:
             # --- Enhanced Environmental Effects ---
             initial_stress = random.randint(0, 30)
             initial_money = random.randint(20, 100)
+            birthplace_type = birthplace_loc.get('type')
 
-            if self.locations:
-                # Select a random location as a "birthplace"
-                birthplace_loc = random.choice(self.locations)
-                birthplace_id = birthplace_loc['id']
-                birthplace_type = birthplace_loc.get('type')
-
-                # Get the component we just added to modify it
-                added_identity_comp = self.ecs_world.get_component(entity_id, IdentityComponent)
-                added_identity_comp.birthplace = birthplace_id
-
-                # Apply modifiers based on the type of the birthplace location
-                if birthplace_type in ['WORKPLACE', 'FOOD_SOURCE']: # Assumed lower-class
-                    initial_stress += 10
-                    initial_money -= 15
-                elif birthplace_type in ['CENTRAL_BANK', 'COMMERCIAL_BANK', 'MARKETPLACE']: # Assumed upper-class/merchant
-                    initial_stress -= 5
-                    initial_money += 30
-                elif birthplace_type == 'SHELTER': # Neutral
-                    pass
+            if birthplace_type in ['WORKPLACE', 'FOOD_SOURCE']:
+                initial_stress += 10; initial_money -= 15
+            elif birthplace_type in ['CENTRAL_BANK', 'COMMERCIAL_BANK', 'MARKETPLACE']:
+                initial_stress -= 5; initial_money += 30
 
             initial_stress = max(0, min(initial_stress, 100))
             initial_money = max(1, initial_money)
-            # --- End of Environmental Effects ---
 
             needs_comp.needs['hunger']['current'] = random.randint(0, 40)
             needs_comp.needs['energy']['current'] = random.randint(50, 90)
             needs_comp.needs['stress']['current'] = initial_stress
             self.ecs_world.add_component(entity_id, needs_comp)
 
-            # Economy
+            # Economy & State
             self.ecs_world.add_component(entity_id, EconomyComponent(money=initial_money))
-
-            # State
             self.ecs_world.add_component(entity_id, StateComponent())
 
-            # Relationships
+            # Relationships & Financial
             self.ecs_world.add_component(entity_id, RelationshipComponent())
-
-            # Financial
             self.ecs_world.add_component(entity_id, FinancialComponent())
 
             # Hobbies
             hobby_comp = HobbyComponent()
-            # Logic to recursively get all string values from the philosophy structure
-            philosophy_values = []
-            def extract_values(d):
-                for v in d.values():
-                    if isinstance(v, str):
-                        philosophy_values.append(v)
-                    elif isinstance(v, dict):
-                        extract_values(v)
 
-            extract_values(ism_data.get("philosophy", {}))
-            ism_keywords = " ".join(philosophy_values)
+            # Aggregate keywords from all active ideologies
+            all_philosophy_keywords = []
+            for ideology in initial_ideologies:
+                philosophy_values = []
+                def extract_values(d):
+                    for v in d.values():
+                        if isinstance(v, str): philosophy_values.append(v)
+                        elif isinstance(v, dict): extract_values(v)
+                extract_values(ideology.get("data", {}))
+                all_philosophy_keywords.extend(philosophy_values)
+
+            ism_keywords = " ".join(all_philosophy_keywords)
 
             if "科学" in ism_keywords or "技术" in ism_keywords:
                 hobby_comp.interests["AUTOMATA"] = random.uniform(60, 90)
@@ -262,12 +311,18 @@ class Server:
                 hobby_comp.interests["PAINTING"] = random.uniform(60, 90)
                 hobby_comp.interests["CRAFTING"] = random.uniform(40, 70)
                 hobby_comp.skills["PAINTING"] = random.randint(1, 3)
-            # Give a baseline interest in exercise
             hobby_comp.interests["EXERCISE"] = random.uniform(10, 40)
             self.ecs_world.add_component(entity_id, hobby_comp)
 
+            # --- Add WD-MME Memory Components ---
+            self.ecs_world.add_component(entity_id, SensoryLogComponent())
+            self.ecs_world.add_component(entity_id, SocialLedgerComponent())
+            self.ecs_world.add_component(entity_id, CognitiveMapComponent())
+            self.ecs_world.add_component(entity_id, PraxisLedgerComponent())
 
-        print(f"成功生成了 {num_npcs_to_spawn} 个实体。")
+            spawned_count += 1
+
+        print(f"成功生成了 {spawned_count} 个实体。")
 
     async def _game_loop(self):
         """

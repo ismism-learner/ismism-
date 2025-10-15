@@ -8,6 +8,11 @@ from world_server.ecs.components.needs import NeedsComponent
 from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.identity import IdentityComponent
 
+# Map pillar names to their index in the IXP matrix, matching EvolutionSystem
+PILLAR_MAP = {"field": 0, "ontology": 1, "epistemology": 2, "teleology": 3}
+# Map stage names to their index in the IXP matrix
+STAGE_MAP = {"identity": 0, "contradiction": 1, "synthesis": 2, "collapse": 3}
+
 class InteractionSystem(System):
     """
     Manages social interactions between entities.
@@ -92,27 +97,59 @@ class InteractionSystem(System):
         if not possible_interactions:
             return
 
-        # Weight the prioritized interactions
-        weights = [5 if inter['name'] in prioritized else 1 for inter in possible_interactions]
+        # --- New: Weight interactions using the Final Decision Matrix ---
+        initiator_ism_comp = self.world.get_component(initiator_id, IsmComponent)
+        matrix = initiator_ism_comp.final_decision_matrix
+        field_theory_vec = matrix[0] # Social disposition
+        epistemology_vec = matrix[2] # Information/knowledge disposition
 
-        chosen_interaction = None
-        # Fallback to old affinity-based logic if no status exists
-        if not status:
-            if affinity < -20:
-                hostile_options = [i for i in possible_interactions if i.get('type') == 'aggressive']
-                if hostile_options:
-                    chosen_interaction = random.choice(hostile_options)
-            elif affinity > 20:
-                friendly_options = [i for i in possible_interactions if i.get('type') == 'friendly']
-                if friendly_options:
-                    chosen_interaction = random.choice(friendly_options)
+        weights = []
+        for inter in possible_interactions:
+            # Start with a base weight of 1
+            weight = 1.0
+            # Aggressive interactions are favored by "Contradiction"
+            if inter.get('type') == 'aggressive':
+                weight += 4.0 * field_theory_vec[1] # Contradiction
+            # Friendly interactions are favored by "Synthesis"
+            if inter.get('type') == 'friendly':
+                weight += 4.0 * field_theory_vec[2] # Synthesis
+            # Knowledge-based interactions (like Discuss Philosophy) are favored by Epistemology
+            if inter.get('keyword') == 'KNOWLEDGE':
+                 # Identity (dogmatic), Contradiction (debate), Synthesis (learning)
+                weight += 2.0 * (epistemology_vec[0] + epistemology_vec[1] + epistemology_vec[2])
 
-        # If no choice was made by affinity, or if a status exists, use the weighted choice
-        if not chosen_interaction:
-            chosen_interaction = random.choices(possible_interactions, weights=weights, k=1)[0]
+            # Apply multiplier for prioritized interactions from relationship status
+            if inter['name'] in prioritized:
+                weight *= 5
+
+            weights.append(weight)
+
+        chosen_interaction = random.choices(possible_interactions, weights=weights, k=1)[0]
 
         if chosen_interaction:
             self._apply_interaction(chosen_interaction, initiator_id, target_id)
+
+    def _apply_ixp_gain(self, entity_id, ixp_gain_data):
+        """Applies IXP gain to a specific entity."""
+        if not ixp_gain_data:
+            return
+
+        ism_comp = self.world.get_component(entity_id, IsmComponent)
+        if not ism_comp:
+            return
+
+        for pillar_name, stages in ixp_gain_data.items():
+            pillar_index = PILLAR_MAP.get(pillar_name.lower())
+            if pillar_index is None:
+                continue
+
+            for stage_name, value in stages.items():
+                stage_index = STAGE_MAP.get(stage_name.lower())
+                if stage_index is None:
+                    continue
+
+                ism_comp.ixp[pillar_index][stage_index] += value
+                # print(f"Entity {entity_id} gained {value} IXP in {pillar_name}/{stage_name}") # DEBUG
 
     def _apply_interaction(self, interaction, initiator_id, target_id):
         initiator_identity = self.world.get_component(initiator_id, IdentityComponent)
@@ -152,6 +189,12 @@ class InteractionSystem(System):
         if interaction.get('type') == 'aggressive':
             target_state.goal = "FLEE_FROM_THREAT"
             target_state.action = "Fleeing"
+
+        # --- New IXP Gain Logic ---
+        ixp_gain = effects.get('ixp_gain', {})
+        if ixp_gain:
+            self._apply_ixp_gain(initiator_id, ixp_gain.get('initiator'))
+            self._apply_ixp_gain(target_id, ixp_gain.get('target'))
 
         # --- New 'Ism' Propagation Logic ---
         propagate_chance = effects.get('propagate_ism_chance', 0)

@@ -60,15 +60,20 @@ class NeedsSystem(System):
                 # Stress increases by 0.1 per hour for every 100 in debt.
                 debt_stress_increase = (financial_comp.loans / 100) * 0.1
 
-            # --- New: Ism-based Stress Modification ---
+            # --- New: Ism-based Stress Modification using the Final Decision Matrix ---
             ism_stress_modifier = 1.0 # Default modifier
             # Check if the NPC is currently idle/unemployed
             if not needs_comp.demands and state_comp.goal in ["Wander", "Idle"]:
-                conformity_score = ism_comp.quantification.get('axes', {}).get('conformity_rebellion', 0.0)
-                if conformity_score <= -0.5: # High conformity
-                    ism_stress_modifier = 0.5 # More content with doing nothing, half stress gain
-                elif conformity_score >= 0.5: # High rebellion
-                    ism_stress_modifier = 2.0 # More anxious when idle, double stress gain
+                # The "Field Theory" pillar (row 0) determines social disposition.
+                # [0][0] = Identity (Conformity)
+                # [0][1] = Contradiction (Rebellion)
+                field_theory_vector = ism_comp.final_decision_matrix[0]
+                conformity_value = field_theory_vector[0]
+                rebellion_value = field_theory_vector[1]
+
+                # High conformity reduces stress when idle, high rebellion increases it.
+                # The modifier is calculated to be between 0.5 and 2.0.
+                ism_stress_modifier = 1.0 - (conformity_value * 0.5) + (rebellion_value * 1.0)
 
             total_stress_change = (base_stress_change + debt_stress_increase) * ism_stress_modifier * (1 - stress_resistance)
             needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + total_stress_change)
@@ -186,17 +191,56 @@ class NeedsSystem(System):
 
         # Tier 2 (Societal/Ideological) - Now handles complex demands
         if needs_comp.demands:
-            # For now, just process the first demand in the list
+            # We need IsmComponent to make decisions based on the new demands
+            from ..components.ism import IsmComponent
+            ism_comp = self.world.get_component(entity_id, IsmComponent)
+            if not ism_comp:
+                return # Should not happen if entity has needs
+
+            # Process the first demand in the list
             demand = needs_comp.demands[0]
 
-            if demand['type'] == 'WORK':
+            # --- WD-MME Demand Processing ---
+            if demand.get('source') == 'MotivationSystem':
+                if demand['type'] == 'PURSUE_SOCIAL_STANDING':
+                    # Use the 'Ontology' pillar (row 1) to decide *how* to pursue social standing
+                    # [1][0]=Identity(Cooperation), [1][1]=Contradiction(Conflict), [1][2]=Synthesis(Debate)
+                    ontology_vec = ism_comp.final_decision_matrix[1]
+                    action_preference = ontology_vec.index(max(ontology_vec))
+
+                    if action_preference == 0: # Cooperation
+                        # Find someone to help or a community project
+                        state_comp.goal = {'type': 'FIND_INTERACTION_OPPORTUNITY', 'keyword': 'COOPERATION'}
+                    elif action_preference == 1: # Conflict
+                        # Find a rival to challenge
+                        state_comp.goal = {'type': 'FIND_INTERACTION_OPPORTUNITY', 'keyword': 'CONFRONTATION'}
+                    elif action_preference == 2: # Debate/Discourse
+                        state_comp.goal = {'type': 'FIND_INTERACTION_OPPORTUNITY', 'keyword': 'DISCOURSE'}
+
+                    print(f"INFO: NeedsSystem: NPC {entity_id} is acting on {demand['type']} via goal {state_comp.goal['keyword']}")
+                    needs_comp.demands.pop(0) # Consume the high-level demand
+                    return
+
+                elif demand['type'] == 'PURSUE_KNOWLEDGE':
+                    # Find a library, an expert, or a mysterious location to investigate
+                    state_comp.goal = {'type': 'SEEK_KNOWLEDGE'} # A new goal for ActionSystem
+                    print(f"INFO: NeedsSystem: NPC {entity_id} is acting on {demand['type']}")
+                    needs_comp.demands.pop(0)
+                    return
+
+                elif demand['type'] == 'PURSUE_SUBVERSION':
+                    # This is complex. For now, let's generate a goal to gather information.
+                    state_comp.goal = {'type': 'GATHER_INTELLIGENCE'}
+                    print(f"INFO: NeedsSystem: NPC {entity_id} is acting on {demand['type']}")
+                    needs_comp.demands.pop(0)
+                    return
+
+            # --- Existing Demand Processing ---
+            elif demand['type'] == 'WORK':
                 work_locations = [loc for loc in locations if loc.get('type') == 'WORKPLACE']
                 if work_locations:
-                    # This could be improved to find a specific kind of work
-                    target_loc = work_locations[0] # Simplified
+                    target_loc = random.choice(work_locations)
                     state_comp.goal = {"type": "GO_TO_LOCATION", "target_location_id": target_loc['id'], "purpose": "WORK"}
-                    # Note: We don't remove the demand here, allowing it to be a continuous driver.
-                    # A more advanced system could have conditions for demand completion.
                     return
 
             elif demand['type'] == 'PURSUE_HOBBY':

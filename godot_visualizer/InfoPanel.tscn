@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://InfoPanel.gd" id="1_abcde"]
+
+[node name="InfoPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 250.0
+offset_bottom = 200.0
+script = ExtResource("1_abcde")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Name: "
+
+[node name="ActionLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Action: "
+
+[node name="GoalLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Goal: "
+
+[node name="NeedsLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Needs:"
+vertical_alignment = 1
+
+[node name="RuptureLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Rupture: "
+
+[node name="RelationshipsLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Relationships:"
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -28.0
+offset_right = 25.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
