@@ -24,7 +24,6 @@ namespace Ecs
         public override void _Ready()
         {
             GD.Print("ECS World is ready.");
-            LoadNpcs();
         }
 
         public override void _PhysicsProcess(double delta)
@@ -124,95 +123,6 @@ namespace Ecs
                 system.Process();
             }
             Time++;
-        }
-
-        private void LoadNpcs()
-        {
-            GD.Print("Loading NPC database...");
-            var path = "res://world_server/npc_database.json";
-            using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
-            if (file == null)
-            {
-                GD.PushError($"Failed to open NPC database file: {path}");
-                return;
-            }
-
-            var content = file.GetAsText();
-            var json = new Json();
-            if (json.Parse(content) != Error.Ok)
-            {
-                GD.PushError($"Failed to parse NPC database JSON: {json.GetErrorMessage()}");
-                return;
-            }
-
-            var npcDataArray = (Array<Dictionary>)json.Data;
-            GD.Print($"Found {npcDataArray.Count} NPCs in database.");
-
-            var villageManager = GetNode<VillageManager>("/root/VillageManager");
-            var houses = villageManager.GetBuildingsByType("House");
-            var workplaces = villageManager.GetBuildingsByType("Workshop");
-            int houseIndex = 0;
-            int workplaceIndex = 0;
-
-            foreach (var npcData in npcDataArray)
-            {
-                var entityId = CreateEntity();
-
-                // Identity
-                var identityData = (Dictionary)npcData["IdentityComponent"];
-                AddComponent(entityId, new IdentityComponent(
-                    identityData["name"].ToString(),
-                    identityData["birthplace"].ToString(),
-                    (Dictionary)identityData["biography"]
-                ));
-
-                // Position
-                var positionData = (Array<float>)npcData["PositionComponent"];
-                AddComponent(entityId, new PositionComponent(new Vector2(positionData[0], positionData[1])));
-
-                // State
-                AddComponent(entityId, new StateComponent());
-
-                // Financial
-                var financialData = (Dictionary)npcData["FinancialComponent"];
-                AddComponent(entityId, new FinancialComponent(financialData["money"].AsFloat()));
-
-                // Needs
-                var needsData = (Dictionary)npcData["NeedsComponent"];
-                AddComponent(entityId, new NeedsComponent(needsData["stress"].AsFloat(), needsData["hunger"].AsFloat()));
-
-                // Ism
-                var ismComp = new IsmComponent();
-                var ismData = (Dictionary)npcData["IsmComponent"];
-                var activeIsms = (Dictionary)ismData["active_ideologies"];
-                foreach(var (ism, strength) in activeIsms)
-                {
-                    ismComp.AddIdeology(ism.ToString(), strength.AsFloat());
-                }
-                AddComponent(entityId, ismComp);
-
-                // Relationship
-                AddComponent(entityId, new RelationshipComponent());
-
-                // Hobby
-                AddComponent(entityId, new HobbyComponent());
-
-                // Housing and Job
-                if (houses.Count > 0)
-                {
-                    var house = houses[houseIndex++ % houses.Count];
-                    AddComponent(entityId, new HousingComponent(house.Name));
-                    house.Occupants.Add((int)entityId);
-                }
-
-                if (workplaces.Count > 0)
-                {
-                    var workplace = workplaces[workplaceIndex++ % workplaces.Count];
-                    AddComponent(entityId, new JobComponent(workplace.Name));
-                    workplace.Occupants.Add((int)entityId);
-                }
-            }
-            GD.Print("Finished loading NPCs.");
         }
     }
 }

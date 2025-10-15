@@ -14,10 +14,18 @@ const InteractionSystem = preload("res://ecs/systems/InteractionSystem.cs")
 const ActionSystem = preload("res://ecs/systems/ActionSystem.cs")
 const IdeologySystem = preload("res://ecs/systems/IdeologySystem.cs")
 const ScheduleSystem = preload("res://ecs/systems/ScheduleSystem.cs")
+const DataProcessor = preload("res://managers/DataProcessor.cs")
+const NpcGenerationSystem = preload("res://ecs/systems/NpcGenerationSystem.cs")
 # Add other systems as needed...
 
 func _ready():
 	print("Main scene ready. Initializing C# ECS...")
+
+	# First, process the ism data
+	var data_processor = DataProcessor.new()
+	add_child(data_processor)
+	data_processor.ProcessAndSaveIsms("res://../isms_final.json", "res://../rules.json", "res://world_server/isms_final.json")
+
 
 	# Instantiate and hide the info panel
 	info_panel = InfoPanelScene.instantiate()
@@ -27,6 +35,7 @@ func _ready():
 
 	# The World and Managers are autoloads, so we can access them directly.
 	# Now, we instantiate and add our C# systems to the World.
+	World.AddSystem(NpcGenerationSystem.new())
 	World.AddSystem(MovementSystem.new())
 	World.AddSystem(NeedsSystem.new())
 	World.AddSystem(InteractionSystem.new())
@@ -35,7 +44,6 @@ func _ready():
 	World.AddSystem(ScheduleSystem.new())
 
 	# The World's _PhysicsProcess will now run the simulation automatically.
-	# The NPC database is also loaded automatically by World._Ready().
 	print("C# ECS Initialized and running.")
 
 	draw_village()

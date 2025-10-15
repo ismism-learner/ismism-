@@ -4,7 +4,9 @@
     "type": "RESIDENCE",
     "name": "Humble Abode",
     "position": [ 100, 150 ],
-    "inventory": {}
+    "inventory": {},
+    "initial_population": 1,
+    "founding_ideologies": ["4-3-1-1"]
   },
   {
     "id": "work_1",
@@ -12,7 +14,9 @@
     "name": "The Mine",
     "position": [ 500, 200 ],
     "produces": "IRON_ORE",
-    "inventory": {}
+    "inventory": {},
+    "initial_population": 2,
+    "founding_ideologies": ["1-1-2-2", "4-1-1-1"]
   },
   {
     "id": "entertainment_1",
@@ -20,7 +24,8 @@
     "name": "The Salty Spitoon",
     "position": [ 300, 400 ],
     "cost": 10,
-    "ideological_influence": { "idealism": 5 },
-    "inventory": {}
+    "inventory": {},
+    "initial_population": 1,
+    "founding_ideologies": ["1-3-3-1", "1-4-4-2"]
   }
 ]
