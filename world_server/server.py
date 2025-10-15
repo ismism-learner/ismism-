@@ -32,6 +32,7 @@ from world_server.ecs.systems.hobby_system import HobbySystem
 from world_server.ecs.systems.desire_system import DesireSystem
 from world_server.ecs.systems.collective_action_system import CollectiveActionSystem
 from world_server.ecs.systems.evolution_system import EvolutionSystem
+from world_server.ecs.systems.ideology_system import IdeologySystem
 
 
 class Server:
@@ -152,7 +153,6 @@ class Server:
         self.ecs_world.hobby_system = HobbySystem(self.consumer_goods)
         self.ecs_world.desire_system = DesireSystem() # Attach for global access
 
-        self.ecs_world.add_system(EvolutionSystem())
         self.ecs_world.add_system(self.ecs_world.desire_system)
         self.ecs_world.add_system(NeedsSystem())
         self.ecs_world.add_system(self.ecs_world.hobby_system)
@@ -162,6 +162,12 @@ class Server:
         self.ecs_world.add_system(ActionSystem())
         self.ecs_world.add_system(self.ecs_world.tech_system)
         self.ecs_world.add_system(CollectiveActionSystem())
+        # Attach for global access before adding to processing list
+        self.ecs_world.ideology_system = IdeologySystem()
+
+        # Process evolution and ideology decay after actions have been taken
+        self.ecs_world.add_system(EvolutionSystem())
+        self.ecs_world.add_system(self.ecs_world.ideology_system)
 
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
@@ -173,10 +179,10 @@ class Server:
 
         num_npcs_to_spawn = 50
         for i in range(num_npcs_to_spawn):
-            # --- Select a random ism for the new NPC ---
+            # Select a random ism for the new NPC
             ism_data = random.choice(self.all_isms_data)
 
-            # --- Create Entity and Components ---
+            # Create Entity and Components
             entity_id = self.ecs_world.create_entity()
 
             # Identity
@@ -187,24 +193,31 @@ class Server:
             # Position (randomly spawned)
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
-            # --- IsmComponent setup with IXP ---
-            # The gene_code comes from the 'id' field of the ism data
+            # --- IsmComponent setup with the new structure ---
             gene_code = ism_data.get('id', '1-1-1-1')
-
-            # Create a baseline IXP matrix
             initial_ixp = [[0.0] * 4 for _ in range(4)]
-            gene_parts = [int(g) for g in gene_code.split('-')]
+            try:
+                gene_parts = [int(g) for g in gene_code.split('-')]
+                for i, stage in enumerate(gene_parts):
+                    if 1 <= stage <= 4:
+                        initial_ixp[i][stage - 1] = 100.0 # Baseline value
+            except (ValueError, IndexError):
+                 gene_parts = [1,1,1,1] # fallback
+                 initial_ixp[0][0] = 100.0
+                 initial_ixp[1][0] = 100.0
+                 initial_ixp[2][0] = 100.0
+                 initial_ixp[3][0] = 100.0
 
-            for i, stage in enumerate(gene_parts):
-                if 1 <= stage <= 4:
-                    # Set the initial IXP for the starting stage of each pillar
-                    initial_ixp[i][stage - 1] = 100.0 # Baseline value
 
-            ism_comp = IsmComponent(
-                data=ism_data.get('philosophy', {}),
-                gene_code=gene_code,
-                ixp=initial_ixp
-            )
+            # Create the initial, single ideology for the NPC
+            initial_ideology = {
+                "code": gene_code,
+                "intensity": 1.0,
+                "ixp": initial_ixp,
+                "data": ism_data.get('philosophy', {})
+            }
+
+            ism_comp = IsmComponent(active_ideologies=[initial_ideology])
             self.ecs_world.add_component(entity_id, ism_comp)
 
             # Needs & Demands
