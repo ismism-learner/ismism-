@@ -1,9 +1,7 @@
 # world_server/server.py
-import asyncio
 import json
 import os
 import random
-import websockets
 import sys
 
 # Make sure the project root is in sys.path, so we can use absolute imports.
@@ -41,8 +39,7 @@ from world_server.ecs.systems.evolution_system import EvolutionSystem
 from world_server.ecs.systems.ideology_system import IdeologySystem
 
 # --- Generator Imports ---
-from world_server.generators.biography_generator import generate_biography
-from world_server.generators.mind_generator import generate_npc_mind
+# No longer needed as we load from database
 
 
 class Server:
@@ -181,157 +178,91 @@ class Server:
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
     def _spawn_all_npcs(self):
-        """Creates NPCs based on biography and regional culture, adding them as entities to the ECS world."""
-        if not self.isms_by_id:
-            print("错误: 没有可用的主义数据来生成NPC。")
+        """Loads NPCs from the pre-generated database file."""
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        db_path = os.path.join(script_dir, "npc_database.json")
+
+        try:
+            with open(db_path, 'r', encoding='utf-8') as f:
+                npc_database = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Error loading NPC database: {e}. Please run npc_database_generator.py first.")
             return
-        if not self.locations or not self.regions:
-            print("错误: 地点或区域数据不完整，无法按环境生成NPC。")
-            return
 
-        num_npcs_to_spawn = 50
-        spawned_count = 0
-        for i in range(num_npcs_to_spawn):
-            # 1. Select birthplace and region
-            birthplace_loc = random.choice(self.locations)
-            birthplace_id = birthplace_loc['id']
-            region_id = birthplace_loc.get('region_id')
+        for npc_data in npc_database:
+            entity_id = self.ecs_world.create_entity() # Let the world generate the ID
 
-            if not region_id or region_id not in self.regions:
-                print(f"警告: 地点 {birthplace_id} ({birthplace_loc.get('name')}) 没有有效的区域ID。跳过此NPC生成。")
-                continue
-
-            region_data = self.regions[region_id]
-
-            # 2. Generate Biography
-            biography = generate_biography(region_id, region_data)
-
-            # 3. Generate Mind (Ideologies)
-            initial_ideologies = generate_npc_mind(region_data, biography, self.isms_by_id)
-
-            if not initial_ideologies:
-                print(f"警告: 无法为区域 {region_id} 的NPC生成意识形态。可能是Meme Pool为空。跳过。")
-                continue
-
-            # --- END: New Generation Logic ---
-
-            # Create Entity and Components
-            entity_id = self.ecs_world.create_entity()
+            # Reconstruct components from the database
+            components = npc_data['components']
 
             # Identity
-            primary_ism_id = initial_ideologies[0]['code']
-            ism_data = self.isms_by_id.get(primary_ism_id, {})
-            npc_name = ism_data.get("name", "无名氏")
+            id_data = components['identity']
+            self.ecs_world.add_component(entity_id, IdentityComponent(
+                name=id_data['name'],
+                description=id_data['description'],
+                birthplace=id_data['birthplace'],
+                biography=id_data['biography']
+            ))
 
-            # Store the generated biography within the IdentityComponent
-            identity_comp = IdentityComponent(name=npc_name,
-                                              description=f"A {biography['social_class']} with {biography['education']} education.",
-                                              birthplace=birthplace_id,
-                                              biography=biography)
-            self.ecs_world.add_component(entity_id, identity_comp)
+            # Position
+            pos_data = components['position']
+            self.ecs_world.add_component(entity_id, PositionComponent(x=pos_data['x'], y=pos_data['y']))
 
-            # Position (randomly spawned)
-            self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
-
-            # IsmComponent setup with the new multi-ideology structure
+            # Ism
+            ism_data = components['ism']
             ism_comp = IsmComponent()
             self.ecs_world.add_component(entity_id, ism_comp)
-            # Set ideologies via the property setter to trigger matrix calculation
-            ism_comp.active_ideologies = initial_ideologies
+            ism_comp.active_ideologies = ism_data['active_ideologies']
 
-            # Needs & Demands
+            # Needs
+            needs_data = components['needs']
             needs_comp = NeedsComponent()
-
-            # --- Enhanced Environmental Effects ---
-            initial_stress = random.randint(0, 30)
-            initial_money = random.randint(20, 100)
-            birthplace_type = birthplace_loc.get('type')
-
-            if birthplace_type in ['WORKPLACE', 'FOOD_SOURCE']:
-                initial_stress += 10; initial_money -= 15
-            elif birthplace_type in ['CENTRAL_BANK', 'COMMERCIAL_BANK', 'MARKETPLACE']:
-                initial_stress -= 5; initial_money += 30
-
-            initial_stress = max(0, min(initial_stress, 100))
-            initial_money = max(1, initial_money)
-
-            needs_comp.needs['hunger']['current'] = random.randint(0, 40)
-            needs_comp.needs['energy']['current'] = random.randint(50, 90)
-            needs_comp.needs['stress']['current'] = initial_stress
+            needs_comp.needs = needs_data['needs']
+            needs_comp.demands = needs_data['demands']
+            needs_comp.desire = needs_data['desire']
             self.ecs_world.add_component(entity_id, needs_comp)
 
-            # Economy & State
-            self.ecs_world.add_component(entity_id, EconomyComponent(money=initial_money))
-            self.ecs_world.add_component(entity_id, StateComponent())
+            # Economy
+            econ_data = components['economy']
+            self.ecs_world.add_component(entity_id, EconomyComponent(money=econ_data['money']))
 
-            # Relationships & Financial
-            self.ecs_world.add_component(entity_id, RelationshipComponent())
-            self.ecs_world.add_component(entity_id, FinancialComponent())
+            # State
+            state_data = components['state']
+            self.ecs_world.add_component(entity_id, StateComponent(action=state_data['action'], goal=state_data['goal']))
 
-            # Hobbies
+            # Relationship
+            self.ecs_world.add_component(entity_id, RelationshipComponent()) # Starts empty
+
+            # Financial
+            fin_data = components['financial']
+            self.ecs_world.add_component(entity_id, FinancialComponent(loans=fin_data['loans']))
+
+            # Hobby
+            hobby_data = components['hobby']
             hobby_comp = HobbyComponent()
-
-            # Aggregate keywords from all active ideologies
-            all_philosophy_keywords = []
-            for ideology in initial_ideologies:
-                philosophy_values = []
-                def extract_values(d):
-                    for v in d.values():
-                        if isinstance(v, str): philosophy_values.append(v)
-                        elif isinstance(v, dict): extract_values(v)
-                extract_values(ideology.get("data", {}))
-                all_philosophy_keywords.extend(philosophy_values)
-
-            ism_keywords = " ".join(all_philosophy_keywords)
-
-            if "科学" in ism_keywords or "技术" in ism_keywords:
-                hobby_comp.interests["AUTOMATA"] = random.uniform(60, 90)
-                hobby_comp.interests["ALCHEMY"] = random.uniform(50, 80)
-                hobby_comp.skills[random.choice(["AUTOMATA", "ALCHEMY"])] = random.randint(1, 3)
-            if "艺术" in ism_keywords or "美学" in ism_keywords:
-                hobby_comp.interests["PAINTING"] = random.uniform(60, 90)
-                hobby_comp.interests["CRAFTING"] = random.uniform(40, 70)
-                hobby_comp.skills["PAINTING"] = random.randint(1, 3)
-            hobby_comp.interests["EXERCISE"] = random.uniform(10, 40)
+            hobby_comp.interests = hobby_data['interests']
+            hobby_comp.skills = hobby_data['skills']
+            hobby_comp.inventory = hobby_data['inventory']
             self.ecs_world.add_component(entity_id, hobby_comp)
 
-            # --- Add WD-MME Memory Components ---
+            # Memory Components
             self.ecs_world.add_component(entity_id, SensoryLogComponent())
             self.ecs_world.add_component(entity_id, SocialLedgerComponent())
             self.ecs_world.add_component(entity_id, CognitiveMapComponent())
             self.ecs_world.add_component(entity_id, PraxisLedgerComponent())
 
-            spawned_count += 1
+        print(f"成功从数据库加载了 {len(npc_database)} 个NPC。")
 
-        print(f"成功生成了 {spawned_count} 个实体。")
-
-    async def _game_loop(self):
-        """
-        The main game loop.
-        Updates the world state by processing all systems and broadcasts it to clients.
-        """
-        while True:
-            # 1. Update world time
-            self.ecs_world.time += 1
-
-            # 2. Process all systems
-            # This single call replaces all the old complex logic.
-            # It iterates through NeedsSystem, InteractionSystem, MovementSystem, etc.
-            self.ecs_world.process(
-                locations=self.locations,
-                interactions=self.interactions,
-                relationship_types=self.relationship_types,
-                consumer_goods=self.consumer_goods,
-                collective_actions=self.collective_actions
-            )
-
-            # 3. Prepare and broadcast the world state
-            world_state = self.get_world_state()
-            if self.clients:
-                await asyncio.wait([client.send(world_state) for client in self.clients])
-
-            # 4. Wait for the next tick
-            await asyncio.sleep(0.5) # Update ~2 times per second
+    def update_simulation(self):
+        """Processes one tick of the simulation."""
+        self.ecs_world.time += 1
+        self.ecs_world.process(
+            locations=self.locations,
+            interactions=self.interactions,
+            relationship_types=self.relationship_types,
+            consumer_goods=self.consumer_goods,
+            collective_actions=self.collective_actions
+        )
 
     def get_world_state(self):
         """
@@ -370,26 +301,3 @@ class Server:
             state_list.append(entity_state)
 
         return json.dumps(state_list)
-
-    async def register(self, websocket):
-        """注册新的客户端连接"""
-        self.clients.add(websocket)
-        print(f"新客户端连接: {websocket.remote_address}")
-        try:
-            await websocket.wait_closed()
-        finally:
-            self.clients.remove(websocket)
-            print(f"客户端断开连接: {websocket.remote_address}")
-
-    async def start(self, host, port):
-        """启动服务器"""
-        print(f"WebSocket服务器正在启动，监听地址 ws://{host}:{port}")
-        async with websockets.serve(self.register, host, port):
-            await self._game_loop()
-
-if __name__ == "__main__":
-    server = Server()
-    try:
-        asyncio.run(server.start("localhost", 8765))
-    except KeyboardInterrupt:
-        print("服务器已手动关闭。")
