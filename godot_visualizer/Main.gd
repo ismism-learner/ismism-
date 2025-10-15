@@ -18,7 +18,7 @@ func _ready():
 
 	connect_to_server()
 
-func _process(delta):
+func _process(_delta):
 	if ws_client.get_ready_state() == WebSocketPeer.STATE_OPEN:
 		ws_client.poll()
 
