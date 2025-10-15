@@ -40,6 +40,10 @@ from world_server.ecs.systems.collective_action_system import CollectiveActionSy
 from world_server.ecs.systems.evolution_system import EvolutionSystem
 from world_server.ecs.systems.ideology_system import IdeologySystem
 
+# --- Generator Imports ---
+from world_server.generators.biography_generator import generate_biography
+from world_server.generators.mind_generator import generate_npc_mind
+
 
 class Server:
     def __init__(self):
@@ -198,7 +202,7 @@ class Server:
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
     def _spawn_all_npcs(self):
-        """Creates NPCs based on regional culture, adding them as entities to the ECS world."""
+        """Creates NPCs based on biography and regional culture, adding them as entities to the ECS world."""
         if not self.isms_by_id:
             print("错误: 没有可用的主义数据来生成NPC。")
             return
@@ -209,8 +213,7 @@ class Server:
         num_npcs_to_spawn = 50
         spawned_count = 0
         for i in range(num_npcs_to_spawn):
-            # --- NEW: Environment-Seeded Logic ---
-            # a. Identify the NPC's birthplace location.
+            # 1. Select birthplace and region
             birthplace_loc = random.choice(self.locations)
             birthplace_id = birthplace_loc['id']
             region_id = birthplace_loc.get('region_id')
@@ -219,53 +222,40 @@ class Server:
                 print(f"警告: 地点 {birthplace_id} ({birthplace_loc.get('name')}) 没有有效的区域ID。跳过此NPC生成。")
                 continue
 
-            # b. Use the location's region_id to look up the appropriate Cultural Meme Pool.
             region_data = self.regions[region_id]
-            meme_pool = region_data.get("meme_pool")
 
-            if not meme_pool:
-                print(f"警告: 区域 {region_id} ({region_data.get('name')}) 没有定义文化模因池。跳过此NPC生成。")
+            # 2. Generate Biography
+            biography = generate_biography(region_id, region_data)
+
+            # 3. Generate Mind (Ideologies)
+            initial_ideologies = generate_npc_mind(region_data, biography, self.isms_by_id)
+
+            if not initial_ideologies:
+                print(f"警告: 无法为区域 {region_id} 的NPC生成意识形态。可能是Meme Pool为空。跳过。")
                 continue
 
-            # c. Assign the NPC's initial primary ideology by selecting one from that pool.
-            primary_ism_id = random.choice(meme_pool)
-            ism_data = self.isms_by_id.get(primary_ism_id)
-
-            if not ism_data:
-                print(f"警告: 在区域 {region_id} 的模因池中找到的主义ID '{primary_ism_id}' 在主义数据库中不存在。跳过此NPC生成。")
-                continue
-            # --- END: Environment-Seeded Logic ---
+            # --- END: New Generation Logic ---
 
             # Create Entity and Components
             entity_id = self.ecs_world.create_entity()
 
             # Identity
+            primary_ism_id = initial_ideologies[0]['code']
+            ism_data = self.isms_by_id.get(primary_ism_id, {})
             npc_name = ism_data.get("name", "无名氏")
-            identity_comp = IdentityComponent(name=npc_name, description=ism_data.get('id'), birthplace=birthplace_id)
+
+            # Store the generated biography within the IdentityComponent
+            identity_comp = IdentityComponent(name=npc_name,
+                                              description=f"A {biography['social_class']} with {biography['education']} education.",
+                                              birthplace=birthplace_id,
+                                              biography=biography)
             self.ecs_world.add_component(entity_id, identity_comp)
 
             # Position (randomly spawned)
             self.ecs_world.add_component(entity_id, PositionComponent(x=random.randint(50, 750), y=random.randint(50, 550)))
 
-            # --- IsmComponent setup with the new structure ---
-            gene_code = ism_data.get('id', '1-1-1-1')
-            initial_ixp = [[0.0] * 4 for _ in range(4)]
-            try:
-                gene_parts = [int(g) for g in gene_code.split('-')]
-                for i_part, stage in enumerate(gene_parts):
-                    if 1 <= stage <= 4:
-                        initial_ixp[i_part][stage - 1] = 100.0 # Baseline value
-            except (ValueError, IndexError):
-                 gene_parts = [1,1,1,1] # fallback
-                 initial_ixp[0][0] = 100.0
-                 initial_ixp[1][0] = 100.0
-                 initial_ixp[2][0] = 100.0
-                 initial_ixp[3][0] = 100.0
-
-            initial_ideology = {
-                "code": gene_code, "intensity": 1.0, "ixp": initial_ixp, "data": ism_data.get('philosophy', {})
-            }
-            ism_comp = IsmComponent(active_ideologies=[initial_ideology])
+            # IsmComponent setup with the new multi-ideology structure
+            ism_comp = IsmComponent(active_ideologies=initial_ideologies)
             self.ecs_world.add_component(entity_id, ism_comp)
 
             # Needs & Demands
@@ -299,13 +289,19 @@ class Server:
 
             # Hobbies
             hobby_comp = HobbyComponent()
-            philosophy_values = []
-            def extract_values(d):
-                for v in d.values():
-                    if isinstance(v, str): philosophy_values.append(v)
-                    elif isinstance(v, dict): extract_values(v)
-            extract_values(ism_data.get("philosophy", {}))
-            ism_keywords = " ".join(philosophy_values)
+
+            # Aggregate keywords from all active ideologies
+            all_philosophy_keywords = []
+            for ideology in initial_ideologies:
+                philosophy_values = []
+                def extract_values(d):
+                    for v in d.values():
+                        if isinstance(v, str): philosophy_values.append(v)
+                        elif isinstance(v, dict): extract_values(v)
+                extract_values(ideology.get("data", {}))
+                all_philosophy_keywords.extend(philosophy_values)
+
+            ism_keywords = " ".join(all_philosophy_keywords)
 
             if "科学" in ism_keywords or "技术" in ism_keywords:
                 hobby_comp.interests["AUTOMATA"] = random.uniform(60, 90)
