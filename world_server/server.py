@@ -26,6 +26,9 @@ from world_server.ecs.components.cognitive_map_component import CognitiveMapComp
 from world_server.ecs.components.praxis_ledger_component import PraxisLedgerComponent
 
 
+# --- Generator Imports ---
+from world_server.generators.biography_generator import generate_biography
+
 # --- System Imports ---
 from world_server.ecs.systems.motivation_system import MotivationSystem
 from world_server.ecs.systems.needs_system import NeedsSystem
@@ -239,9 +242,20 @@ class Server:
             # Create Entity and Components
             entity_id = self.ecs_world.create_entity()
 
+            # --- Biography Generation ---
+            biography = generate_biography()
+
             # Identity
             npc_name = ism_data.get("name", "无名氏")
-            identity_comp = IdentityComponent(name=npc_name, description=ism_data.get('id'), birthplace=birthplace_id)
+            identity_comp = IdentityComponent(
+                name=npc_name,
+                description=ism_data.get('id'),
+                birthplace=birthplace_id,
+                social_class=biography["social_class"],
+                education_level=biography["education_level"],
+                age_bracket=biography["age_bracket"],
+                defining_event=biography["defining_event"]
+            )
             self.ecs_world.add_component(entity_id, identity_comp)
 
             # Position (randomly spawned)
