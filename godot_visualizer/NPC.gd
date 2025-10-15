@@ -1,24 +1,29 @@
 extends Node2D
 
-signal npc_selected(data)
+# This signal now emits the entity ID, not the whole data dictionary.
+signal npc_selected(entity_id)
 
 @onready var label = $Label
 @onready var clickable_area = $ClickableArea
-var npc_data # Store the NPC's data
+
+var entity_id: int = -1 # Store the NPC's unique entity ID from the ECS.
 
 func _ready():
 	clickable_area.gui_input.connect(_on_gui_input)
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		emit_signal("npc_selected", npc_data)
+		if entity_id != -1:
+			emit_signal("npc_selected", entity_id)
 
 func update_state(data):
-	npc_data = data # Store the latest data
+	# Store the entity ID
+	self.entity_id = data.id
 
-	# 使用Tween来平滑地移动到新位置，而不是瞬间移动
+	# Use a Tween to smoothly move to the new position
 	var tween = create_tween()
-	tween.tween_property(self, "position", Vector2(data.position.x, data.position.y), 0.4).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "position", data.position, 0.4).set_trans(Tween.TRANS_SINE)
 
-	# 更新标签内容
-	label.text = "%s\n(%s)" % [data.name, data.action]
+	# Update the label content
+	# We can add more info here later, like the current state from StateComponent.
+	label.text = "%s" % [data.name]

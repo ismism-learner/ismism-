@@ -1,132 +1,26 @@
 [
   {
-    "name": "镇中心酒馆",
-    "type": "FOOD_SOURCE",
-    "position": { "x": 150, "y": 450 },
-    "radius": 30,
-    "region_id": "theocratic_capital"
+    "id": "home_1",
+    "type": "RESIDENCE",
+    "name": "Humble Abode",
+    "position": [ 100, 150 ],
+    "inventory": {}
   },
   {
-    "name": "河边旅店",
-    "type": "SHELTER",
-    "position": { "x": 250, "y": 100 },
-    "radius": 25,
-    "region_id": "chaotic_port"
-  },
-  {
-    "name": "城南农场",
+    "id": "work_1",
     "type": "WORKPLACE",
-    "work_type": "FARMING",
-    "position": { "x": 400, "y": 550 },
-    "radius": 40,
-    "region_id": "theocratic_capital"
+    "name": "The Mine",
+    "position": [ 500, 200 ],
+    "produces": "IRON_ORE",
+    "inventory": {}
   },
   {
-    "name": "矿洞入口",
-    "type": "WORKPLACE",
-    "work_type": "MINING",
-    "position": { "x": 700, "y": 300 },
-    "radius": 25,
-    "region_id": "chaotic_port"
-  },
-  {
-    "name": "伐木工棚屋",
-    "type": "SHELTER",
-    "position": { "x": 650, "y": 80 },
-    "radius": 20,
-    "region_id": "chaotic_port"
-  },
-  {
-    "name": "市场摊位",
-    "type": "FOOD_SOURCE",
-    "position": { "x": 200, "y": 300 },
-    "radius": 20,
-    "region_id": "chaotic_port"
-  },
-  {
-    "name": "大剧院",
+    "id": "entertainment_1",
     "type": "ENTERTAINMENT",
-    "position": { "x": 350, "y": 200 },
-    "radius": 35,
-    "cost": 15,
+    "name": "The Salty Spitoon",
+    "position": [ 300, 400 ],
+    "cost": 10,
     "ideological_influence": { "idealism": 5 },
-    "region_id": "theocratic_capital"
-  },
-  {
-    "name": "阴暗的酒馆",
-    "type": "ENTERTAINMENT",
-    "position": { "x": 600, "y": 450 },
-    "radius": 20,
-    "cost": 5,
-    "ideological_influence": { "idealism": -5, "rupture": 1 },
-    "region_id": "chaotic_port"
-  },
-  {
-    "name": "中央银行",
-    "type": "CENTRAL_BANK",
-    "position": { "x": 400, "y": 300 },
-    "radius": 30,
-    "cash_reserves": 1000000,
-    "region_id": "theocratic_capital"
-  },
-  {
-    "name": "第一商业银行",
-    "type": "COMMERCIAL_BANK",
-    "position": { "x": 300, "y": 350 },
-    "radius": 25,
-    "cash_reserves": 50000,
-    "region_id": "theocratic_capital"
-  },
-  {
-    "name": "第二商业银行",
-    "type": "COMMERCIAL_BANK",
-    "position": { "x": 500, "y": 350 },
-    "radius": 25,
-    "cash_reserves": 50000,
-    "region_id": "chaotic_port"
-  },
-  {
-    "name": "工匠作坊",
-    "type": "WORKPLACE",
-    "work_type": "CRAFTING",
-    "produces": "LUXURY_GOOD",
-    "position": { "x": 100, "y": 200 },
-    "radius": 20,
-    "region_id": "theocratic_capital"
-  },
-  {
-    "name": "艺术画廊",
-    "type": "WORKPLACE",
-    "work_type": "PAINTING",
-    "produces": "ARTWORK",
-    "position": { "x": 500, "y": 200 },
-    "radius": 20,
-    "region_id": "theocratic_capital"
-  },
-  {
-    "name": "炼金术士实验室",
-    "type": "WORKPLACE",
-    "work_type": "ALCHEMY",
-    "produces": "ALCHEMY_KNOWLEDGE",
-    "position": { "x": 700, "y": 150 },
-    "radius": 25,
-    "region_id": "ivory_tower"
-  },
-  {
-    "name": "机关术工坊",
-    "type": "WORKPLACE",
-    "work_type": "AUTOMATA",
-    "produces": "AUTOMATA_BLUEPRINT",
-    "position": { "x": 700, "y": 500 },
-    "radius": 25,
-    "region_id": "ivory_tower"
-  },
-  {
-    "name": "城市公园",
-    "type": "HOBBY_LOCATION",
-    "hobby_type": "PARK",
-    "position": { "x": 450, "y": 450 },
-    "radius": 50,
-    "region_id": "theocratic_capital"
+    "inventory": {}
   }
 ]
