@@ -52,6 +52,8 @@ class Server:
         self.relationship_types = {}
         self.collective_actions = []
         self.all_isms_data = [] # To store the new quantified ism data
+        self.isms_by_id = {} # For quick lookup
+        self.regions = {}
         self._load_game_definitions()
         self._setup_world()
 
@@ -62,7 +64,10 @@ class Server:
         try:
             with open(isms_path, 'r', encoding='utf-8') as f:
                 self.all_isms_data = json.load(f)
+            # Create a lookup dictionary for isms by their ID
+            self.isms_by_id = {ism['id']: ism for ism in self.all_isms_data if 'id' in ism}
             print(f"成功加载并量化 {len(self.all_isms_data)} 个主义。")
+            print(f"为 {len(self.isms_by_id)} 个主义创建了ID查找表。")
         except FileNotFoundError:
             print(f"错误: 主义数据文件 '{isms_path}' 未找到。请确保已运行 excel_parser.py。")
             self.all_isms_data = []
@@ -150,6 +155,19 @@ class Server:
         except json.JSONDecodeError:
             print(f"错误: 集体行动文件 '{collective_actions_path}' 格式无效。")
 
+        # Load regions
+        regions_path = "world_server/regions.json"
+        try:
+            with open(regions_path, 'r', encoding='utf-8') as f:
+                self.regions = json.load(f)
+            print(f"成功加载 {len(self.regions)} 个区域。")
+        except FileNotFoundError:
+            print(f"错误: 区域文件 '{regions_path}' 未找到。")
+            self.regions = {}
+        except json.JSONDecodeError:
+            print(f"错误: 区域文件 '{regions_path}' 格式无效。")
+            self.regions = {}
+
     def _setup_world(self):
         """初始化游戏世界，加载资源，创建实体并注册系统"""
         self._spawn_all_npcs()
@@ -180,22 +198,50 @@ class Server:
         print("ECS世界服务器初始化完成，所有实体和系统已加载。")
 
     def _spawn_all_npcs(self):
-        """Creates NPCs based on the loaded ism data, adding them as entities to the ECS world."""
-        if not self.all_isms_data:
+        """Creates NPCs based on regional culture, adding them as entities to the ECS world."""
+        if not self.isms_by_id:
             print("错误: 没有可用的主义数据来生成NPC。")
+            return
+        if not self.locations or not self.regions:
+            print("错误: 地点或区域数据不完整，无法按环境生成NPC。")
             return
 
         num_npcs_to_spawn = 50
+        spawned_count = 0
         for i in range(num_npcs_to_spawn):
-            # Select a random ism for the new NPC
-            ism_data = random.choice(self.all_isms_data)
+            # --- NEW: Environment-Seeded Logic ---
+            # a. Identify the NPC's birthplace location.
+            birthplace_loc = random.choice(self.locations)
+            birthplace_id = birthplace_loc['id']
+            region_id = birthplace_loc.get('region_id')
+
+            if not region_id or region_id not in self.regions:
+                print(f"警告: 地点 {birthplace_id} ({birthplace_loc.get('name')}) 没有有效的区域ID。跳过此NPC生成。")
+                continue
+
+            # b. Use the location's region_id to look up the appropriate Cultural Meme Pool.
+            region_data = self.regions[region_id]
+            meme_pool = region_data.get("meme_pool")
+
+            if not meme_pool:
+                print(f"警告: 区域 {region_id} ({region_data.get('name')}) 没有定义文化模因池。跳过此NPC生成。")
+                continue
+
+            # c. Assign the NPC's initial primary ideology by selecting one from that pool.
+            primary_ism_id = random.choice(meme_pool)
+            ism_data = self.isms_by_id.get(primary_ism_id)
+
+            if not ism_data:
+                print(f"警告: 在区域 {region_id} 的模因池中找到的主义ID '{primary_ism_id}' 在主义数据库中不存在。跳过此NPC生成。")
+                continue
+            # --- END: Environment-Seeded Logic ---
 
             # Create Entity and Components
             entity_id = self.ecs_world.create_entity()
 
             # Identity
             npc_name = ism_data.get("name", "无名氏")
-            identity_comp = IdentityComponent(name=npc_name, description=ism_data.get('id'))
+            identity_comp = IdentityComponent(name=npc_name, description=ism_data.get('id'), birthplace=birthplace_id)
             self.ecs_world.add_component(entity_id, identity_comp)
 
             # Position (randomly spawned)
@@ -206,9 +252,9 @@ class Server:
             initial_ixp = [[0.0] * 4 for _ in range(4)]
             try:
                 gene_parts = [int(g) for g in gene_code.split('-')]
-                for i, stage in enumerate(gene_parts):
+                for i_part, stage in enumerate(gene_parts):
                     if 1 <= stage <= 4:
-                        initial_ixp[i][stage - 1] = 100.0 # Baseline value
+                        initial_ixp[i_part][stage - 1] = 100.0 # Baseline value
             except (ValueError, IndexError):
                  gene_parts = [1,1,1,1] # fallback
                  initial_ixp[0][0] = 100.0
@@ -216,15 +262,9 @@ class Server:
                  initial_ixp[2][0] = 100.0
                  initial_ixp[3][0] = 100.0
 
-
-            # Create the initial, single ideology for the NPC
             initial_ideology = {
-                "code": gene_code,
-                "intensity": 1.0,
-                "ixp": initial_ixp,
-                "data": ism_data.get('philosophy', {})
+                "code": gene_code, "intensity": 1.0, "ixp": initial_ixp, "data": ism_data.get('philosophy', {})
             }
-
             ism_comp = IsmComponent(active_ideologies=[initial_ideology])
             self.ecs_world.add_component(entity_id, ism_comp)
 
@@ -234,59 +274,36 @@ class Server:
             # --- Enhanced Environmental Effects ---
             initial_stress = random.randint(0, 30)
             initial_money = random.randint(20, 100)
+            birthplace_type = birthplace_loc.get('type')
 
-            if self.locations:
-                # Select a random location as a "birthplace"
-                birthplace_loc = random.choice(self.locations)
-                birthplace_id = birthplace_loc['id']
-                birthplace_type = birthplace_loc.get('type')
-
-                # Get the component we just added to modify it
-                added_identity_comp = self.ecs_world.get_component(entity_id, IdentityComponent)
-                added_identity_comp.birthplace = birthplace_id
-
-                # Apply modifiers based on the type of the birthplace location
-                if birthplace_type in ['WORKPLACE', 'FOOD_SOURCE']: # Assumed lower-class
-                    initial_stress += 10
-                    initial_money -= 15
-                elif birthplace_type in ['CENTRAL_BANK', 'COMMERCIAL_BANK', 'MARKETPLACE']: # Assumed upper-class/merchant
-                    initial_stress -= 5
-                    initial_money += 30
-                elif birthplace_type == 'SHELTER': # Neutral
-                    pass
+            if birthplace_type in ['WORKPLACE', 'FOOD_SOURCE']:
+                initial_stress += 10; initial_money -= 15
+            elif birthplace_type in ['CENTRAL_BANK', 'COMMERCIAL_BANK', 'MARKETPLACE']:
+                initial_stress -= 5; initial_money += 30
 
             initial_stress = max(0, min(initial_stress, 100))
             initial_money = max(1, initial_money)
-            # --- End of Environmental Effects ---
 
             needs_comp.needs['hunger']['current'] = random.randint(0, 40)
             needs_comp.needs['energy']['current'] = random.randint(50, 90)
             needs_comp.needs['stress']['current'] = initial_stress
             self.ecs_world.add_component(entity_id, needs_comp)
 
-            # Economy
+            # Economy & State
             self.ecs_world.add_component(entity_id, EconomyComponent(money=initial_money))
-
-            # State
             self.ecs_world.add_component(entity_id, StateComponent())
 
-            # Relationships
+            # Relationships & Financial
             self.ecs_world.add_component(entity_id, RelationshipComponent())
-
-            # Financial
             self.ecs_world.add_component(entity_id, FinancialComponent())
 
             # Hobbies
             hobby_comp = HobbyComponent()
-            # Logic to recursively get all string values from the philosophy structure
             philosophy_values = []
             def extract_values(d):
                 for v in d.values():
-                    if isinstance(v, str):
-                        philosophy_values.append(v)
-                    elif isinstance(v, dict):
-                        extract_values(v)
-
+                    if isinstance(v, str): philosophy_values.append(v)
+                    elif isinstance(v, dict): extract_values(v)
             extract_values(ism_data.get("philosophy", {}))
             ism_keywords = " ".join(philosophy_values)
 
@@ -298,7 +315,6 @@ class Server:
                 hobby_comp.interests["PAINTING"] = random.uniform(60, 90)
                 hobby_comp.interests["CRAFTING"] = random.uniform(40, 70)
                 hobby_comp.skills["PAINTING"] = random.randint(1, 3)
-            # Give a baseline interest in exercise
             hobby_comp.interests["EXERCISE"] = random.uniform(10, 40)
             self.ecs_world.add_component(entity_id, hobby_comp)
 
@@ -308,8 +324,9 @@ class Server:
             self.ecs_world.add_component(entity_id, CognitiveMapComponent())
             self.ecs_world.add_component(entity_id, PraxisLedgerComponent())
 
+            spawned_count += 1
 
-        print(f"成功生成了 {num_npcs_to_spawn} 个实体。")
+        print(f"成功生成了 {spawned_count} 个实体。")
 
     async def _game_loop(self):
         """
