@@ -5,8 +5,7 @@ from ..system import System
 from ..components.ism import IsmComponent
 
 # Constants
-IXP_THRESHOLDS = {1: 500, 2: 1000, 3: 2000}
-INITIAL_IXP_VALUE = 100.0
+INITIAL_IXP_VALUE = 100.0 # The starting IXP for a newly birthed ideological pillar
 INTENSITY_SHIFT_FACTOR = 0.51 # New ideology gets 51% of the combined intensity
 
 class EvolutionSystem(System):
@@ -35,27 +34,33 @@ class EvolutionSystem(System):
 
     def _check_for_evolution(self, entity_id: int, ism_comp: IsmComponent, ideology: dict):
         """
-        Checks a specific ideology within an NPC to see if any of its pillars can evolve.
+        Checks a specific ideology within an NPC to see if any of its pillars can evolve
+        based on the new dialectical threshold rules.
         """
         current_gene_parts = [int(g) for g in ideology['code'].split('-')]
+        ixp_matrix = ideology.get('ixp', [])
 
-        for i in range(4): # Iterate through the four pillars
+        if not ixp_matrix:
+            return
+
+        for i in range(4): # Iterate through the four pillars (Field, Ontology, etc.)
             current_stage = current_gene_parts[i]
-            if current_stage >= 4: # Already at the final stage
-                continue
+            ixp_row = ixp_matrix[i]
 
-            threshold = IXP_THRESHOLDS.get(current_stage)
-            if not threshold:
-                continue
+            should_evolve = False
+            if current_stage == 1 and ixp_row[1] > ixp_row[0]:
+                should_evolve = True
+            elif current_stage == 2 and ixp_row[2] > (ixp_row[0] + ixp_row[1]):
+                should_evolve = True
+            elif current_stage == 3 and ixp_row[3] > max(ixp_row[0], ixp_row[1], ixp_row[2]):
+                should_evolve = True
 
-            # IXP in the *next* stage's column drives evolution
-            ixp_to_check = ideology['ixp'][i][current_stage]
-
-            if ixp_to_check >= threshold:
-                self._birth_new_ideology(ism_comp, ideology, i, current_stage + 1)
-                # After one evolution, we stop checking this NPC for this tick
-                # to avoid cascading/multiple evolutions at once.
-                return
+            if should_evolve:
+                new_stage = current_stage + 1
+                if new_stage <= 4:
+                    self._birth_new_ideology(ism_comp, ideology, i, new_stage)
+                    # Stop after one evolution per tick to prevent cascades
+                    return
 
     def _birth_new_ideology(self, ism_comp: IsmComponent, source_ideology: dict, pillar_index: int, new_stage: int):
         """

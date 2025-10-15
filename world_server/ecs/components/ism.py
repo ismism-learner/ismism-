@@ -108,3 +108,10 @@ class IsmComponent(Component):
         if not self._active_ideologies:
             return create_default_ideology()
         return max(self._active_ideologies, key=lambda x: x.get('intensity', 0))
+
+    def trigger_matrix_update(self):
+        """
+        Public method to manually trigger a recalculation of the final decision matrix.
+        This is useful after direct manipulation of an ideology's IXP matrix.
+        """
+        self._update_final_decision_matrix()
