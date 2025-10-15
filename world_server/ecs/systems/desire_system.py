@@ -4,6 +4,7 @@ from ..components.needs import NeedsComponent
 from ..components.hobby_component import HobbyComponent
 from ..components.relationship import RelationshipComponent
 from ..components.financial_component import FinancialComponent
+from ..components.ism import IsmComponent
 
 # Define a constant for the debt threshold to trigger aspirations
 DEBT_ASPIRATION_THRESHOLD = 500
