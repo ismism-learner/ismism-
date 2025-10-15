@@ -141,6 +141,15 @@ namespace Ecs
                     (Dictionary)identityData["biography"]
                 ));
 
+                // Character Sheet
+                var sheetData = (Dictionary)npcData["CharacterSheetComponent"];
+                AddComponent(entityId, new CharacterSheetComponent(
+                    sheetData["home_location_id"].ToString(),
+                    sheetData["workplace_location_id"].ToString(),
+                    sheetData["work_hours_start"].AsInt32(),
+                    sheetData["work_hours_end"].AsInt32()
+                ));
+
                 // Position
                 var positionData = (Array<float>)npcData["PositionComponent"];
                 AddComponent(entityId, new PositionComponent(new Vector2(positionData[0], positionData[1])));
@@ -154,7 +163,7 @@ namespace Ecs
 
                 // Needs
                 var needsData = (Dictionary)npcData["NeedsComponent"];
-                AddComponent(entityId, new NeedsComponent(needsData["stress"].AsFloat(), needsData["hunger"].AsFloat()));
+                AddComponent(entityId, new NeedsComponent(needsData["energy"].AsFloat(), needsData["hunger"].AsFloat()));
 
                 // Ism
                 var ismComp = new IsmComponent();

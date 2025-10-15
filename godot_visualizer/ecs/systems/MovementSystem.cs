@@ -28,9 +28,10 @@ namespace Ecs.Systems
                     if (pos.Position.DistanceTo(targetPosition) < 1.5f)
                     {
                         pos.Position = targetPosition;
-                        state.CurrentState = "Idle";
+                        var arrivalAction = state.ActionData["on_arrival_action"].ToString();
+                        state.CurrentState = arrivalAction;
+                        GD.Print($"Entity {entityId} reached destination. New state: {arrivalAction}");
                         state.ActionData.Clear();
-                        GD.Print($"Entity {entityId} reached destination.");
                     }
                     else
                     {
