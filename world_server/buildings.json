@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "Blacksmith",
+    "BuildingType": "Workshop",
+    "Position": { "x": 100, "y": 150 }
+  },
+  {
+    "Name": "Bakery",
+    "BuildingType": "Workshop",
+    "Position": { "x": 250, "y": 100 }
+  },
+  {
+    "Name": "House 1",
+    "BuildingType": "House",
+    "Position": { "x": 100, "y": 300 }
+  },
+  {
+    "Name": "House 2",
+    "BuildingType": "House",
+    "Position": { "x": 250, "y": 300 }
+  },
+  {
+    "Name": "House 3",
+    "BuildingType": "House",
+    "Position": { "x": 400, "y": 300 }
+  }
+]

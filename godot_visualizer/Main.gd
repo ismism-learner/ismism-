@@ -21,12 +21,6 @@ const NpcGenerationSystem = preload("res://ecs/systems/NpcGenerationSystem.cs")
 func _ready():
 	print("Main scene ready. Initializing C# ECS...")
 
-	# First, process the ism data
-	var data_processor = DataProcessor.new()
-	add_child(data_processor)
-	data_processor.ProcessAndSaveIsms("res://../isms_final.json", "res://../rules.json", "res://world_server/isms_final.json")
-
-
 	# Instantiate and hide the info panel
 	info_panel = InfoPanelScene.instantiate()
 	info_panel.hide()

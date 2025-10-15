@@ -8,6 +8,7 @@ namespace Ecs.Systems
     public class NpcGenerationSystem : System
     {
         private DataManager _dataManager;
+        private VillageManager _villageManager;
         private static readonly RandomNumberGenerator Rng = new();
 
         public override void Process()
@@ -19,10 +20,8 @@ namespace Ecs.Systems
                 return;
             }
 
-            if (_dataManager == null)
-            {
-                _dataManager = world.GetNode<DataManager>("/root/DataManager");
-            }
+            if (_dataManager == null) _dataManager = world.GetNode<DataManager>("/root/DataManager");
+            if (_villageManager == null) _villageManager = world.GetNode<VillageManager>("/root/VillageManager");
 
             GenerateNpcsFromLocations();
         }
@@ -47,6 +46,21 @@ namespace Ecs.Systems
 
         private void CreateNpc(Dictionary location, Array<string> foundingIdeologies)
         {
+            // Find available housing and workplace BEFORE creating the entity
+            var home = _villageManager.FindAvailableBuilding("House");
+            if (home == null)
+            {
+                GD.PrintErr("Generation failed: No available houses for new NPC. Stopping population generation.");
+                return; // Stop creating NPCs if there's no housing
+            }
+
+            var workplace = _villageManager.FindAvailableBuilding("Workshop");
+            if (workplace == null)
+            {
+                GD.PrintErr("Generation failed: No available workplaces for new NPC. Stopping population generation.");
+                return; // Stop creating NPCs if there are no jobs
+            }
+
             var entityId = world.CreateEntity();
             var locationName = location["name"].ToString();
             var locationPosition = (Vector2)location["position"];
@@ -56,22 +70,13 @@ namespace Ecs.Systems
             world.AddComponent(entityId, new StateComponent { CurrentState = "Idle" });
             world.AddComponent(entityId, new NeedsComponent { Hunger = Rng.RandfRange(0, 50), Stress = Rng.RandfRange(0, 50) });
             world.AddComponent(entityId, new FinancialComponent { Money = Rng.RandfRange(50, 200) });
-            var villageManager = world.GetNode<VillageManager>("/root/VillageManager");
 
-            // Assign to a house
-            var homeBuildingId = location["id"].ToString();
-            world.AddComponent(entityId, new HousingComponent { HomeBuildingName = homeBuildingId });
-            var homeBuilding = villageManager.GetBuilding(homeBuildingId);
-            if (homeBuilding != null)
-            {
-                homeBuilding.Occupants.Add((int)entityId);
-            }
+            // Assign to the found home and workplace
+            world.AddComponent(entityId, new HousingComponent { HomeBuildingName = home.Name });
+            home.Occupants.Add((int)entityId);
 
-            // Assign to a workplace if the location is also a workplace
-            if (location["type"].ToString() == "WORKPLACE")
-            {
-                world.AddComponent(entityId, new JobComponent { WorkplaceBuildingName = homeBuildingId });
-            }
+            world.AddComponent(entityId, new JobComponent { WorkplaceBuildingName = workplace.Name });
+            workplace.Occupants.Add((int)entityId);
 
             var ismComponent = new IsmComponent();
             foreach (var ismId in foundingIdeologies)
@@ -82,7 +87,7 @@ namespace Ecs.Systems
 
             world.GetSystem<IdeologySystem>().RecalculateDecisionMatrix(entityId);
 
-            GD.Print($"Generated NPC for {locationName} with ideologies: {string.Join(", ", foundingIdeologies)}");
+            GD.Print($"Generated NPC for {locationName} and assigned to House: {home.Name}, Workplace: {workplace.Name}");
         }
     }
 }
