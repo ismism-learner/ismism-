@@ -1,49 +1,37 @@
 extends Node
 
-const SERVER_URL = "ws://localhost:8765"
 const NPCScene = preload("res://NPC.tscn")
 const InfoPanelScene = preload("res://InfoPanel.tscn")
 
-var ws_client = WebSocketPeer.new()
 var existing_npcs = {} # 用字典来存储已创建的NPC，以ID为键
 var info_panel
+var world_sim # This will hold our Python simulation object
 
 func _ready():
-	print("主场景已就绪，尝试连接到服务器...")
+	print("Main scene ready. Initializing world simulation...")
 	# Instantiate and hide the info panel
 	info_panel = InfoPanelScene.instantiate()
 	info_panel.hide()
 	add_child(info_panel)
 	info_panel.closed.connect(_on_info_panel_closed)
 
-	connect_to_server()
+	# Load the Python simulation script
+	var WorldSim_py = load("res://world_sim_bridge.py")
+	world_sim = WorldSim_py.new()
+	add_child(world_sim)
 
-func _process(delta):
-	if ws_client.get_ready_state() == WebSocketPeer.STATE_OPEN:
-		ws_client.poll()
+	# Start the simulation (this will run in a separate thread)
+	world_sim.start_simulation()
 
-		var packet = ws_client.get_packet()
-		if packet.size() > 0:
-			var json_string = packet.get_string_from_utf8()
-			var json_data = JSON.parse_string(json_string)
-			if typeof(json_data) == TYPE_ARRAY:
-				update_world_state(json_data)
-	elif ws_client.get_ready_state() == WebSocketPeer.STATE_CLOSED:
-		print("连接已断开，尝试重新连接...")
-		connect_to_server()
-		# 清理一下旧的NPC，避免重连后残留
-		for npc_id in existing_npcs:
-			existing_npcs[npc_id].queue_free()
-		existing_npcs.clear()
+	print("World simulation started.")
 
-
-func connect_to_server():
-	var err = ws_client.connect_to_url(SERVER_URL)
-	if err != OK:
-		print("连接到服务器失败！")
-	else:
-		print("正在连接...")
-
+func _process(_delta):
+	# Directly get the world state from the Python simulation
+	var world_state_json = world_sim.get_world_state_json()
+	if world_state_json:
+		var json_data = JSON.parse_string(world_state_json)
+		if typeof(json_data) == TYPE_ARRAY:
+			update_world_state(json_data)
 
 func update_world_state(npcs_data):
 	var seen_npc_ids = []
