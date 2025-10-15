@@ -60,15 +60,20 @@ class NeedsSystem(System):
                 # Stress increases by 0.1 per hour for every 100 in debt.
                 debt_stress_increase = (financial_comp.loans / 100) * 0.1
 
-            # --- New: Ism-based Stress Modification ---
+            # --- New: Ism-based Stress Modification using the Final Decision Matrix ---
             ism_stress_modifier = 1.0 # Default modifier
             # Check if the NPC is currently idle/unemployed
             if not needs_comp.demands and state_comp.goal in ["Wander", "Idle"]:
-                conformity_score = ism_comp.quantification.get('axes', {}).get('conformity_rebellion', 0.0)
-                if conformity_score <= -0.5: # High conformity
-                    ism_stress_modifier = 0.5 # More content with doing nothing, half stress gain
-                elif conformity_score >= 0.5: # High rebellion
-                    ism_stress_modifier = 2.0 # More anxious when idle, double stress gain
+                # The "Field Theory" pillar (row 0) determines social disposition.
+                # [0][0] = Identity (Conformity)
+                # [0][1] = Contradiction (Rebellion)
+                field_theory_vector = ism_comp.final_decision_matrix[0]
+                conformity_value = field_theory_vector[0]
+                rebellion_value = field_theory_vector[1]
+
+                # High conformity reduces stress when idle, high rebellion increases it.
+                # The modifier is calculated to be between 0.5 and 2.0.
+                ism_stress_modifier = 1.0 - (conformity_value * 0.5) + (rebellion_value * 1.0)
 
             total_stress_change = (base_stress_change + debt_stress_increase) * ism_stress_modifier * (1 - stress_resistance)
             needs_comp.needs['stress']['current'] = min(needs_comp.needs['stress']['max'], needs_comp.needs['stress']['current'] + total_stress_change)

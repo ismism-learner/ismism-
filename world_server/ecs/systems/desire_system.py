@@ -19,19 +19,60 @@ class DesireSystem(System):
     def process(self, *args, **kwargs):
         """
         Main loop for the desire system.
-        1. Checks for new desire-triggering conditions (like high debt).
+        1. Checks for new desire-triggering conditions.
         2. Breaks down existing aspirations into actionable demands.
         """
-        entities_to_process = self.world.get_entities_with_components(NeedsComponent, FinancialComponent)
+        # We need IsmComponent to access the decision matrix
+        from ..components.ism import IsmComponent
+        entities_to_process = self.world.get_entities_with_components(NeedsComponent, FinancialComponent, IsmComponent)
+
         for entity_id in entities_to_process:
-            self._check_for_desire_triggers(entity_id)
+            self._check_for_event_driven_triggers(entity_id)
+            # New: Periodically check for ideology-driven aspirations
+            if self.world.time % 100 == 0: # Check roughly every few days
+                self._generate_ideological_aspirations(entity_id)
             self._breakdown_aspirations(entity_id)
 
-    def _check_for_desire_triggers(self, entity_id):
-        """Checks for world-state conditions that can trigger new aspirations."""
+    def _check_for_event_driven_triggers(self, entity_id):
+        """Checks for specific world-state events that can trigger new aspirations."""
         financial_comp = self.world.get_component(entity_id, FinancialComponent)
         if financial_comp.loans > DEBT_ASPIRATION_THRESHOLD:
-            self.generate_financial_aspiration(entity_id, {'type': 'HIGH_DEBT', 'amount': financial_comp.loans})
+            # Check if this aspiration already exists to avoid spamming
+            needs_comp = self.world.get_component(entity_id, NeedsComponent)
+            if not any(a['type'] == 'ACHIEVE_FINANCIAL_STABILITY' for a in needs_comp.desire['symbolic']['aspirations']):
+                self.generate_financial_aspiration(entity_id, {'type': 'HIGH_DEBT', 'amount': financial_comp.loans})
+
+    def _generate_ideological_aspirations(self, entity_id):
+        """
+        Generates long-term aspirations based on the NPC's core Teleology.
+        This is driven by the final_decision_matrix.
+        """
+        ism_comp = self.world.get_component(entity_id, IsmComponent)
+        needs_comp = self.world.get_component(entity_id, NeedsComponent)
+        teleology_vec = ism_comp.final_decision_matrix[3] # Purpose/Goal pillar
+
+        # [3][0] = Identity (Self-preservation, self-improvement)
+        if teleology_vec[0] > 0.6 and random.random() < 0.1:
+             new_aspiration = {'type': 'MASTER_PRIMARY_HOBBY'}
+             if not any(a['type'] == new_aspiration['type'] for a in needs_comp.desire['imaginary']['aspirations']):
+                 needs_comp.desire['imaginary']['aspirations'].append(new_aspiration)
+                 print(f"INFO: {entity_id} is driven by their ideology to master their primary hobby!")
+
+        # [3][1] = Contradiction (Overcoming a challenge, defeating a rival)
+        if teleology_vec[1] > 0.6 and random.random() < 0.1:
+            # This is a good place to hook into the rivalry system more abstractly
+            # For now, let's create a generic "seek power" aspiration
+            new_aspiration = {'type': 'SEEK_POWER_OVER_OTHERS'}
+            if not any(a['type'] == new_aspiration['type'] for a in needs_comp.desire['symbolic']['aspirations']):
+                 needs_comp.desire['symbolic']['aspirations'].append(new_aspiration)
+                 print(f"INFO: {entity_id} is driven by their ideology to seek power!")
+
+        # [3][2] = Synthesis (Community building, achieving harmony)
+        if teleology_vec[2] > 0.6 and random.random() < 0.1:
+            new_aspiration = {'type': 'BUILD_COMMUNITY_PROJECT'}
+            if not any(a['type'] == new_aspiration['type'] for a in needs_comp.desire['symbolic']['aspirations']):
+                 needs_comp.desire['symbolic']['aspirations'].append(new_aspiration)
+                 print(f"INFO: {entity_id} is driven by their ideology to build a community project!")
 
     def generate_imaginary_aspiration(self, entity_id, trigger_event: dict):
         """
