@@ -1,42 +1,37 @@
 [
   {
     "IdentityComponent": {
-      "name": "John Doe",
-      "birthplace": "home_1",
+      "name": "Test Subject One",
+      "birthplace": "lab_1",
       "biography": {
-        "social_class": "Peasant",
-        "education": "None",
-        "defining_event": "The Great Famine"
+        "social_class": "Test Subject",
+        "education": "Programmed",
+        "defining_event": "Creation"
       }
     },
-    "PositionComponent": [ 100, 150 ],
+    "CharacterSheetComponent": {
+      "home_location_id": "dormitory_1",
+      "workplace_location_id": "assembly_line_1",
+      "work_hours_start": 8,
+      "work_hours_end": 18
+    },
+    "PositionComponent": [ 100, 100 ],
     "StateComponent": {
       "current_state": "Idle",
       "action_data": {}
     },
     "FinancialComponent": {
-      "money": 50.0,
-      "bank_balance": 0.0,
-      "loans": 0.0
+      "money": 10.0
     },
     "NeedsComponent": {
-      "stress": 20.0,
+      "stress": 0.0,
       "hunger": 10.0,
-      "fulfillment": 50.0
+      "energy": 100.0
     },
     "IsmComponent": {
-      "active_ideologies": [ "4-1-1-1" ],
-      "final_decision_matrix": [
-        [ 1.0, 0.0, 0.0, 0.0 ],
-        [ 0.0, 1.0, 0.0, 0.0 ],
-        [ 0.0, 0.0, 1.0, 0.0 ],
-        [ 0.0, 0.0, 0.0, 1.0 ]
-      ]
+      "active_ideologies": [ "1-1-1-1" ]
     },
     "RelationshipComponent": {},
-    "HobbyComponent": {
-      "skills": {},
-      "inventory": []
-    }
+    "HobbyComponent": {}
   }
 ]
