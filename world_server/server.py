@@ -20,8 +20,14 @@ from world_server.ecs.components.state import StateComponent
 from world_server.ecs.components.relationship import RelationshipComponent
 from world_server.ecs.components.financial_component import FinancialComponent
 from world_server.ecs.components.hobby_component import HobbyComponent
+from world_server.ecs.components.sensory_log_component import SensoryLogComponent
+from world_server.ecs.components.social_ledger_component import SocialLedgerComponent
+from world_server.ecs.components.cognitive_map_component import CognitiveMapComponent
+from world_server.ecs.components.praxis_ledger_component import PraxisLedgerComponent
+
 
 # --- System Imports ---
+from world_server.ecs.systems.motivation_system import MotivationSystem
 from world_server.ecs.systems.needs_system import NeedsSystem
 from world_server.ecs.systems.interaction_system import InteractionSystem
 from world_server.ecs.systems.movement_system import MovementSystem
@@ -153,6 +159,8 @@ class Server:
         self.ecs_world.hobby_system = HobbySystem(self.consumer_goods)
         self.ecs_world.desire_system = DesireSystem() # Attach for global access
 
+        # Add the new MotivationSystem first to set high-level goals
+        self.ecs_world.add_system(MotivationSystem())
         self.ecs_world.add_system(self.ecs_world.desire_system)
         self.ecs_world.add_system(NeedsSystem())
         self.ecs_world.add_system(self.ecs_world.hobby_system)
@@ -293,6 +301,12 @@ class Server:
             # Give a baseline interest in exercise
             hobby_comp.interests["EXERCISE"] = random.uniform(10, 40)
             self.ecs_world.add_component(entity_id, hobby_comp)
+
+            # --- Add WD-MME Memory Components ---
+            self.ecs_world.add_component(entity_id, SensoryLogComponent())
+            self.ecs_world.add_component(entity_id, SocialLedgerComponent())
+            self.ecs_world.add_component(entity_id, CognitiveMapComponent())
+            self.ecs_world.add_component(entity_id, PraxisLedgerComponent())
 
 
         print(f"成功生成了 {num_npcs_to_spawn} 个实体。")
