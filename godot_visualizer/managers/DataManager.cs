@@ -72,5 +72,22 @@ namespace Managers
 
             return (Dictionary)json.Data;
         }
+
+        public Array<string> GetChildIsms(string triggerKeyword)
+        {
+            var childIsms = new Array<string>();
+            foreach (var (ismId, ismDataVariant) in Isms)
+            {
+                var ismData = (Dictionary)ismDataVariant;
+                if (ismData.Contains("parent_ism") && ismData.Contains("birth_trigger"))
+                {
+                    if (ismData["birth_trigger"].ToString().Contains(triggerKeyword))
+                    {
+                        childIsms.Add(ismId.ToString());
+                    }
+                }
+            }
+            return childIsms;
+        }
     }
 }

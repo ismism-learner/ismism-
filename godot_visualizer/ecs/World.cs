@@ -107,6 +107,14 @@ namespace Ecs
         }
 
         /// <summary>
+        /// Retrieves a system of a specific type.
+        /// </summary>
+        public T GetSystem<T>() where T : System
+        {
+            return _systems.OfType<T>().FirstOrDefault();
+        }
+
+        /// <summary>
         /// Calls the Process method for all registered systems.
         /// </summary>
         private void Process()
@@ -176,10 +184,10 @@ namespace Ecs
                 // Ism
                 var ismComp = new IsmComponent();
                 var ismData = (Dictionary)npcData["IsmComponent"];
-                var activeIsms = (Array<string>)ismData["active_ideologies"];
-                foreach(var ism in activeIsms)
+                var activeIsms = (Dictionary)ismData["active_ideologies"];
+                foreach(var (ism, strength) in activeIsms)
                 {
-                    ismComp.AddIdeology(ism);
+                    ismComp.AddIdeology(ism.ToString(), strength.AsFloat());
                 }
                 AddComponent(entityId, ismComp);
 

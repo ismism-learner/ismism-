@@ -63,27 +63,23 @@ namespace Ecs.Systems
         {
             GD.Print($"Entity {initiatorId} is interacting with {receiverId} ({interactionType}).");
 
-            // 1. Update Affinity (simplified)
-            var relComp = world.GetComponent<RelationshipComponent>(initiatorId);
-            if (relComp.Relations.TryGetValue(receiverId, out var relationData))
-            {
-                relationData["affinity"] = relationData["affinity"].AsFloat() + 5.0f;
-            }
+            var ideologySystem = world.GetSystem<IdeologySystem>();
+            var interactionKeyword = "COOPERATION"; // Placeholder, should be data-driven
 
-            // 2. Update Relationship Status based on interaction keyword
-            // This would look up the interaction definition from DataManager
-            var interactionKeyword = "COOPERATION"; // Placeholder
+            // 1. Update Relationships
             _relationshipManager.UpdateRelationship(initiatorId, receiverId, interactionKeyword);
+            _relationshipManager.UpdateRelationship(receiverId, initiatorId, interactionKeyword); // Reciprocal update
 
-            // 3. Propagate Ideology (simplified)
-            var initiatorIsm = world.GetComponent<IsmComponent>(initiatorId);
-            var receiverIsm = world.GetComponent<IsmComponent>(receiverId);
-            if (initiatorIsm.ActiveIdeologies.Count > 1)
-            {
-                var ideologyToSpread = initiatorIsm.ActiveIdeologies[1]; // Spread secondary 'ism'
-                receiverIsm.AddIdeology(ideologyToSpread);
-                GD.Print($"Ideology '{ideologyToSpread}' spread from {initiatorId} to {receiverId}.");
-            }
+            // 2. Propagate Ideological Experience
+            var keywordsToPropagate = new Array<string> { interactionKeyword };
+
+            // The initiator reinforces their own beliefs by acting on them
+            ideologySystem.ProcessExperience(initiatorId, keywordsToPropagate);
+
+            // The receiver is influenced by the initiator's actions
+            ideologySystem.ProcessExperience(receiverId, keywordsToPropagate);
+
+            GD.Print($"Entity {initiatorId} and {receiverId} influenced each other with keyword: {interactionKeyword}");
         }
     }
 }

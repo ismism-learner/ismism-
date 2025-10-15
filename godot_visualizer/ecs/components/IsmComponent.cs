@@ -7,15 +7,20 @@ namespace Ecs.Components
     /// </summary>
     public class IsmComponent : Component
     {
-        // List of ideology IDs (e.g., "4-1-1-1")
-        public Array<string> ActiveIdeologies { get; private set; }
+        // Dictionary of ideology IDs to their current strength (0-100)
+        public Dictionary<string, float> ActiveIdeologies { get; private set; }
+
+        // Tracks experience points (IXP) towards birthing new ideologies.
+        // The key could be an ideology pillar or a keyword.
+        public Dictionary<string, float> IdeologyExperiencePoints { get; private set; }
 
         // A 4x4 matrix representing the NPC's worldview, derived from their ideologies.
         public float[,] FinalDecisionMatrix { get; set; }
 
         public IsmComponent()
         {
-            ActiveIdeologies = new Array<string>();
+            ActiveIdeologies = new Dictionary<string, float>();
+            IdeologyExperiencePoints = new Dictionary<string, float>();
             FinalDecisionMatrix = new float[4, 4];
             // Initialize with an identity matrix (neutral)
             for (int i = 0; i < 4; i++)
@@ -27,13 +32,19 @@ namespace Ecs.Components
             }
         }
 
-        public void AddIdeology(string ismId)
+        public void AddIdeology(string ismId, float initialStrength = 50.0f)
         {
-            if (!ActiveIdeologies.Contains(ismId))
+            if (!ActiveIdeologies.ContainsKey(ismId))
             {
-                ActiveIdeologies.Add(ismId);
-                // In a real implementation, we would now call a system
-                // to recalculate the FinalDecisionMatrix.
+                ActiveIdeologies[ismId] = initialStrength;
+            }
+        }
+
+        public void RemoveIdeology(string ismId)
+        {
+            if (ActiveIdeologies.ContainsKey(ismId))
+            {
+                ActiveIdeologies.Remove(ismId);
             }
         }
     }

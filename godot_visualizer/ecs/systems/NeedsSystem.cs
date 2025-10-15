@@ -1,43 +1,69 @@
 using Ecs.Components;
 using Godot;
+using Godot.Collections;
+using Managers;
 
 namespace Ecs.Systems
 {
     /// <summary>
-    /// Updates entity needs over time and generates demands based on them.
+    /// Updates entity needs over time and generates demands and ideology-driven urges.
     /// </summary>
     public class NeedsSystem : System
     {
+        private DataManager _dataManager;
+        private const float IdeologyUrgeThreshold = 50.0f;
+
         public override void Process()
         {
-            var entities = world.GetEntitiesWithComponents(typeof(NeedsComponent), typeof(FinancialComponent));
+            if (_dataManager == null)
+            {
+                _dataManager = world.GetNode<DataManager>("/root/DataManager");
+            }
+
+            var entities = world.GetEntitiesWithComponents(typeof(NeedsComponent), typeof(IsmComponent), typeof(FinancialComponent));
 
             foreach (var entityId in entities)
             {
                 var needs = world.GetComponent<NeedsComponent>(entityId);
                 var financial = world.GetComponent<FinancialComponent>(entityId);
 
-                // Basic needs decay over time
+                // 1. Process Biological Needs
                 needs.Hunger = Mathf.Min(needs.Hunger + 0.1f, 100);
                 needs.Stress = Mathf.Min(needs.Stress + 0.05f, 100);
-
-                // Stress increases with debt
                 if (financial.Loans > 0)
                 {
                     needs.Stress = Mathf.Min(needs.Stress + (financial.Loans / 1000.0f), 100);
                 }
 
-                // Generate demands based on needs thresholds
                 if (needs.Stress > 80 && !HasDemand(needs, "type", "SEEK_ENTERTAINMENT"))
                 {
-                    needs.Demands.Add(new Godot.Collections.Dictionary { { "type", "SEEK_ENTERTAINMENT" } });
-                    GD.Print($"Entity {entityId} is stressed and wants to find entertainment.");
+                    needs.Demands.Add(new Dictionary { { "type", "SEEK_ENTERTAINMENT" } });
                 }
-
                 if (needs.Hunger > 70 && !HasDemand(needs, "type", "EAT_FOOD"))
                 {
-                    needs.Demands.Add(new Godot.Collections.Dictionary { { "type", "EAT_FOOD" } });
-                    GD.Print($"Entity {entityId} is hungry and wants to eat.");
+                    needs.Demands.Add(new Dictionary { { "type", "EAT_FOOD" } });
+                }
+
+                // 2. Process Ideological Urges
+                var ismComp = world.GetComponent<IsmComponent>(entityId);
+                foreach (var (ismId, strength) in ismComp.ActiveIdeologies)
+                {
+                    if (strength > IdeologyUrgeThreshold)
+                    {
+                        var ismData = (Dictionary)_dataManager.Isms[ismId];
+                        var keywords = (Array<string>)ismData["keywords"];
+
+                        if (keywords.Contains("ART") && !HasDemand(needs, "type", "CREATE_ART"))
+                        {
+                            needs.Demands.Add(new Dictionary { { "type", "CREATE_ART" } });
+                            GD.Print($"Entity {entityId} feels an urge to create art from ideology {ismId}.");
+                        }
+                        if (keywords.Contains("WORK") && !HasDemand(needs, "type", "WORK"))
+                        {
+                            needs.Demands.Add(new Dictionary { { "type", "WORK" } });
+                            GD.Print($"Entity {entityId} feels an urge to work from ideology {ismId}.");
+                        }
+                    }
                 }
             }
         }

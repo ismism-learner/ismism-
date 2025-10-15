@@ -25,7 +25,7 @@
       "fulfillment": 50.0
     },
     "IsmComponent": {
-      "active_ideologies": [ "4-1-1-1" ],
+      "active_ideologies": { "4-1-1-1": 75.0 },
       "final_decision_matrix": [
         [ 1.0, 0.0, 0.0, 0.0 ],
         [ 0.0, 1.0, 0.0, 0.0 ],
