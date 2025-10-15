@@ -10,7 +10,7 @@ config_version=5
 
 config/name="NPC Visualizer"
 run/main_scene="res://Main.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
@@ -24,3 +24,15 @@ window/size/window_height_override=600
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[dotnet]
+
+project/assembly_name="godot_visualizer"
+
+[autoload]
+
+World="*res://ecs/World.cs"
+DataManager="*res://managers/DataManager.cs"
+ResourceManager="*res://managers/ResourceManager.cs"
+RelationshipManager="*res://managers/RelationshipManager.cs"
+GeneratorManager="*res://managers/GeneratorManager.cs"
