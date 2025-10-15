@@ -10,11 +10,31 @@
     },
     "representative": "培根(英国经验主义哲学家；被世人误解的)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.8,
-        "materialism_idealism": -0.7778,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -1.0
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -33,11 +53,31 @@
     },
     "representative": "怀特海(19世纪末英国哲学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.5278,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.6667
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -56,11 +96,31 @@
     },
     "representative": "罗素(19世纪末英国哲学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.65,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.5833
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -75,11 +135,31 @@
     },
     "representative": "“维特根斯坦”(20世纪英国哲学家；被误读的)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.45,
-        "materialism_idealism": -0.6389,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": -0.7222
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -98,11 +178,31 @@
     },
     "representative": "爱丁堡学派(20世纪70年代的苏格兰社会学学派)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.5278,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.6667
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -125,11 +225,31 @@
     },
     "representative": "库恩(20世纪美国科学哲学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": -0.2778,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.3333
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -152,11 +272,31 @@
     },
     "representative": "亚历山大·温特(20世纪美国国际政治学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -175,11 +315,31 @@
     },
     "representative": "科尼斯·格根(20世纪美国社会心理学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -198,11 +358,31 @@
     },
     "representative": "希拉里·普特南；杰瑞·福多(20世纪美国分析哲学家、认知科学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.65,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.5833
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -225,11 +405,31 @@
     },
     "representative": "丹尼尔·丹尼特(20世纪美国分析哲学家、认知科学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -252,11 +452,31 @@
     },
     "representative": "安东尼奥·达玛西奥(20世纪美国认知科学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.5,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -275,11 +495,31 @@
     },
     "representative": "托马斯·梅青格(当代德国哲学家、认知科学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -294,11 +534,31 @@
     },
     "representative": "弗雷德里克·斯金纳(20世纪美国心理学家，新行为主义创始人)；克拉克·赫尔(20世纪美国心理学家，耶鲁学派创始人)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.45,
-        "materialism_idealism": -0.6389,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": -0.7222
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -317,11 +577,31 @@
     },
     "representative": "爱德华·托尔曼(20世纪美国心理学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -340,11 +620,31 @@
     },
     "representative": "《组织行为管理杂志》(继承了1986创刊的《组织行为杂志》，2012入选SSCI的应用心理学杂志)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -359,11 +659,31 @@
     },
     "representative": "乔治·赫伯特·米德(美国20世纪社会学家、社会心理学家)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.1,
-        "materialism_idealism": -0.5,
-        "collectivism_individualism": -0.5,
-        "determinism_freewill": -0.4444
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -382,11 +702,31 @@
     },
     "representative": "英国自然神论者(创始人为彻尔布里的赫尔伯特，最著名代表为牛顿)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.5278,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.6667
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -409,11 +749,31 @@
     },
     "representative": "莱布尼兹(德国哲学家，《神义论》作者)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": -0.2778,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.3333
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -436,11 +796,31 @@
     },
     "representative": "瓦伦汀(华伦提诺)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -459,11 +839,31 @@
     },
     "representative": "撒伯里乌(萨伯琉)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -486,11 +886,31 @@
     },
     "representative": "德尔图良",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": -0.2778,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.3333
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -517,11 +937,31 @@
     },
     "representative": "三叶草大师，圣·帕特里克",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": -0.0278,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.0
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -548,11 +988,31 @@
     },
     "representative": "锻铸蛇杖的人，摩西",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -575,11 +1035,31 @@
     },
     "representative": "时间之神Aion、狄奥尼索斯与奥菲欧斯的三位一体",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -602,11 +1082,31 @@
     },
     "representative": "西西弗斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -633,11 +1133,31 @@
     },
     "representative": "swedenborg，mesmer",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -664,11 +1184,31 @@
     },
     "representative": "eliphas levi，西方魔法学奠基人",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -691,11 +1231,31 @@
     },
     "representative": "克洛诺斯的俄狄浦斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -714,11 +1274,31 @@
     },
     "representative": "路德，祥林嫂",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -741,11 +1321,31 @@
     },
     "representative": "临疯的尼采",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -768,11 +1368,31 @@
     },
     "representative": "sufism",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -791,11 +1411,31 @@
     },
     "representative": "rabia of basra",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -814,11 +1454,31 @@
     },
     "representative": "程朱理学",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.65,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.5833
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -841,11 +1501,31 @@
     },
     "representative": "王阳明，心学",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -868,11 +1548,31 @@
     },
     "representative": "秦梯利，墨索里尼御用哲学家",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.5,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -891,11 +1591,31 @@
     },
     "representative": "苏轼，中国古代士大夫",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -918,11 +1638,31 @@
     },
     "representative": "努斯鲍姆，白左勋章姐，东林党党棍，西欧跨国贵族传统",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -949,11 +1689,31 @@
     },
     "representative": "第欧根尼，批判现实主义以及实在论的哲学家",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -980,11 +1740,31 @@
     },
     "representative": "普罗蒂诺，被庸俗化的",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1007,11 +1787,31 @@
     },
     "representative": "普罗泰格拉与高尔吉亚，被庸俗化的；民哲",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1034,11 +1834,31 @@
     },
     "representative": "男性修仙小说",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.5,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1065,11 +1885,31 @@
     },
     "representative": "极右翼男拳主义，伪君子，撒哈拉丁阿里《我们心中的魔鬼》中的那个知识分子",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1096,11 +1936,31 @@
     },
     "representative": "小粉红与恨国党",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.35,
-        "materialism_idealism": 0.425,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1123,11 +1983,31 @@
     },
     "representative": "叔本华，贬低女性以立哲位",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1146,11 +2026,31 @@
     },
     "representative": "倭铿(鲁道夫·克里斯托夫·奥伊肯)，反现代化乡村教师必备心灵毒药",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1173,11 +2073,31 @@
     },
     "representative": "罗伯特·穆启尔 《没有个性的人》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1200,11 +2120,31 @@
     },
     "representative": "克尔凯廓尔，被误解的，庸俗审美三段论",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1223,11 +2163,31 @@
     },
     "representative": "王尔德",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1242,11 +2202,31 @@
     },
     "representative": "普特南，《无本体论的伦理学》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.45,
-        "materialism_idealism": -0.6389,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": -0.7222
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1265,11 +2245,31 @@
     },
     "representative": "安·兰德，终极傻逼文化贩子",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1288,11 +2288,31 @@
     },
     "representative": "胜利者与失败者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1307,11 +2327,31 @@
     },
     "representative": "列奥·斯特劳斯，终极傻逼反现代运动旗手",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.1,
-        "materialism_idealism": -0.5,
-        "collectivism_individualism": -0.5,
-        "determinism_freewill": -0.4444
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1330,11 +2370,31 @@
     },
     "representative": "西欧国家，代理人战争中意识形态输出，养鬼主义",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1357,11 +2417,31 @@
     },
     "representative": "列维纳斯，《总体与无限》，无根资本的木偶",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1384,11 +2464,31 @@
     },
     "representative": "何不食肉糜，环保主义人肉图腾格雷塔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1407,11 +2507,31 @@
     },
     "representative": "变态们",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1430,11 +2550,31 @@
     },
     "representative": "“情商”玩家",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1457,11 +2597,31 @@
     },
     "representative": "建制内心理医生",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1484,11 +2644,31 @@
     },
     "representative": "荣格，霍大同",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1507,11 +2687,31 @@
     },
     "representative": "追求女性性的男男女女们",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1526,11 +2726,31 @@
     },
     "representative": "爱贪小便宜的人",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.1,
-        "materialism_idealism": -0.5,
-        "collectivism_individualism": -0.5,
-        "determinism_freewill": -0.4444
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1549,11 +2769,31 @@
     },
     "representative": "无法控制自己爱欲的人",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1572,11 +2812,31 @@
     },
     "representative": "正在上学的学生朋友们",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1591,11 +2851,31 @@
     },
     "representative": "哈姆雷特(√)、耶稣、俄狄浦斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1389,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.5625,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1614,11 +2894,31 @@
     },
     "representative": "阿那克西曼德",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.5278,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.6667
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1641,11 +2941,31 @@
     },
     "representative": "阿那克西美尼",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": -0.2778,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.3333
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1668,11 +2988,31 @@
     },
     "representative": "阿那克萨戈拉，陨石哲学家",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1691,11 +3031,31 @@
     },
     "representative": "赫拉克利特，真正意义上第一个运用辩证思维的哲学家",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1718,11 +3078,31 @@
     },
     "representative": "苏格拉底，精神的助产术，真性情的爱智慧杠精",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": -0.2778,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.3333
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1749,11 +3129,31 @@
     },
     "representative": "柏拉图，激进的保守主义分子",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": -0.0278,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.0
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1780,11 +3180,31 @@
     },
     "representative": "亚里士多德，帝师，逍遥派中庸头子，政治的哲学之影",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1807,11 +3227,31 @@
     },
     "representative": "芝诺，雅典城邦的最后挣扎，本体论缝合的证明者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1834,11 +3274,31 @@
     },
     "representative": "恩培多克勒，聪明到狂妄的飞入火山之人，思想史上化学鼻祖，愚弄神话的渎神术士",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1865,11 +3325,31 @@
     },
     "representative": "德谟克利特，爱嘲笑普通人的哲学家，民主制度的尝试者，原生家庭财产继承事件的受害者，机械思维鼻祖",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1896,11 +3376,31 @@
     },
     "representative": "伊壁鸠鲁，经验科学鼻祖，哲学家的安谧后院",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -1923,11 +3423,31 @@
     },
     "representative": "安提斯泰尼与第欧根尼，通过理性定义人类自然天性的极端智者，狗哲主义者，郑村棋",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -1946,11 +3466,31 @@
     },
     "representative": "高尔吉亚，镜像巴门尼德，为过去的历史做辩护的状师，会说俏皮话的巴门尼德主义者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -1973,11 +3513,31 @@
     },
     "representative": "皮浪，巨浪当前不动心的军师，谋臣必修心法，基本的政治素养",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2000,11 +3560,31 @@
     },
     "representative": "希庇亚，记忆大师，技艺大师，古希腊城邦间呼吁自然法调和矛盾与冲突的傲慢智者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2023,11 +3603,31 @@
     },
     "representative": "安提丰，智者与猛士的统一，原始精神分析师",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2050,11 +3650,31 @@
     },
     "representative": "耆那教的大雄，原始佛教的释迦牟尼",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": -0.2778,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.3333
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2081,11 +3701,31 @@
     },
     "representative": "小乘有宗",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": -0.0278,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.0
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2112,11 +3752,31 @@
     },
     "representative": "经量部",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2139,11 +3799,31 @@
     },
     "representative": "《成唯识论》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2170,11 +3850,31 @@
     },
     "representative": "老子",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": -0.0278,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.0
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2205,11 +3905,31 @@
     },
     "representative": "庄周",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.6667,
-        "materialism_idealism": 0.2,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.3
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2240,11 +3960,31 @@
     },
     "representative": "杨朱",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4722,
-        "materialism_idealism": 0.35,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.375
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2271,11 +4011,31 @@
     },
     "representative": "韩非子",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5833,
-        "materialism_idealism": 0.1,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.25
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2302,11 +4062,31 @@
     },
     "representative": "《周易》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2337,11 +4117,31 @@
     },
     "representative": "七伊玛目派(伊斯玛仪派)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4722,
-        "materialism_idealism": 0.35,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.375
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2372,11 +4172,31 @@
     },
     "representative": "爱默生",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2778,
-        "materialism_idealism": 0.5,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.45
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2403,11 +4223,31 @@
     },
     "representative": "杜甫、李白等诗人",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2430,11 +4270,31 @@
     },
     "representative": "龙树，《中论》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2461,11 +4321,31 @@
     },
     "representative": "《塔木德》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5833,
-        "materialism_idealism": 0.1,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.25
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2492,11 +4372,31 @@
     },
     "representative": "理查德·罗蒂",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2519,11 +4419,31 @@
     },
     "representative": "惠施",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5,
-        "materialism_idealism": 0.0,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": 0.2
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2546,11 +4466,31 @@
     },
     "representative": "库萨的尼古拉，《论渊博的无知性》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2577,11 +4517,31 @@
     },
     "representative": "布鲁诺",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2608,11 +4568,31 @@
     },
     "representative": "斯宾诺莎，康德的好敌手，《伦理学》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2635,11 +4615,31 @@
     },
     "representative": "波墨，最强民哲，《曙光》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2666,11 +4666,31 @@
     },
     "representative": "托马斯·阿奎那",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2701,11 +4721,31 @@
     },
     "representative": "埃克哈特大师",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4722,
-        "materialism_idealism": 0.35,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.375
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2736,11 +4776,31 @@
     },
     "representative": "马丁路德",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2778,
-        "materialism_idealism": 0.5,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.45
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2767,11 +4827,31 @@
     },
     "representative": "笛卡尔，《第一哲学沉思录》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2798,11 +4878,31 @@
     },
     "representative": "莱布尼兹",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2833,11 +4933,31 @@
     },
     "representative": "沃尔夫",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2778,
-        "materialism_idealism": 0.5,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.45
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2868,11 +4988,31 @@
     },
     "representative": "罗素，潜逃战争的贵族阶级知识分子代表，文笔好点的",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0833,
-        "materialism_idealism": 0.65,
-        "collectivism_individualism": 0.6667,
-        "determinism_freewill": 0.525
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -2899,11 +5039,31 @@
     },
     "representative": "叔本华，瑜不掩瑕的前(反)康德主义者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -2926,11 +5086,31 @@
     },
     "representative": "伽利略",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2957,11 +5137,31 @@
     },
     "representative": "牛顿，千禧年主义者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -2988,11 +5188,31 @@
     },
     "representative": "培根，《人类理性论》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3015,11 +5235,31 @@
     },
     "representative": "皮埃尔·伽森狄",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3038,11 +5278,31 @@
     },
     "representative": "波义耳",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3065,11 +5325,31 @@
     },
     "representative": "洛克",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3092,11 +5372,31 @@
     },
     "representative": "贝克莱",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3115,11 +5415,31 @@
     },
     "representative": "休谟，偷天换日的大他者身份窃贼",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3142,11 +5462,31 @@
     },
     "representative": "约翰·穆勒",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3173,11 +5513,31 @@
     },
     "representative": "涂尔干",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5833,
-        "materialism_idealism": 0.1,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.25
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3204,11 +5564,31 @@
     },
     "representative": "斯宾塞",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3231,11 +5611,31 @@
     },
     "representative": "马赫",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5,
-        "materialism_idealism": 0.0,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": 0.2
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3258,11 +5658,31 @@
     },
     "representative": "石里克",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3289,11 +5709,31 @@
     },
     "representative": "卡尔纳普",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3320,11 +5760,31 @@
     },
     "representative": "赖尔，日常语用学派",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3347,11 +5807,31 @@
     },
     "representative": "古德曼",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3370,11 +5850,31 @@
     },
     "representative": "蒯因",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3397,11 +5897,31 @@
     },
     "representative": "思修四，斯大林主义",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5,
-        "materialism_idealism": 0.0,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": 0.2
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3424,11 +5944,31 @@
     },
     "representative": "语言，”人类群星闪耀时“，大同教，ggkf",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3447,11 +5987,31 @@
     },
     "representative": "禅宗，《五灯会元》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4167,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3470,11 +6030,31 @@
     },
     "representative": "胡塞尔，《纯粹现象学通论：纯粹现象学和现象学哲学的观念》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.65,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": -0.5833
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3497,11 +6077,31 @@
     },
     "representative": "胡塞尔，《纯粹现象学通论：》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3524,11 +6124,31 @@
     },
     "representative": "胡塞尔，《纯粹现象学通论：》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.5,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3547,11 +6167,31 @@
     },
     "representative": "大二时期的德里达，《胡塞尔现象学的发生问题》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3574,11 +6214,31 @@
     },
     "representative": "史蒂芬·斯特拉瑟",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3605,11 +6265,31 @@
     },
     "representative": "普凡德尔(alexander pfander)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3636,11 +6316,31 @@
     },
     "representative": "盖格尔(moritz geiger)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3663,11 +6363,31 @@
     },
     "representative": "芬克(eugen fink)",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3690,11 +6410,31 @@
     },
     "representative": "哈贝马斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.5,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3721,11 +6461,31 @@
     },
     "representative": "加芬克尔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3752,11 +6512,31 @@
     },
     "representative": "古尔维奇",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.35,
-        "materialism_idealism": 0.425,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3779,11 +6559,31 @@
     },
     "representative": "胡塞尔、梅洛-庞蒂、海德格尔、萨特",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3802,11 +6602,31 @@
     },
     "representative": "早期海德格尔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3829,11 +6649,31 @@
     },
     "representative": "萨特",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3856,11 +6696,31 @@
     },
     "representative": "梅洛庞蒂",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3879,11 +6739,31 @@
     },
     "representative": "列维纳斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -3906,11 +6786,31 @@
     },
     "representative": "康德《纯粹理性批判》《法哲学原理》《法哲学批判导言》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": -0.25
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3937,11 +6837,31 @@
     },
     "representative": "怀特海",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -3968,11 +6888,31 @@
     },
     "representative": "马堡学派头子，柯亨",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -3995,11 +6935,31 @@
     },
     "representative": "卡西尔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4026,11 +6986,31 @@
     },
     "representative": "晚年费希特",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.125,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": 0.075
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4061,11 +7041,31 @@
     },
     "representative": "早期谢林《先验观念论体系》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4722,
-        "materialism_idealism": 0.35,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.375
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4096,11 +7096,31 @@
     },
     "representative": "威廉·詹姆斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2778,
-        "materialism_idealism": 0.5,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.45
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4127,11 +7147,31 @@
     },
     "representative": "早期维特根斯坦，《逻辑哲学论》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4158,11 +7198,31 @@
     },
     "representative": "谢林，《世界时代》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4193,11 +7253,31 @@
     },
     "representative": "齐泽克，《自由的深渊》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2778,
-        "materialism_idealism": 0.5,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.45
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4228,11 +7308,31 @@
     },
     "representative": "晚期海德格尔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0833,
-        "materialism_idealism": 0.65,
-        "collectivism_individualism": 0.6667,
-        "determinism_freewill": 0.525
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4259,11 +7359,31 @@
     },
     "representative": "早期黑格尔，《耶拿体系1804-1805：逻辑学和形而上学》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4286,11 +7406,31 @@
     },
     "representative": "黑格尔，《大逻辑》《小逻辑》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4317,11 +7457,31 @@
     },
     "representative": "阿多诺",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4348,11 +7508,31 @@
     },
     "representative": "马尔库塞",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4371,11 +7551,31 @@
     },
     "representative": "阿尔都塞",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4398,11 +7598,31 @@
     },
     "representative": "海德格尔，《存在与时间》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.5,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": 0.1667,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4429,11 +7649,31 @@
     },
     "representative": "萨特",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4460,11 +7700,31 @@
     },
     "representative": "梅洛庞蒂，《辩证法的历险》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.35,
-        "materialism_idealism": 0.425,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4487,11 +7747,31 @@
     },
     "representative": "海德格尔，《从本有而来》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4518,11 +7798,31 @@
     },
     "representative": "克尔凯廓尔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.275,
-        "collectivism_individualism": 0.3333,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4553,11 +7853,31 @@
     },
     "representative": "荷尔德林",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2778,
-        "materialism_idealism": 0.5,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.45
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4588,11 +7908,31 @@
     },
     "representative": "别尔嘉耶夫",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0833,
-        "materialism_idealism": 0.65,
-        "collectivism_individualism": 0.6667,
-        "determinism_freewill": 0.525
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4619,11 +7959,31 @@
     },
     "representative": "雅斯贝尔斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4650,11 +8010,31 @@
     },
     "representative": "舍斯托夫",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.35,
-        "materialism_idealism": 0.425,
-        "collectivism_individualism": 0.5,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4685,11 +8065,31 @@
     },
     "representative": "雅各比",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0833,
-        "materialism_idealism": 0.65,
-        "collectivism_individualism": 0.6667,
-        "determinism_freewill": 0.525
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4720,11 +8120,31 @@
     },
     "representative": "晚期尼采",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.2,
-        "materialism_idealism": 0.8,
-        "collectivism_individualism": 0.8333,
-        "determinism_freewill": 0.6
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4751,11 +8171,31 @@
     },
     "representative": "“丁蟹”",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.55,
-        "collectivism_individualism": 0.4167,
-        "determinism_freewill": 0.475
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4778,11 +8218,31 @@
     },
     "representative": "陀耶妥耶夫斯基，《卡拉马佐夫兄弟》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4809,11 +8269,31 @@
     },
     "representative": "卡夫卡，《审判》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4840,11 +8320,31 @@
     },
     "representative": "加缪",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.55,
-        "collectivism_individualism": 0.4167,
-        "determinism_freewill": 0.475
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4867,11 +8367,31 @@
     },
     "representative": "博尔赫斯，《小径分叉的花园》，《阿莱夫》，《秘密的奇迹》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.3,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": 0.35
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4890,11 +8410,31 @@
     },
     "representative": "列维斯特劳斯，《马塞尔莫斯著作导论》，《漂移的能指》",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4917,11 +8457,31 @@
     },
     "representative": "早期拉康",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -4944,11 +8504,31 @@
     },
     "representative": "罗兰·巴特",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -4967,11 +8547,31 @@
     },
     "representative": "福柯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -4994,11 +8594,31 @@
     },
     "representative": "中期拉康",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5025,11 +8645,31 @@
     },
     "representative": "巴迪欧",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5056,11 +8696,31 @@
     },
     "representative": "齐泽克",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5083,11 +8743,31 @@
     },
     "representative": "克里斯蒂娃",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5110,11 +8790,31 @@
     },
     "representative": "普罗大众之敌，德勒兹",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5141,11 +8841,31 @@
     },
     "representative": "大忽悠，巴耶塔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5172,11 +8892,31 @@
     },
     "representative": "后现代巅峰，克罗索斯基",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.55,
-        "collectivism_individualism": 0.4167,
-        "determinism_freewill": 0.475
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5199,11 +8939,31 @@
     },
     "representative": "投机分子，利奥塔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.3,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": 0.35
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5222,11 +8982,31 @@
     },
     "representative": "保罗利科",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5249,11 +9029,31 @@
     },
     "representative": "弗洛伊德",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5276,11 +9076,31 @@
     },
     "representative": "维特根斯坦",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.3,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": 0.35
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5299,11 +9119,31 @@
     },
     "representative": "晚期马克思→阿尔都塞→晚期拉康",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5323,11 +9163,31 @@
     },
     "representative": "早期马克思",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.45,
-        "materialism_idealism": -0.6389,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": -0.7222
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5351,11 +9211,31 @@
     },
     "representative": "中晚年实践中的马克思",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5379,11 +9259,31 @@
     },
     "representative": "1876年之后的恩格斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5403,11 +9303,31 @@
     },
     "representative": "后E前L时代的探索者、后恩格斯的实在论者、经验论者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.1,
-        "materialism_idealism": -0.5,
-        "collectivism_individualism": -0.5,
-        "determinism_freewill": -0.4444
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5431,11 +9351,31 @@
     },
     "representative": "L",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5463,11 +9403,31 @@
     },
     "representative": "L",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5495,11 +9455,31 @@
     },
     "representative": "普列汉诺夫",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5523,11 +9503,31 @@
     },
     "representative": "一切身家性命都系缚于political的人物",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5551,11 +9551,31 @@
     },
     "representative": "列宁、卢卡奇",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5583,11 +9603,31 @@
     },
     "representative": "科尔施、斯大林",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5615,11 +9655,31 @@
     },
     "representative": "奥地利马克思主义学派、Gruberg",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5643,11 +9703,31 @@
     },
     "representative": "葛兰西",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5667,11 +9747,31 @@
     },
     "representative": "阿尔都塞",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.1,
-        "materialism_idealism": -0.5,
-        "collectivism_individualism": -0.5,
-        "determinism_freewill": -0.4444
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5695,11 +9795,31 @@
     },
     "representative": "巴迪欧",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5723,11 +9843,31 @@
     },
     "representative": "齐泽克",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5747,11 +9887,31 @@
     },
     "representative": "所有的老百姓、人民（天然的理论家）工农大众、非食利阶层",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1389,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.5625,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5775,11 +9935,31 @@
     },
     "representative": "威廉李扑克内西",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.3889,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": -0.3889
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5807,11 +9987,31 @@
     },
     "representative": "倍倍尔",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5839,11 +10039,31 @@
     },
     "representative": "拉法格",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -5867,11 +10087,31 @@
     },
     "representative": "饶勒斯",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -5899,11 +10139,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": -0.1389,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.0556
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5935,11 +10195,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5833,
-        "materialism_idealism": 0.1,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.25
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -5971,11 +10251,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6003,11 +10303,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5,
-        "materialism_idealism": 0.0,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": 0.2
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6035,11 +10355,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6071,11 +10411,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6107,11 +10467,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6139,11 +10519,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6167,11 +10567,31 @@
     },
     "representative": "S",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6199,11 +10619,31 @@
     },
     "representative": "T",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5,
-        "materialism_idealism": 0.0,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": 0.2
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6231,11 +10671,31 @@
     },
     "representative": "鲁大师L别名的拥有者",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6259,11 +10719,31 @@
     },
     "representative": "广大受到奴役而起来的人们",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4167,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6287,11 +10767,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.3,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.1875,
-        "determinism_freewill": -0.3056
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6319,11 +10819,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6351,11 +10871,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6379,11 +10919,31 @@
     },
     "representative": "tk（异于ud）",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6411,11 +10971,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.025,
-        "collectivism_individualism": -0.0625,
-        "determinism_freewill": 0.025
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6447,11 +11027,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3889,
-        "materialism_idealism": 0.25,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.325
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6483,11 +11083,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6515,11 +11135,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6547,11 +11187,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.15,
-        "materialism_idealism": 0.175,
-        "collectivism_individualism": 0.0833,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6583,11 +11243,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1944,
-        "materialism_idealism": 0.4,
-        "collectivism_individualism": 0.25,
-        "determinism_freewill": 0.4
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6619,11 +11299,31 @@
     },
     "representative": "国家财政政策战略策划舵手，陈云",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.0,
-        "materialism_idealism": 0.55,
-        "collectivism_individualism": 0.4167,
-        "determinism_freewill": 0.475
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6651,11 +11351,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.3,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": 0.35
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6679,11 +11399,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6711,11 +11451,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6743,11 +11503,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.3,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": 0.35
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6771,11 +11551,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6795,11 +11595,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": -0.1,
-        "materialism_idealism": -0.5,
-        "collectivism_individualism": -0.5,
-        "determinism_freewill": -0.4444
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6823,11 +11643,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6851,11 +11691,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6875,11 +11735,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1389,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.5625,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -6903,11 +11783,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": -0.25,
-        "collectivism_individualism": -0.375,
-        "determinism_freewill": -0.1111
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6935,11 +11835,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.5,
-        "materialism_idealism": 0.0,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": 0.2
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -6967,11 +11887,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -6995,11 +11935,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4167,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -7023,11 +11983,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.0278,
-        "materialism_idealism": -0.0833,
-        "collectivism_individualism": -0.25,
-        "determinism_freewill": -0.0278
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -7055,11 +12035,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3056,
-        "materialism_idealism": 0.15,
-        "collectivism_individualism": -0.125,
-        "determinism_freewill": 0.275
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -7087,11 +12087,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1111,
-        "materialism_idealism": 0.3,
-        "collectivism_individualism": 0.0,
-        "determinism_freewill": 0.35
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -7115,11 +12135,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   },
@@ -7139,11 +12179,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.1389,
-        "materialism_idealism": -0.3611,
-        "collectivism_individualism": -0.5625,
-        "determinism_freewill": -0.1667
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -7167,11 +12227,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.4167,
-        "materialism_idealism": -0.1111,
-        "collectivism_individualism": -0.4375,
-        "determinism_freewill": 0.15
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.5,
+          0.5,
+          0.0,
+          0.0
+        ]
       }
     }
   },
@@ -7195,11 +12275,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.2222,
-        "materialism_idealism": 0.05,
-        "collectivism_individualism": -0.3125,
-        "determinism_freewill": 0.225
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.25,
+          0.25,
+          0.5,
+          0.0
+        ]
       }
     }
   },
@@ -7219,11 +12319,31 @@
     },
     "representative": "",
     "quantification": {
-      "axes": {
-        "conformity_rebellion": 0.3333,
-        "materialism_idealism": -0.2222,
-        "collectivism_individualism": -0.625,
-        "determinism_freewill": 0.1
+      "matrix": {
+        "field_theory": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "ontology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "epistemology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "teleology": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
       }
     }
   }

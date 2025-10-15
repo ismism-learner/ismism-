@@ -54,16 +54,63 @@ class QuantizationEngine:
 
         return scores
 
+    def calculate_dialectical_matrix(self, ism_id):
+        """
+        Generates a quantization matrix based on the dialectical logic progression.
+        1: Pure Identity [1.0, 0.0, 0.0, 0.0]
+        2: Difference & Contradiction [0.5, 0.5, 0.0, 0.0]
+        3: Synthesis & Mediation [0.25, 0.25, 0.5, 0.0]
+        4: Failure of Synthesis & Collapse [0.0, 0.0, 0.0, 1.0]
+
+        Args:
+            ism_id (str): The gene code of the ism, e.g., "3-2-4-1".
+
+        Returns:
+            dict: A dictionary containing the weight vectors for each philosophical pillar.
+        """
+        dialectical_map = {
+            '1': [1.0, 0.0, 0.0, 0.0],  # Pure Identity
+            '2': [0.5, 0.5, 0.0, 0.0],   # Difference & Contradiction
+            '3': [0.25, 0.25, 0.5, 0.0],# Synthesis & Mediation
+            '4': [0.0, 0.0, 0.0, 1.0]   # Failure of Synthesis
+        }
+
+        pillars = ["field_theory", "ontology", "epistemology", "teleology"]
+        parts = ism_id.split('-')
+
+        if len(parts) != 4:
+            # For simpler isms (e.g. "1-2-3"), we can pad with a default value or handle as an error.
+            # For now, let's assume valid 4-part codes.
+            # You could also expand this to handle 1, 2, 3-part IDs if necessary.
+            return None
+
+        matrix = {}
+        for i, pillar_name in enumerate(pillars):
+            code = parts[i]
+            matrix[pillar_name] = dialectical_map.get(code, [0.0, 0.0, 0.0, 0.0]) # Default to neutral if code is invalid
+
+        return matrix
+
 # --- Example Usage ---
 if __name__ == '__main__':
     engine = QuantizationEngine()
 
-    # --- Test Cases ---
-    test_isms = ["1-1-1-1", "2-2-2-2", "3-3-3-3", "4-4-4-4", "4-1-2-2"]
-
-    for ism in test_isms:
+    # --- Original Score Calculation Test ---
+    print("--- LEGACY SCORE CALCULATION ---")
+    test_isms_legacy = ["1-1-1-1", "4-1-2-2"]
+    for ism in test_isms_legacy:
         calculated_scores = engine.calculate_scores(ism)
         print(f"--- Scores for Ism ID: {ism} ---")
         for axis, score in calculated_scores.items():
             print(f"  - {axis}: {score}")
         print("\\n")
+
+    # --- New Dialectical Matrix Calculation Test ---
+    print("--- NEW DIALECTICAL MATRIX CALCULATION ---")
+    test_ism_dialectical = "3-2-4-1"
+    matrix = engine.calculate_dialectical_matrix(test_ism_dialectical)
+    print(f"--- Dialectical Matrix for Ism ID: {test_ism_dialectical} ---")
+    if matrix:
+        for pillar, weights in matrix.items():
+            print(f"  - {pillar}: {weights}")
+    print("\\n")
