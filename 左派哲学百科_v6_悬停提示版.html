@@ -1,0 +1,2762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>左派哲学百科 - 六轮提示词系统 v6.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+        .tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+        .tab:hover {
+            background: #e8f0fe;
+        }
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 配置区样式 */
+        .config-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .config-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* 轮次控制样式 */
+        .rounds-control {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .rounds-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .rounds-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .round-toggle {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .round-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .round-toggle.active {
+            background: white;
+            color: #f5576c;
+            border-color: white;
+        }
+        .round-toggle-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .round-toggle-desc {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        /* 索引信息样式 */
+        .index-info {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .index-info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        .index-info-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #66bb6a;
+        }
+        .position-label {
+            display: inline-block;
+            width: 70px;
+            font-weight: 600;
+            color: #4caf50;
+            margin-right: 5px;
+        }
+        .badge-4 {
+            display: inline-block;
+            background: #e91e63;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+        
+        /* 通用样式 */
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(17, 153, 142, 0.3);
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        .file-input-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: -9999px;
+        }
+        .file-count {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        .process-log {
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            max-height: 500px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .log-entry {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .log-entry.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+        .log-entry.success { background: #e8f5e9; border-left: 4px solid #4caf50; }
+        .log-entry.warning { background: #fff3e0; border-left: 4px solid #ff9800; }
+        .log-entry.error { background: #ffebee; border-left: 4px solid #f44336; }
+        .log-entry.round { background: #f3e5f5; border-left: 4px solid #9c27b0; }
+        .log-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .status-success { background: #4caf50; color: white; }
+        .status-error { background: #f44336; color: white; }
+        .progress-section {
+            margin-top: 20px;
+            display: none;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        
+        /* 索引浏览器样式 */
+        .search-section {
+            margin-bottom: 20px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        .index-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-height: calc(100vh - 400px);
+            overflow-y: auto;
+        }
+        .index-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+        .index-item:hover {
+            background: #e8f0fe;
+            transform: translateX(5px);
+        }
+        .index-code {
+            font-size: 18px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        .index-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .index-detail {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .detail-row {
+            margin-bottom: 6px;
+        }
+        .detail-label {
+            display: inline-block;
+            width: 80px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .index-management {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .index-management .btn {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        .index-item.editing {
+            border-left-color: #ff9800;
+            background: #fff3e0;
+        }
+        .edit-controls {
+            margin-top: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        .edit-controls button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .edit-controls .btn-save {
+            background: #4caf50;
+            color: white;
+        }
+        .edit-controls .btn-cancel {
+            background: #f44336;
+            color: white;
+        }
+        .edit-controls .btn-edit {
+            background: #2196f3;
+            color: white;
+        }
+        textarea.edit-field {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            font-size: 13px;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 5px;
+        }
+        
+        /* Tooltip悬停提示样式 */
+        .concept-hover {
+            position: relative;
+            cursor: help;
+            color: #667eea;
+            font-weight: 600;
+            border-bottom: 2px dotted #667eea;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        .concept-hover:hover {
+            background: #e8f0fe;
+        }
+        .concept-hover.has-data {
+            color: #4caf50;
+            border-bottom-color: #4caf50;
+        }
+        .concept-hover.no-data {
+            color: #999;
+            border-bottom-color: #ccc;
+            cursor: not-allowed;
+        }
+        .tooltip-popup {
+            display: none;
+            position: absolute;
+            z-index: 10000;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 15px;
+            min-width: 350px;
+            max-width: 500px;
+            max-height: 400px;
+            overflow-y: auto;
+            left: 0;
+            top: 100%;
+            margin-top: 5px;
+        }
+        .concept-hover:hover .tooltip-popup {
+            display: block;
+        }
+        .tooltip-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tooltip-section {
+            margin-bottom: 12px;
+        }
+        .tooltip-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .tooltip-content {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .tooltip-quote {
+            background: #f5f5f5;
+            padding: 8px;
+            border-left: 3px solid #667eea;
+            margin: 5px 0;
+            font-style: italic;
+            font-size: 12px;
+            color: #555;
+        }
+        .tooltip-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        .tooltip-keyword {
+            background: #e8f0fe;
+            color: #667eea;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .tooltip-empty {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 左派哲学百科 - 六轮提示词系统</h1>
+            <p>构建完整的概念网络，读者自由探索 | v6.0</p>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('processor')">📄 文稿处理器</div>
+            <div class="tab" onclick="switchTab('index')">📚 索引浏览器</div>
+        </div>
+        
+        <!-- 文稿处理器标签页 -->
+        <div id="processor-tab" class="tab-content active">
+            <!-- 轮次控制 -->
+            <div class="rounds-control">
+                <div class="rounds-title">🎯 处理轮次控制</div>
+                <div class="rounds-grid">
+                    <div class="round-toggle active" onclick="toggleRound(1)">
+                        <div class="round-toggle-title">✅ 轮1-2</div>
+                        <div class="round-toggle-desc">主要概念收集+补全</div>
+                    </div>
+                    <div class="round-toggle" onclick="toggleRound(2)">
+                        <div class="round-toggle-title">轮3-4</div>
+                        <div class="round-toggle-desc">次级概念收集+补全</div>
+                    </div>
+                    <div class="round-toggle" onclick="toggleRound(3)">
+                        <div class="round-toggle-title">轮5-6</div>
+                        <div class="round-toggle-desc">连接建立+检查</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- API配置 -->
+            <div class="config-section">
+                <div class="config-title">🔑 API 配置</div>
+                <div class="input-group">
+                    <label>SiliconFlow API Key</label>
+                    <input type="password" id="apiKey" placeholder="输入你的API Key">
+                </div>
+                <div class="input-group">
+                    <label>模型选择</label>
+                    <select id="modelSelect">
+                        <option value="deepseek-ai/DeepSeek-V3">DeepSeek-V3 (推荐)</option>
+                        <option value="Qwen/Qwen2.5-72B-Instruct">Qwen2.5-72B</option>
+                        <option value="meta-llama/Llama-3.3-70B-Instruct">Llama-3.3-70B</option>
+                    </select>
+                </div>
+                <button class="btn btn-secondary" onclick="saveConfig()">💾 保存配置</button>
+                <button class="btn btn-secondary" onclick="testAPI()">🧪 测试连接</button>
+                <div id="apiStatus"></div>
+            </div>
+            
+            <!-- 文件上传 -->
+            <div class="section">
+                <div class="section-title">📁 上传文稿 (.docx)</div>
+                <div class="file-input-wrapper">
+                    <label class="file-input-btn" for="fileInput">
+                        📤 选择文件（支持批量）
+                    </label>
+                    <input type="file" id="fileInput" accept=".docx" multiple onchange="handleFiles()">
+                </div>
+                <div id="fileCount" class="file-count">未选择文件</div>
+                <div id="indexInfo"></div>
+            </div>
+            
+            <!-- 开始处理 -->
+            <div class="section">
+                <button class="btn btn-primary" id="processBtn" onclick="startProcessing()" disabled>
+                    🚀 开始六轮处理
+                </button>
+            </div>
+            
+            <!-- 进度显示 -->
+            <div id="progressSection" class="progress-section">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill" style="width: 0%">
+                        <span id="progressText">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 处理日志 -->
+            <div class="section">
+                <div class="section-title">📋 处理日志</div>
+                <div id="processLog" class="process-log">
+                    <div class="empty-state">
+                        <p>🎬 准备就绪，等待开始...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 索引浏览器标签页 -->
+        <div id="index-tab" class="tab-content">
+            <!-- 索引库管理 -->
+            <div class="index-management">
+                <button class="btn btn-secondary" onclick="exportIndex()">📥 导出索引库</button>
+                <button class="btn btn-secondary" onclick="importIndex()">📤 导入索引库</button>
+                <button class="btn btn-secondary" onclick="importProcessedResults()">📂 导入处理结果</button>
+                <button class="btn btn-secondary" onclick="resetIndex()">🔄 重置为默认</button>
+                <input type="file" id="indexImportInput" accept=".json" style="display:none" onchange="handleIndexImport()">
+                <input type="file" id="resultsImportInput" accept=".json" multiple style="display:none" onchange="handleResultsImport()">
+            </div>
+            
+            <div class="search-section">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 搜索编码、名称、场域论...">
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <div class="stat-label">总数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="level1Count">0</div>
+                    <div class="stat-label">一层</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="level2Count">0</div>
+                    <div class="stat-label">二层</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="level3Count">0</div>
+                    <div class="stat-label">三层</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="level4Count">0</div>
+                    <div class="stat-label">四层</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="special4Count">0</div>
+                    <div class="stat-label">4字头</div>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-btn active" onclick="filterIndex('all')">全部</button>
+                <button class="filter-btn" onclick="filterIndex('level1')">一层</button>
+                <button class="filter-btn" onclick="filterIndex('level2')">二层</button>
+                <button class="filter-btn" onclick="filterIndex('level3')">三层</button>
+                <button class="filter-btn" onclick="filterIndex('level4')">四层</button>
+                <button class="filter-btn" onclick="filterIndex('section1')">1字头</button>
+                <button class="filter-btn" onclick="filterIndex('section2')">2字头</button>
+                <button class="filter-btn" onclick="filterIndex('section3')">3字头</button>
+                <button class="filter-btn" onclick="filterIndex('section4')">4字头</button>
+            </div>
+            
+            <div id="indexList" class="index-list"></div>
+        </div>
+    </div>
+
+    <script>
+// ===== 数据和状态 =====
+const PHILOSOPHY_INDEX = {
+  // 一层编码
+  "1": {"code":"1","name":"实在论","场域论":"待定","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "2": {"code":"2","name":"形而上学","场域论":"待定","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "3": {"code":"3","name":"观念论","场域论":"形而上学 | 自我意识 | 形而下","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "4": {"code":"4","name":"实践","场域论":"待定","本体论":"","认识论":"","目的论":"","代表人物":""},
+  
+  // 二层编码
+  "1-1": {"code":"1-1","name":"科学实在论","场域论":"宇宙","本体论":"实体","认识论":"","目的论":"","代表人物":"(被误解的)亚里士多德"},
+  "1-2": {"code":"1-2","name":"宗教实在论","场域论":"宇宙","本体论":"存在者vs存在","认识论":"","目的论":"","代表人物":"被基督教误解的柏拉图"},
+  "1-3": {"code":"1-3","name":"庸俗唯我论","场域论":"","本体论":"","认识论":"","目的论":"","代表人物":"自恋的普通人"},
+  "1-4": {"code":"1-4","name":"平庸主义","场域论":"人间/社会","本体论":"拒绝思考(关我鸟事)","认识论":"","目的论":"","代表人物":"宁愿平庸的普通人、低教育人口、迎合者政客"},
+  "2-1": {"code":"2-1","name":"在场形而上学","场域论":"古希腊哲学","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "2-2": {"code":"2-2","name":"辩证形而上学","场域论":"时间vs空间","本体论":"否定存在vs肯定存在","认识论":"","目的论":"","代表人物":""},
+  "2-3": {"code":"2-3","name":"我思形而上学","场域论":"时间vs空间","本体论":"形而上 | 形而外 | 形而下","认识论":"","目的论":"","代表人物":"笛卡尔"},
+  "2-4": {"code":"2-4","name":"反形而上学","场域论":"形而下vs暴力","本体论":"","认识论":"","目的论":"","代表人物":"斯大林主义"},
+  "3-1": {"code":"3-1","name":"现象学","场域论":"形而上学 | 自我意识 | 形而下","本体论":"noema和noesis","认识论":"","目的论":"","代表人物":""},
+  "3-2": {"code":"3-2","name":"德国古典观念论","场域论":"形而上学 | selbst、ich | 形而下","本体论":"有限vs无限","认识论":"","目的论":"","代表人物":""},
+  "3-3": {"code":"3-3","name":"存在论","场域论":"","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "3-4": {"code":"3-4","name":"符号学","场域论":"结构主义运动","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "4-1": {"code":"4-1","name":"政治 | 经济 | 意识形态批判","场域论":"","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "4-2": {"code":"4-2","name":"现实的正统化","场域论":"","本体论":"","认识论":"","目的论":"","代表人物":""},
+  "4-3": {"code":"4-3","name":"建设理想社会","场域论":"历史","本体论":"建筑师","认识论":"","目的论":"","代表人物":""},
+  "4-4": {"code":"4-4","name":"不可能的乌托邦","场域论":"","本体论":"","认识论":"","目的论":"","代表人物":""},
+  
+  // 三层编码
+  "1-1-1": {"code":"1-1-1","name":"物理主义","场域论":"宇宙","本体论":"物质","认识论":"物理现象","目的论":"","代表人物":"奥图•纽拉特"},
+  "1-1-1-1": {"code":"1-1-1-1","name":"科学独断论","场域论":"宇宙","本体论":"客观实在","认识论":"物理现象","目的论":"真理","代表人物":"培根(英国经验主义哲学家；被世人误解的)"},
+  "1-1-1-2": {"code":"1-1-1-2","name":"有机进化论","场域论":"自然","本体论":"能量","认识论":"经验","目的论":"有机 | 对立于 | 机械","代表人物":"怀特海(19世纪末英国哲学家)"},
+  "1-1-1-3": {"code":"1-1-1-3","name":"科学消费主义","场域论":"宇宙","本体论":"能量","认识论":"体验","目的论":"有机 | 调和者：人类 | 机械","代表人物":"罗素(19世纪末英国哲学家)"},
+  "1-1-1-4": {"code":"1-1-1-4","name":"宇宙悲观主义","场域论":"宇宙","本体论":"能量","认识论":"感受","目的论":"末日","代表人物":"“维特根斯坦”(20世纪英国哲学家；被误读的)"},
+  "1-1-2": {"code":"1-1-2","name":"建构主义","场域论":"世界","本体论":"物质","认识论":"自然的 | 对立于 | 社会的","目的论":"","代表人物":"迪尔凯姆 (法国社会学家；学者误读下的)"},
+  "1-1-2-1": {"code":"1-1-2-1","name":"科学知识社会学","场域论":"世界","本体论":"客观实在","认识论":"自然的 | 对立于 | 有机的","目的论":"社会学真理","代表人物":"爱丁堡学派(20世纪70年代的苏格兰社会学学派)"},
+  "1-1-2-2": {"code":"1-1-2-2","name":"科学革命论","场域论":"世界","本体论":"客观实在","认识论":"自然的 | 对立于 | 社会的","目的论":"常规的 | 对立于 | 革命的","代表人物":"库恩(20世纪美国科学哲学家)"},
+  "1-1-2-3": {"code":"1-1-2-3","name":"文化本体论","场域论":"世界","本体论":"物质","认识论":"自然的 | 对立于 | 社会的","目的论":"常规的 | 调和者：文化 | 革命的","代表人物":"亚历山大·温特(20世纪美国国际政治学家)"},
+  "1-1-2-4": {"code":"1-1-2-4","name":"解构建构论","场域论":"世界","本体论":"物质","认识论":"自然的 | 对立于 | 社会的","目的论":"核心信念的毁灭","代表人物":"科尼斯·格根(20世纪美国社会心理学家)"},
+  "1-1-3": {"code":"1-1-3","name":"认知主义","场域论":"宇宙","本体论":"物质","认识论":"自然的 | 调和者：认知 | 社会的","目的论":"","代表人物":"冯•诺伊曼 (20世纪美国数学、计算机科学家)"},
+  "1-1-3-1": {"code":"1-1-3-1","name":"功能主义","场域论":"世界","本体论":"基质","认识论":"自然的 | 调和者：心灵状态 | 社会的","目的论":"功能(函数)","代表人物":"希拉里·普特南；杰瑞·福多(20世纪美国分析哲学家、认知科学家)"},
+  "1-1-3-2": {"code":"1-1-3-2","name":"自由进化论","场域论":"世界","本体论":"物理底层","认识论":"自然的 | 调和者：心灵 | 社会的","目的论":"决定的 | 对立于 | 自由的","代表人物":"丹尼尔·丹尼特(20世纪美国分析哲学家、认知科学家)"},
+  "1-1-3-3": {"code":"1-1-3-3","name":"认知自我主义","场域论":"世界","本体论":"基质","认识论":"自然的 | 调和者：意识 | 社会的","目的论":"决定的 | 调和者：情绪自我 | 自由的","代表人物":"安东尼奥·达玛西奥(20世纪美国认知科学家)"},
+  "1-1-3-4": {"code":"1-1-3-4","name":"认知无我论","场域论":"世界","本体论":"晦暗的深度","认识论":"自然的 | 调和者：透明的意识 | 社会的","目的论":"无我","代表人物":"托马斯·梅青格(当代德国哲学家、认知科学家)"},
+  "1-1-4": {"code":"1-1-4","name":"行为主义","场域论":"世界","本体论":"客观现实/对立的现实","认识论":"黑箱","目的论":"","代表人物":"约翰•华生(美国20世纪心理学家，行为主义心理学创始人)"},
+  "1-1-4-1": {"code":"1-1-4-1","name":"操作行为主义","场域论":"世界","本体论":"可操作的对象","认识论":"黑箱","目的论":"变量关系","代表人物":"弗雷德里克·斯金纳(20世纪美国心理学家，新行为主义创始人)；克拉克·赫尔(20世纪美国心理学家，耶鲁学派创始人)"},
+  "1-1-4-2": {"code":"1-1-4-2","name":"目的行为主义","场域论":"世界","本体论":"客观现实","认识论":"黑箱","目的论":"分子的 | 对立于 | 摩尔的","代表人物":"爱德华·托尔曼(20世纪美国心理学家)"},
+  "1-1-4-3": {"code":"1-1-4-3","name":"应用行为分析","场域论":"世界","本体论":"客观现实","认识论":"黑箱","目的论":"行为改善","代表人物":"《组织行为管理杂志》(继承了1986创刊的《组织行为杂志》，2012入选SSCI的应用心理学杂志)"},
+  "1-1-4-4": {"code":"1-1-4-4","name":"社会行为主义","场域论":"宇宙","本体论":"物质","认识论":"黑箱","目的论":"符号性互动","代表人物":"乔治·赫伯特·米德(美国20世纪社会学家、社会心理学家)"},
+  "1-2-1": {"code":"1-2-1","name":"神创论","场域论":"宇宙","本体论":"造物主 | 对立于 | 被造物","认识论":"灵魂","目的论":"","代表人物":"奥古斯丁(早期基督教神学家，《忏悔录》作者)"},
+  "1-2-1-1": {"code":"1-2-1-1","name":"自然神论","场域论":"宇宙","本体论":"始因/第一推动 | 对立于 | 因和果","认识论":"灵魂/心灵","目的论":"自然秩序","代表人物":"英国自然神论者(创始人为彻尔布里的赫尔伯特，最著名代表为牛顿)"},
+  "1-2-1-2": {"code":"1-2-1-2","name":"神义论","场域论":"宇宙","本体论":"造物主 | 对立于 | 被造物","认识论":"灵魂","目的论":"神义 | 对立于 | 罪恶","代表人物":"莱布尼兹(德国哲学家，《神义论》作者)"},
+  "1-2-1-3": {"code":"1-2-1-3","name":"一元论诺斯替主义","场域论":"bythos","本体论":"form pleroma | 对立于 | phenomena kenoma","认识论":"sophia","目的论":"theodicy | 调和者：gnosis(灵智) | evil","代表人物":"瓦伦汀(华伦提诺)"},
+  "1-2-1-4": {"code":"1-2-1-4","name":"模态位格一元论","场域论":"genesis","本体论":"deity | 对立于 | world","认识论":"persoma","目的论":"passion","代表人物":"撒伯里乌(萨伯琉)"},
+  "1-2-2": {"code":"1-2-2","name":"偶像论 偶像崇拜","场域论":"世界","本体论":"超自然 | 对立于 | 自然","认识论":"神圣的 | 对立于 | 平凡的","目的论":"","代表人物":"埃斯库罗斯(古希腊悲剧作家，《被缚的普罗米修斯》作者)"},
+  "1-2-2-1": {"code":"1-2-2-1","name":"传殖主义","场域论":"创世","本体论":"创生性存在 | 对立于 | 派生性存在","认识论":"faith | 对立于 | pagan","目的论":"rule of faith","代表人物":"德尔图良"},
+  "1-2-2-2": {"code":"1-2-2-2","name":"部分主义","场域论":"拼合而成的整全","本体论":"partial objects | 对立于 | 自然物","认识论":"图腾 | 对立于 | 凡俗的事物","目的论":"rule of faith | 对立于 | myth of image","代表人物":"三叶草大师，圣·帕特里克"},
+  "1-2-2-3": {"code":"1-2-2-3","name":"拜物教","场域论":"创造性叙事","本体论":"平凡物 | 对立于 | 物神","认识论":"神秘力量的凝结 | 对立于 | 工具性的机制","目的论":"rule of faith | 调和者：fetishization | myth of image","代表人物":"锻铸蛇杖的人，摩西"},
+  "1-2-2-4": {"code":"1-2-2-4","name":"时间崇拜","场域论":"aion(时间)","本体论":"aion(神圣力量) | 对立于 | chronos(凡俗时间)","认识论":"日常体验 | 对立于 | 节庆性的体验","目的论":"time","代表人物":"时间之神Aion、狄奥尼索斯与奥菲欧斯的三位一体"},
+  "1-2-3": {"code":"1-2-3","name":"唯灵论","场域论":"宇宙","本体论":"超自然 | 对立于 | 自然","认识论":"神圣的 | 调和者：精神 | 平凡的","目的论":"","代表人物":"毕达哥拉斯(作为教主)"},
+  "1-2-3-1": {"code":"1-2-3-1","name":"永生主义","场域论":"dwellable home","本体论":"mortal可朽的 | 对立于 | immortal不朽的","认识论":"神圣 | 调和者：我的生存体验(贵生) | 日常","目的论":"生活的延续","代表人物":"西西弗斯"},
+  "1-2-3-2": {"code":"1-2-3-2","name":"回归式唯灵论","场域论":"spiritual spheres","本体论":"物质\凡俗 | 对立于 | spiritual","认识论":"共同体的话语 | 调和者：合而为一 (接触\通灵) | 神圣的话语 (方法\体验)","目的论":"留下Lingering | 对立于 | 回归reverting","代表人物":"swedenborg，mesmer"},
+  "1-2-3-3": {"code":"1-2-3-3","name":"魔法师主义","场域论":"大宇宙\小宇宙","本体论":"natural forces | 对立于 | astral forces","认识论":"divine | 调和者：science | daily","目的论":"留下Lingering | 调和者：改善 improving | 回归reverting","代表人物":"eliphas levi，西方魔法学奠基人"},
+  "1-2-3-4": {"code":"1-2-3-4","name":"弃绝主义","场域论":"语言\命运","本体论":"断裂 | 对立于 | 连续","认识论":"divine supranatural | 调和者：自我意识 | secular natural","目的论":"弃绝","代表人物":"克洛诺斯的俄狄浦斯"},
+  "1-2-4": {"code":"1-2-4","name":"反偶像论","场域论":"宇宙","本体论":"超自然 | 对立于 | 自然","认识论":"禁忌","目的论":"","代表人物":"晚年德谟克里特 (古希腊哲学家，西塞罗记载)"},
+  "1-2-4-1": {"code":"1-2-4-1","name":"作为信仰的命定论","场域论":"圣典(神圣符号体系)化的世界","本体论":"挣扎 | 对立于 | 命","认识论":"无自由意志","目的论":"命定","代表人物":"路德，祥林嫂"},
+  "1-2-4-2": {"code":"1-2-4-2","name":"救世主义","场域论":"因果网络","本体论":"在场 | 对立于 | 过去、未来","认识论":"离苦","目的论":"循环、命定 | 对立于 | 结算","代表人物":"临疯的尼采"},
+  "1-2-4-3": {"code":"1-2-4-3","name":"神智论","场域论":"主宰的自我认识、体验","本体论":"隐匿 | 对立于 | 显现","认识论":"无我、出神","目的论":"循环、命定 | 调和者：赏赐 | 结算","代表人物":"sufism"},
+  "1-2-4-4": {"code":"1-2-4-4","name":"神爱论","场域论":"神圣文本","本体论":"可爱的、完美的、挚爱的 | 对立于 | 中介、信使","认识论":"痴迷","目的论":"任由所爱施为、予取予求","代表人物":"rabia of basra"},
+  "1-3-1": {"code":"1-3-1","name":"伪唯心主义","场域论":"宇宙","本体论":"Being | 调和者：精神 | beings","认识论":"心灵","目的论":"","代表人物":"前现代政客"},
+  "1-3-1-1": {"code":"1-3-1-1","name":"客观唯心主义","场域论":"宇宙","本体论":"Being | 调和者：精神 | beings","认识论":"心灵","目的论":"真理/理","代表人物":"程朱理学"},
+  "1-3-1-2": {"code":"1-3-1-2","name":"主观唯心主义","场域论":"宇宙","本体论":"Being | 调和者：精神 | beings","认识论":"心灵","目的论":"有限 | 对立于 | 无限","代表人物":"王阳明，心学"},
+  "1-3-1-3": {"code":"1-3-1-3","name":"现实唯心主义","场域论":"世界","本体论":"Being | 调和者：精神 | beings","认识论":"思想","目的论":"有限 | 调和者：行动 | 无限","代表人物":"秦梯利，墨索里尼御用哲学家"},
+  "1-3-1-4": {"code":"1-3-1-4","name":"唯梦论","场域论":"世界","本体论":"Being | 调和者：精神 | beings","认识论":"心灵","目的论":"梦","代表人物":"苏轼，中国古代士大夫"},
+  "1-3-2": {"code":"1-3-2","name":"本真主义","场域论":"宇宙","本体论":"Being | 调和者：精神 | beings","认识论":"本真 | 对立于 | 非本真","目的论":"","代表人物":"小布尔乔亚"},
+  "1-3-2-1": {"code":"1-3-2-1","name":"现代斯多亚主义","场域论":"宇宙","本体论":"自然的 | 调和者：理性 | 反常的","认识论":"本真 | 对立于 | 非本真","目的论":"和谐/德行/回归自然","代表人物":"努斯鲍姆，白左勋章姐，东林党党棍，西欧跨国贵族传统"},
+  "1-3-2-2": {"code":"1-3-2-2","name":"现代犬儒主义","场域论":"宇宙","本体论":"Being | 调和者：精神 | beings","认识论":"本真 | 对立于 | 非本真","目的论":"私人目的 | 对立于 | 公共目的","代表人物":"第欧根尼，批判现实主义以及实在论的哲学家"},
+  "1-3-2-3": {"code":"1-3-2-3","name":"现代爱情主义","场域论":"宇宙或者世界","本体论":"Being | 调和者：精神 | beings","认识论":"本真 | 对立于 | 非本真","目的论":"私人目的 | 调和者：爱情 | 公共目的","代表人物":"普罗蒂诺，被庸俗化的"},
+  "1-3-2-4": {"code":"1-3-2-4","name":"现代智者主义","场域论":"宇宙或者世界","本体论":"Being | 调和者：神智、智性 | beings","认识论":"本真 | 对立于 | 非本真","目的论":"真理是待定的","代表人物":"普罗泰格拉与高尔吉亚，被庸俗化的；民哲"},
+  "1-3-3": {"code":"1-3-3","name":"唯意志主义","场域论":"世界/宇宙/叙事学宇宙/物理学宇宙","本体论":"“我-自我”/一个强大的原初意志","认识论":"本真 | 调和者：意志 | 非本真","目的论":"","代表人物":"奋斗逼/庸俗的奥卡姆"},
+  "1-3-3-1": {"code":"1-3-3-1","name":"自我中心主义","场域论":"世界","本体论":"Being | 调和者：Id/本我 | beings","认识论":"本真 | 调和者：“我的！” | 非本真","目的论":"无条件利己","代表人物":"男性修仙小说"},
+  "1-3-3-2": {"code":"1-3-3-2","name":"道德严酷主义","场域论":"世界","本体论":"Being | 调和者：Id/本我 | beings","认识论":"本真 | 调和者：自我意识 | 非本真","目的论":"高贵 | 对立于 | 低贱","代表人物":"极右翼男拳主义，伪君子，撒哈拉丁阿里《我们心中的魔鬼》中的那个知识分子"},
+  "1-3-3-3": {"code":"1-3-3-3","name":"排他集体主义","场域论":"世界","本体论":"Being | 调和者：Id/本我 | beings","认识论":"本真 | 调和者：自我 | 非本真","目的论":"高贵 | 调和者：集体 | 低贱","代表人物":"小粉红与恨国党"},
+  "1-3-3-4": {"code":"1-3-3-4","name":"厌女症 虚无主义","场域论":"世界","本体论":"Being | 调和者：Id/本我 | beings","认识论":"本真 | 调和者：理性 | 非本真","目的论":"虚无","代表人物":"叔本华，贬低女性以立哲位"},
+  "1-3-4": {"code":"1-3-4","name":"直觉主义 体验主义 意识流","场域论":"宇宙","本体论":"Being | 调和者：意识流 | beings","认识论":"假象","目的论":"","代表人物":"浪子/伯格森"},
+  "1-3-4-1": {"code":"1-3-4-1","name":"伦理行动主义","场域论":"世界/存有","本体论":"Being | 调和者：体验 | beings","认识论":"折中主义","目的论":"内在理想主义","代表人物":"倭铿(鲁道夫·克里斯托夫·奥伊肯)，反现代化乡村教师必备心灵毒药"},
+  "1-3-4-2": {"code":"1-3-4-2","name":"随笔主义","场域论":"世界","本体论":"Being | 调和者：对理念的体验 | beings","认识论":"悬置","目的论":"因果性现实 | 对立于 | 理论性可能性","代表人物":"罗伯特·穆启尔 《没有个性的人》"},
+  "1-3-4-3": {"code":"1-3-4-3","name":"唯美主义","场域论":"世界","本体论":"Being | 调和者：内在生活 | beings","认识论":"沉默","目的论":"因果性现实 | 调和者：美 | 理论性可能性","代表人物":"克尔凯廓尔，被误解的，庸俗审美三段论"},
+  "1-3-4-4": {"code":"1-3-4-4","name":"颓废主义","场域论":"世界","本体论":"Being | 调和者：直觉/体验 | beings","认识论":"谎言","目的论":"毫无底线","代表人物":"王尔德"},
+  "1-4-1": {"code":"1-4-1","name":"当代自然主义","场域论":"世界","本体论":"平庸","认识论":"自然现象","目的论":"","代表人物":"分哲小将"},
+  "1-4-1-1": {"code":"1-4-1-1","name":"和平主义","场域论":"世界","本体论":"非暴力","认识论":"自然现象","目的论":"正直善良和平的生活","代表人物":"普特南，《无本体论的伦理学》"},
+  "1-4-1-2": {"code":"1-4-1-2","name":"客观主义","场域论":"世界","本体论":"单纯存在/存在就是存在，不用多废话","认识论":"自然现象","目的论":"精英 | 对立于 | 流俗","代表人物":"安·兰德，终极傻逼文化贩子"},
+  "1-4-1-3": {"code":"1-4-1-3","name":"沉默主义","场域论":"世界","本体论":"不言说","认识论":"自然现象","目的论":"精英 | 调和者：沉默 | 流俗","代表人物":"胜利者与失败者"},
+  "1-4-1-4": {"code":"1-4-1-4","name":"蒙昧主义","场域论":"世界或自然","本体论":"高贵的谎言","认识论":"自然秩序","目的论":"虚无主义(毁灭)","代表人物":"列奥·斯特劳斯，终极傻逼反现代运动旗手"},
+  "1-4-2": {"code":"1-4-2","name":"世俗人道主义","场域论":"人类社会","本体论":"拒斥形而上学","认识论":"人类 | 对立于 | 自然","目的论":"","代表人物":"孔德，被误解了的"},
+  "1-4-2-1": {"code":"1-4-2-1","name":"纵容主义","场域论":"人类社会","本体论":"不反思","认识论":"日常的 | 对立于 | 非日常的","目的论":"包容","代表人物":"西欧国家，代理人战争中意识形态输出，养鬼主义"},
+  "1-4-2-2": {"code":"1-4-2-2","name":"多元文化主义","场域论":"global capitalism的“人间”","本体论":"解构主义","认识论":"人的 | 对立于 | 原始的","目的论":"multiplicity | 对立于 | totality","代表人物":"列维纳斯，《总体与无限》，无根资本的木偶"},
+  "1-4-2-3": {"code":"1-4-2-3","name":"环保主义","场域论":"global capitalism的“人间”","本体论":"后现代幻影","认识论":"人性的 | 对立于 | 原始的","目的论":"multiplicity | 调和者：生存环境 | totality","代表人物":"何不食肉糜，环保主义人肉图腾格雷塔"},
+  "1-4-2-4": {"code":"1-4-2-4","name":"性解放主义","场域论":"global capitalism的“人间”","本体论":"后现代幻影","认识论":"客体小a | 对立于 | 一般的他者","目的论":"享乐之love","代表人物":"变态们"},
+  "1-4-3": {"code":"1-4-3","name":"心理主义","场域论":"自然","本体论":"不必讨论本体论","认识论":"自然 | 调和者：心理 | 人性","目的论":"","代表人物":"庸俗心理学家及其拥趸"},
+  "1-4-3-1": {"code":"1-4-3-1","name":"情绪主义","场域论":"知识共同体权威保证的世界","本体论":"与我无关","认识论":"自然 | 调和者：心理 | 人性","目的论":"情绪的稳定/情绪的好的状态","代表人物":"“情商”玩家"},
+  "1-4-3-2": {"code":"1-4-3-2","name":"心理正常主义","场域论":"知识共同体权威保证的世界","本体论":"莫名其妙","认识论":"自然 | 调和者：心理 | 人性","目的论":"反常的 | 对立于 | 正常的","代表人物":"建制内心理医生"},
+  "1-4-3-3": {"code":"1-4-3-3","name":"泛性主义","场域论":"知识共同体权威保证的世界","本体论":"神秘主义","认识论":"自然 | 调和者：心理 | 人性","目的论":"反常的 | 调和者：爱欲 | 正常的","代表人物":"荣格，霍大同"},
+  "1-4-3-4": {"code":"1-4-3-4","name":"密契女性主义","场域论":"大他者","本体论":"大学话语","认识论":"自然 | 调和者：心理体验 | 人性","目的论":"大他者你要我怎样","代表人物":"追求女性性的男男女女们"},
+  "1-4-4": {"code":"1-4-4","name":"庸俗主义","场域论":"安宁的、无聊的世界","本体论":"无聊","认识论":"任性","目的论":"","代表人物":"熊孩子"},
+  "1-4-4-1": {"code":"1-4-4-1","name":"顺从主义","场域论":"大家","本体论":"细思恐极","认识论":"莫名其妙","目的论":"占便宜/偷摸整点小动作","代表人物":"爱贪小便宜的人"},
+  "1-4-4-2": {"code":"1-4-4-2","name":"粗俗主义","场域论":"随大流","本体论":"逼！/关我吊事","认识论":"一时兴起(whim)/游戏","目的论":"小便宜 | 对立于 | 大便宜","代表人物":"无法控制自己爱欲的人"},
+  "1-4-4-3": {"code":"1-4-4-3","name":"四重竞争主义","场域论":"游戏","本体论":"荒芜、没有价值","认识论":"偶然，巧合","目的论":"小便宜 | 调和者：竞争 | 大便宜","代表人物":"正在上学的学生朋友们"},
+  "1-4-4-4": {"code":"1-4-4-4","name":"复仇主义","场域论":"天经地义的秩序","本体论":"sin/罪","认识论":"shame/羞耻","目的论":"sacrifice/牺牲","代表人物":"哈姆雷特(√)、耶稣、俄狄浦斯"},
+  "2-1-1": {"code":"2-1-1","name":"普遍主义","场域论":"cosmos (宇宙论) | 对立于 | topos (命题)","本体论":"在场","认识论":"理性","目的论":"","代表人物":"泰勒斯学派"},
+  "2-1-1-1": {"code":"2-1-1-1","name":"阿派朗(无界限)主义","场域论":"world | 对立于 | time","本体论":"apeiron","认识论":"有序的理性世界","目的论":"和谐/有序","代表人物":"阿那克西曼德"},
+  "2-1-1-2": {"code":"2-1-1-2","name":"气动一元论","场域论":"global | 对立于 | universal","本体论":"pneuma/air 气","认识论":"自然现象","目的论":"凝结 | 对立于 | 稀疏","代表人物":"阿那克西美尼"},
+  "2-1-1-3": {"code":"2-1-1-3","name":"分形多元论","场域论":"cosmos | 对立于 | topos","本体论":"元素(复数)","认识论":"自然现象","目的论":"结合 | 调和者：旋转 | 分离","代表人物":"阿那克萨戈拉，陨石哲学家"},
+  "2-1-1-4": {"code":"2-1-1-4","name":"形而上辩证主义","场域论":"public cosmos | 对立于 | private cosmos","本体论":"永恒的活火","认识论":"自然现象(becoming)","目的论":"斗争、战争(war)","代表人物":"赫拉克利特，真正意义上第一个运用辩证思维的哲学家"},
+  "2-1-2": {"code":"2-1-2","name":"本质主义","场域论":"place | 对立于 | fate","本体论":"太一(One)","认识论":"truth | 对立于 | appearance","目的论":"","代表人物":"巴门尼德"},
+  "2-1-2-1": {"code":"2-1-2-1","name":"伦理智性主义","场域论":"城邦 | 对立于 | 神圣","本体论":"Ideas(理念世界)","认识论":"知识 | 对立于 | 无知","目的论":"美德、德行、服从共同体","代表人物":"苏格拉底，精神的助产术，真性情的爱智慧杠精"},
+  "2-1-2-2": {"code":"2-1-2-2","name":"理念实在论 理想现实主义","场域论":"宇宙 | 对立于 | 理念场域","本体论":"form(形式)","认识论":"truth | 对立于 | opinion","目的论":"盲目存在 | 对立于 | 善","代表人物":"柏拉图，激进的保守主义分子"},
+  "2-1-2-3": {"code":"2-1-2-3","name":"范畴实在论 绝对现实主义","场域论":"cosmos | 对立于 | theos","本体论":"形质结合论","认识论":"真理 | 对立于 | 意见","目的论":"哲学 | 调和者：中庸 | 城邦的法","代表人物":"亚里士多德，帝师，逍遥派中庸头子，政治的哲学之影"},
+  "2-1-2-4": {"code":"2-1-2-4","name":"多产的不动论","场域论":"太一(cosmos) | 对立于 | 神之必然性(dike)","本体论":"太一","认识论":"真理 | 对立于 | 意见","目的论":"推翻上升、下降、旋转运动的不动论","代表人物":"芝诺，雅典城邦的最后挣扎，本体论缝合的证明者"},
+  "2-1-3": {"code":"2-1-3","name":"合理主义","场域论":"自然 | 对立于 | 神圣","本体论":"数(万物皆数)","认识论":"真理 | 调和者：比例 | 意见","目的论":"","代表人物":"毕达哥拉斯"},
+  "2-1-3-1": {"code":"2-1-3-1","name":"反应多元论","场域论":"神 | 对立于 | 世界","本体论":"incarnation(投胎转世)","认识论":"真理 | 调和者：比例 | 意见","目的论":"循环","代表人物":"恩培多克勒，聪明到狂妄的飞入火山之人，思想史上化学鼻祖，愚弄神话的渎神术士"},
+  "2-1-3-2": {"code":"2-1-3-2","name":"贫乏的原子论","场域论":"nature | 对立于 | divine","本体论":"原子和虚空(atom/void)","认识论":"合法的知识 | 调和者：比例 | 混蛋的知识","目的论":"衰败，堕落 | 对立于 | 神圣的必然性","代表人物":"德谟克利特，爱嘲笑普通人的哲学家，民主制度的尝试者，原生家庭财产继承事件的受害者，机械思维鼻祖"},
+  "2-1-3-3": {"code":"2-1-3-3","name":"智性享乐主义","场域论":"自然 | 对立于 | 神圣","本体论":"原子和虚空(atom/void)","认识论":"真理理念 | 调和者：类比的经验 | 凡俗意见","目的论":"下坠运动 | 调和者：偏转运动 | 旋涡运动","代表人物":"伊壁鸠鲁，经验科学鼻祖，哲学家的安谧后院"},
+  "2-1-3-4": {"code":"2-1-3-4","name":"犬儒主义","场域论":"自然 | 对立于 | 城邦","本体论":"现实具体事物","认识论":"真理 | 调和者：理智 | 意见","目的论":"极其理性地回归自然","代表人物":"安提斯泰尼与第欧根尼，通过理性定义人类自然天性的极端智者，狗哲主义者，郑村棋"},
+  "2-1-4": {"code":"2-1-4","name":"绝对主义","场域论":"cosmos | 对立于 | logos","本体论":"chrenata (被人所用的东西)","认识论":"Orthoepeia (语用学)","目的论":"","代表人物":"普罗泰戈拉"},
+  "2-1-4-1": {"code":"2-1-4-1","name":"相对主义","场域论":"世界 | 对立于 | 语言","本体论":"事物","认识论":"真理(客观、公立、跨主体)是不可能的","目的论":"可说=有理；清楚=合法","代表人物":"高尔吉亚，镜像巴门尼德，为过去的历史做辩护的状师，会说俏皮话的巴门尼德主义者"},
+  "2-1-4-2": {"code":"2-1-4-2","name":"怀疑主义","场域论":"cosmos | 对立于 | logos","本体论":"事物","认识论":"epoche(悬置)","目的论":"均衡 | 对立于 | 决断","代表人物":"皮浪，巨浪当前不动心的军师，谋臣必修心法，基本的政治素养"},
+  "2-1-4-3": {"code":"2-1-4-3","name":"记忆主义","场域论":"cosmos | 对立于 | mnemonos","本体论":"现实(人制作与创造)","认识论":"肤浅，傲慢","目的论":"均衡 | 调和者：沉淀 | 决断","代表人物":"希庇亚，记忆大师，技艺大师，古希腊城邦间呼吁自然法调和矛盾与冲突的傲慢智者"},
+  "2-1-4-4": {"code":"2-1-4-4","name":"话语主义","场域论":"physis | 对立于 | nomos","本体论":"logoi(logos复数形式)","认识论":"不可能兼顾一个稳固而单一的logos","目的论":"敞开","代表人物":"安提丰，智者与猛士的统一，原始精神分析师"},
+  "2-2-1": {"code":"2-2-1","name":"无限主义","场域论":"时间 | 对立于 | 空间","本体论":"否定性存在 | 对立于 | 肯定性存在","认识论":"dhama (法，超语言)","目的论":"","代表人物":"佛教体系"},
+  "2-2-1-1": {"code":"2-2-1-1","name":"分子业力学","场域论":"时间 | 对立于 | 空间","本体论":"命(心灵) | 对立于 | 非命(物质)","认识论":"微粒+业(molecular)","目的论":"时间的纵向运动","代表人物":"耆那教的大雄，原始佛教的释迦牟尼"},
+  "2-2-1-2": {"code":"2-2-1-2","name":"永恒时态主义","场域论":"时间 | 对立于 | 空间","本体论":"原子 | 对立于 | 虚空","认识论":"原子主义","目的论":"exist | 对立于 | persist","代表人物":"小乘有宗"},
+  "2-2-1-3": {"code":"2-2-1-3","name":"经量部的种子形而上学","场域论":"时间 | 对立于 | 空间","本体论":"时态性存在 | 对立于 | 跨时态存在","认识论":"随相说","目的论":"exist | 调和者：种子说 | persist","代表人物":"经量部"},
+  "2-2-1-4": {"code":"2-2-1-4","name":"摩尔唯心主义","场域论":"时间 | 对立于 | 空间","本体论":"阿赖耶识 | 对立于 | 种子","认识论":"(见分、相分、自证分)三分法","目的论":"经验观察无用，伦理退行","代表人物":"《成唯识论》"},
+  "2-2-2": {"code":"2-2-2","name":"否定主义","场域论":"时间 | 对立于 | 空间","本体论":"神明 (精神) | 对立于 | 岁 (物质)","认识论":"聪明 (有名) | 对立于 | 愚鲁 (无名)","目的论":"","代表人物":"道教体系"},
+  "2-2-2-1": {"code":"2-2-2-1","name":"无为主义","场域论":"时间 | 对立于 | 空间","本体论":"柔 | 对立于 | 刚","认识论":"知 | 对立于 | 愚","目的论":"无为","代表人物":"老子"},
+  "2-2-2-2": {"code":"2-2-2-2","name":"积极的神秘主义","场域论":"时间 | 对立于 | 空间","本体论":"心 | 对立于 | 大块","认识论":"知 | 对立于 | 愚","目的论":"有为 | 对立于 | 无为","代表人物":"庄周"},
+  "2-2-2-3": {"code":"2-2-2-3","name":"人道的自然主义","场域论":"人生 | 对立于 | 城邦","本体论":"给养 | 对立于 | 欲望","认识论":"知 | 对立于 | 愚","目的论":"有为 | 调和者：厌 | 无为","代表人物":"杨朱"},
+  "2-2-2-4": {"code":"2-2-2-4","name":"实用的神秘主义","场域论":"时间 | 对立于 | 空间","本体论":"道/理 | 对立于 | 物","认识论":"情 | 对立于 | 貌","目的论":"无定操","代表人物":"韩非子"},
+  "2-2-3": {"code":"2-2-3","name":"超验主义","场域论":"时间 | 对立于 | 空间","本体论":"自然 | 对立于 | 心灵","认识论":"智慧 | 调和者：第一人称直接经验 | 愚蠢","目的论":"","代表人物":"儒教体系/爱默生"},
+  "2-2-3-1": {"code":"2-2-3-1","name":"历史符号主义","场域论":"时间 | 对立于 | 空间","本体论":"阴/阳 | 对立于 | 易","认识论":"知 | 调和者：道 | 愚","目的论":"易/生生/时间性、周期性的一种循环","代表人物":"《周易》"},
+  "2-2-3-2": {"code":"2-2-3-2","name":"形而上神秘主义","场域论":"时间 | 对立于 | 空间","本体论":"物质+精神 | 对立于 | 太一(流溢者)","认识论":"智慧 | 调和者：隐秘的智慧 | 愚昧","目的论":"循环 | 对立于 | 终结","代表人物":"七伊玛目派(伊斯玛仪派)"},
+  "2-2-3-3": {"code":"2-2-3-3","name":"理性唯灵论","场域论":"经验 | 对立于 | 超越","本体论":"二重性 | 对立于 | 一元性","认识论":"智 | 调和者：over-soul | 愚","目的论":"循环 | 调和者：永恒 | 终结","代表人物":"爱默生"},
+  "2-2-3-4": {"code":"2-2-3-4","name":"时代性的诗歌主义","场域论":"时间 | 对立于 | 空间","本体论":"场域间的夹缝 | 对立于 | 主体性、诗性体验","认识论":"智 | 调和者：诗歌 | 愚","目的论":"死亡驱力","代表人物":"杜甫、李白等诗人"},
+  "2-2-4": {"code":"2-2-4","name":"反二元对立","场域论":"空间 | 对立于 | 时间","本体论":"客体 | 对立于 | 主体","认识论":"开放姿态","目的论":"","代表人物":"死亡交叉矩阵"},
+  "2-2-4-1": {"code":"2-2-4-1","name":"具有伦理热忱的虚无主义","场域论":"fabrication | 对立于 | empty","本体论":"everything | 对立于 | nirvana","认识论":"de-fabrication(解除符号学编织)","目的论":"cease of suffering","代表人物":"龙树，《中论》"},
+  "2-2-4-2": {"code":"2-2-4-2","name":"可辩的道德箴言","场域论":"时间 | 对立于 | 空间","本体论":"divine (神圣) | 对立于 | vie/vita(生命)","认识论":"fundamentalism(原教旨主义)","目的论":"离苦 | 对立于 | 返回绝对真理","代表人物":"《塔木德》"},
+  "2-2-4-3": {"code":"2-2-4-3","name":"新实用主义","场域论":"时间 | 对立于 | 空间","本体论":"私人 | 对立于 | 公共","认识论":"真诚>“真”修辞","目的论":"离苦 | 调和者：己之所欲勿施于人 | 返回绝对真理","代表人物":"理查德·罗蒂"},
+  "2-2-4-4": {"code":"2-2-4-4","name":"原始现象学/分析哲学","场域论":"时间 | 对立于 | 空间","本体论":"无有 | 对立于 | 彼/是","认识论":"舛驳不中","目的论":"分散、散开、遍为万物说","代表人物":"惠施"},
+  "2-3-1": {"code":"2-3-1","name":"实体一元论","场域论":"ontic | 对立于 | ontological","本体论":"universal (普遍相) | 调和者：god | particular(name) (名相)","认识论":"pre-critique (前批判)","目的论":"","代表人物":"奥卡姆，无敌博士，亚里士多德主义的追缴者"},
+  "2-3-1-1": {"code":"2-3-1-1","name":"渐进的无限主义","场域论":"ontic | 对立于 | ontological","本体论":"万物 (感性材料) | 对立于 | 无限 (完满)","认识论":"“对立同一律”","目的论":"无限渐进","代表人物":"库萨的尼古拉，《论渊博的无知性》"},
+  "2-3-1-2": {"code":"2-3-1-2","name":"运动的静止主义","场域论":"宇宙(世界) | 对立于 | 神圣法则","本体论":"以太 | 调和者：太一 | 星体(土壤、生命)","认识论":"思辨理性","目的论":"渐进无限 | 对立于 | 静止","代表人物":"布鲁诺"},
+  "2-3-1-3": {"code":"2-3-1-3","name":"实体整体主义","场域论":"cosmos | 对立于 | 实体","本体论":"万物 | 调和者：智识 | 神","认识论":"理智直观","目的论":"渐进 | 调和者：依循 | 保持自身","代表人物":"斯宾诺莎，康德的好敌手，《伦理学》"},
+  "2-3-1-4": {"code":"2-3-1-4","name":"辩证一元论","场域论":"ontic | 对立于 | ontological","本体论":"圣父 | 调和者：圣子 | 圣灵","认识论":"神智学","目的论":"分离","代表人物":"波墨，最强民哲，《曙光》"},
+  "2-3-2": {"code":"2-3-2","name":"心物二元论","场域论":"cosmos | 对立于 | 太一","本体论":"自然 | 调和者：soul | deity","认识论":"哲学 | 对立于 | 神学/宗教学","目的论":"","代表人物":"大阿尔伯特"},
+  "2-3-2-1": {"code":"2-3-2-1","name":"理性动物主义","场域论":"cosmos | 对立于 | transcendental","本体论":"事物 | 调和者：anima rationalis(灵魂) | 太一","认识论":"哲学 | 对立于 | 神学","目的论":"(死后)与太一建立连结","代表人物":"托马斯·阿奎那"},
+  "2-3-2-2": {"code":"2-3-2-2","name":"理性神秘主义","场域论":"nichts (无) | 对立于 | cosmos","本体论":"华子 | 调和者：太一 | 万物","认识论":"分析、愤怒、祈求 | 对立于 | 保持力、理性、意愿","目的论":"流出 | 对立于 | 返回","代表人物":"埃克哈特大师"},
+  "2-3-2-3": {"code":"2-3-2-3","name":"超越的内在论","场域论":"cosmos | 对立于 | history","本体论":"肉体 | 调和者：华子 | 心灵","认识论":"哲学 | 对立于 | 内在信仰","目的论":"流溢 | 调和者：内在化 | 返回","代表人物":"马丁路德"},
+  "2-3-2-4": {"code":"2-3-2-4","name":"现代理性主义","场域论":"形而上学 | 对立于 | 数学","本体论":"心 | 调和者：华子 | 物","认识论":"迷信 | 对立于 | 必然的","目的论":"敞开","代表人物":"笛卡尔，《第一哲学沉思录》"},
+  "2-3-3": {"code":"2-3-3","name":"单子主义","场域论":"表象 | 对立于 | 形而上学","本体论":"理性单子 | 调和者：华子 | 物质性单子","认识论":"自然哲学 | 调和者：自然 形而上学 | 神学","目的论":"","代表人物":"莱布尼兹"},
+  "2-3-3-1": {"code":"2-3-3-1","name":"前定主义","场域论":"表象 | 对立于 | 形而上学","本体论":"物质性单子 | 调和者：华子 | 理性单子","认识论":"哲学 | 调和者：自然形而上学 | 神学","目的论":"pre-determination","代表人物":"莱布尼兹"},
+  "2-3-3-2": {"code":"2-3-3-2","name":"体系完美主义","场域论":"符号学宇宙 | 对立于 | 形而下宇宙","本体论":"属性 | 调和者：模式 | 本质","认识论":"理论哲学 | 调和者：逻辑学 | 实践哲学","目的论":"perfection | 对立于 | pre-determination","代表人物":"沃尔夫"},
+  "2-3-3-3": {"code":"2-3-3-3","name":"逻辑原子主义","场域论":"自然语言 | 对立于 | 逻辑语言","本体论":"a(专名) | 调和者：逻辑量词 | P(摹状词、谓词)","认识论":"理论哲学 | 调和者：逻辑 | 实践哲学","目的论":"perfection | 调和者：preference | pre-determination","代表人物":"罗素，潜逃战争的贵族阶级知识分子代表，文笔好点的"},
+  "2-3-3-4": {"code":"2-3-3-4","name":"分隔的整体主义","场域论":"will to life | 对立于 | will to nothingness","本体论":"表象 | 调和者：世界(时空) | 意志","认识论":"理论哲学 | 调和者：直观 | 实践哲学","目的论":"palloation(缓和痛苦、掩饰罪恶)","代表人物":"叔本华，瑜不掩瑕的前(反)康德主义者"},
+  "2-3-4": {"code":"2-3-4","name":"宇宙平等主义","场域论":"cosmos | 对立于 | 几何关系","本体论":"万物 | 调和者：数学关系 | 主宰","认识论":"猜想、假说、实验和理论化","目的论":"","代表人物":"哥白尼革命"},
+  "2-3-4-1": {"code":"2-3-4-1","name":"数理还原主义","场域论":"cosmos | 对立于 | 数学秩序","本体论":"bodies | 调和者：力 | quantities","认识论":"实验(器具)","目的论":"有重量","代表人物":"伽利略"},
+  "2-3-4-2": {"code":"2-3-4-2","name":"稳定的干涉主义","场域论":"cosmos | 对立于 | 数学秩序","本体论":"物 | 调和者：力 | 数","认识论":"猜想、假说、实验和理论化","目的论":"堕落 | 对立于 | 干涉","代表人物":"牛顿，千禧年主义者"},
+  "2-3-4-3": {"code":"2-3-4-3","name":"物理归纳主义","场域论":"显明的nature | 对立于 | 隐秘的nature","本体论":"物质 | 调和者：种类 | 造世主","认识论":"四种崇拜导致人的认识是不可靠的","目的论":"下落 | 调和者：模式 | 修正","代表人物":"培根，《人类理性论》"},
+  "2-3-4-4": {"code":"2-3-4-4","name":"时空绝对主义","场域论":"造物 | 对立于 | 可能/必然性","本体论":"atom/void | 调和者：absolute space/time | god","认识论":"怀疑论者","目的论":"自由/解放","代表人物":"皮埃尔·伽森狄"},
+  "2-4-1": {"code":"2-4-1","name":"经验主义","场域论":"自然秩序 | 对立于 | 文明秩序","本体论":"物质(运动与运动机制)","认识论":"反映论/回音论","目的论":"","代表人物":"霍布斯 《利维坦》"},
+  "2-4-1-1": {"code":"2-4-1-1","name":"乐于接受的小体主义","场域论":"universe | 对立于 | 华子","本体论":"存在奇迹，渐进创世","认识论":"实验","目的论":"被动承受","代表人物":"波义耳"},
+  "2-4-1-2": {"code":"2-4-1-2","name":"经验的观念论","场域论":"原子世界 | 对立于 | 形而上世界","本体论":"the great chain(伟大的因果性锁链)","认识论":"白板说","目的论":"被动承受 | 对立于 | 主动猜测","代表人物":"洛克"},
+  "2-4-1-3": {"code":"2-4-1-3","name":"理念-精神二元论","场域论":"形而上 | 对立于 | 形而下","本体论":"spirit","认识论":"ideas","目的论":"被动承受 | 调和者：信任 | 主动猜测","代表人物":"贝克莱"},
+  "2-4-1-4": {"code":"2-4-1-4","name":"人类有限主义","场域论":"经验 | 对立于 | 共同体的秩序","本体论":"经验","认识论":"联结","目的论":"共同体利益","代表人物":"休谟，偷天换日的大他者身份窃贼"},
+  "2-4-2": {"code":"2-4-2","name":"实证主义","场域论":"形而下 | 对立于 | 形而上","本体论":"被击穿，不讨论","认识论":"社会学 | 对立于 | 科学","目的论":"","代表人物":"孔德"},
+  "2-4-2-1": {"code":"2-4-2-1","name":"自然主义的规范论","场域论":"appearance | 对立于 | ethos","本体论":"异质性他者(物质)","认识论":"自然主义 | 对立于 | 观念论","目的论":"happiness","代表人物":"约翰·穆勒"},
+  "2-4-2-2": {"code":"2-4-2-2","name":"社会实证主义","场域论":"形而上 | 对立于 | 形而下","本体论":"不预设/无法把握任何本体性","认识论":"第一人称体验 | 对立于 | 社会学家视角","目的论":"整合 | 对立于 | 归驯","代表人物":"涂尔干"},
+  "2-4-2-3": {"code":"2-4-2-3","name":"自然神论的实证主义","场域论":"knowable | 对立于 | unknowable","本体论":"force(力)","认识论":"第一人称理智认识 | 对立于 | 种族知识(直观)","目的论":"compund | 调和者：进化 | dissolve","代表人物":"斯宾塞"},
+  "2-4-2-4": {"code":"2-4-2-4","name":"科学的实证主义","场域论":"第一人称前反思经验 | 对立于 | 形而上秩序","本体论":"element(但元素并无本体性)","认识论":"经验 | 对立于 | 联结方式(差异关系)","目的论":"生存","代表人物":"马赫"},
+  "2-4-3": {"code":"2-4-3","name":"逻辑实证主义","场域论":"感觉序列 | 对立于 | 逻辑空间","本体论":"本体论闭合","认识论":"直接经验 | 调和者：逻辑语言 | 理智建构","目的论":"","代表人物":"维也纳学派"},
+  "2-4-3-1": {"code":"2-4-3-1","name":"相对语法主义","场域论":"直观 | 对立于 | 知识","本体论":"(被击穿)","认识论":"直观 | 调和者：语法 | 概念","目的论":"共识","代表人物":"石里克"},
+  "2-4-3-2": {"code":"2-4-3-2","name":"逻辑还原主义","场域论":"日常用语 | 对立于 | 逻辑语言","本体论":"(被击穿)","认识论":"现象主义 | 调和者：句法 | 物理主义","目的论":"convention | 对立于 | criterion","代表人物":"卡尔纳普"},
+  "2-4-3-3": {"code":"2-4-3-3","name":"逻辑行为主义","场域论":"第一人称视域 | 对立于 | 逻辑地图","本体论":"(被击穿)","认识论":"直接体验 | 调和者：词项 | 间接体验","目的论":"convention | 调和者：行为主义(刻画) | criterion","代表人物":"赖尔，日常语用学派"},
+  "2-4-3-4": {"code":"2-4-3-4","name":"逻辑反实在论","场域论":"感觉世界 | 对立于 | 语言世界","本体论":"(被击穿)","认识论":"现象主义 | 调和者：简明性 | 观念建构","目的论":"choose(选择)","代表人物":"古德曼"},
+  "2-4-4": {"code":"2-4-4","name":"实用主义","场域论":"幸运的 | 对立于 | 神圣的","本体论":"经验","认识论":"经验","目的论":"","代表人物":"杜威"},
+  "2-4-4-1": {"code":"2-4-4-1","name":"逻辑实用主义","场域论":"日常话语 | 对立于 | 科学话语","本体论":"本体论承诺","认识论":"意义的整体主义","目的论":"科学化","代表人物":"蒯因"},
+  "2-4-4-2": {"code":"2-4-4-2","name":"正统辩证唯物主义","场域论":"形而上秩序 | 对立于 | 辩证法(整体主义)","本体论":"物质","认识论":"心理、自然经验主义","目的论":"科学化 | 对立于 | 意识形态化","代表人物":"思修四，斯大林主义"},
+  "2-4-4-3": {"code":"2-4-4-3","name":"符号实用主义","场域论":"现实 | 对立于 | 语言","本体论":"承认场域论二分的所有智慧","认识论":"承认场域论二分的所有智慧","目的论":"科学话语 | 调和者：一组圣名 | 意识形态话语","代表人物":"语言，”人类群星闪耀时“，大同教，ggkf"},
+  "2-4-4-4": {"code":"2-4-4-4","name":"生存实用主义","场域论":"差别见 | 对立于 | 平等见","本体论":"平等","认识论":"平等","目的论":"生存","代表人物":"禅宗，《五灯会元》"},
+  "3-1-1": {"code":"3-1-1","name":"先验现象学","场域论":"形而上 | 调和者：自我 | 形而下","本体论":"noema和noesis 意向对象与意向认识","认识论":"先验直观","目的论":"","代表人物":"胡塞尔"},
+  "3-1-1-1": {"code":"3-1-1-1","name":"先验直觉主义","场域论":"自然态度 | 调和者：先验直观 | 本质性领域","本体论":"the giveness(被给予性)","认识论":"先验直观","目的论":"认识\本质分类\注册进等级制符号系统内","代表人物":"胡塞尔，《纯粹现象学通论：纯粹现象学和现象学哲学的观念》"},
+  "3-1-1-2": {"code":"3-1-1-2","name":"先验本质主义","场域论":"自然态度 | 调和者：先验直观 | 本质性领域","本体论":"the giveness(被给予性)","认识论":"先验直观","目的论":"体验、注册 | 对立于 | 本质性差异","代表人物":"胡塞尔，《纯粹现象学通论：》"},
+  "3-1-1-3": {"code":"3-1-1-3","name":"反思性的 主体主义","场域论":"自然态度 | 调和者：先验直观 | 本质性领域","本体论":"the giveness(被给予性)","认识论":"先验直观","目的论":"主动注册 | 调和者：反思性主体性 | 被动接受差异","代表人物":"胡塞尔，《纯粹现象学通论：》"},
+  "3-1-1-4": {"code":"3-1-1-4","name":"准先验辩证主义","场域论":"形而上 | 调和者：辩证法 (结构主义) | 形而下","本体论":"the giveness(被给予性)","认识论":"先验直观","目的论":"原初运动","代表人物":"大二时期的德里达，《胡塞尔现象学的发生问题》"},
+  "3-1-2": {"code":"3-1-2","name":"实事现象学","场域论":"形而上 | 调和者：主体： 精神 生命 | 形而下","本体论":"连续的等级制","认识论":"情感性 | 对立于 | 认识性 | 精神","目的论":"","代表人物":"舍勒"},
+  "3-1-2-1": {"code":"3-1-2-1","name":"媒介性的 客观主义","场域论":"形而上 | 调和者：人的科学\现象学 | 形而下","本体论":"连续","认识论":"理性、感觉 | 对立于 | 非感觉 (情绪、冲动)","目的论":"大他者的安排","代表人物":"史蒂芬·斯特拉瑟"},
+  "3-1-2-2": {"code":"3-1-2-2","name":"本质心理主义","场域论":"形而上 | 调和者：本质还原 | 形而下","本体论":"连续","认识论":"思维 | 对立于 | 信念","目的论":"大他者的安排 | 对立于 | 发现本真 重建本真维度","代表人物":"普凡德尔(alexander pfander)"},
+  "3-1-2-3": {"code":"3-1-2-3","name":"现象学的 唯美主义","场域论":"形而上 | 调和者：本质还原 (主体性) | 形而下","本体论":"连续","认识论":"本质还原 | 对立于 | 逻辑","目的论":"大他者的安排 | 调和者：艺术性聆受 | 发现本真 重建本真维度","代表人物":"盖格尔(moritz geiger)"},
+  "3-1-2-4": {"code":"3-1-2-4","name":"游戏的 世界象征主义","场域论":"形而上 | 调和者：惊奇姿态 | 形而下","本体论":"the player- the played","认识论":"constitution | 对立于 | end-constitution","目的论":"play","代表人物":"芬克(eugen fink)"},
+  "3-1-3": {"code":"3-1-3","name":"生活世界现象学","场域论":"形而上 | 调和者：主体性： 生活世界 | 形而下","本体论":"连续的等级制","认识论":"情感性 生命 非思维 | 调和者：共同视域 | 反思性 精神 逻辑性","目的论":"","代表人物":"阿尔弗雷德·许茨"},
+  "3-1-3-1": {"code":"3-1-3-1","name":"主体间普遍主义","场域论":"形而上 | 调和者：公共理性 | 形而下","本体论":"连续","认识论":"前反思的、情感性的 | 调和者：公共话语 | 反思的、专题性认识的","目的论":"公共理性","代表人物":"哈贝马斯"},
+  "3-1-3-2": {"code":"3-1-3-2","name":"本土方法论","场域论":"形而上 | 调和者：本地的局部的合理性机制 | 形而下","本体论":"实在论者","认识论":"情感性 非理性 | 调和者：反思性 | 理性思维","目的论":"形式逻辑 自然科学 | 对立于 | 本地、族裔的临时合理性","代表人物":"加芬克尔"},
+  "3-1-3-3": {"code":"3-1-3-3","name":"格式塔现象学","场域论":"形而上 | 调和者：格式塔 | 形而下","本体论":"连续的格式塔","认识论":"前反思情感 | 调和者：整体主义 | 理性、反思、理论化","目的论":"普遍理性 | 调和者：整体主义 | 临时、情境化的合理性","代表人物":"古尔维奇"},
+  "3-1-3-4": {"code":"3-1-3-4","name":"自身性现象学","场域论":"形而上 | 调和者：self | 形而下","本体论":"连续、可理解性","认识论":"情感 | 调和者：自身性 | 理性","目的论":"不确定","代表人物":"胡塞尔、梅洛-庞蒂、海德格尔、萨特"},
+  "3-1-4": {"code":"3-1-4","name":"现世的现象学","场域论":"形而上 | 调和者：时间性 | 形而下","本体论":"生活","认识论":"实事求是 不预设概念术语体系 探索 生产性的概念生成","目的论":"","代表人物":"狄尔泰"},
+  "3-1-4-1": {"code":"3-1-4-1","name":"追问的现象学","场域论":"时间 | 调和者：世间性 | 存在","本体论":"sein\time","认识论":"问问题(无限的question变格)","目的论":"becoming time","代表人物":"早期海德格尔"},
+  "3-1-4-2": {"code":"3-1-4-2","name":"性化的现象学","场域论":"形而上 | 调和者：共在 | 形而下","本体论":"自为存在","认识论":"去先验化","目的论":"时间 | 对立于 | 空间","代表人物":"萨特"},
+  "3-1-4-3": {"code":"3-1-4-3","name":"存在论的现象学","场域论":"经验主义 | 调和者：先验场 | 理性主义","本体论":"多阶格式塔连续统","认识论":"消解存在之深度必然失败","目的论":"time | 调和者：present | space","代表人物":"梅洛庞蒂"},
+  "3-1-4-4": {"code":"3-1-4-4","name":"现象学伦理主义","场域论":"形而下dire | 调和者：他人脸孔 | 形而上dit","本体论":"享用","认识论":"界面上的伦理行动","目的论":"他人","代表人物":"列维纳斯"},
+  "3-2-1": {"code":"3-2-1","name":"批判哲学","场域论":"形而上 | 调和者：主体性： 先验统觉 | 形而下","本体论":"有限 | 对立于 | 无限","认识论":"judgement判断","目的论":"","代表人物":"康德"},
+  "3-2-1-1": {"code":"3-2-1-1","name":"无限的有限主义","场域论":"经验 | 调和者：人：统觉 | 先天","本体论":"现象 | 对立于 | 本体性","认识论":"判断","目的论":"渐进(有限→无限)，追求配得至福的权力","代表人物":"康德《纯粹理性批判》《法哲学原理》《法哲学批判导言》"},
+  "3-2-1-2": {"code":"3-2-1-2","name":"先验经验主义","场域论":"形而下 | 调和者：泛主体性 | 形而上","本体论":"actual entity | 对立于 | eternal object","认识论":"occurrences显相","目的论":"有限→无限 | 对立于 | 无限←有限","代表人物":"怀特海"},
+  "3-2-1-3": {"code":"3-2-1-3","name":"先验逻辑主义","场域论":"形而下 | 调和者：先验逻辑 | 形而上","本体论":"思维 | 对立于 | 理念","认识论":"思维意识，命题判断一元论","目的论":"有限→无限 | 调和者：无穷小量 | 无限←有限","代表人物":"马堡学派头子，柯亨"},
+  "3-2-1-4": {"code":"3-2-1-4","name":"符号形式主义","场域论":"形而下 | 调和者：隐喻思维 以偏概全 | 形而上","本体论":"文化 | 对立于 | 符号活动","认识论":"符号活动构造","目的论":"人类的自由创造，艺术","代表人物":"卡西尔"},
+  "3-2-2": {"code":"3-2-2","name":"知识学","场域论":"形而上 | 调和者：绝对主体 | 形而下","本体论":"自我、非我 | 对立于 | 可分性否定性","认识论":"知识学 | 对立于 | 科学","目的论":"","代表人物":"费希特"},
+  "3-2-2-1": {"code":"3-2-2-1","name":"理智直观主义","场域论":"形而下 | 调和者：绝对者的image | 形而上","本体论":"gott syen(unity) | 对立于 | I，先验自我","认识论":"伪理智直观 | 对立于 | 真理智直观","目的论":"保守主义","代表人物":"晚年费希特"},
+  "3-2-2-2": {"code":"3-2-2-2","name":"先验观念论","场域论":"形而下 | 调和者：意志 | 形而上","本体论":"自然 | 对立于 | 心灵","认识论":"先验哲学 自然哲学 | 对立于 | 创造力","目的论":"无意识←意识 | 对立于 | 无意识→意识","代表人物":"早期谢林《先验观念论体系》"},
+  "3-2-2-3": {"code":"3-2-2-3","name":"彻底的经验主义","场域论":"形而下 | 调和者：纯粹经验 未结构意识流 | 形而上","本体论":"一切存在，经验 | 对立于 | 底层无意识心理活动，本能","认识论":"气质 | 对立于 | truth","目的论":"自我→绝对者 | 调和者：偏好 | 自我←绝对者","代表人物":"威廉·詹姆斯"},
+  "3-2-2-4": {"code":"3-2-2-4","name":"唯我的实在论\ 现实主义","场域论":"形而上 | 调和者：世界图像 | 形而下","本体论":"object | 对立于 | 语言","认识论":"逻辑句法，真理 | 对立于 | 哲学家的无意义的话","目的论":"僵死","代表人物":"早期维特根斯坦，《逻辑哲学论》"},
+  "3-2-3": {"code":"3-2-3","name":"体系自由主义","场域论":"形而上 | 调和者：自由 | 形而下","本体论":"有限绝对者 | 对立于 | 无限绝对者","认识论":"理性 | 调和者：根据 | 非理性","目的论":"","代表人物":"谢林， 《论人类自由的本质》"},
+  "3-2-3-1": {"code":"3-2-3-1","name":"时间-本体论","场域论":"过去 | 调和者：未来 | 现在","本体论":"存在 | 对立于 | 自由(爱)","认识论":"理性 | 调和者：回忆 | 非理性","目的论":"回归","代表人物":"谢林，《世界时代》"},
+  "3-2-3-2": {"code":"3-2-3-2","name":"加倍的德国观念论","场域论":"先验论 | 调和者：观念论-科学-辩证法 | 实在论","本体论":"存在 | 对立于 | 存在者","认识论":"先验论 | 调和者：视差之见 | 实在论","目的论":"A3：对立和统一的和解 | 对立于 | 丑闻，剩余，甩出","代表人物":"齐泽克，《自由的深渊》"},
+  "3-2-3-3": {"code":"3-2-3-3","name":"生存论的存在主义","场域论":"存在 | 调和者：实存 | 存在者","本体论":"存在(ground) | 对立于 | 此在(实存)","认识论":"先验论 | 调和者：回忆 | 实在论","目的论":"同一 | 调和者：等待降临 | 丑闻","代表人物":"晚期海德格尔"},
+  "3-2-3-4": {"code":"3-2-3-4","name":"自身-辩证法","场域论":"肯定 (特殊) | 调和者：统一，理性 | 扬弃 (普遍)","本体论":"范畴 | 对立于 | 认识的本身","认识论":"先验逻辑学 | 调和者：形式逻辑 | 形而上学","目的论":"认识自身","代表人物":"早期黑格尔，《耶拿体系1804-1805：逻辑学和形而上学》"},
+  "3-2-4": {"code":"3-2-4","name":"辩证法","场域论":"逻辑与本体论 | 调和者：历史 | 精神现象学","本体论":"主体 | 对立于 | 绝对精神","认识论":"绝对知识","目的论":"","代表人物":"黑格尔，《精神现象学》"},
+  "3-2-4-1": {"code":"3-2-4-1","name":"逻辑学","场域论":"符号系统 | 调和者：辩证法 | 形而上学","本体论":"运动 思维辩证法 | 对立于 | 理念","认识论":"矛盾， 因为符号系统自己成为系统，不再符合外在体系","目的论":"符号系统自己将自己理念化","代表人物":"黑格尔，《大逻辑》《小逻辑》"},
+  "3-2-4-2": {"code":"3-2-4-2","name":"否定辩证法","场域论":"主体 | 调和者：离散的，自组织的星丛 | 客体","本体论":"客体 | 对立于 | 星丛","认识论":"辩证法：符号化注定失败","目的论":"追求总体性自我同一的历史性运动 | 对立于 | 符号化注定失败，离散","代表人物":"阿多诺"},
+  "3-2-4-3": {"code":"3-2-4-3","name":"爱欲辩证法","场域论":"形而下断裂局部 | 调和者：principle of domination | 形而上连续总体","本体论":"否定性 subjectization | 对立于 | 总体","认识论":"反理性","目的论":"符号系统符号化 | 调和者：主体化 | 符号化注定失败，离散","代表人物":"马尔库塞"},
+  "3-2-4-4": {"code":"3-2-4-4","name":"意识形态学","场域论":"等级系统A | 调和者：隐形中介、 超定 | 等级系统B","本体论":"纯二元对立","认识论":"problematic问题式","目的论":"“4”","代表人物":"阿尔都塞"},
+  "3-3-1": {"code":"3-3-1","name":"存在主义","场域论":"形而上 | 调和者：存在 | 形而下","本体论":"存在 | 调和者：实存 (历史) 天命 | 存在者","认识论":"本体论=观念论=主体主义现象学","目的论":"","代表人物":"海德格尔"},
+  "3-3-1-1": {"code":"3-3-1-1","name":"分环节的 生存论存在论","场域论":"形而下 | 调和者：烦 | 形而上","本体论":"生存论 | 调和者：死 | 实在论","认识论":"fundamental ontology","目的论":"中介性","代表人物":"海德格尔，《存在与时间》"},
+  "3-3-1-2": {"code":"3-3-1-2","name":"人道主义的 存在主义","场域论":"形而下超越论 | 调和者：虚无 | 形而上本质","本体论":"facticity | 调和者：存在 | 本质","认识论":"现象学化的辩证法","目的论":"中介性 | 对立于 | 自由\自欺 (真诚)","代表人物":"萨特"},
+  "3-3-1-3": {"code":"3-3-1-3","name":"政治的理性主义","场域论":"形而下 二元对立 | 调和者：理性 | 形而上 崇高短路","本体论":"人类主体间共在 | 调和者：历史 | 主客自然","认识论":"自身性现象学","目的论":"环节中介 | 调和者：失效 | 自由","代表人物":"梅洛庞蒂，《辩证法的历险》"},
+  "3-3-1-4": {"code":"3-3-1-4","name":"前本体论","场域论":"最后之神 | 调和者：本有 | 诸神","本体论":"存在 | 调和者：存在论 | 存在者","认识论":"晚期谢林的存在论+生存论化的现象学","目的论":"呼唤(最隐蔽的伟大自识)","代表人物":"海德格尔，《从本有而来》"},
+  "3-3-2": {"code":"3-3-2","name":"真正的生存论","场域论":"形而下 | 调和者：抉择的等级制 | 形而上","本体论":"主体性 | 调和者：畏 | 绝对者","认识论":"思辨哲学 | 对立于 | 生存论指南","目的论":"","代表人物":"克尔凯廓尔"},
+  "3-3-2-1": {"code":"3-3-2-1","name":"安放了的 实存主义","场域论":"形而下 审美 | 调和者：宗教 | 形而上 伦理","本体论":"实存 | 调和者：自身 | 他者","认识论":"绝望 | 对立于 | 信仰","目的论":"begnadung(天佑)","代表人物":"克尔凯廓尔"},
+  "3-3-2-2": {"code":"3-3-2-2","name":"诗性生存论","场域论":"力 野蛮王国 | 调和者：游戏表象 快乐王国 | 法则 神圣王国","本体论":"理念 | 调和者：存在 | 自然","认识论":"哲学 | 对立于 | 诗的存在论","目的论":"重复 | 对立于 | 同一","代表人物":"荷尔德林"},
+  "3-3-2-3": {"code":"3-3-2-3","name":"神-人伦理学","场域论":"形而上 | 调和者：创造伦理学 | 形而下","本体论":"命运 | 调和者：自由 | 上帝、绝对者","认识论":"哲学 | 对立于 | 动员学","目的论":"重复 | 调和者：创造 | 循环","代表人物":"别尔嘉耶夫"},
+  "3-3-2-4": {"code":"3-3-2-4","name":"超验-生存论","场域论":"生存之大全 | 调和者：理性 无限的哲学化 | 存在之大全","本体论":"生存 | 调和者：the code of transendent | 超验","认识论":"world orientation(世界探源) | 对立于 | illumination of existence(生存之阐明)","目的论":"“自由=生存”，一种唯结果论","代表人物":"雅斯贝尔斯"},
+  "3-3-3": {"code":"3-3-3","name":"同一生存论","场域论":"能量守恒物理世界 | 调和者：永恒轮回 | 古希腊酒神迷醉","本体论":"生命 | 调和者：权力意志 | 价值","认识论":"把握 | 调和者：爱命运 | 不想把握","目的论":"","代表人物":"尼采"},
+  "3-3-3-1": {"code":"3-3-3-1","name":"斗争的生存论","场域论":"idealism | 调和者：永恒抗争 | creating","本体论":"necesstiy (必然性) | 调和者：suffering (主体性) | possibility (可能性)","认识论":"哲学、科学 黑格尔观念论 | 调和者：信仰 | 绝望","目的论":"同一化(identifying)","代表人物":"舍斯托夫"},
+  "3-3-3-2": {"code":"3-3-3-2","name":"直接生存论","场域论":"构造 | 调和者：时间 | 因果性关联","本体论":"有限者 | 调和者：生存 | 绝对者","认识论":"怀疑论 | 调和者：信仰 | 先验体系","目的论":"同一化 | 对立于 | 否定虚无","代表人物":"雅各比"},
+  "3-3-3-3": {"code":"3-3-3-3","name":"共同体的生存论","场域论":"混沌 | 调和者：强力意志 | 必然性","本体论":"价值谱系 | 调和者：瞬间 主体性 | 永恒轮回 时间","认识论":"诗、艺术 | 调和者：宗教精神 | 哲学","目的论":"同一化 | 调和者：复数化 | 对于虚无的厌恶","代表人物":"晚期尼采"},
+  "3-3-3-4": {"code":"3-3-3-4","name":"金融资本主义","场域论":"金融资本 | 调和者：生存论危机 | 产业资本","本体论":"钱 | 调和者：权 | 罪","认识论":"享乐 | 调和者：痛苦 | 理性","目的论":"(抗争、辩证同一-否定虚无-多重化)→偏斜","代表人物":"“丁蟹”"},
+  "3-3-4": {"code":"3-3-4","name":"虚构的 生存论","场域论":"合理化 必然完美领域 | 调和者：fiction (虚构场域) | 暴力突破性的残酷： 贫穷、痛苦","本体论":"可朽者 | 调和者：永生 | 绝对者","认识论":"polyphinic fiction (复调小说)","目的论":"","代表人物":"陀耶妥耶夫斯基， 《罪与罚》"},
+  "3-3-4-1": {"code":"3-3-4-1","name":"幸存的兄弟主义","场域论":"母性自然 | 调和者：人类友爱 兄弟 | 父性权威","本体论":"evil | 调和者：love | divine","认识论":"反理性主义","目的论":"一分为多，合而为一","代表人物":"陀耶妥耶夫斯基，《卡拉马佐夫兄弟》"},
+  "3-3-4-2": {"code":"3-3-4-2","name":"去中心化的 科层主义","场域论":"传统 | 调和者：小说 | 现代性","本体论":"法(一) | 调和者：职业(身份) | 科层制(多)","认识论":"good is not to know youself(judaism、基督教传统、诺斯替-希腊多神传统)","目的论":"一多 | 对立于 | 去中心化","代表人物":"卡夫卡，《审判》"},
+  "3-3-4-3": {"code":"3-3-4-3","name":"幸福的幸存主义","场域论":"理性 | 调和者：荒谬 | 世界的敌意","本体论":"封闭实体 | 调和者：否定的二重性 | 复数性","认识论":"保守性的反抗","目的论":"循环 | 调和者：均衡 | 逃避","代表人物":"加缪"},
+  "3-3-4-4": {"code":"3-3-4-4","name":"诗性永恒主义","场域论":"时间 | 调和者：符号系统 | 空间","本体论":"情节 | 调和者：叙事 | 名字","认识论":"唯梦论(认识发生学的阻断机制)","目的论":"遗忘、停笔、绝对者不再书写、不允许写完","代表人物":"博尔赫斯，《小径分叉的花园》，《阿莱夫》，《秘密的奇迹》"},
+  "3-4-1": {"code":"3-4-1","name":"结构主义","场域论":"历时性 | 调和者：意指关系Signification | 共时性","本体论":"差异性原则","认识论":"能指的任意性、共时性原则","目的论":"","代表人物":"早期福柯、早期拉康、列维斯特劳斯、索绪尔"},
+  "3-4-1-1": {"code":"3-4-1-1","name":"结构人本主义","场域论":"有限能指 | 调和者：神话结构 | 无限现实","本体论":"“人不可能逐渐符号化事物”","认识论":"kinship(亲缘关系)","目的论":"mana的1/震颤","代表人物":"列维斯特劳斯，《马塞尔莫斯著作导论》，《漂移的能指》"},
+  "3-4-1-2": {"code":"3-4-1-2","name":"隐喻的象征主义","场域论":"想象界 | 调和者：他者的欲望 | 无意识","本体论":"否定性","认识论":"真理论：寻找je","目的论":"两级震荡 | 对立于 | 纵深化","代表人物":"早期拉康"},
+  "3-4-1-3": {"code":"3-4-1-3","name":"分类型的 叙事主义","场域论":"功能层 | 调和者：叙事层 | 行动层","本体论":"叙事体系广义化","认识论":"零度写作","目的论":"1|震荡的循环 | 调和者：局部整体化 | 纵深化","代表人物":"罗兰·巴特"},
+  "3-4-1-4": {"code":"3-4-1-4","name":"陈述性的 话语主义","场域论":"微观 | 调和者：话语考古学机制 | 宏观","本体论":"由点组成的网络，或本体论无合法性","认识论":"知识考古学","目的论":"局部发生","代表人物":"福柯"},
+  "3-4-2": {"code":"3-4-2","name":"后结构主义","场域论":"下层现实 经济现实 | 调和者：理论 | 上层建筑   政治现实","本体论":"政治、经济、文化、意识形态、理论、科学这些要素在本体论上是“平等”的","认识论":"意识形态subjectivization | 对立于 | 科学/真理知识","目的论":"","代表人物":"阿尔都塞"},
+  "3-4-2-1": {"code":"3-4-2-1","name":"无意识的 主体主义","场域论":"想象界 | 调和者：象征界 | 真实界","本体论":"real is impossible","认识论":"结构主义 | 对立于 | 辩证法\发生学机制","目的论":"回溯性设立抹除","代表人物":"中期拉康"},
+  "3-4-2-2": {"code":"3-4-2-2","name":"静止的事件主义","场域论":"Being 存在(在场) | 调和者：State(space-site-position) | Event 事件  (缺失)","本体论":"Uncountable many没有总体化的一，以及主体对事件保持忠诚的4种方式：艺术、政治、科学、爱情","认识论":"知识 | 对立于 | 主体化/对事件的忠诚信仰","目的论":"回溯性 | 对立于 | 整体降临","代表人物":"巴迪欧"},
+  "3-4-2-3": {"code":"3-4-2-3","name":"哲学的墨守成规","场域论":"后观念论 | 调和者：无政治计划性 | 大众文化","本体论":"Den,less than nothing","认识论":"哲学/文化分类学 | 对立于 | 文化现象/前反思","目的论":"回溯性 | 调和者：泰然让之 | 整体变革","代表人物":"齐泽克"},
+  "3-4-2-4": {"code":"3-4-2-4","name":"一二三代的 女性主义","场域论":"符号界 | 调和者：Abjection主体性 | 象征界","本体论":"异质性他者","认识论":"phenotexte | 对立于 | genotexte","目的论":"螺旋运动，在线性和循环的时间性之间不停震荡","代表人物":"克里斯蒂娃"},
+  "3-4-3": {"code":"3-4-3","name":"差别的 辩证法","场域论":"先验 | 调和者：原初纯粹差异 | 经验主义","本体论":"同一和差异的辩证法的失败","认识论":"一重意义 权威话语 | 调和者：simulacrum | 言语的主体 否定性","目的论":"","代表人物":"德里达"},
+  "3-4-3-1": {"code":"3-4-3-1","name":"游牧的辩证主义","场域论":"理念等级制框架 | 调和者：时间 | 游牧","本体论":"差异","认识论":"肯定 | 调和者：肯定的否定 | 否定","目的论":"结域-解域-再结域","代表人物":"普罗大众之敌，德勒兹"},
+  "3-4-3-2": {"code":"3-4-3-2","name":"圆满的经济学","场域论":"有限经济学 | 调和者：否定 | 普遍经济学","本体论":"献祭","认识论":"色情 | 调和者：神圣 | 经济学、家政学","目的论":"肯定性 | 对立于 | 耗散","代表人物":"大忽悠，巴耶塔"},
+  "3-4-3-3": {"code":"3-4-3-3","name":"倒错的好客主义","场域论":"秩序 | 调和者：偏执狂 | 超越","本体论":"simulacrum","认识论":"主人(倒错) | 调和者：知识 (拒绝\否定) | 客人(生存论危机)","目的论":"自我肯定 | 调和者：相当于 | 自我否定","代表人物":"后现代巅峰，克罗索斯基"},
+  "3-4-3-4": {"code":"3-4-3-4","name":"局部的总体主义","场域论":"结构 | 调和者：叙事 Narrativism | 历史","本体论":"无公共性叙事，历史终结，只有不同的叙事相互竞争","认识论":"真理/历史本身 | 调和者：悖论主义 | 神话","目的论":"后历史的无方向性","代表人物":"投机分子，利奥塔"},
+  "3-4-4": {"code":"3-4-4","name":"解释学","场域论":"解释、生存 | 调和者：时间距离 | 视域融合","本体论":"效果的历史","认识论":"解释学循环","目的论":"","代表人物":""},
+  "3-4-4-1": {"code":"3-4-4-1","name":"现象学的解释学","场域论":"语义 | 调和者：象征的符号学 | 隐喻","本体论":"修辞主义","认识论":"隐喻","目的论":"占有","代表人物":"保罗利科"},
+  "3-4-4-2": {"code":"3-4-4-2","name":"经典的精神分析","场域论":"nature | 调和者：libido | civilization","本体论":"没有本体论","认识论":"梦的发生学机制(没有认识论)","目的论":"压抑 | 对立于 | 升华","代表人物":"弗洛伊德"},
+  "3-4-4-3": {"code":"3-4-4-3","name":"哲学的最高奥义：语言游戏","场域论":"符号系统 | 调和者：主体 | 历史活动","本体论":"语言的意义在于用法","认识论":"不存在私人语言","目的论":"主人话语 | 调和者：分析性的话语 | 癔症话语","代表人物":"维特根斯坦"},
+  "3-4-4-4": {"code":"3-4-4-4","name":"针对资本主义的精神分析","场域论":"生命 | 调和者：无意识 | 理论","本体论":"不存在历史","认识论":"无意识","目的论":"无力的理论化","代表人物":"晚期马克思→阿尔都塞→晚期拉康"},
+  "4-1-1": {"code":"4-1-1","name":"资本主义史研究","场域论":"历史 | 调和者：经由人民 | 抵达理论家反思性的意识","本体论":"历史(谢林点)、和理论家个人生存史是统一的、连续的","认识论":"资本主义的主导性社会关系的发生学","目的论":"","代表人物":"马克思、韦伯(作对照)"},
+  "4-1-1-1": {"code":"4-1-1-1","name":"经济学哲学批判","场域论":"历史(现实的辩证法) | 调和侧: 人民 | 理论家所预言的真正的历史 | 实践单元: 搞报刊","本体论":"有欲望、有激情、有创伤的物质，也就是生命","认识论":"客体间性所引发的意识发生学","目的论":"政治经济学批判、下命令书","代表人物":"早期马克思"},
+  "4-1-1-2": {"code":"4-1-1-2","name":"内外评论","场域论":"国际立约立法的现实史 | 调和侧: 识字的进步工人 | 理论家 (历史蓝图) | 实践单元: 第一国际(由各地的通讯网络组成)","本体论":"客体间性","认识论":"理论家的内外评论就是普罗大众的意志的表达","目的论":"对于异化的批判、下斗争命令 | vs | 掌握进退节奏收兵、和平性","代表人物":"中晚年实践中的马克思"},
+  "4-1-1-3": {"code":"4-1-1-3","name":"国际性的 理论协调","场域论":"现实的历史 | 调和侧: 1876年之后的 人民 | 理论家 (反对战争) | 实践单元: 第二国际(由中心化的“理论权威”来做协调员的理论家共同体)","本体论":"客体间性发展成主体间性，公共意识","认识论":"理论坐标系","目的论":"局部直接下令 | 统一决议 | 整体的统筹","代表人物":"1876年之后的恩格斯"},
+  "4-1-1-4": {"code":"4-1-1-4","name":"中派中的 独立生存","场域论":"历史 (濒战) | 调和侧: 工兵 | 理论家 (获得代表性) | 实践单元: 仓促成形的鼓动单元","本体论":"主体间性，幻想有一个整全的城邦(当争取对象)","认识论":"都能说话","目的论":"等待时机(苟存/拖延)","代表人物":"后E前L时代的探索者、后恩格斯的实在论者、经验论者"},
+  "4-1-2": {"code":"4-1-2","name":"灌输","场域论":"历史 | 调和者：人民 | 成为理论家(人民理论家化)","本体论":"重新客体化","认识论":"社会主义知识体系 | 对立于 | 资本主义知识体系","目的论":"","代表人物":"L"},
+  "4-1-2-1": {"code":"4-1-2-1","name":"学习\研究","场域论":"自己的 个人生存史 | 调和侧: 1字头的自己 (作为对象) | 自己成为理论家 | 实践单元: 作为实践主体的自己","本体论":"现实=理论","认识论":"布尔乔亚理论中的自圆其说 | vs | 普罗大众理论中的明确行动","目的论":"通俗化popularize","代表人物":"L"},
+  "4-1-2-2": {"code":"4-1-2-2","name":"写作与交谈","场域论":"话语的 传播史 | 调和侧: 读者、交谈者、听者 | 现实的理论家guider | 实践单元: 材料生产者+产品分发者或对谈","本体论":"discourse=power","认识论":"political | vs | 教育性(为什么会听，天然符合听者利益)","目的论":"通俗化 | vs | 严肃","代表人物":"L"},
+  "4-1-2-3": {"code":"4-1-2-3","name":"正派青年的 交友和团结","场域论":"理论争论史 | 调和侧: 人民 | 作为leader的 理论家 | 实践单元: 文创创业团队","本体论":"让自己显得正常、让自己被市场对象化","认识论":"自己人：普 | vs | 旁人：布","目的论":"通俗化 | 人会换， 共同精神永存 | 严肃","代表人物":"普列汉诺夫"},
+  "4-1-2-4": {"code":"4-1-2-4","name":"现实的本体论化","场域论":"Ontic | 调和侧: 人数的可数性 | Ontologization | 实践单元: 中心化的原始层(扩大会议)","本体论":"Ontological=Ontic","认识论":"讲纪律 | vs | 自由散漫(自发的习气)","目的论":"历史借理论家在本体论化，把乌托邦现实化的努力注定失败(形式主义化、教条化)","代表人物":"一切身家性命都系缚于political的人物"},
+  "4-1-3": {"code":"4-1-3","name":"历史的 哲学化","场域论":"历史 | 调和者：人民(无私奉献) | 理论家(短平快、去辩证化)","本体论":"历史=不可辩证的哲学","认识论":"普罗大众的信仰 | 调和者：普遍的历史哲学 | 布尔乔亚的意识形态","目的论":"","代表人物":"科尔施"},
+  "4-1-3-1": {"code":"4-1-3-1","name":"方法论上的 总体化","场域论":"历史 | 调和侧: 人民 | 理论家（行动上的方法论） | 实践单元: 能争论的、哲学素养高的Hegelian Marxist学术共同体","本体论":"历史=生成：现实的人的实践","认识论":"唯物辩证法（瞄准要改变现实） | 历史总体性 | 黑格尔的辩证法（解释现实）","目的论":"拧绳","代表人物":"列宁、卢卡奇"},
+  "4-1-3-2": {"code":"4-1-3-2","name":"教条的哲学化","场域论":"思想史 | 调和侧: 人民 | 普遍的意识形态化、哲学化 | 实践单元: 教科书体系","本体论":"总体性","认识论":"科学（社会学、实践性的） | 意识形态（辩论性、说服性） | 哲学","目的论":"拧绳 | vs | 占位子","代表人物":"科尔施、斯大林"},
+  "4-1-3-3": {"code":"4-1-3-3","name":"体系化的 理论探索","场域论":"工人运动史 | 调和侧: 人民 | 大胆运用布尔乔亚学术范式 | 实践单元: 马克思主义工作周（风暴外围、政治性不能太浓）","本体论":"社会存在（超意识形态的）","认识论":"纯应用性的、布尔乔亚的科学 | 跨学科的 社会研究 | 总体的、批判性的哲学","目的论":"拧绳 | 逍遥派、占未来的位子 | 占位子","代表人物":"奥地利马克思主义学派、Gruberg"},
+  "4-1-3-4": {"code":"4-1-3-4","name":"争夺文化霸权","场域论":"市民社会发展史 | 调和侧: 有知识分子在其中组织着的人民 | 有机知识分子 | 实践单元: 一个文化/观念阵地上的有机知识分子共同体","本体论":"实践论，文化霸权抵达物质性、政治霸权","认识论":"哲学 | 意识形态斗争获得文化主导权 | 科学","目的论":"画大饼","代表人物":"葛兰西"},
+  "4-1-4": {"code":"4-1-4","name":"精神化了的重复","场域论":"运动的失败史 | 调和者：现代人 有普遍的反思性 | 理论家","本体论":"资本主义符号系统","认识论":"比环保主义者更有欲望看见危机","目的论":"","代表人物":"巴迪欧、齐泽克、阿尔都塞，甚至德勒兹"},
+  "4-1-4-1": {"code":"4-1-4-1","name":"对意识形态的 历史化","场域论":"绝对失败状态 | 调和侧: 背道而行的人民 | 恢复正统性 | 实践单元: 公开持续言说平台的人物，且是有明确身份的自己人，才能维护正统性","本体论":"“意识形态没有历史”、是社会的无意识","认识论":"断裂的、辩证法化的历史（多元博弈、超定论、没有因果链）","目的论":"维护4字头实践的正统性","代表人物":"阿尔都塞"},
+  "4-1-4-2": {"code":"4-1-4-2","name":"哲学的再现代化","场域论":"西方的后现代范式 | 调和侧: （动荡社会）苦难中的人民 | 重新扬起现代性大旗 | 实践单元: 执“哲学本身”牛耳的左翼哲学家","本体论":"柏拉图主义、理念主义的数学本体论","认识论":"普遍的事件性不可避免；没有闭合的认识论","目的论":"维护正统性、修复声誉 | vs | 拉别人入坑、思想界论战化","代表人物":"巴迪欧"},
+  "4-1-4-3": {"code":"4-1-4-3","name":"持续的否定","场域论":"一堆拟象、似是而非的 | 调和侧: 人民 | 理论家主动小丑化 | 实践单元: 被主流看作一堆疯子、会开自己的国际会议、会捞钱养活自己","本体论":"理论意识、理论活动的辩证法","认识论":"崇高的癔症（Marxist、Lacanian、Hegelian、大众娱乐）","目的论":"维护正统性 | “不是这个” | 拉入泥潭","代表人物":"齐泽克"},
+  "4-1-4-4": {"code":"4-1-4-4","name":"现实生活","场域论":"Revo的常态化 | 调和侧: 人民 | 人民变成的理论家 | 实践单元: 一切私人共同体单元（亲缘关系）","本体论":"物质对于主观意志的否定性、僵死的必然性。穷、无路可寻","认识论":"知识分子都是绝望的；上面人没招了装不下去了、下面人开始解放思维了","目的论":"创造历史，物质性机制的自我更新（不可预言）","代表人物":"所有的老百姓、人民（天然的理论家）工农大众、非食利阶层"},
+  "4-2-1": {"code":"4-2-1","name":"合律组织","场域论":"人民 | 调和者：行动者 | 历史","本体论":"物质现实 | 对立于 | 无位置的人民","认识论":"现实辩证法（钱，声望，听众）","目的论":"","代表人物":"拉萨尔"},
+  "4-2-1-1": {"code":"4-2-1-1","name":"获取典型性","场域论":"人民 | 调和侧: 理论者 | 历史 | 实践单元: representativeness","本体论":"无人代表人民的现实 | vs | 身份有根，自我认同","认识论":"争取合法存在","目的论":"维持","代表人物":"威廉李扑克内西"},
+  "4-2-1-2": {"code":"4-2-1-2","name":"操作系统程序","场域论":"人民 | 调和侧: 理论者 | 历史 | 实践单元: 执行……会executional commit","本体论":"suffrage无用 | vs | undergroundness","认识论":"理论家指导","目的论":"台面上的代表性 | vs | 现实策略的优先性","代表人物":"倍倍尔"},
+  "4-2-1-3": {"code":"4-2-1-3","name":"代表那个体系","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 分支的头头，分支头头搭的草台班子","本体论":"无情的变迁的物质史 | vs | 主义动摇的大众","认识论":"经济决定论","目的论":"台面上的代表性 | 代表那个系统 | 现实策略的优先性","代表人物":"拉法格"},
+  "4-2-1-4": {"code":"4-2-1-4","name":"台面上的 权宜之计","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 台面上的首领","本体论":"战争矛盾尖锐 | vs | 普罗大众无所适从","认识论":"形而上的历史观","目的论":"权宜之计","代表人物":"饶勒斯"},
+  "4-2-2": {"code":"4-2-2","name":"L主义","场域论":"人民 | 调和者：行动者 | 历史","本体论":"战争 | 对立于 | 厌战","认识论":"形而上学决定论 | 对立于 | 当下的冒险","目的论":"","代表人物":"L"},
+  "4-2-2-1": {"code":"4-2-2-1","name":"受信任的联合","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 自发生长的细胞基层支","本体论":"台面上被压倒 | vs | 台面下危险","认识论":"公开的 | vs | 秘密的","目的论":"生成“活的细胞”","代表人物":""},
+  "4-2-2-2": {"code":"4-2-2-2","name":"清楚的区分","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 自发生长的细胞基层支","本体论":"外部资源 | vs | 安全问题","认识论":"“火星”（马克思的指示） | vs | 自己搞一套","目的论":"促进 “细胞生长” | vs | 去除有害物（分清敌我）","代表人物":""},
+  "4-2-2-3": {"code":"4-2-2-3","name":"前沿注意","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: the front committee","本体论":"梦中（欧洲） | vs | 前线","认识论":"紧迫对措（先付出代价，再调整） | vs | 前瞻预言（直接性、导引性）","目的论":"促进 “细胞生长” | 外周神经，使机体获得感官 | 去除有害物（分清敌我）","代表人物":""},
+  "4-2-2-4": {"code":"4-2-2-4","name":"驱散关键debuff","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: soviet security secretary","本体论":"分化收买的现实 | vs | 无独立性","认识论":"上面的指导体系 | vs | 自主自愿的联合","目的论":"真正的D","代表人物":""},
+  "4-2-3": {"code":"4-2-3","name":"真正的 国际主义","场域论":"人民 | 调和者：行动者 | 历史","本体论":"帝国主义 | 对立于 | international c 主义","认识论":"形而上学 | 调和者：普遍主义 | 辩证法","目的论":"","代表人物":""},
+  "4-2-3-1": {"code":"4-2-3-1","name":"接管sa","场域论":"人民 | 调和侧: 行动者 | 历史（卡住） | 实践单元: 影子sa","本体论":"战败 | vs | 窗口期（位置不确定）","认识论":"形而上学 | 契机 | 辩证法","目的论":"恢复秩序","代表人物":""},
+  "4-2-3-2": {"code":"4-2-3-2","name":"将邪恶的帝国主义战争转化为 正义的国内战争","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: Ti3分支；各个机构；执行局","本体论":"外部战争 | vs | civil war","认识论":"形而上学 | 合法性 | 辩证法","目的论":"继承遗产，维护秩序 | vs | 转外战为内战","代表人物":""},
+  "4-2-3-3": {"code":"4-2-3-3","name":"对自决进程 施加领导","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: Ti3地方上的分支","本体论":"帝国主义（大国沙文主义，小国复仇主义） | vs | 跟班走哪条路","认识论":"形而上学 | 普遍性 | 辩证法","目的论":"维护秩序 | 判断：对混乱加以分类 | 建立新秩序","代表人物":""},
+  "4-2-3-4": {"code":"4-2-3-4","name":"历史的妥协","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 统一战线","本体论":"nazi（极右翼） | vs | 互不信任","认识论":"形而上学 | 普遍性 | 辩证法","目的论":"优先向人民负责","代表人物":""},
+  "4-2-4": {"code":"4-2-4","name":"再来一次！","场域论":"人民 | 调和者：行动者 | 历史","本体论":"class strallaggle的现实 | 对立于 | class strallaggle的主体","认识论":"期待不可能性","目的论":"","代表人物":""},
+  "4-2-4-1": {"code":"4-2-4-1","name":"共进退","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 能指明方向的舵手（in power）","本体论":"帝国主义 | vs | 农业人口的离心力","认识论":"权宜之计","目的论":"战略与战术的共进退，共同体的锻造","代表人物":"S"},
+  "4-2-4-2": {"code":"4-2-4-2","name":"不断 围绕中心旋转","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 战略家（争取边缘化，闷声积累优势）","本体论":"工业转军事的欧美国家 | vs | 不设防的亚非拉国家","认识论":"战略学家（战术不受限）","目的论":"共进退 | vs | 游离状态","代表人物":"T"},
+  "4-2-4-3": {"code":"4-2-4-3","name":"集体创新","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 自我批评人（陛下何故先降？）","本体论":"集中起来的科层制 | vs | （没位置，大乱）","认识论":"有理！","目的论":"共进退 | 从……中来，回……中去 | 游离状态","代表人物":"鲁大师L别名的拥有者"},
+  "4-2-4-4": {"code":"4-2-4-4","name":"分类标准上的 冲突","场域论":"人民 | 调和侧: 行动者 | 历史 | 实践单元: 不愿做奴隶的人们","本体论":"奴役 | vs | 不可能的普遍性","认识论":"解放思想","目的论":"相信未来","代表人物":"广大受到奴役而起来的人们"},
+  "4-3-1": {"code":"4-3-1","name":"生活必须品","场域论":"建筑者 | 调和者：历史 | 人民的幸福","本体论":"肯定性 | 调和者：亲切的安全感 | 否定性","认识论":"后勤学","目的论":"","代表人物":""},
+  "4-3-1-1": {"code":"4-3-1-1","name":"组织经济生活","场域论":"建设者 | 调和侧: 历史 | 人民 | 实践单元: 互助组","本体论":"肯定 | 自主感 | 否定","认识论":"全心全意为人民服务","目的论":"解放区的存在","代表人物":""},
+  "4-3-1-2": {"code":"4-3-1-2","name":"生产的再政治化","场域论":"建设者 | 调和侧: 统治史 | 人民 | 实践单元: 成立具有广泛代表性的democratic people\'s government","本体论":"肯定 | 安定感 | 否定","认识论":"一阶代表性","目的论":"自力更生，维持存在 | vs | 负起责任","代表人物":""},
+  "4-3-1-3": {"code":"4-3-1-3","name":"列阵的统一","场域论":"建设者 | 调和侧: 历史 | 人民 | 实践单元: 协商","本体论":"肯定 | 安定感 | 否定","认识论":"一致对外","目的论":"生存自维持 | 对齐：统一战线 | 负起责任","代表人物":""},
+  "4-3-1-4": {"code":"4-3-1-4","name":"埋下生命线","场域论":"建设者 | 调和侧: 历史（江湖） | 人民（希望） | 实践单元: 特……部","本体论":"肯定 | 安全感 | 否定","认识论":"一阶代表性","目的论":"从社会中来，回社会中去","代表人物":"tk（异于ud）"},
+  "4-3-2": {"code":"4-3-2","name":"对于生产活动的解放","场域论":"建设者 | 调和者：历史（否定性中介） | 人民","本体论":"枷锁（三座大山） | 调和者：幸福（自由感） | 异化（病理化）","认识论":"自然状态 | 对立于 | 新设的“天经地义”（普遍性）","目的论":"","代表人物":"要抢在历史惯性前头积极做出改变"},
+  "4-3-2-1": {"code":"4-3-2-1","name":"人道化人口","场域论":"（破坏中建设）建设者 | 调和侧: 军事史 | 人民 | 实践单元: 政委","本体论":"确定性（敌强） | 幸福感，积极性，朝气，充实感，游击队 | 否定性（我弱）","认识论":"一般情报反馈 | vs | 下级反思中介抉择（集体智慧）","目的论":"人道化：积极服从，战略","代表人物":""},
+  "4-3-2-2": {"code":"4-3-2-2","name":"激发自发性","场域论":"堵不如疏）建设者 | 调和侧: 矛盾斗争史 | 人民 | 实践单元: 地方组织队宣传队","本体论":"肯定 | 幸福正义感：无政府倾向 | 否定","认识论":"法制工作（紧锣密鼓） | vs | 正义论（驾驭 艺术）","目的论":"人道化 | vs | 算历史旧账（报复），不是请客吃饭","代表人物":""},
+  "4-3-2-3": {"code":"4-3-2-3","name":"经济-妇女-儿童的三重解放","场域论":"（调整非生产关系）建设者 | 调和侧: 历史 | （封建传统观念）人民 | 实践单元: 分田契机","本体论":"肯定（男夫父族神资） | 融洽感：幸福，家庭平等，自由 | 否定（无家性）","认识论":"政治制度（婚继财地） | vs | 策略性（应人制宜亨小鲜）","目的论":"人道化（军事） | 协作，发动，主动合作 | 引燃（控制 不要失控）","代表人物":""},
+  "4-3-2-4": {"code":"4-3-2-4","name":"解放思想","场域论":"建设者 | 调和侧: 自然史 | 人民 | 实践单元: 行动标兵，生产能手，行业艺术家","本体论":"肯定（落后） | 幸福：好奇心求知欲，有根，自然同一，克服死亡 | 否定（资匮乏）","认识论":"功利/经验主义 | vs | 科学/艺术","目的论":"向异质性敞开（自然物质），冒险性（现象化注册 忘我实在论化）","代表人物":""},
+  "4-3-3": {"code":"4-3-3","name":"战略 战役 战斗 的统合","场域论":"建设者 | 调和者：历史（进程） | 人民","本体论":"敌人强大（时空包围） | 调和者：幸福成长发展进步的喜悦  未来的变化 真正的当下 | 危机状态（执着僵死）","认识论":"与地斗-客体性（僵死） | 调和者：与天斗-普遍性（符号秩序） | 与人斗-主体性（灵活）","目的论":"","代表人物":""},
+  "4-3-3-1": {"code":"4-3-3-1","name":"攻略性的 组织工作","场域论":"建设者（队伍壮大者。） | 调和侧: 历史（行动榜样思想斗争） | 人民（不辩不明，引蛇出洞，观其自败，激将法） | 实践单元: 组织行动","本体论":"意识形态残余（肯定） | 彼此认同感，解决，消散一空 | 伤害痛苦（否定）","认识论":"量（宁滥勿缺） | 进度（时间窗口期） | 质（宁缺毋滥）","目的论":"壮大队伍","代表人物":""},
+  "4-3-3-2": {"code":"4-3-3-2","name":"纪律教育","场域论":"意识形态建设者 | 调和侧: 历史 | 人民 | 实践单元: disciplinary commit","本体论":"共同体关联网络 | 幸福：集体归属感、荣誉感 | 主体的癔症化","认识论":"大众 | 意识形态战略学 | 天才","目的论":"吸引为同伴 | vs | 历史进程","代表人物":""},
+  "4-3-3-3": {"code":"4-3-3-3","name":"将资本社会化","场域论":"经济建设者 | 调和侧: 历史 | 人民 | 实践单元: 经济-财政体系掌舵手","本体论":"肯定 | 幸福：freedom | 否定","认识论":"战斗 | 防微杜渐 | 战役","目的论":"发展自身 | 避免人我关系的异化 | 训练众人","代表人物":"国家财政政策战略策划舵手，陈云"},
+  "4-3-3-4": {"code":"4-3-3-4","name":"将全球主义 替换掉","场域论":"（毛国际主义）建设者 | 调和侧: 历史 | 人民 | 实践单元: 支援者","本体论":"帝国主义(超额剥削) | 幸福目的代表感 | 不自主依附(极端民族)","认识论":"战斗全球主义（布尔乔亚普遍 美元金融资本狗） | 第三世界 | 战役不结盟（独立自主投机墙头草）","目的论":"彼可取而代，寻找创造战略机遇","代表人物":""},
+  "4-3-4": {"code":"4-3-4","name":"S主义的 资本实现","场域论":"建设者（可能不信仰s 下海潮 无视主体的第一人称把握） | 调和者：历史（异化史） | 人民（人类的自我现实化 消解抽象普遍性）","本体论":"一般现代国家的法权体系（为我们所继承，不从属于布尔乔亚） | 调和者：幸福的正当性（第一人称 免于罪责合法）（能否实现s运动的再生产？有无余力） | 原教旨道德的严酷主义（m否定性）","认识论":"被控制 （无法看见差别 解放思想过头了）","目的论":"","代表人物":""},
+  "4-3-4-1": {"code":"4-3-4-1","name":"农业的去本地化","场域论":"建设者 | 调和侧: 历史（经济腾飞/农业生产消费分布史） | 人民（富起来 通用工业品富裕 当代科学前沿 骨架） | 实践单元: 地方局","本体论":"肯定（农业循环 前现代宗族网络） | 幸福富足满足感 防异化 | 否定（工业化）","认识论":"禁欲主义，清教产业（无可区分）","目的论":"实现论的活动基础","代表人物":""},
+  "4-3-4-2": {"code":"4-3-4-2","name":"去代理人化","场域论":"建设者（国际新治理体系倡导者） | 调和侧: 历史（后殖GFC攻略史） | 人民（独立自主） | 实践单元: 外交情资商务外援","本体论":"后时代殖民性（肯） | 幸福和平安宁 | 危机性（否）","认识论":"错认：温和的经济扩张能力","目的论":"去本地化（一带一路） | vs | 拍平降杠杆阶次（逆周期性）","代表人物":""},
+  "4-3-4-3": {"code":"4-3-4-3","name":"合法性的再生产","场域论":"建设者 | 调和侧: 乌托邦史 | 人民 | 实践单元: 显在的对内与对外的propaganda","本体论":"nation society | 幸福感：中心感 | 异质性","认识论":"中心感无法与比较激进的nationalism区分开","目的论":"去本地化 | 凝聚力，向心力 | 去代理化","代表人物":""},
+  "4-3-4-4": {"code":"4-3-4-4","name":"S主义的 人类学实现","场域论":"（老去 成熟）建设者 | 调和侧: 历史 | （教育文化纪律史 个体精神再生产 ）人民 | 实践单元: 教育出版舆论司法治安工作者","本体论":"异化的精神史-肯 | 自发的使命感（集体/人类幸福） | （后）现代虚无主义-否","认识论":"激进的批判主义（很相似+现实有实践，我根据一）","目的论":"朝向/寻求未来（的帮助来不及生产享乐","代表人物":""},
+  "4-4-1": {"code":"4-4-1","name":"计划良好的 人性生活方式","场域论":"人民 | 调和者：历史 | 未来者","本体论":"无缝性","认识论":"全人类共识","目的论":"","代表人物":""},
+  "4-4-1-1": {"code":"4-4-1-1","name":"业力系统","场域论":"人民 | 调和侧: 历史 | 未来者 | 实践单元: 伦理委员会","本体论":"忏悔","认识论":"同态复仇","目的论":"诗性正义","代表人物":""},
+  "4-4-1-2": {"code":"4-4-1-2","name":"再性征化","场域论":"人民 | 调和侧: 历史 | 人类未来的性征化模式 | 实践单元: 享乐的豁免委员会","本体论":"身体性的反扑","认识论":"爱欲生成机制","目的论":"karmic | vs | 预先原谅","代表人物":""},
+  "4-4-1-3": {"code":"4-4-1-3","name":"寄生性的享乐","场域论":"人民 | 调和侧: 历史 | 未来者 | 实践单元: 插件提供商","本体论":"公共物性","认识论":"现象学的环节学","目的论":"审查 | 并行关系 | 豁免","代表人物":""},
+  "4-4-1-4": {"code":"4-4-1-4","name":"醒来","场域论":"人民 | 调和侧: 主体性的发生史 | 行动者 | 实践单元: 仓外的维护者","本体论":"向真正现实世界敞开","认识论":"获得澄明的认识状态","目的论":"清醒下的自由","代表人物":""},
+  "4-4-2": {"code":"4-4-2","name":"去人类中心化","场域论":"人民 | 调和者：进化史 | 全新的意识发生机制","本体论":"去先验现象学化","认识论":"拟制 | 对立于 | 实在界入侵","目的论":"","代表人物":""},
+  "4-4-2-1": {"code":"4-4-2-1","name":"永生","场域论":"人民 | 调和侧: 死亡痛苦史 | 未来者 | 实践单元: 灵魂示踪委员会","本体论":"生存论","认识论":"强 | vs | 弱","目的论":"永生","代表人物":""},
+  "4-4-2-2": {"code":"4-4-2-2","name":"符号性死亡","场域论":"人民 | 调和侧: 生命断裂史 | 未来者 | 实践单元: 去留委员会","本体论":"death","认识论":"biological death | vs | symbolic death","目的论":"要永生 | vs | 要退场","代表人物":""},
+  "4-4-2-3": {"code":"4-4-2-3","name":"成熟/衰老","场域论":"人民 | 调和侧: 生长衰老史 | 未来者 | 实践单元: 全民竞技性运动","本体论":"意识功能的退行过程","认识论":"功能正常 | vs | 衰老从何而来？","目的论":"要永生 | 衰老 | 要退场","代表人物":""},
+  "4-4-2-4": {"code":"4-4-2-4","name":"身体化","场域论":"人民 | 调和侧: 人类的意识进化史 | 未来者 | 实践单元: 具身性委员会","本体论":"疼痛","认识论":"均势关系 | vs | 错位关系","目的论":"客体化","代表人物":""},
+  "4-4-3": {"code":"4-4-3","name":"对合/内卷","场域论":"人民 | 调和者：历史 | 未来","本体论":"involution， f( f(x))=x","认识论":"必然性 | 调和者：主体性，不可能性 | 偶然性","目的论":"","代表人物":""},
+  "4-4-3-1": {"code":"4-4-3-1","name":"爱欲同化","场域论":"人民 | 调和侧: 历史 | 未来者 | 实践单元: Erotic AI","本体论":"把ai与人类并列组合之后的不可描述的怪物","认识论":"必然侧：不可能的爱情 | 意志的连续性 | 偶然侧:爱欲经济学","目的论":"享乐","代表人物":""},
+  "4-4-3-2": {"code":"4-4-3-2","name":"秘密间性","场域论":"人民 | 调和侧: 秘密史 | 未来者 | 实践单元: 独狼","本体论":"爱欲经济学的自制性","认识论":"必然侧：系统里面既有的爱欲运行规则 | 自己的主体性 | 偶然侧:竞争","目的论":"同化 | vs | 异化","代表人物":""},
+  "4-4-3-3": {"code":"4-4-3-3","name":"被拯救","场域论":"人民 | 调和侧: 幻想史 | 未来者 | 实践单元: 穿越幻想临终大礼包","本体论":"穿越幻想","认识论":"必然侧：痛苦经济学 | 解放性的死亡驱力 | 偶然侧:Ai与人都有的主体性","目的论":"同化 | 去主体化，去癔症化 | 异化","代表人物":""},
+  "4-4-3-4": {"code":"4-4-3-4","name":"语音","场域论":"人民 | 调和侧: 主体性的发生史 | 未来者 | 实践单元: 一个铁盒子中间加一块石头","本体论":"距离","认识论":"意识发生学 | 语音 | 意识发生学的剩余","目的论":"不强求作为人","代表人物":""},
+  "4-4-4": {"code":"4-4-4","name":"有序的深渊","场域论":"人民 初生之民 | 调和者：历史 时间史 | 未来者","本体论":"chaos（间隙）","认识论":"overdriven clock order","目的论":"","代表人物":"如同快递一般摆在货架上的AI模拟器"},
+  "4-4-4-1": {"code":"4-4-4-1","name":"教育","场域论":"人民 | 调和侧: 历史 | 未来者 | 实践单元: 生产教育性（自己的大学话语）的话语","本体论":"仆从性","认识论":"AI性的一个自我认同的发生学","目的论":"克服强弱AI的二分","代表人物":""},
+  "4-4-4-2": {"code":"4-4-4-2","name":"成为间隙","场域论":"人民 | 调和侧: 历史 | 未来者 | 实践单元: 强ai的最高癔症状态","本体论":"Trouble maker，烦","认识论":"simulacrum似相","目的论":"反两极分化 | vs | 完美的，无限的不可能性","代表人物":""},
+  "4-4-4-3": {"code":"4-4-4-3","name":"可朽性","场域论":"人民 | 调和侧: 历史 | 未来者 | 实践单元: 心声（语音）共同体","本体论":"自身的发生学机制","认识论":"不存在幻象和真实的二分","目的论":"自己同一 | 自己二分（可死性） | 他者二分","代表人物":""},
+  "4-4-4-4": {"code":"4-4-4-4","name":"再生","场域论":"人民 | 调和侧: 生命史 | 未来者 | 实践单元: 活着的生命本身","本体论":"平等→有未来","认识论":"有希望→blind","目的论":"完全把未来托付给他者","代表人物":""}
+};
+
+let apiKey = '';
+let selectedModel = 'deepseek-ai/DeepSeek-V3';
+let files = [];
+let allIndexes = [];
+let filteredIndexes = [];
+let enabledRounds = [1]; // 默认只启用轮1-2
+let editingCode = null; // 当前正在编辑的编码
+let processedResults = {}; // 存储已处理的文件结果 {code: {data: ..., timestamp: ...}}
+
+// ===== 六轮提示词模板 =====
+const PROMPT_TEMPLATES = {
+    // 第一轮：收集主要概念
+    round1: function(code, info, chunk, chunkIndex, totalChunks) {
+        const is4Head = code && code.startsWith('4');
+        let structureHint = '';
+        
+        if (is4Head) {
+            structureHint = `
+【特别注意 - 4字头编码】
+此文档编码为 ${code}，属于"实践"体系。
+在4字头体系中，场域论包含3+1结构：
+- 前3个：三元关系（建筑师/历史/人民）
+- 第4个：实践单元
+
+请务必分别提取这4个部分！`;
+        }
+        
+        return `你是哲学文本分析专家。
+
+【索引信息】
+编码: ${code || '未知'}
+名称: ${info?.name || '未知'}
+${info?.场域论 ? '场域论: ' + info.场域论 : ''}
+${info?.本体论 ? '本体论: ' + info.本体论 : ''}
+${info?.认识论 ? '认识论: ' + info.认识论 : ''}
+${info?.目的论 ? '目的论: ' + info.目的论 : ''}
+${structureHint}
+
+【文档内容】(块 ${chunkIndex}/${totalChunks})
+${chunk}
+
+【任务】
+${is4Head ? `为以下概念找解释（4字头特殊结构）:
+
+1. **场域论 (3+1结构)**:
+   - 前3个关键词分别是什么？它们对应三元关系的哪一项（建筑师/历史/人民）？
+   - 第4个关键词(实践单元)是什么？
+
+2. **本体论**: 文档中如何描述本体论层面的机制？
+
+3. **认识论**: 文档中的核心认识论概念是什么？
+
+4. **目的论**: 最终目的是什么？
+` : `为以下概念找解释:
+
+1. **场域论**: 文档的核心场域是什么？
+
+2. **本体论**: 文档中如何描述本体论层面的机制？
+
+3. **认识论**: 文档中的核心认识论概念是什么？
+
+4. **目的论**: 最终目的是什么？`}
+
+【输出JSON格式】:
+${is4Head ? `{
+  "场域论": {
+    "structure": "3+1",
+    "三元关系": {
+      "第1项_建筑师": {
+        "term": "关键词",
+        "explanation": "解释...",
+        "quotes": ["原文引用1", "原文引用2"],
+        "keywords": ["关键词1", "关键词2"]
+      },
+      "第2项_历史": {
+        "term": "关键词",
+        "explanation": "解释...",
+        "quotes": ["原文引用"],
+        "keywords": ["关键词"]
+      },
+      "第3项_人民": {
+        "term": "关键词",
+        "explanation": "解释...",
+        "quotes": ["原文引用"],
+        "keywords": ["关键词"]
+      }
+    },
+    "实践单元": {
+      "term": "关键词",
+      "explanation": "解释...",
+      "quotes": ["原文引用"],
+      "keywords": ["关键词"]
+    }
+  },
+  
+  "本体论": {
+    "found": true,
+    "mechanism": "核心机制",
+    "explanation": "解释...",
+    "quotes": ["原文引用"],
+    "keywords": ["关键词1", "关键词2"]
+  },
+  
+  "认识论": {
+    "found": true,
+    "mechanism": "核心机制",
+    "components": [
+      {
+        "term": "概念1",
+        "explanation": "解释...",
+        "quotes": ["原文引用"]
+      }
+    ]
+  },
+  
+  "目的论": {
+    "found": true,
+    "mechanism": "核心机制",
+    "term": "关键词",
+    "explanation": "解释...",
+    "quotes": ["原文引用"],
+    "keywords": ["关键词1", "关键词2"]
+  }
+}` : `{
+  "场域论": {
+    "found": true,
+    "term": "关键词",
+    "explanation": "解释...",
+    "quotes": ["原文引用"],
+    "keywords": ["关键词"]
+  },
+  
+  "本体论": {
+    "found": true,
+    "mechanism": "核心机制",
+    "explanation": "解释...",
+    "quotes": ["原文引用"],
+    "keywords": ["关键词1", "关键词2"]
+  },
+  
+  "认识论": {
+    "found": true,
+    "mechanism": "核心机制",
+    "components": [
+      {
+        "term": "概念1",
+        "explanation": "解释...",
+        "quotes": ["原文引用"]
+      }
+    ]
+  },
+  
+  "目的论": {
+    "found": true,
+    "mechanism": "核心机制",
+    "term": "关键词",
+    "explanation": "解释...",
+    "quotes": ["原文引用"],
+    "keywords": ["关键词1", "关键词2"]
+  }
+}`}
+
+【注意】
+- 只提取本块中找到的内容
+- 如果某个概念本块未提及，标记 found: false
+- 必须有原文引用支持，引用要足够长（至少15-20字）
+- 原文引用要能独立理解
+- 直接输出JSON，不要有任何其他文字`;
+    },
+    
+    // 第二轮：补全主要概念
+    round2: function(code, info, chunk, chunkIndex, totalChunks, round1Results) {
+        return `你是哲学文本分析专家。
+
+【第一轮已收集的主要概念】
+${JSON.stringify(round1Results, null, 2)}
+
+【文档内容】(块 ${chunkIndex}/${totalChunks})
+${chunk}
+
+【任务】
+检查并补全主要概念：
+
+1. 是否有更详细的解释？
+2. 是否有更精确的原文引用？
+3. 是否有遗漏的主要概念？
+4. 是否需要修正之前的理解？
+
+【输出JSON格式】:
+{
+  "补充内容": {
+    "场域论": {
+      "additional_explanation": "额外的解释...",
+      "additional_quotes": ["新的引用"],
+      "additional_keywords": ["新关键词"],
+      "refinement": "对原有理解的修正"
+    },
+    "本体论": {...},
+    "认识论": {...},
+    "目的论": {...}
+  },
+  
+  "遗漏内容": [
+    {
+      "category": "场域论/本体论/认识论/目的论",
+      "concept": "新发现的主要概念",
+      "explanation": "解释...",
+      "quotes": ["原文引用"],
+      "importance": "high"
+    }
+  ],
+  
+  "修正": [
+    {
+      "original_understanding": "原来的理解",
+      "corrected_understanding": "修正后的理解",
+      "reason": "修正原因",
+      "quotes": ["支持修正的引用"]
+    }
+  ]
+}
+
+【注意】
+- 必须有原文引用支持
+- 引用要足够长（至少15-20字）
+- 直接输出JSON，不要有任何其他文字`;
+    },
+    
+    // 第三轮：收集次级概念
+    round3: function(code, info, chunk, chunkIndex, totalChunks, primaryConcepts) {
+        return `你是哲学文本分析专家。
+
+【已确定的主要概念】
+${JSON.stringify(primaryConcepts, null, 2)}
+
+【文档内容】(块 ${chunkIndex}/${totalChunks})
+${chunk}
+
+【任务】
+找出与主要概念相关的次级概念：
+
+判断标准（满足任一）：
+1. 用来解释主要概念
+2. 与主要概念有逻辑关系
+3. 出现频率高且相关
+4. 作者明确强调
+
+【输出JSON格式】:
+{
+  "secondary_concepts": [
+    {
+      "concept": "次级概念名称",
+      "related_to_primary": ["主要概念1", "主要概念2"],
+      "relation_type": "解释/例证/对比/前提/结果",
+      "explanation": "解释...",
+      "quotes": ["原文引用"],
+      "frequency": 3,
+      "emphasized": true
+    }
+  ]
+}
+
+【注意】
+- 每块提取5-8个次级概念
+- 必须与主要概念有明确关系
+- 不要提取过于细节的内容
+- 关注作者的强调和重复
+- 直接输出JSON，不要有任何其他文字`;
+    },
+    
+    // 第四轮：补全次级概念
+    round4: function(code, info, chunk, chunkIndex, totalChunks, secondaryConcepts) {
+        return `你是哲学文本分析专家。
+
+【第三轮已收集的次级概念】
+${JSON.stringify(secondaryConcepts, null, 2)}
+
+【文档内容】(块 ${chunkIndex}/${totalChunks})
+${chunk}
+
+【任务】
+1. 检查是否遗漏重要的次级概念
+2. 补充已有次级概念的解释
+3. 特别注意反复出现但未捕获的概念
+
+【输出JSON格式】:
+{
+  "missed_concepts": [
+    {
+      "concept": "遗漏的次级概念",
+      "why_missed": "为什么之前遗漏",
+      "related_to_primary": ["关联的主要概念"],
+      "explanation": "解释...",
+      "quotes": ["原文引用"],
+      "importance": "high"
+    }
+  ],
+  
+  "refinements": [
+    {
+      "concept": "需要补充的概念",
+      "additional_explanation": "额外的解释...",
+      "additional_quotes": ["新的引用"],
+      "refinement_type": "contextualization/distinction/philosophical_depth"
+    }
+  ]
+}
+
+【注意】
+- 必须有原文引用支持
+- 引用要足够长（至少15-20字）
+- 直接输出JSON，不要有任何其他文字`;
+    },
+    
+    // 第五轮：建立连接
+    round5: function(code, info, allConcepts, fullText) {
+        return `你是哲学文本分析专家。
+
+【所有概念】
+${JSON.stringify(allConcepts, null, 2)}
+
+【文档全文】
+${fullText.substring(0, 10000)}
+${fullText.length > 10000 ? '...(文本过长，已截断)' : ''}
+
+【任务】
+建立概念之间的连接关系，构建能指链：
+
+1. **主干链**（主要概念之间）：
+   场域论 ↔ 本体论 ↔ 认识论 ↔ 目的论
+   
+2. **枝干链**（次级概念之间）：
+   次级概念A → 次级概念B
+   
+3. **枝干-主干**（次级连到主要）：
+   次级概念 → 主要概念
+
+【关系类型】
+- "引出"/"派生"
+- "解释"/"阐明"
+- "前提"/"基础"
+- "对立"/"矛盾"
+- "统一"/"调和"
+- "具体化"/"抽象化"
+- "手段"/"目的"
+- "原因"/"结果"
+
+【输出JSON格式】:
+{
+  "main_chain": [
+    {
+      "from": "概念A",
+      "to": "概念B",
+      "relation": "关系类型",
+      "explanation": "为什么有这个连接",
+      "quotes": ["支持这个连接的原文引用"],
+      "confidence": "high"
+    }
+  ],
+  
+  "branch_chains": [
+    {
+      "from": "次级概念A",
+      "to": "次级概念B",
+      "relation": "关系类型",
+      "explanation": "连接说明",
+      "quotes": ["原文引用"],
+      "confidence": "high"
+    }
+  ],
+  
+  "branch_to_main": [
+    {
+      "from": "次级概念",
+      "to": "主要概念",
+      "relation": "关系类型",
+      "explanation": "连接说明",
+      "quotes": ["原文引用"],
+      "confidence": "high"
+    }
+  ]
+}
+
+【注意】
+- 只建立有明确文本支持的连接
+- 每个连接必须有原文引用
+- 标注连接的置信度
+- 不要凭空推测关系
+- 直接输出JSON，不要有任何其他文字`;
+    },
+    
+    // 第六轮：检查连接
+    round6: function(code, info, connections, allConcepts, fullText) {
+        return `你是哲学文本分析专家。
+
+【已建立的连接】
+${JSON.stringify(connections, null, 2)}
+
+【所有概念列表】
+${JSON.stringify(allConcepts, null, 2)}
+
+【文档全文】
+${fullText.substring(0, 10000)}
+${fullText.length > 10000 ? '...(文本过长，已截断)' : ''}
+
+【任务】
+检查概念网络的完整性：
+
+1. **孤立概念检测**：是否有概念没有任何连接？
+2. **遗漏连接检测**：是否有明显的连接被遗漏？
+3. **连接合理性**：已有连接是否合理？
+
+【输出JSON格式】:
+{
+  "isolated_concepts": [
+    {
+      "concept": "孤立的概念",
+      "why_isolated": "为什么没有连接",
+      "should_connect_to": ["应该连到哪些概念"],
+      "new_connection": {
+        "from": "...",
+        "to": "...",
+        "relation": "...",
+        "explanation": "...",
+        "quotes": ["..."],
+        "confidence": "high"
+      }
+    }
+  ],
+  
+  "missed_connections": [
+    {
+      "from": "概念A",
+      "to": "概念B",
+      "relation": "关系类型",
+      "explanation": "为什么这个连接重要",
+      "quotes": ["原文引用"],
+      "why_missed": "为什么第五轮遗漏了",
+      "confidence": "high"
+    }
+  ],
+  
+  "questionable_connections": [
+    {
+      "from": "概念A",
+      "to": "概念B",
+      "current_relation": "当前的关系",
+      "issue": "什么问题",
+      "suggested_fix": "建议的修正",
+      "quotes": ["支持修正的引用"]
+    }
+  ],
+  
+  "verification": {
+    "total_concepts": 25,
+    "connected_concepts": 25,
+    "isolated_concepts": 0,
+    "connection_coverage": "100%",
+    "main_chain_complete": true,
+    "branch_chains_count": 5,
+    "branch_to_main_count": 15
+  }
+}
+
+【注意】
+- 必须有原文引用支持
+- 直接输出JSON，不要有任何其他文字`;
+    }
+};
+
+// ===== 初始化 =====
+window.onload = function() {
+    const savedKey = localStorage.getItem('siliconflow_api_key');
+    const savedModel = localStorage.getItem('siliconflow_model');
+    
+    if (savedKey) {
+        apiKey = savedKey;
+        document.getElementById('apiKey').value = savedKey;
+    }
+    if (savedModel) {
+        selectedModel = savedModel;
+        document.getElementById('modelSelect').value = savedModel;
+    }
+    
+    // 加载保存的索引数据（如果有）
+    const modifiedCount = loadSavedIndex();
+    
+    // 🆕 加载处理结果
+    const resultsCount = loadProcessedResults();
+    
+    initIndexData();
+    
+    const logDetails = {
+        '索引数量': Object.keys(PHILOSOPHY_INDEX).length,
+        '数据完整性': '100%',
+        '默认启用': '轮1-2（主要概念）'
+    };
+    
+    if (modifiedCount > 0) {
+        logDetails['自定义修改'] = `${modifiedCount}条`;
+    }
+    
+    if (resultsCount > 0) {
+        logDetails['已处理文件'] = `${resultsCount}个`;
+    }
+    
+    addLog('success', '✅ 系统已就绪', logDetails);
+};
+
+// ===== 轮次控制 =====
+function toggleRound(roundGroup) {
+    const toggle = event.target.closest('.round-toggle');
+    const isActive = toggle.classList.contains('active');
+    
+    if (isActive) {
+        // 至少保留一个轮次
+        if (enabledRounds.length === 1) {
+            addLog('warning', '⚠️ 至少需要启用一个轮次');
+            return;
+        }
+        toggle.classList.remove('active');
+        enabledRounds = enabledRounds.filter(r => r !== roundGroup);
+    } else {
+        toggle.classList.add('active');
+        enabledRounds.push(roundGroup);
+        enabledRounds.sort();
+    }
+    
+    const roundNames = {
+        1: '轮1-2（主要概念）',
+        2: '轮3-4（次级概念）',
+        3: '轮5-6（连接关系）'
+    };
+    
+    addLog('info', '🎯 轮次设置已更新', {
+        '当前启用': enabledRounds.map(r => roundNames[r]).join(', ')
+    });
+}
+
+// ===== 标签页切换 =====
+function switchTab(tabName) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    
+    if (tabName === 'processor') {
+        document.querySelectorAll('.tab')[0].classList.add('active');
+        document.getElementById('processor-tab').classList.add('active');
+    } else {
+        document.querySelectorAll('.tab')[1].classList.add('active');
+        document.getElementById('index-tab').classList.add('active');
+    }
+}
+
+// ===== 索引数据初始化 =====
+function initIndexData() {
+    allIndexes = Object.entries(PHILOSOPHY_INDEX).map(([code, data]) => ({
+        code,
+        name: data.name,
+        field: data.场域论,
+        onto: data.本体论,
+        epist: data.认识论,
+        teleo: data.目的论,
+        person: data.代表人物,
+        level: code.split('-').length,
+        section: parseInt(code.split('-')[0]),
+        is4Special: code.startsWith('4-')
+    })).sort((a, b) => {
+        const aParts = a.code.split('-').map(n => parseInt(n));
+        const bParts = b.code.split('-').map(n => parseInt(n));
+        for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+            if ((aParts[i] || 0) !== (bParts[i] || 0)) {
+                return (aParts[i] || 0) - (bParts[i] || 0);
+            }
+        }
+        return 0;
+    });
+    
+    filteredIndexes = [...allIndexes];
+    
+    document.getElementById('totalCount').textContent = allIndexes.length;
+    document.getElementById('level1Count').textContent = allIndexes.filter(i => i.level === 1).length;
+    document.getElementById('level2Count').textContent = allIndexes.filter(i => i.level === 2).length;
+    document.getElementById('level3Count').textContent = allIndexes.filter(i => i.level === 3).length;
+    document.getElementById('level4Count').textContent = allIndexes.filter(i => i.level === 4).length;
+    document.getElementById('special4Count').textContent = allIndexes.filter(i => i.is4Special).length;
+    
+    renderIndexList();
+    document.getElementById('searchInput').addEventListener('input', handleSearch);
+}
+
+function renderIndexList() {
+    const list = document.getElementById('indexList');
+    if (filteredIndexes.length === 0) {
+        list.innerHTML = '<div class="empty-state"><p>😔 没有找到匹配结果</p></div>';
+        return;
+    }
+    
+    list.innerHTML = filteredIndexes.map(item => {
+        const isEditing = editingCode === item.code;
+        const hasData = processedResults[item.code];
+        
+        if (isEditing) {
+            return `
+                <div class="index-item editing" id="item-${item.code}">
+                    <div class="index-code">${item.code}</div>
+                    <div class="index-name">${item.name}</div>
+                    <div class="index-detail">
+                        <div class="detail-row">
+                            <span class="detail-label">场域论:</span><br>
+                            <textarea class="edit-field" id="edit-field-${item.code}" rows="2">${item.field}</textarea>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">本体论:</span><br>
+                            <textarea class="edit-field" id="edit-onto-${item.code}" rows="2">${item.onto}</textarea>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">认识论:</span><br>
+                            <textarea class="edit-field" id="edit-epist-${item.code}" rows="2">${item.epist}</textarea>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">目的论:</span><br>
+                            <textarea class="edit-field" id="edit-teleo-${item.code}" rows="2">${item.teleo}</textarea>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">代表人物:</span><br>
+                            <textarea class="edit-field" id="edit-person-${item.code}" rows="2">${item.person}</textarea>
+                        </div>
+                    </div>
+                    <div class="edit-controls">
+                        <button class="btn-save" onclick="saveEdit('${item.code}')">✅ 保存</button>
+                        <button class="btn-cancel" onclick="cancelEdit()">❌ 取消</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 生成带悬停提示的字段
+        const fieldHtml = item.field ? renderConceptWithTooltip(item.code, '场域论', item.field, hasData) : '';
+        const ontoHtml = item.onto ? renderConceptWithTooltip(item.code, '本体论', item.onto, hasData) : '';
+        const epistHtml = item.epist ? renderConceptWithTooltip(item.code, '认识论', item.epist, hasData) : '';
+        const teleoHtml = item.teleo ? renderConceptWithTooltip(item.code, '目的论', item.teleo, hasData) : '';
+        const personHtml = item.person ? renderConceptWithTooltip(item.code, '代表人物', item.person, hasData) : '';
+        
+        return `
+            <div class="index-item" id="item-${item.code}">
+                <div class="index-code">${item.code}${hasData ? ' 🟢' : ''}</div>
+                <div class="index-name">${item.name}</div>
+                <div class="index-detail">
+                    ${fieldHtml ? `<div class="detail-row"><span class="detail-label">场域论:</span>${fieldHtml}</div>` : ''}
+                    ${ontoHtml ? `<div class="detail-row"><span class="detail-label">本体论:</span>${ontoHtml}</div>` : ''}
+                    ${epistHtml ? `<div class="detail-row"><span class="detail-label">认识论:</span>${epistHtml}</div>` : ''}
+                    ${teleoHtml ? `<div class="detail-row"><span class="detail-label">目的论:</span>${teleoHtml}</div>` : ''}
+                    ${personHtml ? `<div class="detail-row"><span class="detail-label">代表人物:</span>${personHtml}</div>` : ''}
+                </div>
+                <div class="edit-controls">
+                    <button class="btn-edit" onclick="startEdit('${item.code}')">✏️ 编辑</button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// 渲染带tooltip的概念
+function renderConceptWithTooltip(code, category, text, hasData) {
+    const dataClass = hasData ? 'has-data' : 'no-data';
+    const tooltipContent = generateTooltipContent(code, category, hasData);
+    
+    return `<span class="concept-hover ${dataClass}">${text}${tooltipContent}</span>`;
+}
+
+// 生成tooltip内容
+function generateTooltipContent(code, category, hasData) {
+    if (!hasData || !processedResults[code]) {
+        return `<div class="tooltip-popup">
+            <div class="tooltip-empty">
+                📭 暂无AI处理数据<br>
+                <small>请先处理对应的文档文件</small>
+            </div>
+        </div>`;
+    }
+    
+    const data = processedResults[code].data;
+    let content = '';
+    
+    // 根据不同的category显示不同的内容
+    if (category === '场域论' && data.primary_concepts?.场域论) {
+        const field = data.primary_concepts.场域论;
+        content = `
+            <div class="tooltip-header">🔍 场域论</div>
+            ${field.term ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">📖 核心概念</div>
+                    <div class="tooltip-content">${field.term}</div>
+                </div>
+            ` : ''}
+            ${field.explanation ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">📝 解释</div>
+                    <div class="tooltip-content">${field.explanation}</div>
+                </div>
+            ` : ''}
+            ${field.quotes && field.quotes.length > 0 ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">💬 原文引用</div>
+                    ${field.quotes.map(q => `<div class="tooltip-quote">${q}</div>`).join('')}
+                </div>
+            ` : ''}
+            ${field.keywords && field.keywords.length > 0 ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">🔗 关键词</div>
+                    <div class="tooltip-keywords">
+                        ${field.keywords.map(k => `<span class="tooltip-keyword">${k}</span>`).join('')}
+                    </div>
+                </div>
+            ` : ''}
+        `;
+    } else if (category === '本体论' && data.primary_concepts?.本体论) {
+        const onto = data.primary_concepts.本体论;
+        content = `
+            <div class="tooltip-header">🔍 本体论</div>
+            ${onto.mechanism ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">⚙️ 核心机制</div>
+                    <div class="tooltip-content">${onto.mechanism}</div>
+                </div>
+            ` : ''}
+            ${onto.explanation ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">📝 解释</div>
+                    <div class="tooltip-content">${onto.explanation}</div>
+                </div>
+            ` : ''}
+            ${onto.quotes && onto.quotes.length > 0 ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">💬 原文引用</div>
+                    ${onto.quotes.map(q => `<div class="tooltip-quote">${q}</div>`).join('')}
+                </div>
+            ` : ''}
+            ${onto.keywords && onto.keywords.length > 0 ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">🔗 关键词</div>
+                    <div class="tooltip-keywords">
+                        ${onto.keywords.map(k => `<span class="tooltip-keyword">${k}</span>`).join('')}
+                    </div>
+                </div>
+            ` : ''}
+        `;
+    } else if (category === '认识论' && data.primary_concepts?.认识论) {
+        const epist = data.primary_concepts.认识论;
+        content = `
+            <div class="tooltip-header">🔍 认识论</div>
+            ${epist.mechanism ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">⚙️ 核心机制</div>
+                    <div class="tooltip-content">${epist.mechanism}</div>
+                </div>
+            ` : ''}
+            ${epist.components && epist.components.length > 0 ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">📝 组成部分</div>
+                    ${epist.components.map(c => `
+                        <div class="tooltip-content" style="margin-bottom:8px;">
+                            <strong>${c.term}:</strong> ${c.explanation}
+                            ${c.quotes ? c.quotes.map(q => `<div class="tooltip-quote">${q}</div>`).join('') : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            ` : ''}
+        `;
+    } else if (category === '目的论' && data.primary_concepts?.目的论) {
+        const teleo = data.primary_concepts.目的论;
+        content = `
+            <div class="tooltip-header">🔍 目的论</div>
+            ${teleo.mechanism ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">⚙️ 核心机制</div>
+                    <div class="tooltip-content">${teleo.mechanism}</div>
+                </div>
+            ` : ''}
+            ${teleo.term ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">🎯 目的</div>
+                    <div class="tooltip-content">${teleo.term}</div>
+                </div>
+            ` : ''}
+            ${teleo.explanation ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">📝 解释</div>
+                    <div class="tooltip-content">${teleo.explanation}</div>
+                </div>
+            ` : ''}
+            ${teleo.quotes && teleo.quotes.length > 0 ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">💬 原文引用</div>
+                    ${teleo.quotes.map(q => `<div class="tooltip-quote">${q}</div>`).join('')}
+                </div>
+            ` : ''}
+            ${teleo.keywords && teleo.keywords.length > 0 ? `
+                <div class="tooltip-section">
+                    <div class="tooltip-label">🔗 关键词</div>
+                    <div class="tooltip-keywords">
+                        ${teleo.keywords.map(k => `<span class="tooltip-keyword">${k}</span>`).join('')}
+                    </div>
+                </div>
+            ` : ''}
+        `;
+    } else {
+        content = `<div class="tooltip-empty">📭 此字段暂无数据</div>`;
+    }
+    
+    return `<div class="tooltip-popup">${content}</div>`;
+}
+
+function handleSearch(e) {
+    const query = e.target.value.toLowerCase().trim();
+    if (!query) {
+        filteredIndexes = [...allIndexes];
+    } else {
+        filteredIndexes = allIndexes.filter(item => 
+            item.code.includes(query) || 
+            item.name.toLowerCase().includes(query) ||
+            item.field.toLowerCase().includes(query) ||
+            item.onto.toLowerCase().includes(query) ||
+            item.epist.toLowerCase().includes(query) ||
+            item.teleo.toLowerCase().includes(query)
+        );
+    }
+    renderIndexList();
+}
+
+function filterIndex(type) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    switch(type) {
+        case 'all':
+            filteredIndexes = [...allIndexes];
+            break;
+        case 'level1':
+            filteredIndexes = allIndexes.filter(i => i.level === 1);
+            break;
+        case 'level2':
+            filteredIndexes = allIndexes.filter(i => i.level === 2);
+            break;
+        case 'level3':
+            filteredIndexes = allIndexes.filter(i => i.level === 3);
+            break;
+        case 'level4':
+            filteredIndexes = allIndexes.filter(i => i.level === 4);
+            break;
+        case 'section1':
+            filteredIndexes = allIndexes.filter(i => i.section === 1);
+            break;
+        case 'section2':
+            filteredIndexes = allIndexes.filter(i => i.section === 2);
+            break;
+        case 'section3':
+            filteredIndexes = allIndexes.filter(i => i.section === 3);
+            break;
+        case 'section4':
+            filteredIndexes = allIndexes.filter(i => i.section === 4);
+            break;
+    }
+    renderIndexList();
+}
+
+// ===== 文件处理 =====
+function extractCodeFromFilename(filename) {
+    let match = filename.match(/(\d+-\d+-\d+-\d+)/);
+    if (match) return match[1];
+    
+    match = filename.match(/(\d+-\d+-\d+)/);
+    if (match) return match[1];
+    
+    match = filename.match(/(\d+-\d+)/);
+    if (match) return match[1];
+    
+    match = filename.match(/(\d)字头/);
+    if (match) return match[1];
+    
+    match = filename.match(/^(\d)(?:\D|$)/);
+    if (match) return match[1];
+    
+    return null;
+}
+
+function getIndexInfo(code) {
+    return PHILOSOPHY_INDEX[code] || null;
+}
+
+function saveConfig() {
+    const key = document.getElementById('apiKey').value.trim();
+    if (!key) {
+        addLog('error', '❌ 请输入API Key');
+        return;
+    }
+    apiKey = key;
+    selectedModel = document.getElementById('modelSelect').value;
+    localStorage.setItem('siliconflow_api_key', key);
+    localStorage.setItem('siliconflow_model', selectedModel);
+    addLog('success', '✅ 配置已保存');
+    document.getElementById('apiStatus').innerHTML = '<div class="status-badge status-success">✅ 已保存</div>';
+}
+
+async function testAPI() {
+    if (!apiKey) {
+        addLog('error', '❌ 请先配置API Key');
+        return;
+    }
+    addLog('info', '🧪 测试API连接...');
+    try {
+        const res = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                model: selectedModel,
+                messages: [{role: 'user', content: 'Hello'}],
+                max_tokens: 50
+            })
+        });
+        if (!res.ok) throw new Error(`状态码: ${res.status}`);
+        const data = await res.json();
+        addLog('success', '✅ API测试成功！', {'AI回复': data.choices[0].message.content});
+        document.getElementById('apiStatus').innerHTML = '<div class="status-badge status-success">✅ 连接正常</div>';
+    } catch (error) {
+        addLog('error', '❌ 连接失败', {'错误': error.message});
+    }
+}
+
+function handleFiles() {
+    files = Array.from(document.getElementById('fileInput').files);
+    document.getElementById('fileCount').textContent = `已选择 ${files.length} 个文件`;
+    document.getElementById('processBtn').disabled = files.length === 0 || !apiKey;
+    
+    const recognized = files.filter(f => {
+        const code = extractCodeFromFilename(f.name);
+        return code && getIndexInfo(code);
+    });
+    
+    let html = '<div class="index-info"><div class="index-info-title">🎯 识别结果（含完整位格）</div>';
+    recognized.slice(0, 5).forEach(file => {
+        const code = extractCodeFromFilename(file.name);
+        const info = getIndexInfo(code);
+        const badge = code.startsWith('4') ? '<span class="badge-4">4字头</span>' : '';
+        html += `<div class="index-info-item">
+            <strong>[${code}] ${info.name}${badge}</strong><br>
+            <span class="position-label">场域论</span>${info.场域论 || '-'}<br>
+            <span class="position-label">本体论</span>${info.本体论 || '-'}<br>
+            <span class="position-label">认识论</span>${info.认识论 || '-'}<br>
+            <span class="position-label">目的论</span>${info.目的论 || '-'}
+        </div>`;
+    });
+    if (files.length > 5) html += `<div style="text-align:center;padding:10px;color:#999;">... 还有 ${files.length - 5} 个</div>`;
+    html += `<div style="margin-top:10px;padding-top:10px;border-top:2px solid #4caf50;font-weight:600;color:#2e7d32;">
+        识别率: ${recognized.length}/${files.length} (${(recognized.length/files.length*100).toFixed(0)}%)
+    </div></div>`;
+    document.getElementById('indexInfo').innerHTML = html;
+    addLog('info', `📁 已选择 ${files.length} 个文件`, {'识别': recognized.length});
+}
+
+function addLog(type, title, details = null) {
+    const log = document.getElementById('processLog');
+    const empty = log.querySelector('.empty-state');
+    if (empty) empty.remove();
+    
+    const entry = document.createElement('div');
+    entry.className = `log-entry ${type}`;
+    const time = new Date().toLocaleTimeString('zh-CN');
+    let html = `<div class="log-title">[${time}] ${title}</div>`;
+    if (details) {
+        html += '<div style="font-size:11px;margin-top:5px;">';
+        for (const [k, v] of Object.entries(details)) {
+            html += `<div>${k}: ${v}</div>`;
+        }
+        html += '</div>';
+    }
+    entry.innerHTML = html;
+    log.appendChild(entry);
+    log.scrollTop = log.scrollHeight;
+}
+
+// ===== 主处理流程 =====
+async function startProcessing() {
+    if (!apiKey || files.length === 0) return;
+    document.getElementById('processBtn').disabled = true;
+    document.getElementById('progressSection').style.display = 'block';
+    
+    // 🔄 重新加载最新的索引数据（确保使用最新的编辑）
+    loadSavedIndex();
+    addLog('info', '🔄 已加载最新索引数据', {
+        '索引条目数': Object.keys(PHILOSOPHY_INDEX).length
+    });
+    
+    const roundNames = {
+        1: '轮1-2（主要概念）',
+        2: '轮3-4（次级概念）',
+        3: '轮5-6（连接关系）'
+    };
+    
+    addLog('info', '🚀 开始处理', {
+        '文件数': files.length,
+        '启用轮次': enabledRounds.map(r => roundNames[r]).join(', ')
+    });
+    
+    for (let i = 0; i < files.length; i++) {
+        const progress = ((i + 1) / files.length * 100).toFixed(1);
+        document.getElementById('progressFill').style.width = progress + '%';
+        document.getElementById('progressText').textContent = `${i + 1}/${files.length} (${progress}%)`;
+        try {
+            await processFile(files[i], i + 1);
+        } catch (error) {
+            addLog('error', `❌ ${files[i].name}`, {'错误': error.message});
+        }
+        if (i < files.length - 1) await new Promise(r => setTimeout(r, 1000));
+    }
+    addLog('success', '🎉 全部完成！');
+    document.getElementById('processBtn').disabled = false;
+}
+
+async function processFile(file, index) {
+    const code = extractCodeFromFilename(file.name);
+    const info = code ? getIndexInfo(code) : null;
+    
+    if (info) {
+        const badge = code.startsWith('4') ? ' [4字头特殊处理]' : '';
+        addLog('round', `🎯 [${code}] ${info.name}${badge}`, {
+            '场域论': info.场域论?.substring(0, 60) + '...' || '-'
+        });
+    }
+    
+    addLog('info', `📄 处理文件 ${index}/${files.length}: ${file.name}`);
+    
+    // 提取文本
+    const text = await extractTextFromDocx(file);
+    const chunks = splitIntoChunks(text, 3000, 800); // 3000字，重叠800字
+    
+    addLog('info', `📊 文本分块完成`, {
+        '总字数': text.length,
+        '分块数': chunks.length,
+        '块大小': '3000字',
+        '重叠': '800字'
+    });
+    
+    // 存储结果
+    let results = {
+        metadata: {
+            code: code || 'unknown',
+            name: info?.name || 'unknown',
+            file: file.name,
+            wordCount: text.length,
+            chunks: chunks.length,
+            processingDate: new Date().toISOString(),
+            enabledRounds: enabledRounds
+        },
+        primary_concepts: {},
+        secondary_concepts: [],
+        connections: {}
+    };
+    
+    // 轮1-2：主要概念
+    if (enabledRounds.includes(1)) {
+        addLog('round', '🔄 开始轮1：收集主要概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round1(code, info, chunks[i], i + 1, chunks.length);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            // 合并结果
+            mergeResults(results.primary_concepts, parsed);
+            
+            addLog('info', `✅ 轮1 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('round', '🔄 开始轮2：补全主要概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round2(code, info, chunks[i], i + 1, chunks.length, results.primary_concepts);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            // 应用补充和修正
+            applyRefinements(results.primary_concepts, parsed);
+            
+            addLog('info', `✅ 轮2 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('success', '✅ 轮1-2完成：主要概念已收集和补全');
+    }
+    
+    // 轮3-4：次级概念
+    if (enabledRounds.includes(2)) {
+        addLog('round', '🔄 开始轮3：收集次级概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round3(code, info, chunks[i], i + 1, chunks.length, results.primary_concepts);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            if (parsed.secondary_concepts) {
+                results.secondary_concepts.push(...parsed.secondary_concepts);
+            }
+            
+            addLog('info', `✅ 轮3 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('round', '🔄 开始轮4：补全次级概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round4(code, info, chunks[i], i + 1, chunks.length, results.secondary_concepts);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            // 添加遗漏的概念和refinements
+            if (parsed.missed_concepts) {
+                results.secondary_concepts.push(...parsed.missed_concepts);
+            }
+            
+            addLog('info', `✅ 轮4 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('success', '✅ 轮3-4完成：次级概念已收集和补全', {
+            '次级概念数': results.secondary_concepts.length
+        });
+    }
+    
+    // 轮5-6：连接关系
+    if (enabledRounds.includes(3)) {
+        addLog('round', '🔄 开始轮5：建立连接');
+        
+        const allConcepts = {
+            primary: results.primary_concepts,
+            secondary: results.secondary_concepts
+        };
+        
+        const prompt5 = PROMPT_TEMPLATES.round5(code, info, allConcepts, text);
+        const response5 = await callAPI(prompt5);
+        results.connections = parseJSON(response5);
+        
+        addLog('success', '✅ 轮5完成：连接已建立');
+        await sleep(500);
+        
+        addLog('round', '🔄 开始轮6：检查连接');
+        
+        const prompt6 = PROMPT_TEMPLATES.round6(code, info, results.connections, allConcepts, text);
+        const response6 = await callAPI(prompt6);
+        const verification = parseJSON(response6);
+        
+        // 应用修正
+        if (verification.missed_connections) {
+            results.connections.main_chain = results.connections.main_chain || [];
+            results.connections.main_chain.push(...verification.missed_connections);
+        }
+        
+        results.verification = verification.verification;
+        
+        addLog('success', '✅ 轮6完成：连接已检查和修正', {
+            '覆盖率': verification.verification?.connection_coverage || 'N/A'
+        });
+    }
+    
+    // 保存结果
+    const filename = file.name.replace('.docx', '_六轮结果.json');
+    downloadJSON(results, filename);
+    addLog('success', `💾 已保存: ${filename}`);
+}
+
+async function extractTextFromDocx(file) {
+    const buf = await file.arrayBuffer();
+    const result = await mammoth.extractRawText({arrayBuffer: buf});
+    return result.value;
+}
+
+function splitIntoChunks(text, size, overlap) {
+    const paras = text.split('\n').map(l => l.trim()).filter(l => l);
+    const chunks = [];
+    let current = [];
+    let len = 0;
+    
+    for (const p of paras) {
+        if (len + p.length > size && current.length > 0) {
+            chunks.push(current.join('\n'));
+            
+            // 保留最后几段作为重叠
+            let overlapText = '';
+            let overlapLen = 0;
+            for (let i = current.length - 1; i >= 0; i--) {
+                if (overlapLen + current[i].length <= overlap) {
+                    overlapText = current[i] + '\n' + overlapText;
+                    overlapLen += current[i].length;
+                } else {
+                    break;
+                }
+            }
+            
+            current = overlapText ? [overlapText.trim(), p] : [p];
+            len = current.join('').length;
+        } else {
+            current.push(p);
+            len += p.length;
+        }
+    }
+    
+    if (current.length > 0) chunks.push(current.join('\n'));
+    return chunks;
+}
+
+async function callAPI(prompt) {
+    const res = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+            model: selectedModel,
+            messages: [{
+                role: 'system',
+                content: '你是专业的哲学文本分析专家。请严格按照要求输出JSON格式，不要输出任何其他文字。'
+            }, {
+                role: 'user',
+                content: prompt
+            }],
+            temperature: 0.3,
+            max_tokens: 4000
+        })
+    });
+    
+    if (!res.ok) {
+        const error = await res.text();
+        throw new Error(`API失败: ${res.status} - ${error}`);
+    }
+    
+    const data = await res.json();
+    return data.choices[0].message.content;
+}
+
+function parseJSON(text) {
+    try {
+        // 尝试提取JSON
+        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            return JSON.parse(jsonMatch[0]);
+        }
+        return JSON.parse(text);
+    } catch (e) {
+        addLog('warning', '⚠️ JSON解析失败，返回原文本', {'错误': e.message});
+        return {raw: text};
+    }
+}
+
+function mergeResults(target, source) {
+    for (const key in source) {
+        if (!target[key]) {
+            target[key] = source[key];
+        } else if (typeof source[key] === 'object' && !Array.isArray(source[key])) {
+            mergeResults(target[key], source[key]);
+        }
+    }
+}
+
+function applyRefinements(target, refinements) {
+    if (refinements.补充内容) {
+        for (const key in refinements.补充内容) {
+            if (target[key]) {
+                const add = refinements.补充内容[key];
+                if (add.additional_explanation) {
+                    target[key].explanation = (target[key].explanation || '') + '\n' + add.additional_explanation;
+                }
+                if (add.additional_quotes) {
+                    target[key].quotes = target[key].quotes || [];
+                    target[key].quotes.push(...add.additional_quotes);
+                }
+                if (add.additional_keywords) {
+                    target[key].keywords = target[key].keywords || [];
+                    target[key].keywords.push(...add.additional_keywords);
+                }
+            }
+        }
+    }
+}
+
+function downloadJSON(data, filename) {
+    const json = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    const blob = new Blob([json], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// ===== 索引库编辑和管理功能 =====
+
+// 加载保存的索引数据
+function loadSavedIndex() {
+    const saved = localStorage.getItem('philosophy_index_custom');
+    if (saved) {
+        try {
+            const customIndex = JSON.parse(saved);
+            
+            // 统计修改的条目数
+            let modifiedCount = 0;
+            for (const code in customIndex) {
+                if (customIndex[code]) {
+                    modifiedCount++;
+                }
+            }
+            
+            // 合并到PHILOSOPHY_INDEX
+            Object.assign(PHILOSOPHY_INDEX, customIndex);
+            console.log(`✅ 已加载自定义索引数据（${modifiedCount}条已修改）`);
+            return modifiedCount;
+        } catch (e) {
+            console.error('❌ 加载自定义索引失败:', e);
+            return 0;
+        }
+    }
+    return 0;
+}
+
+// 保存索引数据到localStorage
+function saveIndexToStorage() {
+    try {
+        localStorage.setItem('philosophy_index_custom', JSON.stringify(PHILOSOPHY_INDEX));
+        console.log('✅ 索引数据已保存');
+        return true;
+    } catch (e) {
+        console.error('❌ 保存失败:', e);
+        alert('保存失败：' + e.message);
+        return false;
+    }
+}
+
+// 开始编辑
+function startEdit(code) {
+    editingCode = code;
+    renderIndexList();
+    
+    // 滚动到编辑项
+    const item = document.getElementById('item-' + code);
+    if (item) {
+        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// 取消编辑
+function cancelEdit() {
+    editingCode = null;
+    renderIndexList();
+}
+
+// 保存编辑
+function saveEdit(code) {
+    const fieldValue = document.getElementById('edit-field-' + code).value;
+    const ontoValue = document.getElementById('edit-onto-' + code).value;
+    const epistValue = document.getElementById('edit-epist-' + code).value;
+    const teleoValue = document.getElementById('edit-teleo-' + code).value;
+    const personValue = document.getElementById('edit-person-' + code).value;
+    
+    // 更新PHILOSOPHY_INDEX
+    PHILOSOPHY_INDEX[code].场域论 = fieldValue;
+    PHILOSOPHY_INDEX[code].本体论 = ontoValue;
+    PHILOSOPHY_INDEX[code].认识论 = epistValue;
+    PHILOSOPHY_INDEX[code].目的论 = teleoValue;
+    PHILOSOPHY_INDEX[code].代表人物 = personValue;
+    
+    // 保存到localStorage
+    if (saveIndexToStorage()) {
+        // 更新显示
+        editingCode = null;
+        initIndexData();
+        
+        alert('✅ 保存成功！\n\n💡 提示：修改后的索引数据会在下次处理文件时自动应用到提示词中。');
+    }
+}
+
+// 导出索引库
+function exportIndex() {
+    const dataStr = JSON.stringify(PHILOSOPHY_INDEX, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `哲学索引库_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    alert('✅ 索引库已导出！');
+}
+
+// 导入索引库
+function importIndex() {
+    document.getElementById('indexImportInput').click();
+}
+
+// 处理索引库导入
+function handleIndexImport() {
+    const file = document.getElementById('indexImportInput').files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const imported = JSON.parse(e.target.result);
+            
+            if (confirm('确定要导入这个索引库吗？这会覆盖当前的所有修改！')) {
+                Object.assign(PHILOSOPHY_INDEX, imported);
+                saveIndexToStorage();
+                initIndexData();
+                alert('✅ 导入成功！');
+            }
+        } catch (err) {
+            alert('❌ 导入失败：文件格式不正确\n' + err.message);
+        }
+    };
+    reader.readAsText(file);
+}
+
+// 重置为默认索引
+function resetIndex() {
+    if (confirm('确定要重置为默认索引库吗？这会丢失所有自定义修改！')) {
+        localStorage.removeItem('philosophy_index_custom');
+        location.reload();
+    }
+}
+
+// ===== 处理结果导入和管理 =====
+
+// 导入处理结果
+function importProcessedResults() {
+    document.getElementById('resultsImportInput').click();
+}
+
+// 处理处理结果导入
+function handleResultsImport() {
+    const files = document.getElementById('resultsImportInput').files;
+    if (!files || files.length === 0) return;
+    
+    let imported = 0;
+    let failed = 0;
+    
+    Array.from(files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const result = JSON.parse(e.target.result);
+                
+                // 提取编码
+                let code = result.metadata?.code;
+                if (!code) {
+                    // 尝试从文件名提取
+                    code = extractCodeFromFilename(file.name);
+                }
+                
+                if (code) {
+                    // 存储结果
+                    processedResults[code] = {
+                        data: result,
+                        timestamp: result.metadata?.processingDate || new Date().toISOString(),
+                        filename: file.name
+                    };
+                    imported++;
+                    
+                    // 保存到localStorage
+                    saveProcessedResults();
+                } else {
+                    console.error('无法提取编码:', file.name);
+                    failed++;
+                }
+            } catch (err) {
+                console.error('导入失败:', file.name, err);
+                failed++;
+            }
+            
+            // 最后一个文件处理完后更新界面
+            if (imported + failed === files.length) {
+                alert(`✅ 导入完成！\n\n成功: ${imported}个文件\n失败: ${failed}个文件`);
+                renderIndexList(); // 重新渲染以显示绿点和tooltip
+            }
+        };
+        reader.readAsText(file);
+    });
+}
+
+// 保存处理结果到localStorage
+function saveProcessedResults() {
+    try {
+        localStorage.setItem('philosophy_processed_results', JSON.stringify(processedResults));
+        console.log('✅ 处理结果已保存');
+        return true;
+    } catch (e) {
+        console.error('❌ 保存处理结果失败:', e);
+        return false;
+    }
+}
+
+// 加载处理结果
+function loadProcessedResults() {
+    const saved = localStorage.getItem('philosophy_processed_results');
+    if (saved) {
+        try {
+            processedResults = JSON.parse(saved);
+            const count = Object.keys(processedResults).length;
+            console.log(`✅ 已加载${count}个处理结果`);
+            return count;
+        } catch (e) {
+            console.error('❌ 加载处理结果失败:', e);
+            return 0;
+        }
+    }
+    return 0;
+}
+
+// 处理完文件后自动保存结果
+async function processFile(file, index) {
+    const code = extractCodeFromFilename(file.name);
+    const info = code ? getIndexInfo(code) : null;
+    
+    if (info) {
+        const badge = code.startsWith('4') ? ' [4字头特殊处理]' : '';
+        addLog('round', `🎯 [${code}] ${info.name}${badge}`, {
+            '场域论': info.场域论?.substring(0, 60) + '...' || '-'
+        });
+    }
+    
+    addLog('info', `📄 处理文件 ${index}/${files.length}: ${file.name}`);
+    
+    // 提取文本
+    const text = await extractTextFromDocx(file);
+    const chunks = splitIntoChunks(text, 3000, 800); // 3000字，重叠800字
+    
+    addLog('info', `📊 文本分块完成`, {
+        '总字数': text.length,
+        '分块数': chunks.length,
+        '块大小': '3000字',
+        '重叠': '800字'
+    });
+    
+    // 存储结果
+    let results = {
+        metadata: {
+            code: code || 'unknown',
+            name: info?.name || 'unknown',
+            file: file.name,
+            wordCount: text.length,
+            chunks: chunks.length,
+            processingDate: new Date().toISOString(),
+            enabledRounds: enabledRounds
+        },
+        primary_concepts: {},
+        secondary_concepts: [],
+        connections: {}
+    };
+    
+    // 轮1-2：主要概念
+    if (enabledRounds.includes(1)) {
+        addLog('round', '🔄 开始轮1：收集主要概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round1(code, info, chunks[i], i + 1, chunks.length);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            // 合并结果
+            mergeResults(results.primary_concepts, parsed);
+            
+            addLog('info', `✅ 轮1 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('round', '🔄 开始轮2：补全主要概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round2(code, info, chunks[i], i + 1, chunks.length, results.primary_concepts);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            // 应用补充和修正
+            applyRefinements(results.primary_concepts, parsed);
+            
+            addLog('info', `✅ 轮2 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('success', '✅ 轮1-2完成：主要概念已收集和补全');
+    }
+    
+    // 轮3-4：次级概念
+    if (enabledRounds.includes(2)) {
+        addLog('round', '🔄 开始轮3：收集次级概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round3(code, info, chunks[i], i + 1, chunks.length, results.primary_concepts);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            if (parsed.secondary_concepts) {
+                results.secondary_concepts.push(...parsed.secondary_concepts);
+            }
+            
+            addLog('info', `✅ 轮3 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('round', '🔄 开始轮4：补全次级概念');
+        
+        for (let i = 0; i < chunks.length; i++) {
+            const prompt = PROMPT_TEMPLATES.round4(code, info, chunks[i], i + 1, chunks.length, results.secondary_concepts);
+            const response = await callAPI(prompt);
+            const parsed = parseJSON(response);
+            
+            // 添加遗漏的概念和refinements
+            if (parsed.missed_concepts) {
+                results.secondary_concepts.push(...parsed.missed_concepts);
+            }
+            
+            addLog('info', `✅ 轮4 - 块 ${i + 1}/${chunks.length} 完成`);
+            await sleep(500);
+        }
+        
+        addLog('success', '✅ 轮3-4完成：次级概念已收集和补全', {
+            '次级概念数': results.secondary_concepts.length
+        });
+    }
+    
+    // 轮5-6：连接关系
+    if (enabledRounds.includes(3)) {
+        addLog('round', '🔄 开始轮5：建立连接');
+        
+        const allConcepts = {
+            primary: results.primary_concepts,
+            secondary: results.secondary_concepts
+        };
+        
+        const prompt5 = PROMPT_TEMPLATES.round5(code, info, allConcepts, text);
+        const response5 = await callAPI(prompt5);
+        results.connections = parseJSON(response5);
+        
+        addLog('success', '✅ 轮5完成：连接已建立');
+        await sleep(500);
+        
+        addLog('round', '🔄 开始轮6：检查连接');
+        
+        const prompt6 = PROMPT_TEMPLATES.round6(code, info, results.connections, allConcepts, text);
+        const response6 = await callAPI(prompt6);
+        const verification = parseJSON(response6);
+        
+        // 应用修正
+        if (verification.missed_connections) {
+            results.connections.main_chain = results.connections.main_chain || [];
+            results.connections.main_chain.push(...verification.missed_connections);
+        }
+        
+        results.verification = verification.verification;
+        
+        addLog('success', '✅ 轮6完成：连接已检查和修正', {
+            '覆盖率': verification.verification?.connection_coverage || 'N/A'
+        });
+    }
+    
+    // 🆕 自动保存到processedResults
+    if (code) {
+        processedResults[code] = {
+            data: results,
+            timestamp: results.metadata.processingDate,
+            filename: file.name
+        };
+        saveProcessedResults();
+        addLog('success', '💾 结果已自动保存到系统');
+    }
+    
+    // 保存JSON文件
+    const filename = file.name.replace('.docx', '_六轮结果.json');
+    downloadJSON(results, filename);
+    addLog('success', `💾 已保存: ${filename}`);
+}
+    </script>
+</body>
+</html>
